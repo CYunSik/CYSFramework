@@ -5,7 +5,6 @@
 class CGameManager
 {
 
-
 private:
 	static bool mLoop;
 	HINSTANCE mhInst = 0;
@@ -17,31 +16,6 @@ private:
 	// 배경색
 	// 개발중일때는 검정색 비추
 	float mClearColor[4] = {1.f, 0.f, 1.f, 1.f};
-
-	float mBulletCoolDown = 1.0f;		// 1초
-	float mBulletTimer = 0.0f;
-	bool mShoot = false;
-
-	// 사각형 하나 띄어보기
-	// FRect mRC = { 100, 100, 200, 200 };
-	// 플레이어 위치
-	FVector2D mPlayerPos = { 150.f, 150.f };
-	// 플레이어 크기
-	FVector2D mPlayerSize = { 100.f, 100.f };
-	// 플레이어 총알 리스트
-	std::list<FBullet> mBulletList;	// 여기에 총알을 넣어줄 것이다.
-	
-	// 적
-	// FRect mEnemy = { 1000, 500, 1100, 600 };
-	// 적 위치
-	FVector2D mEnemyPos = { 1100.f, 500.f };
-	// 적 크기
-	FVector2D mEnemySize = { 100.f, 100.f };
-	float mEnemyDir = 1.f;
-
-	std::list<FBullet> mEnemyBulletList;
-	float mFireTime = 1.f;
-	float mFireAccTime = 0.f;
 
 public:
 	bool Init(HINSTANCE hInst);

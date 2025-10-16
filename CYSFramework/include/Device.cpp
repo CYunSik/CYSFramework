@@ -25,7 +25,19 @@ bool CDevice::Init(HWND hWnd, unsigned int Width, unsigned int Height, bool Wind
 
 		3. 소프트웨어 드라이버를 사용할경우에만 사용하는데 이것은 사용 안하기 때문에 0을 넣는다.
 
-		4.
+		4. 디바이스를 생성 시 설정할 플래그
+
+		5. 지원할 DirectX 기능 레벨 리스트
+
+		6. 위 배열의 크기
+
+		7. SDK 버전
+
+		8. 생성된 Direct3D 디바이스 객체 반환
+
+		9. 실제로 생성된 디바이스의 기능 레벨 반환
+
+		10. 즉시 실행 가능한 디바이스 컨텍스트 반환
 	*/
 	// 디바이스 생성 플래그
 	unsigned int Flag = D3D11_CREATE_DEVICE_BGRA_SUPPORT;
@@ -137,7 +149,7 @@ bool CDevice::Init(HWND hWnd, unsigned int Width, unsigned int Height, bool Wind
 	SAFE_RELEASE(Adapter);
 	SAFE_RELEASE(DXGIDevice);
 
-	// SwapCahin에 사용할 진짜 백버퍼를 만들어 줘야한다.
+	// SwapCahin에 사용할 진짜 "백버퍼"를 만들어 줘야한다.
 	// 도화지를 만들어줘야한다.
 	ID3D11Texture2D* BackBuffer = nullptr;
 	if (FAILED(mSwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)&BackBuffer)))

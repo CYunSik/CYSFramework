@@ -12,9 +12,6 @@
 
 #include "Vector2D.h"
 
-// RELEASE 매크로
-#define SAFE_RELEASE(p) if(p) {p->Release(); p = nullptr;}
-
 // DX를 사용하기 위한 헤더
 #include <d3d11.h>
 #include <d3dcompiler.h>
@@ -40,7 +37,8 @@
 // GUID를 사용하기 위해서 필요하다.
 #pragma comment(lib, "dxguid.lib");
 
-
+// RELEASE 매크로
+#define SAFE_RELEASE(p) if(p) {p->Release(); p = nullptr;}
 
 // 마이어스 싱글톤
 #define DECLARE_SINGLETON(ClassName)\
