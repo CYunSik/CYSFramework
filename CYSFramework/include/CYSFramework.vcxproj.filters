@@ -16,14 +16,23 @@
     <Filter Include="01.GameManager">
       <UniqueIdentifier>{a2d975c2-c5cb-49dc-b216-6b5eac805dbd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="02. Share">
-      <UniqueIdentifier>{85b3e4c9-6e83-4a86-81b9-0a8513d0438a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="02. Share\01.Timer">
-      <UniqueIdentifier>{c1ef0507-d403-4640-be26-f68ad41cb905}</UniqueIdentifier>
-    </Filter>
     <Filter Include="01.GameManager\01.Device">
       <UniqueIdentifier>{1c5cda9c-c9d3-48a8-aae3-b91cfe1e9aae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Asset">
+      <UniqueIdentifier>{935297d2-e283-47f9-a9a5-c751c74d03b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Share">
+      <UniqueIdentifier>{85b3e4c9-6e83-4a86-81b9-0a8513d0438a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Share\01.Timer">
+      <UniqueIdentifier>{c1ef0507-d403-4640-be26-f68ad41cb905}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Asset\01.Mesh">
+      <UniqueIdentifier>{bf9c2c75-e739-42c0-962c-371639711274}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.Share\02.Object">
+      <UniqueIdentifier>{2a1dfa21-57af-452f-ba0e-361af0fc624f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -34,10 +43,25 @@
       <Filter>01.GameManager</Filter>
     </ClCompile>
     <ClCompile Include="Share\Timer.cpp">
-      <Filter>02. Share\01.Timer</Filter>
+      <Filter>02.Share\01.Timer</Filter>
     </ClCompile>
     <ClCompile Include="Device.cpp">
       <Filter>01.GameManager\01.Device</Filter>
+    </ClCompile>
+    <ClCompile Include="Asset\AssetManager.cpp">
+      <Filter>03.Asset</Filter>
+    </ClCompile>
+    <ClCompile Include="Share\Object.cpp">
+      <Filter>02.Share\02.Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Asset\Asset.cpp">
+      <Filter>03.Asset</Filter>
+    </ClCompile>
+    <ClCompile Include="Asset\Mesh\Mesh.cpp">
+      <Filter>03.Asset\01.Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Asset\Mesh\StaticMesh.cpp">
+      <Filter>03.Asset\01.Mesh</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -51,7 +75,7 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Share\Timer.h">
-      <Filter>02. Share\01.Timer</Filter>
+      <Filter>02.Share\01.Timer</Filter>
     </ClInclude>
     <ClInclude Include="Vector2D.h">
       <Filter>헤더 파일</Filter>
@@ -64,6 +88,21 @@
     </ClInclude>
     <ClInclude Include="Device.h">
       <Filter>01.GameManager\01.Device</Filter>
+    </ClInclude>
+    <ClInclude Include="Asset\AssetManager.h">
+      <Filter>03.Asset</Filter>
+    </ClInclude>
+    <ClInclude Include="Share\Object.h">
+      <Filter>02.Share\02.Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Asset\Asset.h">
+      <Filter>03.Asset</Filter>
+    </ClInclude>
+    <ClInclude Include="Asset\Mesh\Mesh.h">
+      <Filter>03.Asset\01.Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Asset\Mesh\StaticMesh.h">
+      <Filter>03.Asset\01.Mesh</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
