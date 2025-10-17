@@ -14,6 +14,8 @@
 #include <string>
 
 #include "Vector2D.h"
+#include "Vector3D.h"
+#include "Vector4D.h"
 
 #include "Share/SharedPtr.h"
 
@@ -59,45 +61,6 @@ public:\
 		return &instance;\
 	}
 
-struct FRect
-{
-	float Left = 0.f;
-	float Top = 0.f;
-	float Right = 0.f;
-	float Bottom = 0.f;
-};
-
-enum class EBulletOption
-{
-	Normal,
-	Bound,
-	Wave,
-	Storm
-};
-
-struct FBullet
-{
-	FVector2D Pos;
-	FVector2D Size;
-	FVector2D MoveDir;
-
-	FVector2D Center;
-
-	float Distance = 500.f;	// 사정거리
-	EBulletOption Option = EBulletOption::Normal;
-
-	float AccTime = 0;
-};
-
-struct BulletInfo
-{
-	FVector2D Dir;
-	FVector2D OffSet;
-
-	BulletInfo(FVector2D _Dir, FVector2D _OffSet)
-		: Dir(_Dir), OffSet(_OffSet) {}
-};
-
 // 해상도 저장 구조체
 struct FResolution
 {
@@ -135,5 +98,29 @@ struct FIndexBuffer
 	{
 		SAFE_RELEASE(Buffer);
 		SAFE_DELETE_ARRAY(Data);
+	}
+};
+
+// 정점의 정보를 저장하는 구조체
+struct FVertexColor
+{
+	FVector3D Pos;
+	FVector4D Color;
+
+	FVertexColor()
+	{
+
+	}
+
+	FVertexColor(const FVector3D& _Pos, const FVector4D& _Color)
+		: Pos(_Pos), Color(_Color)
+	{
+
+	}
+
+	FVertexColor(float x, float y, float z, float r, float g, float b, float a)
+		: Pos(x, y, z), Color(r, g, b, a)
+	{
+
 	}
 };
