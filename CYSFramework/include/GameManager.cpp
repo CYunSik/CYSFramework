@@ -5,8 +5,9 @@
 
 // 매니져 헤더
 #include "Share/Timer.h"
-
 #include "Device.h"
+
+#include "Asset/AssetManager.h"
 
 bool CGameManager::mLoop = true;
 
@@ -45,8 +46,12 @@ bool CGameManager::Init(HINSTANCE hInst)
 		return false;
 	}
 
-	CTimer::Init();
+	if (!CAssetManager::GetInst()->Init())
+	{
+		return false;
+	}
 
+	CTimer::Init();
 
 	return true;
 }

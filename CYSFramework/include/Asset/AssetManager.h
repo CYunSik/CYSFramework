@@ -5,8 +5,18 @@
 class CAssetManager
 {
 public:
-	bool Init();
-
 	DECLARE_SINGLETON(CAssetManager)
+
+private:
+	class CMeshManager* mMeshManager = nullptr;
+
+public:
+	class CMeshManager* GetMeshManager() const
+	{
+		return mMeshManager;
+	}
+
+public:
+	bool Init();
 };
 

@@ -34,6 +34,9 @@
     <Filter Include="02.Share\02.Object">
       <UniqueIdentifier>{2a1dfa21-57af-452f-ba0e-361af0fc624f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02.Share\03.SharedPtr">
+      <UniqueIdentifier>{5c294aa0-794a-433d-ab7f-b7e2603264db}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -62,6 +65,12 @@
     </ClCompile>
     <ClCompile Include="Asset\Mesh\StaticMesh.cpp">
       <Filter>03.Asset\01.Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Asset\Mesh\MeshManager.cpp">
+      <Filter>03.Asset\01.Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Share\SharedPtr.cpp">
+      <Filter>02.Share\03.SharedPtr</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -103,6 +112,12 @@
     </ClInclude>
     <ClInclude Include="Asset\Mesh\StaticMesh.h">
       <Filter>03.Asset\01.Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Asset\Mesh\MeshManager.h">
+      <Filter>03.Asset\01.Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Share\SharedPtr.h">
+      <Filter>02.Share\03.SharedPtr</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

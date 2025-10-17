@@ -2,6 +2,7 @@
 
 // 미리 컴파일된 헤더
 #include <Windows.h>
+#include <crtdbg.h>
 
  // 자료구조 리스트
 #include <list>
@@ -9,7 +10,6 @@
 #include <map>				// 기본 트리
 
 #include <unordered_map>	// 해쉬 트리
-
 
 #include <string>
 
@@ -33,14 +33,16 @@
 
 // .lib를 통해서 DX11 기능을 불러와야 한다.
 // 링크를 거는 방법
-#pragma comment(lib, "d3d11.lib");			// DX11 기능을 포함하는 애
+#pragma comment(lib, "d3d11.lib")			// DX11 기능을 포함하는 애
 // DX11은 쉐이더를 별도로 컴파일 해줘야 하므로, 그 컴파일을 하기 위해서 필요하다.
 // 왜? 쉐이더는 hlsl 이라는 언어로 작성되기 때문에 해당 언어를 컴파일 하기 위해서 추가한다.
-#pragma comment(lib, "d3dcompiler.lib");
+#pragma comment(lib, "d3dcompiler.lib")
 // GUID를 사용하기 위해서 필요하다.
-#pragma comment(lib, "dxguid.lib");
+#pragma comment(lib, "dxguid.lib")
 
 // RELEASE 매크로
+#define SAFE_DELETE(p) if(p) { delete p; p = nullptr; }
+#define SAFE_DELETE_ARRAY(p) if(p) { delete[] p; p = nullptr; }
 #define SAFE_RELEASE(p) if(p) {p->Release(); p = nullptr;}
 
 // 마이어스 싱글톤
@@ -99,4 +101,37 @@ struct FResolution
 {
 	unsigned int Width = 0;
 	unsigned int Height = 0;
+};
+
+// 정점 버퍼 vertex buffer
+struct FVertexBuffer
+{
+	ID3D11Buffer* Buffer = nullptr;
+	int Size = 0;
+	int Count = 0;
+	void* Data = nullptr;
+
+	FVertexBuffer() = default;
+	~FVertexBuffer()
+	{
+		SAFE_RELEASE(Buffer);
+		SAFE_DELETE_ARRAY(Data);
+	}
+};
+
+// 인덱스 버퍼
+struct FIndexBuffer
+{
+	ID3D11Buffer* Buffer = nullptr;
+	int Size = 0;
+	int Count = 0;
+	DXGI_FORMAT Fmt = DXGI_FORMAT_UNKNOWN;
+	void* Data = nullptr;
+
+	FIndexBuffer() = default;
+	~FIndexBuffer()
+	{
+		SAFE_RELEASE(Buffer);
+		SAFE_DELETE_ARRAY(Data);
+	}
 };

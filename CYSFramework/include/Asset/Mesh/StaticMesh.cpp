@@ -1,9 +1,9 @@
 #include "StaticMesh.h"
 
-StaticMesh::StaticMesh()
+CStaticMesh::CStaticMesh()
 {
 }
 
-StaticMesh::~StaticMesh()
+CStaticMesh::~CStaticMesh()
 {
 }
