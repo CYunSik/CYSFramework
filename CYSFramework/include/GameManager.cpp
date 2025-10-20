@@ -8,6 +8,11 @@
 #include "Device.h"
 
 #include "Asset/AssetManager.h"
+#include "Asset/Mesh/MeshManager.h"
+#include "Asset/Mesh/Mesh.h"
+
+#include "Shader/ShaderManager.h"
+#include "Shader/Shader.h"
 
 bool CGameManager::mLoop = true;
 
@@ -47,6 +52,11 @@ bool CGameManager::Init(HINSTANCE hInst)
 	}
 
 	if (!CAssetManager::GetInst()->Init())
+	{
+		return false;
+	}
+
+	if (!CShaderManager::GetInst()->Init())
 	{
 		return false;
 	}
@@ -133,6 +143,11 @@ void CGameManager::Render(float DeltaTime)
 	CDevice::GetInst()->SetTarget();
 
 	// 준비된 도화지에 출력
+	CSharedPtr<CShader> Shader = CShaderManager::GetInst()->FindShader("ColorMeshShader");
+	CSharedPtr<CMesh> Mesh = CAssetManager::GetInst()->GetMeshManager()->FindMesh("CenterRect");
+
+	Shader->SetShader();
+	Mesh->Render();
 
 	// 도화지에 다 그렸으면 출력할거다.
 	CDevice::GetInst()->Render();
