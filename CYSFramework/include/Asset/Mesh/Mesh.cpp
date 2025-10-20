@@ -64,12 +64,14 @@ bool CMesh::CreateBuffer(ID3D11Buffer** Buffer, D3D11_BIND_FLAG Flag, void* Data
    
     if (Usage == D3D11_USAGE_DYNAMIC)
     {
-        BufferDesc.CPUAccessFlags = D3D10_CPU_ACCESS_WRITE;
+        BufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
     }
     else if (Usage == D3D11_USAGE_STAGING)
     {
-        BufferDesc.CPUAccessFlags = D3D10_CPU_ACCESS_WRITE | D3D11_CPU_ACCESS_READ;
+        BufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE | D3D11_CPU_ACCESS_READ;
     }
+    BufferDesc.BindFlags = Flag;
+    BufferDesc.Usage = Usage;
 
     // 버퍼를 생성한다.
     D3D11_SUBRESOURCE_DATA BufferData = {};

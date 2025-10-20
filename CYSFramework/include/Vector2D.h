@@ -28,7 +28,7 @@ struct FVector2D
 	{
 	}
 
-	FVector2D(FVector2D&& _v)
+	FVector2D(FVector2D&& _v) noexcept
 		: x(_v.x), y(_v.y)
 	{
 	}
@@ -59,8 +59,8 @@ struct FVector2D
 
 	const FVector2D& operator = (int Value)
 	{
-		x = (int)Value;
-		y = (int)Value;
+		x = (float)Value;
+		y = (float)Value;
 		return *this;
 	}
 

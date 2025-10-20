@@ -24,7 +24,7 @@ struct FVector4D
 	{
 	}
 
-	FVector4D(FVector4D&& _v)
+	FVector4D(FVector4D&& _v) noexcept
 		: x(_v.x), y(_v.y), z(_v.z), w(_v.w)
 	{
 	}
@@ -61,10 +61,10 @@ struct FVector4D
 
 	const FVector4D& operator = (int Value)
 	{
-		x = (int)Value;
-		y = (int)Value;
-		z = (int)Value;
-		w = (int)Value;
+		x = (float)Value;
+		y = (float)Value;
+		z = (float)Value;
+		w = (float)Value;
 		return *this;
 	}
 

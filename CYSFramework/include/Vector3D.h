@@ -23,7 +23,7 @@ struct FVector3D
 	{
 	}
 
-	FVector3D(FVector3D&& _v)
+	FVector3D(FVector3D&& _v) noexcept
 		: x(_v.x), y(_v.y), z(_v.z)
 	{
 	}
@@ -57,9 +57,9 @@ struct FVector3D
 
 	const FVector3D& operator = (int Value)
 	{
-		x = (int)Value;
-		y = (int)Value;
-		z = (int)Value;
+		x = (float)Value;
+		y = (float)Value;
+		z = (float)Value;
 		return *this;
 	}
 
