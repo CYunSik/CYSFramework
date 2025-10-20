@@ -59,6 +59,17 @@ public:
 		D3D11_USAGE_STAGING     : CPU에서 읽기 쓰기 하겠다.
 	*/
 
+	// 메시를 만들기 위한 함수
+	// 1번째 인자 : 정점 메모리의 주소
+	// 2번째 인자 : 정점 정보의 크기
+	// 3번째 인자 : 정점 정보의 갯수
+	// 4번째 인자 : 정점 메모리의 사용 용도
+	// 5번째 인자 : 어떻게 그려질지
+	// 6번째 인자 : 인덱스 메모리의 주소
+	// 7번째 인자 : 인덱스 정보의 크기
+	// 8번째 인자 : 인덱스 정보의 갯수
+	// 9번째 인자 : 인덱스 정보의 포맷
+	// 10번째 인자 : 인덱스 메모리의 사용 용도
 	bool CreateMesh(void* VertexData, int Size, int Count, D3D11_USAGE VertexUsage, D3D11_PRIMITIVE_TOPOLOGY Primitive,
 		void* IndexData = nullptr, int IndexSize = 0, int IndexCount = 0, DXGI_FORMAT Fmt = DXGI_FORMAT_UNKNOWN, D3D11_USAGE IndexUsage = D3D11_USAGE_DEFAULT);
 

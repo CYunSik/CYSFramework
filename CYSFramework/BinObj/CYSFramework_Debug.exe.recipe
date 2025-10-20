@@ -5,7 +5,11 @@
       <FullPath>E:\StudyCys\Framework\CYSFramework\CYSFramework\Bin\CYSFramework_Debug.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
-  <ContentFiles />
+  <ContentFiles>
+    <ContentFile>
+      <FullPath>E:\StudyCys\Framework\CYSFramework\CYSFramework\Bin\ColorMesh.cso</FullPath>
+    </ContentFile>
+  </ContentFiles>
   <SatelliteDlls />
   <NonRecipeFileRefs />
 </Project>

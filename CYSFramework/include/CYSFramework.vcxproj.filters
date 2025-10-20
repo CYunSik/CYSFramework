@@ -37,6 +37,15 @@
     <Filter Include="02.Share\03.SharedPtr">
       <UniqueIdentifier>{5c294aa0-794a-433d-ab7f-b7e2603264db}</UniqueIdentifier>
     </Filter>
+    <Filter Include="04.Shader">
+      <UniqueIdentifier>{ada2d97e-92bb-40c5-b13e-01b4ef8985b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Shader\01.HLSL">
+      <UniqueIdentifier>{e611d033-bdfa-4bec-941d-33b04a59711e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Shader\02.Shader Class">
+      <UniqueIdentifier>{4727b709-0842-4199-8717-dcb46e5a9553}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -71,6 +80,18 @@
     </ClCompile>
     <ClCompile Include="Share\SharedPtr.cpp">
       <Filter>02.Share\03.SharedPtr</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader\ShaderManager.cpp">
+      <Filter>04.Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader\Shader.cpp">
+      <Filter>04.Shader\02.Shader Class</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader\GraphicShader.cpp">
+      <Filter>04.Shader\02.Shader Class</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader\ComputeShader.cpp">
+      <Filter>04.Shader\02.Shader Class</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -119,6 +140,18 @@
     <ClInclude Include="Share\SharedPtr.h">
       <Filter>02.Share\03.SharedPtr</Filter>
     </ClInclude>
+    <ClInclude Include="Shader\ShaderManager.h">
+      <Filter>04.Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader\Shader.h">
+      <Filter>04.Shader\02.Shader Class</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader\GraphicShader.h">
+      <Filter>04.Shader\02.Shader Class</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader\ComputeShader.h">
+      <Filter>04.Shader\02.Shader Class</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="CYSFramework.rc">
@@ -129,5 +162,13 @@
     <Image Include="icon2.ico">
       <Filter>리소스 파일</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="..\Bin\Shader\ColorMesh.fx">
+      <Filter>04.Shader\01.HLSL</Filter>
+    </FxCompile>
+    <FxCompile Include="..\Bin\Shader\Share.fx">
+      <Filter>04.Shader\01.HLSL</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>
