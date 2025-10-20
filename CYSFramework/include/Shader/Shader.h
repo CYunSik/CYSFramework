@@ -5,9 +5,17 @@
 // 그래픽스 쉐이더 : 화면 출력하기 위한 쉐이더
 // 컴퓨트 쉐이더 : 그래픽 카드에 연산을 시키는 쉐이더
 
-class CShader : public CObject
+class CShader abstract : public CObject
 {
+	friend class CShaderManager;
 
+protected:
+	CShader();
+	virtual ~CShader();
+
+public:
+	virtual bool Init() = 0;
+	virtual void SetShader() = 0;
 
 };
 

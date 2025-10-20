@@ -6,6 +6,10 @@ E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Asset\Mesh\StaticMesh.cp
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Device.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\Device.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\GameManager.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\GameManager.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\main.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\main.obj
+E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Shader\ColorMeshShader.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\ColorMeshShader.obj
+E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Shader\ComputeShader.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\ComputeShader.obj
+E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Shader\GraphicShader.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\GraphicShader.obj
+E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Shader\Shader.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\Shader.obj
+E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Shader\ShaderManager.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\ShaderManager.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Share\Object.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\Object.obj
-E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Share\SharedPtr.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\SharedPtr.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Share\Timer.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\Timer.obj

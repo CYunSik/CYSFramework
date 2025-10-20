@@ -78,9 +78,6 @@
     <ClCompile Include="Asset\Mesh\MeshManager.cpp">
       <Filter>03.Asset\01.Mesh</Filter>
     </ClCompile>
-    <ClCompile Include="Share\SharedPtr.cpp">
-      <Filter>02.Share\03.SharedPtr</Filter>
-    </ClCompile>
     <ClCompile Include="Shader\ShaderManager.cpp">
       <Filter>04.Shader</Filter>
     </ClCompile>
@@ -91,6 +88,9 @@
       <Filter>04.Shader\02.Shader Class</Filter>
     </ClCompile>
     <ClCompile Include="Shader\ComputeShader.cpp">
+      <Filter>04.Shader\02.Shader Class</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader\ColorMeshShader.cpp">
       <Filter>04.Shader\02.Shader Class</Filter>
     </ClCompile>
   </ItemGroup>
@@ -150,6 +150,9 @@
       <Filter>04.Shader\02.Shader Class</Filter>
     </ClInclude>
     <ClInclude Include="Shader\ComputeShader.h">
+      <Filter>04.Shader\02.Shader Class</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader\ColorMeshShader.h">
       <Filter>04.Shader\02.Shader Class</Filter>
     </ClInclude>
   </ItemGroup>

@@ -140,12 +140,12 @@
     <ClCompile Include="Device.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Shader\ColorMeshShader.cpp" />
     <ClCompile Include="Shader\ComputeShader.cpp" />
     <ClCompile Include="Shader\GraphicShader.cpp" />
     <ClCompile Include="Shader\Shader.cpp" />
     <ClCompile Include="Shader\ShaderManager.cpp" />
     <ClCompile Include="Share\Object.cpp" />
-    <ClCompile Include="Share\SharedPtr.cpp" />
     <ClCompile Include="Share\Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -158,6 +158,7 @@
     <ClInclude Include="GameInfo.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="Shader\ColorMeshShader.h" />
     <ClInclude Include="Shader\ComputeShader.h" />
     <ClInclude Include="Shader\GraphicShader.h" />
     <ClInclude Include="Shader\Shader.h" />

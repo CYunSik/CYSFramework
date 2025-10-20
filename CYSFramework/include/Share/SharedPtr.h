@@ -6,41 +6,147 @@
 	목적 : 메모리 누수 방지
 */
 
+template <typename T>
 class CSharedPtr
 {
 private:
 	// 모든 객체들은 CObject를 상속받아서 만들 계획
-	class CObject* mObj = nullptr;
+	T* mObj = nullptr;
 
 public:
 	// 생성자 소멸자
-	CSharedPtr();
-	CSharedPtr(class CObject* Obj);
-	CSharedPtr(const CSharedPtr& Ptr);
-	CSharedPtr(CSharedPtr&& Ptr);
-	~CSharedPtr();
+	CSharedPtr()
+	{
+
+	}
+	CSharedPtr(T* Obj)
+	{
+		mObj = Obj;
+
+		if (mObj)
+		{
+			mObj->AddRef();
+		}
+	}
+	CSharedPtr(const CSharedPtr& Ptr)
+	{
+		mObj = Ptr.mObj;
+
+		if (mObj)
+		{
+			mObj->AddRef();
+		}
+	}
+	CSharedPtr(CSharedPtr&& Ptr)
+	{
+		mObj = Ptr.mObj;
+
+		if (mObj)
+		{
+			mObj->AddRef();
+		}
+	}
+	~CSharedPtr()
+	{
+
+	}
 
 	// 연산자 = == !=
 public:
-	void operator = (class CObject* Obj);
-	void operator = (const CSharedPtr& Ptr);
-	void operator = (CSharedPtr&& Ptr);
+	void operator = (T* Obj)
+	{
+		if (mObj)
+		{
+			mObj->Release();
+		}
 
-	bool operator == (class CObject* Obj) const;
-	bool operator == (const CSharedPtr& Ptr) const;
-	bool operator == (CSharedPtr&& Ptr) const;
+		mObj = Obj;
 
-	bool operator != (class CObject* Obj) const;
-	bool operator != (const CSharedPtr& Ptr) const;
-	bool operator != (CSharedPtr&& Ptr) const;
+		// 오브젝트가 있을 경우 참조가 일어나는 것이기 때문에 참조 카운트를 1 증가시킨다.
+		if (mObj)
+		{
+			mObj->AddRef();
+		}
+	}
 
-	class CObject* operator-> () const;
+	void operator = (const CSharedPtr& Ptr)
+	{
+		if (mObj)
+		{
+			mObj->Release();
+		}
+
+		mObj = Ptr.mObj;
+
+		// 오브젝트가 있을 경우 참조가 일어나는 것이기 때문에 참조 카운트를 1 증가시킨다.
+		if (mObj)
+		{
+			mObj->AddRef();
+		}
+	}
+
+	void operator = (CSharedPtr&& Ptr)
+	{
+		if (mObj)
+		{
+			mObj->Release();
+		}
+
+		mObj = Ptr.mObj;
+
+		// 오브젝트가 있을 경우 참조가 일어나는 것이기 때문에 참조 카운트를 1 증가시킨다.
+		if (mObj)
+		{
+			mObj->AddRef();
+		}
+	}
+
+	bool operator == (T* Obj) const
+	{
+		return mObj == Obj;
+	}
+
+	bool operator == (const CSharedPtr& Ptr) const
+	{
+		return mObj == Ptr.mObj;
+	}
+
+	bool operator == (CSharedPtr&& Ptr) const
+	{
+		return mObj == Ptr.mObj;
+	}
+
+	bool operator != (T* Obj) const
+	{
+		return mObj != Obj;
+	}
+
+	bool operator != (const CSharedPtr& Ptr) const
+	{
+		return mObj != Ptr.mObj;
+	}
+
+	bool operator != (CSharedPtr&& Ptr) const
+	{
+		return mObj != Ptr.mObj;
+	}
+
+	T* operator-> () const
+	{
+		return mObj;
+	}
 
 	/*
 		CSharedPtr ptr = new CObject;
 	*/
-	operator class CObject* () const;
+	operator T* () const
+	{
+		return mObj;
+	}
 
-	class CObject* Get() const;
+	T* Get() const
+	{
+		return mObj;
+	}
 };
 

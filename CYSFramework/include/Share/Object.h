@@ -1,4 +1,5 @@
 #pragma once
+#include "../GameInfo.h"
 
 // 추상클래스
 // 키워드로 추상 클래스를 만들 수 있다.
