@@ -37,7 +37,7 @@ public:
 			mObj->AddRef();
 		}
 	}
-	CSharedPtr(CSharedPtr&& Ptr)
+	CSharedPtr(CSharedPtr&& Ptr) noexcept
 	{
 		mObj = Ptr.mObj;
 

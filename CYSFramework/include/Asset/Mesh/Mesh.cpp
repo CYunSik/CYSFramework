@@ -113,5 +113,8 @@ void CMesh::Render()
     else
     {
         // 인덱스 버퍼가 없으므로 그냥 그려줄 것이다.
+        CDevice::GetInst()->GetContext()->IASetIndexBuffer(nullptr, DXGI_FORMAT_UNKNOWN, 0);
+        // 정점만 출력해라
+        CDevice::GetInst()->GetContext()->Draw(mVertexBuffer.Count, 0);
     }
 }
