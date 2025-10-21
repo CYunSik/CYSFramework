@@ -1,5 +1,6 @@
 #pragma once
 #include <math.h>
+#include "EngineMath.h"
 
 struct FVector4D
 {
@@ -492,6 +493,25 @@ struct FVector4D
 
 #pragma endregion
 
+	float& operator [] (int Index)
+	{
+		assert(0 <= Index && Index <= 3);
 
+		switch (Index)
+		{
+		case 0:
+			return x;
+		case 1:
+			return y;
+		case 2:
+			return z;
+		}
+		return w;
+	}
 
+	static FVector4D Black;
+	static FVector4D White;
+	static FVector4D Red;
+	static FVector4D Green;
+	static FVector4D Blue;
 };
