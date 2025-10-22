@@ -51,6 +51,6 @@ cbuffer Transform : register(b0)
     matrix gmatWorld;   // 월드 행렬
     matrix gmatView;    // 카메라(뷰) 행렬
     matrix gmatProj;    // 투영(프로젝션) 행렬
-    matrix gmatWv;      // 월드 * 카메라
+    matrix gmatWV;      // 월드 * 카메라
     matrix gmatWVP;     // 월드 * 카메라 * 투영
 }

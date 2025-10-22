@@ -7,9 +7,9 @@
 
 struct FTransformCBufferInfo
 {
-	FMatrix gmatWorld;
-	FMatrix gmatView;
-	FMatrix gmatProj;
-	FMatrix gmatWv;
-	FMatrix gmatWVP;
+	FMatrix matWorld;
+	FMatrix matView;
+	FMatrix matProj;
+	FMatrix matWV;
+	FMatrix matWVP;
 };

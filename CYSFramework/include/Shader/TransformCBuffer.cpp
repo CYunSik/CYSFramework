@@ -18,11 +18,27 @@ CTransformCBuffer::~CTransformCBuffer()
 
 bool CTransformCBuffer::Init()
 {
+	SetConstantBuffer("Transform");
+
 	return true;
 }
 
 void CTransformCBuffer::UpdateBuffer()
 {
+	mData.matWV = mData.matWorld * mData.matView;
+	mData.matWVP = mData.matWorld * mData.matView * mData.matProj;
+
+	// C++에서 DX로 보내줄때 전치해서 보내줘야 한다.
+	// C++에서 우리가 작성한 연산할때 행렬은 가로기준으로 작성했었다.
+	// 쉐이더에서는 행렬을 읽을때 세로로 데이터를 읽는다.
+	// 그래서 쉐이더에서도 우리가 사용하기 쉽게 전치로 바꿔준 다음에 보내준다.
+	mData.matWorld.Transpose();
+	mData.matView.Transpose();
+	mData.matProj.Transpose();
+	mData.matWV.Transpose();
+	mData.matWVP.Transpose();
+
+	mBuffer->Update(&mData);
 }
 
 CConstantBufferData* CTransformCBuffer::Clone()

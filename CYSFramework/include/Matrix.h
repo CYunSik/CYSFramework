@@ -263,8 +263,6 @@ __declspec(align(16)) union FMatrix
 	
 	// 월드 행렬 구하는 함수들 Static으로 만들기
 	// 크기 행렬
-
-
 	static FMatrix StaticScaling(const FVector3D& _v)
 	{
 		return DirectX::XMMatrixScaling(_v.x, _v.y, _v.z);

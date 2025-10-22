@@ -14,6 +14,8 @@
 #include "Shader/ShaderManager.h"
 #include "Shader/Shader.h"
 
+#include "Shader/TransformCBuffer.h"
+
 bool CGameManager::mLoop = true;
 
 CGameManager::CGameManager()
@@ -143,6 +145,47 @@ void CGameManager::Render(float DeltaTime)
 	CDevice::GetInst()->SetTarget();
 
 	// 준비된 도화지에 출력
+	static CTransformCBuffer buffer;
+	static FVector3D Pos, Rot;
+
+	Pos.z = 5.f;
+
+	// 임시로 키입력
+	if (GetAsyncKeyState('W') & 0x8000)
+	{
+		Pos.y += 0.5f * DeltaTime;
+	}
+	if (GetAsyncKeyState('S') & 0x8000)
+	{
+		Pos.y -= 0.5f * DeltaTime;
+	}
+	if (GetAsyncKeyState('D') & 0x8000)
+	{
+		Rot.z += 90.f * DeltaTime;
+	}
+	if (GetAsyncKeyState('A') & 0x8000)
+	{
+		Rot.z -= 90.f * DeltaTime;
+	}
+	
+	buffer.Init();
+
+	FMatrix matWorld, matProj;
+	FMatrix matScale, matRot, matTranslate;
+
+	matScale.Scaling(5.f, 5.f, 1.f);
+	matRot.Rotation(Rot);
+	matTranslate.Translation(Pos);
+
+	matWorld = matScale * matRot * matTranslate;
+	// 원근 투영 행렬을 만들어준다.
+	// 시야각, 종횡비, 근평원, 원평원
+	matProj = DirectX::XMMatrixPerspectiveFovLH(DirectX::XMConvertToRadians(90.f), 1280.f / 720.f, 0.5f, 1000.f);
+
+	buffer.SetWorldMatrix(matWorld);
+	buffer.SetProjMatrix(matProj);
+	buffer.UpdateBuffer();
+
 	CSharedPtr<CShader> Shader = CShaderManager::GetInst()->FindShader("ColorMeshShader");
 	CSharedPtr<CMesh> Mesh = CAssetManager::GetInst()->GetMeshManager()->FindMesh("CenterRect");
 

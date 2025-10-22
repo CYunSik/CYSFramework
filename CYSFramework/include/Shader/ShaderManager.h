@@ -8,7 +8,11 @@ class CShaderManager
 	DECLARE_SINGLETON(CShaderManager)
 
 private:
+	// 쉐이더들 저장하는 자료구조
 	std::unordered_map<std::string, CSharedPtr<CShader>> mShaderMap;
+
+	// 싱스버퍼 저장하는 자료구조
+	std::unordered_map<std::string, CSharedPtr<class CConstantBuffer>> mCBufferMap;
 
 public:
 	// 쉐이더 클래스 생성 해주기
@@ -35,6 +39,12 @@ public:
 	}
 
 	class CShader* FindShader(const std::string& Name);
+	void ReleaseShader(const std::string& Name);
+
+public:
+	bool CreateConstantBuffer(const std::string& Name, int Size, int Register, int ShaderBufferType);
+	class CConstantBuffer* FindCBuffer(const std::string& Name);
+	void ReleaseCBuffer(const std::string& Name);
 
 public:
 	bool Init();

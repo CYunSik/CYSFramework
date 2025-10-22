@@ -13,10 +13,25 @@ public:
 private:
 	FTransformCBufferInfo mData;
 
+public:
 	virtual bool Init();
 	virtual void UpdateBuffer();
 
 	virtual CConstantBufferData* Clone();
+
+public:
+	void SetWorldMatrix(const FMatrix& matWorld)
+	{
+		mData.matWorld = matWorld;
+	}
+	void SetViewMatrix(const FMatrix& matView)
+	{
+		mData.matView = matView;
+	}
+	void SetProjMatrix(const FMatrix& matProj)
+	{
+		mData.matProj = matProj;
+	}
 
 };
 
