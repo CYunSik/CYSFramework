@@ -27,7 +27,12 @@ VS_Output_Color ColorMeshVS(VS_Input_Color input)
     // 초기화
     VS_Output_Color output = (VS_Output_Color) 0;
     
-    output.Pos = float4(input.Pos, 1.f);
+    // 월드 좌표 위치 = 로컬 좌표 * 월드 행렬
+    
+    // 화면에 출력할거면 WVP 모두 곱한 행렬을 가져와서 곱해주면
+    output.Pos = mul(float4(input.Pos, 1.f), gmatWVP);
+                                      // 뒤에 1.f인 이유는 이동량을 포함시키기 위해서다.
+    
     output.Color = input.Color;
     
     return output;

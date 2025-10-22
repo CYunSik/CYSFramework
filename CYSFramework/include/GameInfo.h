@@ -125,3 +125,18 @@ struct FVertexColor
 
 	}
 };
+
+namespace EShaderBufferType
+{
+	enum Type
+	{
+		Vertex = 0x1,	// 첫번째 비트값
+		Pixel = 0x2,	// 두번째 비트값
+		Hull = 0x4,		// 세번째 비트값
+		Domain = 0x8,	// ...
+		Geometry = 0x10,
+		Compute = 0x20,
+		Graphic = Vertex | Pixel | Hull | Domain | Geometry,
+		All = Vertex | Pixel | Hull | Domain | Geometry | Compute
+	};
+}

@@ -57,6 +57,7 @@ bool CMesh::CreateBuffer(ID3D11Buffer** Buffer, D3D11_BIND_FLAG Flag, void* Data
 {
     // 버퍼 사용 설명서 만들어서
     // 설명서 대로 만들어주세요
+    // 디바이스에 요청하는 것
     // 버퍼 만드는 용도이다
     D3D11_BUFFER_DESC BufferDesc = {};
 

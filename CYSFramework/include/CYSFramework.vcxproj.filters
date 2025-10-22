@@ -46,6 +46,12 @@
     <Filter Include="04.Shader\02.Shader Class">
       <UniqueIdentifier>{4727b709-0842-4199-8717-dcb46e5a9553}</UniqueIdentifier>
     </Filter>
+    <Filter Include="04.Shader\03.ConstantBuffer">
+      <UniqueIdentifier>{51beb32e-753f-45f7-b432-c2efab07be36}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Shader\03.ConstantBuffer\01.Transform">
+      <UniqueIdentifier>{b6297644-3c3d-43e4-b73e-fca2ca2e8e3c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -92,6 +98,15 @@
     </ClCompile>
     <ClCompile Include="Shader\ColorMeshShader.cpp">
       <Filter>04.Shader\02.Shader Class</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader\ConstantBuffer.cpp">
+      <Filter>04.Shader\03.ConstantBuffer</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader\ConstantBufferData.cpp">
+      <Filter>04.Shader\03.ConstantBuffer</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader\TransformCBuffer.cpp">
+      <Filter>04.Shader\03.ConstantBuffer\01.Transform</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -160,6 +175,18 @@
     </ClInclude>
     <ClInclude Include="EngineMath.h">
       <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader\ConstantBuffer.h">
+      <Filter>04.Shader\03.ConstantBuffer</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader\ConstantBufferData.h">
+      <Filter>04.Shader\03.ConstantBuffer</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader\TransformCBuffer.h">
+      <Filter>04.Shader\03.ConstantBuffer\01.Transform</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader\CBufferContainer.h">
+      <Filter>04.Shader\03.ConstantBuffer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
