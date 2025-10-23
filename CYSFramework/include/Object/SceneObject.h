@@ -18,7 +18,7 @@ protected:
 	std::string mName;
 
 	// 내가 어떤 컴포넌트를 가지고 있을것인가?
-
+	CSharedPtr<class CSceneComponent> mRootComponent;
 
 public:
 	class CScene* GetScene() const
@@ -36,6 +36,8 @@ public:
 	{
 		mName = Name;
 	}
+
+	void SetRootComponent(class CSceneComponent* Root);
 
 	// 시점 함수
 public:

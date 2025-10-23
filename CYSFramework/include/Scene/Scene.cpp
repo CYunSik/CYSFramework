@@ -23,7 +23,7 @@ bool CScene::Init(const char* FileName)
 void CScene::PreUpdate(float DeltaTime)
 {
 	std::list<CSharedPtr<class CSceneObject>>::iterator iter;
-	std::list<CSharedPtr<class CSceneObject>>::iterator iterEnd;
+	std::list<CSharedPtr<class CSceneObject>>::iterator iterEnd = mObjList.end();
 
 	for (iter = mObjList.begin(); iter != iterEnd;)
 	{

@@ -1,4 +1,5 @@
 #include "SceneObject.h"
+#include "../Component/SceneComponent.h"
 
 CSceneObject::CSceneObject()
 {
@@ -14,6 +15,11 @@ CSceneObject::CSceneObject(CSceneObject&& Obj)
 
 CSceneObject::~CSceneObject()
 {
+}
+
+void CSceneObject::SetRootComponent(CSceneComponent* Root)
+{
+	mRootComponent = Root;
 }
 
 bool CSceneObject::Init()
@@ -63,5 +69,5 @@ void CSceneObject::PostRender()
 
 CSceneObject* CSceneObject::Clone()
 {
-	return nullptr;
+	return new CSceneObject(*this);
 }

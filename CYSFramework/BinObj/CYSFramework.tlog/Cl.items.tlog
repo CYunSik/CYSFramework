@@ -4,6 +4,7 @@ E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Asset\Mesh\Mesh.cpp;E:\S
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Asset\Mesh\MeshManager.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\MeshManager.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Asset\Mesh\StaticMesh.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\StaticMesh.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Component\Component.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\Component.obj
+E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Component\SceneComponent.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\SceneComponent.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Device.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\Device.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\GameManager.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\GameManager.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\main.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\main.obj
@@ -20,3 +21,4 @@ E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Shader\ShaderManager.cpp
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Shader\TransformCBuffer.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\TransformCBuffer.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Share\Object.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\Object.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Share\Timer.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\Timer.obj
+E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Vector3D.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\Vector3D.obj

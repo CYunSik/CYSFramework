@@ -129,6 +129,12 @@
     <ClCompile Include="Component\Component.cpp">
       <Filter>07.Component</Filter>
     </ClCompile>
+    <ClCompile Include="Component\SceneComponent.cpp">
+      <Filter>07.Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector3D.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameManager.h">
@@ -219,6 +225,9 @@
       <Filter>06.Object</Filter>
     </ClInclude>
     <ClInclude Include="Component\Component.h">
+      <Filter>07.Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Component\SceneComponent.h">
       <Filter>07.Component</Filter>
     </ClInclude>
   </ItemGroup>

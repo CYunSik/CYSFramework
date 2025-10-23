@@ -13,6 +13,9 @@
 
 // 4차원 행렬을 이용할 것이다
 #include "Vector4D.h"
+#include "Vector3D.h"
+#include "Vector2D.h"
+#include "string.h"
 
 // DX에서는 행렬을 지원 안해주냐? 해주고는 있다. 다만 사용이 까다롭다
 // __declspec(align(16)) : DX에서 지원하는 수학 라이브러리에서 행렬 연산할때 이거 없으면 크래시 난다.
