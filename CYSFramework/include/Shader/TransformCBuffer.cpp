@@ -41,7 +41,7 @@ void CTransformCBuffer::UpdateBuffer()
 	mBuffer->Update(&mData);
 }
 
-CConstantBufferData* CTransformCBuffer::Clone()
+CTransformCBuffer* CTransformCBuffer::Clone()
 {
 	return new CTransformCBuffer(*this);
 }

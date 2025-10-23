@@ -4,6 +4,8 @@
 
 class CSceneMain : public CScene
 {
+    friend class CSceneManager;
+
 protected:
     CSceneMain();
     virtual ~CSceneMain();

@@ -61,6 +61,9 @@
     <Filter Include="07.Component">
       <UniqueIdentifier>{6d923293-0c1d-4f12-bcff-de9437dacb7e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="07.Component\01.SceneComponent">
+      <UniqueIdentifier>{3038f3c9-a6e1-4178-838b-1148b7caa938}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -129,11 +132,20 @@
     <ClCompile Include="Component\Component.cpp">
       <Filter>07.Component</Filter>
     </ClCompile>
-    <ClCompile Include="Component\SceneComponent.cpp">
-      <Filter>07.Component</Filter>
-    </ClCompile>
     <ClCompile Include="Vector3D.cpp">
       <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Component\SceneComponent.cpp">
+      <Filter>07.Component\01.SceneComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="Component\MeshComponent.cpp">
+      <Filter>07.Component\01.SceneComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="Component\StaticMeshComponent.cpp">
+      <Filter>07.Component\01.SceneComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\SceneManager.cpp">
+      <Filter>05.Scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -228,7 +240,16 @@
       <Filter>07.Component</Filter>
     </ClInclude>
     <ClInclude Include="Component\SceneComponent.h">
-      <Filter>07.Component</Filter>
+      <Filter>07.Component\01.SceneComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="Component\MeshComponent.h">
+      <Filter>07.Component\01.SceneComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="Component\StaticMeshComponent.h">
+      <Filter>07.Component\01.SceneComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\SceneManager.h">
+      <Filter>05.Scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

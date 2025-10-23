@@ -5,6 +5,8 @@
 // 월드를 구상하는 클래스이다.
 class CScene
 {
+	friend class CSceneManager;
+
 protected:
 	CScene();
 	virtual ~CScene();

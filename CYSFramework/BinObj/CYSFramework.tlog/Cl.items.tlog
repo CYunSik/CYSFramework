@@ -4,13 +4,16 @@ E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Asset\Mesh\Mesh.cpp;E:\S
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Asset\Mesh\MeshManager.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\MeshManager.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Asset\Mesh\StaticMesh.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\StaticMesh.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Component\Component.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\Component.obj
+E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Component\MeshComponent.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\MeshComponent.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Component\SceneComponent.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\SceneComponent.obj
+E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Component\StaticMeshComponent.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\StaticMeshComponent.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Device.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\Device.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\GameManager.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\GameManager.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\main.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\main.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Object\SceneObject.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\SceneObject.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Scene\Scene.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\Scene.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Scene\SceneMain.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\SceneMain.obj
+E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Scene\SceneManager.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\SceneManager.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Shader\ColorMeshShader.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\ColorMeshShader.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Shader\ComputeShader.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\ComputeShader.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Shader\ConstantBuffer.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\ConstantBuffer.obj

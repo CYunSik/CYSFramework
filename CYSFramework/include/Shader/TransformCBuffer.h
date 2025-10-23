@@ -17,7 +17,7 @@ public:
 	virtual bool Init();
 	virtual void UpdateBuffer();
 
-	virtual CConstantBufferData* Clone();
+	virtual CTransformCBuffer* Clone();
 
 public:
 	void SetWorldMatrix(const FMatrix& matWorld)

@@ -39,12 +39,12 @@ public:
 protected:
 	// 상대좌표 월드(절대)좌표
 	// 상대 크기 회전 위치
-	FVector3D mRelativeScale;
+	FVector3D mRelativeScale = FVector3D(1.f, 1.f, 1.f);
 	FVector3D mRelativeRot;
 	FVector3D mRelativePos;
 
 	// 월드(절대) 크기 회전 위치
-	FVector3D mWorldScale;
+	FVector3D mWorldScale = FVector3D(1.f, 1.f, 1.f);
 	FVector3D mWorldRot;
 	FVector3D mWorldPos;
 
