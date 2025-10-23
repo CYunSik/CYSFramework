@@ -12,10 +12,28 @@ protected:
 	
 protected:
 	int mRefCount = 0;
+	bool mActive = true;	// flase -> 삭제가 될거다.
+	bool mEnable = true;	// false -> 시점 함수 호출만 안할것이다.
+
+public:
+	bool IsActive()
+	{
+		return mActive;
+	}
+	
+	bool IsEnable()
+	{
+		return mEnable;
+	}
 
 public:
 	virtual void AddRef();
 	virtual void Release();
+	void Destroy();
+	void SetEnable(bool Enable)
+	{
+		mEnable = Enable;
+	}
 
 };
 

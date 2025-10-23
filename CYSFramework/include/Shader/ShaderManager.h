@@ -11,7 +11,7 @@ private:
 	// 쉐이더들 저장하는 자료구조
 	std::unordered_map<std::string, CSharedPtr<CShader>> mShaderMap;
 
-	// 싱스버퍼 저장하는 자료구조
+	// 상수버퍼 저장하는 자료구조
 	std::unordered_map<std::string, CSharedPtr<class CConstantBuffer>> mCBufferMap;
 
 public:

@@ -254,6 +254,14 @@ bool CGameManager::Create()
 		return FALSE;
 	}
 
+	// 위의 CreateWindowW 타이틀바, 메뉴바 등의 크기가 모두 합쳐진 크기로 지정된다.
+	// 그래서 윈도우 클라이언트 영역을 다시 계산해서 윈도우창을 재조정한다.
+	RECT WindowRC = { 0, 0, 1280, 720 };
+	// 클라이언트 영역이 1280, 720이 되도록 윈도우 크기를 재조정한다.
+	AdjustWindowRect(&WindowRC, WS_OVERLAPPEDWINDOW, FALSE);
+
+	SetWindowPos(mhWnd, HWND_TOPMOST, 100, 100, WindowRC.right - WindowRC.left, WindowRC.bottom - WindowRC.top, SWP_NOMOVE | SWP_NOZORDER);
+
 	// *위에서 윈도우 창을 만들었다면 이제 ShowWindow 함수를 이용해서 창을 보여줄지 숨길지 결정한다.
 	// ShowWindow(hWnd, nCmdShow);
 	ShowWindow(mhWnd, SW_SHOW);
