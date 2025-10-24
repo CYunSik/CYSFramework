@@ -1,5 +1,7 @@
 #include "PlayerObject.h"
 #include "../Component/StaticMeshComponent.h"
+#include "../Scene/Scene.h"
+#include "../Scene/Input.h"
 
 CPlayerObject::CPlayerObject()
 	: CSceneObject()
@@ -36,5 +38,47 @@ bool CPlayerObject::Init()
 	Root->SetWorldPos(0.f, 0.f, 1.5f);
 	SetRootComponent(Root);
 
+	// 입력
+	mScene->GetInput()->AddBindKey("MoveUp", 'W');
+	mScene->GetInput()->AddBindKey("MoveDown", 'S');
+
+	mScene->GetInput()->AddBindFunction("MoveUp", EInputType::Hold, this, &CPlayerObject::MoveUp);
+	mScene->GetInput()->AddBindFunction("MoveDown", EInputType::Hold, this, &CPlayerObject::MoveDown);
+
+	// 회전
+	mScene->GetInput()->AddBindKey("RotationZ", 'D');
+	mScene->GetInput()->AddBindKey("RotationInv", 'A');
+
+	mScene->GetInput()->AddBindFunction("RotationZ", EInputType::Hold, this, &CPlayerObject::RotationZ);
+	mScene->GetInput()->AddBindFunction("RotationInv", EInputType::Hold, this, &CPlayerObject::RotationZInv);
+
 	return true;
+}
+
+void CPlayerObject::MoveUp(float DeltaTime)
+{
+	FVector3D Pos = mRootComponent->GetWorldPosition();
+	FVector3D Dir = { 0.f, 1.f, 0.f };
+
+	mRootComponent->SetWorldPos(Pos + Dir * DeltaTime);
+}
+
+void CPlayerObject::MoveDown(float DeltaTime)
+{
+	FVector3D Pos = mRootComponent->GetWorldPosition();
+	FVector3D Dir = { 0.f, -1.f, 0.f };
+
+	mRootComponent->SetWorldPos(Pos + Dir * DeltaTime);
+}
+
+void CPlayerObject::RotationZ(float DeltaTime)
+{
+	FVector3D Rot = mRootComponent->GetWorldRotation();
+	mRootComponent->SetWorldRotationZ(Rot.z + 90.f * DeltaTime);
+}
+
+void CPlayerObject::RotationZInv(float DeltaTime)
+{
+	FVector3D Rot = mRootComponent->GetWorldRotation();
+	mRootComponent->SetWorldRotationZ(Rot.z + -90.f * DeltaTime);
 }

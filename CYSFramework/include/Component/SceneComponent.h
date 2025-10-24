@@ -55,6 +55,38 @@ protected:
 	FMatrix mMatWorld;
 
 public:
+	// Getter
+	const FVector3D& GetRelativeScale() const
+	{
+		return mRelativeScale;
+	}
+
+	const FVector3D& GetRelativeRotation() const
+	{
+		return mRelativeRot;
+	}
+
+	const FVector3D& GetRelativePosition() const
+	{
+		return mRelativePos;
+	}
+
+	const FVector3D& GetWorldScale() const
+	{
+		return mWorldScale;
+	}
+
+	const FVector3D& GetWorldRotation() const
+	{
+		return mWorldRot;
+	}
+
+	const FVector3D& GetWorldPosition() const
+	{
+		return mWorldPos;
+	}
+
+	// Setter
 	// 상대 좌표
 	void SetRelativeScale(const FVector3D& Scale);
 	void SetRelativeScale(float x, float y, float z);

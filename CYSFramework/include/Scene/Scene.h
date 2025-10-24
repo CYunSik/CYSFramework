@@ -20,6 +20,11 @@ protected:
 	// 리스트로 관리 : 중간 삽입 삭제가 용이하기 때문
 	std::list<CSharedPtr<class CSceneObject>> mObjList;
 
+public:
+	class CInput* GetInput() const
+	{
+		return mInput;
+	}
 
 public:
 	virtual bool Init();

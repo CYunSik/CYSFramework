@@ -4,6 +4,8 @@
 #include <Windows.h>
 #include <crtdbg.h>
 
+#include <functional>
+
  // 자료구조 리스트
 #include <list>
 #include <vector>
