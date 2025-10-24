@@ -12,6 +12,10 @@ protected:
 	virtual ~CScene();
 
 protected:
+	// 입력
+	class CInput* mInput = nullptr;
+
+
 	// 오브젝트
 	// 리스트로 관리 : 중간 삽입 삭제가 용이하기 때문
 	std::list<CSharedPtr<class CSceneObject>> mObjList;
@@ -20,6 +24,7 @@ protected:
 public:
 	virtual bool Init();
 	virtual bool Init(const char* FileName);
+	virtual void Input(float DeletaTime);
 	virtual void PreUpdate(float DeltaTime);
 	virtual void Update(float DeltaTime);
 	virtual void PostUpdate(float DeltaTime);

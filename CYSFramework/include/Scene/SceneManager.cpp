@@ -23,6 +23,11 @@ bool CSceneManager::Init()
 	return true;
 }
 
+void CSceneManager::Input(float DeltaTime)
+{
+	mCurrentScene->Input(DeltaTime);
+}
+
 void CSceneManager::Update(float DeltaTime)
 {
 	mCurrentScene->PreUpdate(DeltaTime);

@@ -64,6 +64,9 @@
     <Filter Include="07.Component\01.SceneComponent">
       <UniqueIdentifier>{3038f3c9-a6e1-4178-838b-1148b7caa938}</UniqueIdentifier>
     </Filter>
+    <Filter Include="05.Scene\01.Input">
+      <UniqueIdentifier>{3f6ba237-6d7d-4525-8bc1-83a85c0468ea}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -149,6 +152,9 @@
     </ClCompile>
     <ClCompile Include="Object\PlayerObject.cpp">
       <Filter>06.Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Input.cpp">
+      <Filter>05.Scene\01.Input</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -256,6 +262,9 @@
     </ClInclude>
     <ClInclude Include="Object\PlayerObject.h">
       <Filter>06.Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Input.h">
+      <Filter>05.Scene\01.Input</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

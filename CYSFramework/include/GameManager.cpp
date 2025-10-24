@@ -120,7 +120,7 @@ void CGameManager::Logic()
 
 void CGameManager::Input(float DeltaTime)
 {
-	
+	CSceneManager::GetInst()->Input(DeltaTime);
 }
 
 void CGameManager::Update(float DeltaTime)

@@ -27,6 +27,7 @@ bool CDevice::Init(HWND hWnd, unsigned int Width, unsigned int Height, bool Wind
 	mhWnd = hWnd;
 	mRS.Width = Width;
 	mRS.Height = Height;
+	mWindowMode = WindowMode;
 
 	/*
 		인자 설명
