@@ -7,6 +7,7 @@ CConstantBuffer::CConstantBuffer()
 
 CConstantBuffer::~CConstantBuffer()
 {
+	SAFE_RELEASE(mBuffer);
 }
 
 bool CConstantBuffer::Init(int Size, int Register, int ShaderBufferType)

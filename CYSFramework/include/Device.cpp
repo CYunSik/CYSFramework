@@ -7,7 +7,19 @@ CDevice::CDevice()
 
 CDevice::~CDevice()
 {
+	SAFE_RELEASE(mTargetView);
+	SAFE_RELEASE(mDepthView);
+	SAFE_RELEASE(mSwapChain);
 
+	// Context는 Device를 통해서 생성되기 때문에 Device보다 나중에 해제해야 한다.
+	if (mContext)
+	{
+		// Context가 가지고 있는 모든 상태를 초기화 한다.
+		mContext->ClearState();
+	}
+
+	SAFE_RELEASE(mContext);
+	SAFE_RELEASE(mDevice);
 }
 
 bool CDevice::Init(HWND hWnd, unsigned int Width, unsigned int Height, bool WindowMode)

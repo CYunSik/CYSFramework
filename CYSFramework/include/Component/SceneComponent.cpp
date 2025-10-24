@@ -43,21 +43,115 @@ bool CSceneComponent::Init(const char* FileName)
 void CSceneComponent::PreUpdate(float DeltaTime)
 {
 	CComponent::PreUpdate(DeltaTime);
+
+	// 자식을 호출해줘야 한다.
+
+	std::vector<CSharedPtr<CSceneComponent>>::iterator iter;
+	std::vector<CSharedPtr<CSceneComponent>>::iterator iterEnd = mChildList.end();
+
+	for (iter = mChildList.begin(); iter != iterEnd;)
+	{
+		if (!(*iter)->IsActive())	// 삭제할 타이밍
+		{
+			// 삭제할 컴포넌트랑 자료구조의 마지막 요소랑 스왑 해준다.
+			std::swap(*iter, mChildList.back());
+
+			mChildList.pop_back();
+			iterEnd = mChildList.end();
+			continue;
+		}
+		else if (!(*iter)->IsEnable())
+		{
+			++iter;
+			continue;
+		}
+		(*iter)->PreUpdate(DeltaTime);
+		++iter;
+	}
 }
 
 void CSceneComponent::Update(float DeltaTime)
 {
 	CComponent::Update(DeltaTime);
+
+	std::vector<CSharedPtr<CSceneComponent>>::iterator iter;
+	std::vector<CSharedPtr<CSceneComponent>>::iterator iterEnd = mChildList.end();
+
+	for (iter = mChildList.begin(); iter != iterEnd;)
+	{
+		if (!(*iter)->IsActive())	// 삭제할 타이밍
+		{
+			// 삭제할 컴포넌트랑 자료구조의 마지막 요소랑 스왑 해준다.
+			std::swap(*iter, mChildList.back());
+
+			mChildList.pop_back();
+			iterEnd = mChildList.end();
+			continue;
+		}
+		else if (!(*iter)->IsEnable())
+		{
+			++iter;
+			continue;
+		}
+		(*iter)->Update(DeltaTime);
+		++iter;
+	}
 }
 
 void CSceneComponent::PostUpdate(float DeltaTime)
 {
 	CComponent::PostUpdate(DeltaTime);
+
+	std::vector<CSharedPtr<CSceneComponent>>::iterator iter;
+	std::vector<CSharedPtr<CSceneComponent>>::iterator iterEnd = mChildList.end();
+
+	for (iter = mChildList.begin(); iter != iterEnd;)
+	{
+		if (!(*iter)->IsActive())	// 삭제할 타이밍
+		{
+			// 삭제할 컴포넌트랑 자료구조의 마지막 요소랑 스왑 해준다.
+			std::swap(*iter, mChildList.back());
+
+			mChildList.pop_back();
+			iterEnd = mChildList.end();
+			continue;
+		}
+		else if (!(*iter)->IsEnable())
+		{
+			++iter;
+			continue;
+		}
+		(*iter)->PostUpdate(DeltaTime);
+		++iter;
+	}
 }
 
 void CSceneComponent::Collision(float DeltaTime)
 {
 	CComponent::Collision(DeltaTime);
+
+	std::vector<CSharedPtr<CSceneComponent>>::iterator iter;
+	std::vector<CSharedPtr<CSceneComponent>>::iterator iterEnd = mChildList.end();
+
+	for (iter = mChildList.begin(); iter != iterEnd;)
+	{
+		if (!(*iter)->IsActive())	// 삭제할 타이밍
+		{
+			// 삭제할 컴포넌트랑 자료구조의 마지막 요소랑 스왑 해준다.
+			std::swap(*iter, mChildList.back());
+
+			mChildList.pop_back();
+			iterEnd = mChildList.end();
+			continue;
+		}
+		else if (!(*iter)->IsEnable())
+		{
+			++iter;
+			continue;
+		}
+		(*iter)->Collision(DeltaTime);
+		++iter;
+	}
 }
 
 void CSceneComponent::PreRender()
@@ -71,16 +165,85 @@ void CSceneComponent::PreRender()
 
 	// 크기 * 자전 * 이동
 	mMatWorld = mMatScale * mMatRot * mMatTranslate;
+
+	std::vector<CSharedPtr<CSceneComponent>>::iterator iter;
+	std::vector<CSharedPtr<CSceneComponent>>::iterator iterEnd = mChildList.end();
+
+	for (iter = mChildList.begin(); iter != iterEnd;)
+	{
+		if (!(*iter)->IsActive())	// 삭제할 타이밍
+		{
+			// 삭제할 컴포넌트랑 자료구조의 마지막 요소랑 스왑 해준다.
+			std::swap(*iter, mChildList.back());
+
+			mChildList.pop_back();
+			iterEnd = mChildList.end();
+			continue;
+		}
+		else if (!(*iter)->IsEnable())
+		{
+			++iter;
+			continue;
+		}
+		(*iter)->PreRender();
+		++iter;
+	}
 }
 
 void CSceneComponent::Render()
 {
 	CComponent::Render();
+
+	std::vector<CSharedPtr<CSceneComponent>>::iterator iter;
+	std::vector<CSharedPtr<CSceneComponent>>::iterator iterEnd = mChildList.end();
+
+	for (iter = mChildList.begin(); iter != iterEnd;)
+	{
+		if (!(*iter)->IsActive())	// 삭제할 타이밍
+		{
+			// 삭제할 컴포넌트랑 자료구조의 마지막 요소랑 스왑 해준다.
+			std::swap(*iter, mChildList.back());
+
+			mChildList.pop_back();
+			iterEnd = mChildList.end();
+			continue;
+		}
+		else if (!(*iter)->IsEnable())
+		{
+			++iter;
+			continue;
+		}
+		(*iter)->Render();
+		++iter;
+	}
 }
 
 void CSceneComponent::PostRender()
 {
 	CComponent::PostRender();
+
+	std::vector<CSharedPtr<CSceneComponent>>::iterator iter;
+	std::vector<CSharedPtr<CSceneComponent>>::iterator iterEnd = mChildList.end();
+
+	for (iter = mChildList.begin(); iter != iterEnd;)
+	{
+		if (!(*iter)->IsActive())	// 삭제할 타이밍
+		{
+			// 삭제할 컴포넌트랑 자료구조의 마지막 요소랑 스왑 해준다.
+			std::swap(*iter, mChildList.back());
+
+			mChildList.pop_back();
+			iterEnd = mChildList.end();
+			continue;
+		}
+		else if (!(*iter)->IsEnable())
+		{
+			++iter;
+			continue;
+		}
+		(*iter)->PostRender();
+		++iter;
+	}
 }
 
 CSceneComponent* CSceneComponent::Clone()

@@ -25,15 +25,23 @@ bool CSceneManager::Init()
 
 void CSceneManager::Update(float DeltaTime)
 {
+	mCurrentScene->PreUpdate(DeltaTime);
 
+	mCurrentScene->Update(DeltaTime);
+
+	mCurrentScene->PostUpdate(DeltaTime);
 }
 
 void CSceneManager::Collision(float DeltaTime)
 {
-
+	mCurrentScene->Collision(DeltaTime);
 }
 
 void CSceneManager::Render()
 {
+	mCurrentScene->PreRender();
 
+	mCurrentScene->Render();
+
+	mCurrentScene->PostRender();
 }

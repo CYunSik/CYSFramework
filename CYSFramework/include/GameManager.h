@@ -26,9 +26,7 @@ private:
 
 	void Input(float DeltaTime);				// 입력
 	void Update(float DeltaTime);				// 게임 로직
-	void PostUpdate(float DeltaTime);			// 업데이트 이후 로직
 	void Collision(float DeltaTime);			// 충돌
-	void PostCollisionUpdate(float DeltaTime);	// 충돌 후 업데이트
 	void Render(float DeltaTime);				// 화면에 그려주기
 
 private:

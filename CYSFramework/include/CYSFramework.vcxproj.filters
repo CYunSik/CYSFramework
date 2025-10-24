@@ -147,6 +147,9 @@
     <ClCompile Include="Scene\SceneManager.cpp">
       <Filter>05.Scene</Filter>
     </ClCompile>
+    <ClCompile Include="Object\PlayerObject.cpp">
+      <Filter>06.Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameManager.h">
@@ -250,6 +253,9 @@
     </ClInclude>
     <ClInclude Include="Scene\SceneManager.h">
       <Filter>05.Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\PlayerObject.h">
+      <Filter>06.Object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

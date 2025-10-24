@@ -28,6 +28,23 @@ public:
 	virtual void Render();
 	virtual void PostRender();
 
+public:
+	template<typename T>
+	T* CreateObj(const std::string& Name)
+	{
+		T* Obj = new T;
 
+		Obj->mScene = this;
+		Obj->SetName(Name);
+
+		if (!Obj->Init())
+		{
+			SAFE_DELETE(Obj);
+			return nullptr;
+		}
+		
+		mObjList.push_back(Obj);
+		return Obj;
+	}
 };
 

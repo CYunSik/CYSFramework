@@ -52,6 +52,19 @@ public:
 	virtual void PostRender();
 	virtual CSceneObject* Clone();
 
+public:
+	// 컴포넌트 생성해주는 친구
+	template<typename T>
+	T* CreateComponent()
+	{
+		T* Component = new T;
 
+		if (!Component->Init())
+		{
+			SAFE_DELETE(Component);
+			return nullptr;
+		}
+		return Component;
+	}
 };
 
