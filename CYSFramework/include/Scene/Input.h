@@ -2,17 +2,17 @@
 
 #include "../GameInfo.h"
 
-// 다이렉트 전용 입력 헤더를 가져올 것이다.
-#include <dinput.h>
-#pragma comment(lib, "dinput8.lib")
-
-//#define DIRECTINPUT_VERSION 0x8000
+#define DIRECTINPUT_VERSION 0x0800
 
 // 16진수
 // 2진수 -> 10진수 -> 16진수
 #define DIK_MOUSELBUTTON 0xfc
 #define DIK_MOUSERBUTTON 0xfd
 #define DIK_MOUSEWHEEL 0xfe
+
+// 다이렉트 전용 입력 헤더를 가져올 것이다.
+#include <dinput.h>
+#pragma comment(lib, "dinput8.lib")
 
 enum class EInputSystem_Type
 {

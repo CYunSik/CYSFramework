@@ -12,3 +12,17 @@
 // 16바이트 연산할때는 사용하면 편하기 때문에
 
 #include <DirectXPackedVector.h>
+
+namespace EAxis
+{
+	enum Type
+	{
+		X,
+		DownX,
+		Y,
+		DownY,
+		Z,
+		DownZ,
+		End
+	};
+}

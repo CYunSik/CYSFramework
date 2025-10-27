@@ -21,6 +21,12 @@ protected:
 	CSharedPtr<class CSceneComponent> mRootComponent;
 
 public:
+	class CSceneComponent* GetRootComponent() const
+	{
+		return mRootComponent;
+	}
+
+public:
 	class CScene* GetScene() const
 	{
 		return mScene;

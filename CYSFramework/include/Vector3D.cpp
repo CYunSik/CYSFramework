@@ -464,7 +464,7 @@ DirectX::XMVECTOR FVector3D::Convert() const
 	return DirectX::XMLoadFloat3((DirectX::XMFLOAT3*)this);
 }
 
-// TransformNormal : 행렬을 곱할때 w값을 0으로 하냐
+// TransformNormal : 행렬을 곱할때 w값을 0으로 하냐 (W : 이동량)
 FVector3D FVector3D::TransformNormal(FMatrix& mat) const
 {
 	DirectX::XMVECTOR result = DirectX::XMVector3TransformNormal(Convert(), mat.m);

@@ -20,5 +20,7 @@ private:
 
 	void RotationZ(float DeltaTime);
 	void RotationZInv(float DeltaTime);
+
+	void Fire(float DeltaTime);
 };
 

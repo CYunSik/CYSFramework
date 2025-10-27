@@ -10,6 +10,7 @@ E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Component\StaticMeshComp
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Device.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\Device.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\GameManager.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\GameManager.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\main.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\main.obj
+E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Object\BulletObject.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\BulletObject.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Object\PlayerObject.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\PlayerObject.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Object\SceneObject.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\SceneObject.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Scene\Input.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\Input.obj

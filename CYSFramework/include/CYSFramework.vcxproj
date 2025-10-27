@@ -144,6 +144,7 @@
     <ClCompile Include="Device.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Object\BulletObject.cpp" />
     <ClCompile Include="Object\PlayerObject.cpp" />
     <ClCompile Include="Object\SceneObject.cpp" />
     <ClCompile Include="Scene\Input.cpp" />
@@ -177,6 +178,7 @@
     <ClInclude Include="GameInfo.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="Matrix.h" />
+    <ClInclude Include="Object\BulletObject.h" />
     <ClInclude Include="Object\PlayerObject.h" />
     <ClInclude Include="Object\SceneObject.h" />
     <ClInclude Include="resource.h" />

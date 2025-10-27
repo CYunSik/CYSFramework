@@ -477,6 +477,11 @@ void CInput::UpdateBind(float DeltaTime)
 
 unsigned char CInput::ConvertKey(unsigned char Key)
 {
+	/*
+		등록은 윈도우 기반 VK비트로 받고
+		사용은 DIK 다이렉트 인풋 기준으로 변경해준다.
+	*/
+
 	if (mInputType == EInputSystem_Type::DInput)
 	{
 		// VK_LSHIFT; -> DIK_LSHIFT; 이런거 해주는 작업
