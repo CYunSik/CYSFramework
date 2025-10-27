@@ -28,6 +28,7 @@ void CSceneComponent::AddChild(CSceneComponent* Child)
 {
 	Child->mParent = this;
 	mChildList.emplace_back(Child);
+	Child->ComputeTransform();
 }
 
 bool CSceneComponent::Init()
@@ -307,7 +308,7 @@ void CSceneComponent::SetRelativeRotation(const FVector3D& Rot)
 
 	if (mParent)
 	{
-		mWorldRot = mRelativeRot * mParent->mWorldRot;
+		mWorldRot = mRelativeRot + mParent->mWorldRot;
 	}
 	else
 	{
@@ -322,7 +323,7 @@ void CSceneComponent::SetRelativeRotation(const FVector3D& Rot)
 		mChildList[i]->mWorldPos = mChildList[i]->mRelativePos.GetRotation(mWorldRot) + mWorldPos;
 
 		// 자식의 월드 회전 = 자식의 상대회전 * 내 월드 회전
-		mChildList[i]->SetWorldRotation(mChildList[i]->mRelativeRot * mWorldRot);
+		mChildList[i]->SetWorldRotation(mChildList[i]->mRelativeRot + mWorldRot);
 	}
 }
 
@@ -577,4 +578,12 @@ void CSceneComponent::SetWorldPos(const FVector2D& Pos)
 void CSceneComponent::SetWorldPos(float x, float y)
 {
 	SetWorldPos(FVector3D(x, y, mWorldRot.z));
+}
+
+void CSceneComponent::ComputeTransform()
+{
+	// AddChild 해줄때 자식의 월드 좌표를 계산해줄것이다.
+	SetWorldScale(mRelativeScale * mParent->mWorldScale);
+	SetWorldRotation(mRelativeRot + mParent->mWorldRot);
+	SetWorldPos(mRelativePos + mParent->mWorldPos);
 }

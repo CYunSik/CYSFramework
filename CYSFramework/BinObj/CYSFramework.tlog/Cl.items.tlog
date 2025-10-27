@@ -13,6 +13,7 @@ E:\StudyCys\Framework\CYSFramework\CYSFramework\include\main.cpp;E:\StudyCys\Fra
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Object\BulletObject.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\BulletObject.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Object\PlayerObject.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\PlayerObject.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Object\SceneObject.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\SceneObject.obj
+E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Object\TornadoBullet.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\TornadoBullet.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Scene\Input.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\Input.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Scene\Scene.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\Scene.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Scene\SceneMain.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\SceneMain.obj

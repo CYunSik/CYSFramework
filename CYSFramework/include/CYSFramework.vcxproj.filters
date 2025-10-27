@@ -67,6 +67,12 @@
     <Filter Include="05.Scene\01.Input">
       <UniqueIdentifier>{3f6ba237-6d7d-4525-8bc1-83a85c0468ea}</UniqueIdentifier>
     </Filter>
+    <Filter Include="06.Object\01.Player">
+      <UniqueIdentifier>{e6b0a983-f48a-4cb0-ae73-9f193692687c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="06.Object\02.Bullet">
+      <UniqueIdentifier>{06a93a4d-fdab-457e-a095-3cfcc282e202}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -150,14 +156,17 @@
     <ClCompile Include="Scene\SceneManager.cpp">
       <Filter>05.Scene</Filter>
     </ClCompile>
-    <ClCompile Include="Object\PlayerObject.cpp">
-      <Filter>06.Object</Filter>
-    </ClCompile>
     <ClCompile Include="Scene\Input.cpp">
       <Filter>05.Scene\01.Input</Filter>
     </ClCompile>
+    <ClCompile Include="Object\PlayerObject.cpp">
+      <Filter>06.Object\01.Player</Filter>
+    </ClCompile>
     <ClCompile Include="Object\BulletObject.cpp">
-      <Filter>06.Object</Filter>
+      <Filter>06.Object\02.Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Object\TornadoBullet.cpp">
+      <Filter>06.Object\02.Bullet</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -263,14 +272,17 @@
     <ClInclude Include="Scene\SceneManager.h">
       <Filter>05.Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Object\PlayerObject.h">
-      <Filter>06.Object</Filter>
-    </ClInclude>
     <ClInclude Include="Scene\Input.h">
       <Filter>05.Scene\01.Input</Filter>
     </ClInclude>
+    <ClInclude Include="Object\PlayerObject.h">
+      <Filter>06.Object\01.Player</Filter>
+    </ClInclude>
     <ClInclude Include="Object\BulletObject.h">
-      <Filter>06.Object</Filter>
+      <Filter>06.Object\02.Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\TornadoBullet.h">
+      <Filter>06.Object\02.Bullet</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

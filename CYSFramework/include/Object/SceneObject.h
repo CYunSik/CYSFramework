@@ -20,7 +20,14 @@ protected:
 	// 내가 어떤 컴포넌트를 가지고 있을것인가?
 	CSharedPtr<class CSceneComponent> mRootComponent;
 
+	float mLifeTime = 0.f;
+
 public:
+	void SetLifeTime(float Time)
+	{
+		mLifeTime = Time;
+	}
+
 	class CSceneComponent* GetRootComponent() const
 	{
 		return mRootComponent;

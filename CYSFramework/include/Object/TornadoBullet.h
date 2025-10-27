@@ -1,7 +1,7 @@
 #pragma once
 #include "SceneObject.h"
 
-class CBulletObject : public CSceneObject
+class CTornadoBullet : public CSceneObject
 {
 	friend class CScene;
 
@@ -20,13 +20,15 @@ public:
 	}
 
 protected:
-	CSharedPtr<class CStaticMeshComponent> mRoot;
+	CSharedPtr<class CSceneComponent> mRoot;
+	CSharedPtr<class CSceneComponent> mPivot;
+	CSharedPtr<class CStaticMeshComponent> mMesh;
 
 protected:
-	CBulletObject();
-	CBulletObject(const CBulletObject& Obj);
-	CBulletObject(CBulletObject&& Obj);
-	virtual ~CBulletObject();
+	CTornadoBullet();
+	CTornadoBullet(const CTornadoBullet& Obj);
+	CTornadoBullet(CTornadoBullet&& Obj);
+	virtual ~CTornadoBullet();
 
 public:
 	virtual bool Init();
