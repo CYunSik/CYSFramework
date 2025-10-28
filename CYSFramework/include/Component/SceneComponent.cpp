@@ -369,7 +369,15 @@ void CSceneComponent::SetRelativePos(const FVector3D& Pos)
 
 	if (mParent)
 	{
-		mWorldPos = mRelativePos + mParent->mWorldPos;
+		// mWorldPos = mRelativePos + mParent->mWorldPos;
+		FVector3D ParentRot = mParent->GetWorldRotation();
+		FMatrix matRot;
+		matRot.Rotation(ParentRot);	// 부모의 월드 행렬
+
+		// 회전과 이동 모두 가지고 있는 행렬을 만들고
+		memcpy(&matRot._41, &mParent->mWorldPos, sizeof(FVector3D));
+
+		mWorldPos = mRelativePos.TransformCoord(matRot);
 	}
 	else
 	{

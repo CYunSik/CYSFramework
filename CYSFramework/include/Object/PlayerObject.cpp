@@ -94,8 +94,12 @@ bool CPlayerObject::Init()
 	mScene->GetInput()->AddBindFunction("Skill3", EInputType::Down, this, &CPlayerObject::Skill3);
 
 	// 스킬 4 : 돌아가는 위성의 범위를 늘렸다가 몇초후 다시 되돌아오기, 가능하면 위성의 속도도 늘렸다가 줄이기
+	mScene->GetInput()->AddBindKey("Skill4", '4');
+	mScene->GetInput()->AddBindFunction("Skill4", EInputType::Down, this, &CPlayerObject::Skill4);
 
 	// 스킬 5 : 롤 탈론 궁극기 만들기 (플레이어 기준으로 8방향으로 총알을 발사하고 해당 총알이 몇초 돌다가 플레이어에게 다시 되돌아오는 부메랑 기능)
+	mScene->GetInput()->AddBindKey("Skill5", '5');
+	mScene->GetInput()->AddBindFunction("Skill5", EInputType::Down, this, &CPlayerObject::Skill5);
 
 	return true;
 }
@@ -109,9 +113,22 @@ void CPlayerObject::Update(float DeltaTime)
 	Rot.z += DeltaTime * 180.f;
 	mRotationPivot->SetRelativeRotationZ(Rot.z);
 
+	// 스킬 3
 	if (mSkill3Enable)
 	{
 		Skill3Update(DeltaTime);
+	}
+
+	// 스킬 4
+	if (mSkill4Enable)
+	{
+		Skill4Update(DeltaTime);
+	}
+
+	// 스킬 5
+	if (mSkill5Enable)
+	{
+		Skill5Update(DeltaTime);
 	}
 }
 
@@ -155,6 +172,7 @@ void CPlayerObject::Fire(float DeltaTime)
 	Root->SetWorldPos(mRootComponent->GetWorldPosition());
 	Root->SetWorldRotation(mRootComponent->GetWorldRotation());
 	Bullet->SetLifeTime(2.f);
+	Bullet->SetBulletSpeed(5.f);
 }
 
 void CPlayerObject::Skill1(float DeltaTime)
@@ -191,7 +209,7 @@ void CPlayerObject::Skill1(float DeltaTime)
 
 void CPlayerObject::Skill1Fire(float DeltaTime)
 {
-	mSkill1Object->SetBulletSpeed(2.f);
+	mSkill1Object->SetBulletSpeed(3.f);
 	mSkill1Object = nullptr;
 }
 
@@ -205,7 +223,7 @@ void CPlayerObject::Skill2(float DeltaTime)
 	Root->SetWorldPos(mRootComponent->GetWorldPosition());
 	Root->SetWorldRotation(mRootComponent->GetWorldRotation());
 	Bullet->SetBulletSpeed(5.f);
-	Bullet->SetLifeTime(1.f);
+	Bullet->SetLifeTime(2.f);
 }
 
 void CPlayerObject::Skill3(float DeltaTime)
@@ -216,7 +234,7 @@ void CPlayerObject::Skill3(float DeltaTime)
 		mSkill3Enable = true;
 		mSkill3Time = 3.f;
 		mSkill3TimeAcc = 0.f;
-		mSkill3Interval = 0.2f;
+		mSkill3Interval = 0.3f;
 	}
 }
 
@@ -229,22 +247,22 @@ void CPlayerObject::Skill3Update(float DeltaTime)
 		mSkill3TimeAcc -= mSkill3Interval;
 
 		// 총알을 발사한다.
-		CBulletObject* Bullet = mScene->CreateObj<CBulletObject>("Bullet");
+		CBulletObject* Bullet = mScene->CreateObj<CBulletObject>("SatelliteBullet");
 
 		CSceneComponent* Root = Bullet->GetRootComponent();
 		// 총알의 시작 위치 == 내 월드 위치
 		Root->SetWorldPos(mSub->GetWorldPosition());
 		Root->SetWorldRotation(mRootComponent->GetWorldRotation());
 		Bullet->SetLifeTime(2.f);
-		Bullet->SetBulletSpeed(1.5f);
+		Bullet->SetBulletSpeed(5.f);
 
-		Bullet = mScene->CreateObj<CBulletObject>("Bullet");
+		Bullet = mScene->CreateObj<CBulletObject>("SatelliteBullet");
 		Root = Bullet->GetRootComponent();
 		// 총알의 시작 위치 == 내 월드 위치
 		Root->SetWorldPos(mSub2->GetWorldPosition());
 		Root->SetWorldRotation(mRootComponent->GetWorldRotation());
 		Bullet->SetLifeTime(2.f);
-		Bullet->SetBulletSpeed(1.5f);
+		Bullet->SetBulletSpeed(5.f);
 	}
 
 	mSkill3Time -= DeltaTime;
@@ -252,5 +270,147 @@ void CPlayerObject::Skill3Update(float DeltaTime)
 	if (mSkill3Time <= 0.f)
 	{
 		mSkill3Enable = false;
+	}
+}
+
+void CPlayerObject::Skill4(float DeltaTime)
+{
+	if (!mSkill4Enable)
+	{
+		mSkill4Enable = true;
+		mSkill4Time = 6.f;
+		mSkill4TimeAcc = 0.f;
+	}
+}
+
+void CPlayerObject::Skill4Update(float DeltaTime)
+{
+	mSkill4TimeAcc += DeltaTime;
+
+	if (mSkill4TimeAcc < 2.f)
+	{
+		// 위성이 멀어지기
+		FVector3D Pos = mSub->GetRelativePosition();
+		Pos.x += DeltaTime * -1.5f;
+		mSub->SetRelativePos(Pos);
+
+		FVector3D Pos2 = mSub2->GetRelativePosition();
+		Pos2.x += DeltaTime * 1.5f;
+		mSub2->SetRelativePos(Pos2);
+
+		// 속도 증가
+		FVector3D Rot = mRotationPivot->GetRelativeRotation();
+		Rot.z += DeltaTime * 270.f;		// 초당 270도 회전
+		mRotationPivot->SetRelativeRotationZ(Rot.z);
+	}
+	else if (mSkill4TimeAcc >= 2.f && mSkill4TimeAcc < 4.f)
+	{
+		// 속도만 증가하고 그 자리에서 유지
+		FVector3D Rot = mRotationPivot->GetRelativeRotation();
+		Rot.z += DeltaTime * 270.f;
+		mRotationPivot->SetRelativeRotationZ(Rot.z);
+	}
+	else if (mSkill4TimeAcc >= 4.f && mSkill4TimeAcc <= 6.f)
+	{
+		// 위성이 돌아오기
+		FVector3D Pos = mSub->GetRelativePosition();
+		Pos.x -= DeltaTime * -1.5f;
+		mSub->SetRelativePos(Pos);
+
+		FVector3D Pos2 = mSub2->GetRelativePosition();
+		Pos2.x -= DeltaTime * 1.5f;
+		mSub2->SetRelativePos(Pos2);
+
+		FVector3D Rot = mRotationPivot->GetRelativeRotation();
+		Rot.z += DeltaTime * 180.f;
+		mRotationPivot->SetRelativeRotationZ(Rot.z);
+	}
+
+	if (mSkill4TimeAcc >= mSkill4Time)
+	{
+		mSkill4Enable = false;
+	}
+}
+
+void CPlayerObject::Skill5(float DeltaTime)
+{
+	if (mSkill5Enable)
+	{
+		return;
+	}
+
+	mSkill5Enable = true;
+	mSkill5Time = 6.f;        // 1초 전진 + 3초 회전 + 2초 복귀
+	mSkill5TimeAcc = 0.f;
+	mSkill5Bullets.clear();
+
+	FVector3D StartPos = mRootComponent->GetWorldPosition();
+	FVector3D Rot = mRoot->GetWorldRotation();
+
+	for (int i = 0; i < 8; ++i)
+	{
+		CBulletObject* Bullet = mScene->CreateObj<CBulletObject>("Skill5Bullet");
+		CSceneComponent* Root = Bullet->GetRootComponent();
+
+		Root->SetWorldPos(StartPos);
+		Root->SetWorldRotation(Rot);
+
+		Bullet->SetLifeTime(6.f);
+		Bullet->SetBulletSpeed(5.f);
+
+		Rot.z += 45;
+
+		mSkill5Bullets.push_back(Bullet);
+	}
+}
+
+void CPlayerObject::Skill5Update(float DeltaTime)
+{
+	if (!mSkill5Enable)
+	{
+		return;
+	}
+
+	mSkill5TimeAcc += DeltaTime;
+
+	FVector3D PlayerPos = mRootComponent->GetWorldPosition();
+
+	for (auto* Bullet : mSkill5Bullets)
+	{
+		if (!Bullet)
+		{
+			continue;
+		}
+
+		CSceneComponent* Root = Bullet->GetRootComponent();
+		FVector3D Pos = Root->GetWorldPosition();
+
+		if (mSkill5TimeAcc < 1.f)
+		{
+		
+		}
+		// 총알 멈추고 제자리 회전
+		else if (mSkill5TimeAcc >= 1.f && mSkill5TimeAcc < 4.f)
+		{
+			Bullet->SetBulletSpeed(0.f);
+
+			// 자기 자신 기준 회전
+			FVector3D Rot = Root->GetWorldRotation();
+			Rot.z += 720.f * DeltaTime; // 초당 720도 회전
+			Root->SetWorldRotation(Rot);
+		}
+		// 플레이어에게 복귀
+		else if (mSkill5TimeAcc >= 4.f)
+		{
+			FVector3D Dir = PlayerPos - Pos;
+			Dir.Normalize();
+			Root->SetWorldPos(Pos + Dir * 8.f * DeltaTime);
+		}
+	}
+
+	if (mSkill5TimeAcc >= mSkill5Time)
+	{
+		mSkill5Enable = false;
+		mSkill5Bullets.clear();
 	}
 }
