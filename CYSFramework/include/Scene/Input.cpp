@@ -289,35 +289,79 @@ void CInput::UpdateInput(float DeltaTime)
 	switch (mInputType)
 	{
 	case EInputSystem_Type::DInput:
+		// DIK_LCONTROL
 		if (mKeyState[DIK_LCONTROL] & 0x80)
 		{
 			// 왼쪽 컨트롤키 눌림
-			mCtrl = true;
+			if (!mCtrl[EInputType::Down] && !mCtrl[EInputType::Hold])
+			{
+				mCtrl[EInputType::Down] = true;
+				mCtrl[EInputType::Hold] = true;
+			}
+			else
+			{
+				mCtrl[EInputType::Down] = false;
+			}
 		}
-		else
+		else if (mCtrl[EInputType::Hold])
 		{
-			// 왼쪽 컨트롤키 안눌림
-			mCtrl = false;
+			mCtrl[EInputType::Hold] = false;
+			mCtrl[EInputType::Down] = false;
+			mCtrl[EInputType::Up] = true;
+		}
+		else if (mCtrl[EInputType::Up])
+		{
+			mCtrl[EInputType::Up] = false;
 		}
 
 		// Alt
 		if (mKeyState[DIK_LALT] & 0x80)
 		{
-			mAlt = true;
+			// 왼쪽 알트키 눌림
+			if (!mAlt[EInputType::Down] && !mAlt[EInputType::Hold])
+			{
+				mAlt[EInputType::Down] = true;
+				mAlt[EInputType::Hold] = true;
+			}
+			else
+			{
+				mAlt[EInputType::Down] = false;
+			}
 		}
-		else
+		else if (mAlt[EInputType::Hold])
 		{
-			mAlt = false;
+			mAlt[EInputType::Hold] = false;
+			mAlt[EInputType::Down] = false;
+			mAlt[EInputType::Up] = true;
+		}
+		else if (mAlt[EInputType::Up])
+		{
+			mAlt[EInputType::Up] = false;
 		}
 
 		// Shift
 		if (mKeyState[DIK_LSHIFT] & 0x80)
 		{
-			mShift = true;
+			// 왼쪽 쉬프트키 눌림
+			if (!mShift[EInputType::Down] && !mShift[EInputType::Hold])
+			{
+				mShift[EInputType::Down] = true;
+				mShift[EInputType::Hold] = true;
+			}
+			else
+			{
+				mShift[EInputType::Down] = false;
+			}
 		}
-		else
+		else if (mShift[EInputType::Hold])
 		{
-			mShift = false;
+			mShift[EInputType::Hold] = false;
+			mShift[EInputType::Down] = false;
+			mShift[EInputType::Up] = true;
+		}
+		else if (mShift[EInputType::Up])
+		{
+			mShift[EInputType::Up] = false;
 		}
 
 		// 마우스
@@ -432,9 +476,9 @@ void CInput::UpdateBind(float DeltaTime)
 	{
 		// Down이 충족됬는지
 		if (iter->second->Key->Down &&
-			iter->second->Ctrl == mCtrl &&
-			iter->second->Alt == mAlt &&
-			iter->second->Shift == mShift)
+			iter->second->Ctrl == mCtrl[EInputType::Down] &&
+			iter->second->Alt == mAlt[EInputType::Down] &&
+			iter->second->Shift == mShift[EInputType::Down])
 		{
 			size_t Size = iter->second->FunctionList[EInputType::Down].size();
 
@@ -446,10 +490,11 @@ void CInput::UpdateBind(float DeltaTime)
 
 		// Hold가 충족됬는지
 		if (iter->second->Key->Hold &&
-			iter->second->Ctrl == mCtrl &&
-			iter->second->Alt == mAlt &&
-			iter->second->Shift == mShift)
+			iter->second->Ctrl == mCtrl[EInputType::Hold] &&
+			iter->second->Alt == mAlt[EInputType::Hold] &&
+			iter->second->Shift == mShift[EInputType::Hold])
 		{
+			iter->second->KeyHold = true;
 			size_t Size = iter->second->FunctionList[EInputType::Hold].size();
 
 			for (size_t i = 0; i < Size; ++i)
@@ -458,12 +503,38 @@ void CInput::UpdateBind(float DeltaTime)
 			}
 		}
 
-		// Up이 충족됬는지 확인할 것이다.
-		if (iter->second->Key->Up &&
-			iter->second->Ctrl == mCtrl &&
-			iter->second->Alt == mAlt &&
-			iter->second->Shift == mShift)
+		// 원하는 조합키가 눌렸는지 여부를 검사한다.
+		bool Verification = false;
+
+		if (iter->second->Ctrl)
 		{
+			if (mCtrl[EInputType::Up])
+			{
+				Verification = true;
+			}
+		}
+
+		if (iter->second->Alt)
+		{
+			if (mAlt[EInputType::Up])
+			{
+				Verification = true;
+			}
+		}
+
+		if (iter->second->Shift)
+		{
+			if (mShift[EInputType::Up])
+			{
+				Verification = true;
+			}
+		}
+
+		// Up이 충족됬는지 확인할 것이다.
+		if ((iter->second->Key->Up || Verification) && iter->second->KeyHold)
+		{
+			iter->second->KeyHold = false;
+
 			size_t Size = iter->second->FunctionList[EInputType::Up].size();
 
 			for (size_t i = 0; i < Size; ++i)

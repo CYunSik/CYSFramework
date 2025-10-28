@@ -588,6 +588,170 @@ void CSceneComponent::SetWorldPos(float x, float y)
 	SetWorldPos(FVector3D(x, y, mWorldRot.z));
 }
 
+
+// Add
+void CSceneComponent::AddRelativeScale(const FVector3D& Scale)
+{
+	mRelativeScale += Scale;
+
+	SetRelativeScale(mRelativeScale);
+}
+
+void CSceneComponent::AddRelativeScale(float x, float y, float z)
+{
+	AddRelativeScale(FVector3D(x, y, z));
+}
+
+void CSceneComponent::AddRelativeScale(const FVector2D& Scale)
+{
+	AddRelativeScale(FVector3D(Scale.x, Scale.y, mRelativeScale.z));
+}
+
+void CSceneComponent::AddRelativeScale(float x, float y)
+{
+	AddRelativeScale(FVector3D(x, y, mRelativeScale.z));
+}
+
+void CSceneComponent::AddRelativeRotation(const FVector3D& Rot)
+{
+	mRelativeRot += Rot;
+
+	SetRelativeRotation(mRelativeRot);
+}
+
+void CSceneComponent::AddRelativeRotation(float x, float y, float z)
+{
+	AddRelativeRotation(FVector3D(x, y, z));
+}
+
+void CSceneComponent::AddRelativeRotation(const FVector2D& Rot)
+{
+	AddRelativeRotation(FVector3D(Rot.x, Rot.y, mRelativeRot.z));
+}
+
+void CSceneComponent::AddRelativeRotation(float x, float y)
+{
+	AddRelativeRotation(FVector3D(x, y, mRelativeRot.z));
+}
+
+void CSceneComponent::AddRelativeRotationX(float x)
+{
+	AddRelativeRotation(FVector3D(x, mRelativeRot.y, mRelativeRot.z));
+}
+
+void CSceneComponent::AddRelativeRotationY(float y)
+{
+	AddRelativeRotation(FVector3D(mRelativeRot.x, y, mRelativeRot.z));
+}
+
+void CSceneComponent::AddRelativeRotationZ(float z)
+{
+	AddRelativeRotation(FVector3D(mRelativeRot.x, mRelativeRot.y, z));
+}
+
+void CSceneComponent::AddRelativePos(const FVector3D& Pos)
+{
+	mRelativePos += Pos;
+
+	SetRelativePos(mRelativePos);
+}
+
+void CSceneComponent::AddRelativePos(float x, float y, float z)
+{
+	AddRelativePos(FVector3D(x, y, z));
+}
+
+void CSceneComponent::AddRelativePos(const FVector2D& Pos)
+{
+	AddRelativePos(FVector3D(Pos.x, Pos.y, mRelativePos.z));
+}
+
+void CSceneComponent::AddRelativePos(float x, float y)
+{
+	AddRelativePos(FVector3D(x, y, mRelativePos.z));
+}
+
+void CSceneComponent::AddWorldScale(const FVector3D& Scale)
+{
+	mWorldScale += Scale;
+
+	SetWorldScale(mWorldScale);
+}
+
+void CSceneComponent::AddWorldScale(float x, float y, float z)
+{
+	AddWorldScale(FVector3D(x, y, z));
+}
+
+void CSceneComponent::AddWorldScale(const FVector2D& Scale)
+{
+	AddWorldScale(FVector3D(Scale.x, Scale.y, mWorldScale.z));
+}
+
+void CSceneComponent::AddWorldScale(float x, float y)
+{
+	AddWorldScale(FVector3D(x, y, mWorldScale.z));
+}
+
+void CSceneComponent::AddWorldRotation(const FVector3D& Rot)
+{
+	mWorldRot += Rot;
+
+	SetWorldRotation(mWorldRot);
+}
+
+void CSceneComponent::AddWorldRotation(float x, float y, float z)
+{
+	AddWorldRotation(FVector3D(x, y, z));
+}
+
+void CSceneComponent::AddWorldRotation(const FVector2D& Rot)
+{
+	AddWorldRotation(FVector3D(Rot.x, Rot.y, mWorldRot.z));
+}
+
+void CSceneComponent::AddWorldRotation(float x, float y)
+{
+	AddWorldRotation(FVector3D(x, y, mWorldRot.z));
+}
+
+void CSceneComponent::AddWorldRotationX(float x)
+{
+	AddWorldRotation(FVector3D(x, mWorldRot.y, mWorldRot.z));
+}
+
+void CSceneComponent::AddWorldRotationY(float y)
+{
+	AddWorldRotation(FVector3D(mWorldRot.x, y, mWorldRot.z));
+}
+
+void CSceneComponent::AddWorldRotationZ(float z)
+{
+	AddWorldRotation(FVector3D(mWorldRot.x, mWorldRot.y, z));
+}
+
+void CSceneComponent::AddWorldPos(const FVector3D& Pos)
+{
+	mWorldPos += Pos;
+
+	SetWorldPos(mWorldPos);
+}
+
+void CSceneComponent::AddWorldPos(float x, float y, float z)
+{
+	AddWorldPos(FVector3D(x, y, z));
+}
+
+void CSceneComponent::AddWorldPos(const FVector2D& Pos)
+{
+	AddWorldPos(FVector3D(Pos.x, Pos.y, mWorldPos.z));
+}
+
+void CSceneComponent::AddWorldPos(float x, float y)
+{
+	AddWorldPos(FVector3D(x, y, mWorldPos.z));
+}
+
 void CSceneComponent::ComputeTransform()
 {
 	// AddChild 해줄때 자식의 월드 좌표를 계산해줄것이다.

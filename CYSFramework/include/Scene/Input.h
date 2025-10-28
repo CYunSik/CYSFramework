@@ -66,6 +66,7 @@ struct FBindKey
 	bool Ctrl = false;
 	bool Alt = false;
 	bool Shift = false;
+	bool KeyHold = false;
 
 	// 함수 포인터
 	std::vector<FBindFunction> FunctionList[EInputType::End];
@@ -100,9 +101,9 @@ private:
 	std::unordered_map<std::string, FBindKey*> mBindKeyMap;
 
 	// 키입력
-	bool mCtrl = false;
-	bool mAlt = false;
-	bool mShift = false;
+	bool mCtrl[EInputType::End] = {};
+	bool mAlt[EInputType::End] = {};
+	bool mShift[EInputType::End] = {};
 
 	// 마우스 버튼 타입 저장
 	bool mMouseDown[EMouseButtonType::End] = {};	// 마우스 눌림

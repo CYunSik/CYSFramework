@@ -82,6 +82,8 @@ bool CPlayerObject::Init()
 
 	// 스킬 1 : 차징 총알
 	mScene->GetInput()->AddBindKey("Skill1", '1');
+	mScene->GetInput()->ChangeKeyCtrl("Skill1", true);
+
 	mScene->GetInput()->AddBindFunction("Skill1", EInputType::Hold, this, &CPlayerObject::Skill1);
 	mScene->GetInput()->AddBindFunction("Skill1", EInputType::Up, this, &CPlayerObject::Skill1Fire);
 
