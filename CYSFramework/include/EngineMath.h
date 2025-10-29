@@ -18,11 +18,8 @@ namespace EAxis
 	enum Type
 	{
 		X,
-		DownX,
 		Y,
-		DownY,
 		Z,
-		DownZ,
 		End
 	};
 }

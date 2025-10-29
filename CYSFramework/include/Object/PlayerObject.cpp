@@ -1,5 +1,7 @@
 #include "PlayerObject.h"
 #include "../Component/StaticMeshComponent.h"
+#include "../Component/MovementComponent.h"
+
 #include "../Scene/Scene.h"
 #include "../Scene/Input.h"
 
@@ -34,12 +36,16 @@ bool CPlayerObject::Init()
 
 	// 컴포넌트 하나 등록해줄거다.
 	mRoot = CreateComponent<CStaticMeshComponent>();
+	mMovement = CreateComponent<CMovementComponent>();
 
 	mRoot->SetMesh("CenterRect");
 	mRoot->SetShader("ColorMeshShader");
 
 	mRoot->SetWorldPos(0.f, 0.f, 5.5f);
 	SetRootComponent(mRoot);
+
+	mMovement->SetUpdateComponent(mRoot);
+	mMovement->SetMoveSpeed(2.f);
 
 	// 위성 만들기
 	mRotationPivot = CreateComponent<CSceneComponent>();
@@ -136,20 +142,24 @@ void CPlayerObject::Update(float DeltaTime)
 
 void CPlayerObject::MoveUp(float DeltaTime)
 {
-	FVector3D Pos = mRootComponent->GetWorldPosition();
-	// FVector3D Dir = { 0.f, 1.f, 0.f }; 기존꺼
-	FVector3D Dir = mRootComponent->GetAxis(EAxis::Y);
+	//FVector3D Pos = mRootComponent->GetWorldPosition();
+	//// FVector3D Dir = { 0.f, 1.f, 0.f }; 기존꺼
+	//FVector3D Dir = mRootComponent->GetAxis(EAxis::Y);
 
-	mRootComponent->SetWorldPos(Pos + Dir * DeltaTime);
+	//mRootComponent->SetWorldPos(Pos + Dir * DeltaTime * 3.f);
+
+	mMovement->Move(mRootComponent->GetAxis(EAxis::Y));
 }
 
 void CPlayerObject::MoveDown(float DeltaTime)
 {
-	FVector3D Pos = mRootComponent->GetWorldPosition();
-	// FVector3D Dir = { 0.f, -1.f, 0.f }; 기존꺼
-	FVector3D Dir = mRootComponent->GetAxis(EAxis::DownY);
+	//FVector3D Pos = mRootComponent->GetWorldPosition();
+	//// FVector3D Dir = { 0.f, -1.f, 0.f }; 기존꺼
+	//FVector3D Dir = mRootComponent->GetAxis(EAxis::DownY);
 
-	mRootComponent->SetWorldPos(Pos + Dir * DeltaTime);
+	//mRootComponent->SetWorldPos(Pos + Dir * DeltaTime * -3.f);
+
+	mMovement->Move(mRootComponent->GetAxis(EAxis::Y) * -1);
 }
 
 void CPlayerObject::RotationZ(float DeltaTime)

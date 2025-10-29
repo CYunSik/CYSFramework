@@ -1,0 +1,58 @@
+#pragma once
+#include "Component.h"
+
+class CMovementComponent : public CComponent
+{
+	// 씬이랑 오브젝트 모두 사용할거 같다.
+	friend class CScene;
+	friend class CSceneObject;
+
+protected:
+	CMovementComponent();
+	CMovementComponent(const CMovementComponent& Com);
+	CMovementComponent(CMovementComponent&& Com);
+	virtual ~CMovementComponent();
+
+protected:
+	// 업데이트 할 컴포넌트
+	CSharedPtr<class CSceneComponent> mUpdateComponent;
+
+protected:
+	// 이동할 방향 벡터
+	FVector3D mVelocity;
+	// 한 프레임당 이동할 거리 벡터
+	FVector3D mMoveStep;
+	float mSpeed = 1.f;
+
+public:
+	const FVector3D& GetMoveStep() const
+	{
+		return mMoveStep;
+	}
+
+	float GetMoveDistance() const
+	{
+		return mMoveStep.Length();
+	}
+
+	void SetUpdateComponent(class CSceneComponent* Target);
+	void SetMoveSpeed(float Speed)
+	{
+		mSpeed = Speed;
+	}
+	void Move(const FVector3D& Dir)
+	{
+		mVelocity += Dir;
+	}
+
+	// 시점 함수
+public:
+	virtual bool Init();
+	virtual bool Init(const char* FileName);
+	virtual void PreUpdate(float DeltaTime);
+	virtual void Update(float DeltaTime);
+	virtual void PostUpdate(float DeltaTime);
+	virtual void PostRender();
+	virtual CMovementComponent* Clone();
+};
+

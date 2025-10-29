@@ -34,11 +34,55 @@ bool CSceneObject::Init(const char* FileName)
 
 void CSceneObject::PreUpdate(float DeltaTime)
 {
+	// NonSceneComponent 호출하기
+	auto iter = mNonSceneComponent.begin();
+	auto iterEnd = mNonSceneComponent.end();
+
+	for (; iter != iterEnd;)
+	{
+		if (!(*iter)->IsActive())
+		{
+			iter = mNonSceneComponent.erase(iter);
+			iterEnd = mNonSceneComponent.end();
+			continue;
+		}
+		else if (!(*iter)->IsEnable())
+		{
+			++iter;
+			continue;
+		}
+
+		(*iter)->PreUpdate(DeltaTime);
+		++iter;
+	}
+
 	mRootComponent->PreUpdate(DeltaTime);
 }
 
 void CSceneObject::Update(float DeltaTime)
 {
+	// NonSceneComponent 호출하기
+	auto iter = mNonSceneComponent.begin();
+	auto iterEnd = mNonSceneComponent.end();
+
+	for (; iter != iterEnd;)
+	{
+		if (!(*iter)->IsActive())
+		{
+			iter = mNonSceneComponent.erase(iter);
+			iterEnd = mNonSceneComponent.end();
+			continue;
+		}
+		else if (!(*iter)->IsEnable())
+		{
+			++iter;
+			continue;
+		}
+
+		(*iter)->Update(DeltaTime);
+		++iter;
+	}
+
 	mRootComponent->Update(DeltaTime);
 
 	// LifeTime 검사
@@ -55,26 +99,136 @@ void CSceneObject::Update(float DeltaTime)
 
 void CSceneObject::PostUpdate(float DeltaTime)
 {
+	// NonSceneComponent 호출하기
+	auto iter = mNonSceneComponent.begin();
+	auto iterEnd = mNonSceneComponent.end();
+
+	for (; iter != iterEnd;)
+	{
+		if (!(*iter)->IsActive())
+		{
+			iter = mNonSceneComponent.erase(iter);
+			iterEnd = mNonSceneComponent.end();
+			continue;
+		}
+		else if (!(*iter)->IsEnable())
+		{
+			++iter;
+			continue;
+		}
+
+		(*iter)->PostUpdate(DeltaTime);
+		++iter;
+	}
+
 	mRootComponent->PostUpdate(DeltaTime);
 }
 
 void CSceneObject::Collision(float DeltaTime)
 {
+	// NonSceneComponent 호출하기
+	auto iter = mNonSceneComponent.begin();
+	auto iterEnd = mNonSceneComponent.end();
+
+	for (; iter != iterEnd;)
+	{
+		if (!(*iter)->IsActive())
+		{
+			iter = mNonSceneComponent.erase(iter);
+			iterEnd = mNonSceneComponent.end();
+			continue;
+		}
+		else if (!(*iter)->IsEnable())
+		{
+			++iter;
+			continue;
+		}
+
+		(*iter)->Collision(DeltaTime);
+		++iter;
+	}
+
 	mRootComponent->Collision(DeltaTime);
 }
 
 void CSceneObject::PreRender()
 {
+	// NonSceneComponent 호출하기
+	auto iter = mNonSceneComponent.begin();
+	auto iterEnd = mNonSceneComponent.end();
+
+	for (; iter != iterEnd;)
+	{
+		if (!(*iter)->IsActive())
+		{
+			iter = mNonSceneComponent.erase(iter);
+			iterEnd = mNonSceneComponent.end();
+			continue;
+		}
+		else if (!(*iter)->IsEnable())
+		{
+			++iter;
+			continue;
+		}
+
+		(*iter)->PreRender();
+		++iter;
+	}
+
 	mRootComponent->PreRender();
 }
 
 void CSceneObject::Render()
 {
+	// NonSceneComponent 호출하기
+	auto iter = mNonSceneComponent.begin();
+	auto iterEnd = mNonSceneComponent.end();
+
+	for (; iter != iterEnd;)
+	{
+		if (!(*iter)->IsActive())
+		{
+			iter = mNonSceneComponent.erase(iter);
+			iterEnd = mNonSceneComponent.end();
+			continue;
+		}
+		else if (!(*iter)->IsEnable())
+		{
+			++iter;
+			continue;
+		}
+
+		(*iter)->Render();
+		++iter;
+	}
+
 	mRootComponent->Render();
 }
 
 void CSceneObject::PostRender()
 {
+	// NonSceneComponent 호출하기
+	auto iter = mNonSceneComponent.begin();
+	auto iterEnd = mNonSceneComponent.end();
+
+	for (; iter != iterEnd;)
+	{
+		if (!(*iter)->IsActive())
+		{
+			iter = mNonSceneComponent.erase(iter);
+			iterEnd = mNonSceneComponent.end();
+			continue;
+		}
+		else if (!(*iter)->IsEnable())
+		{
+			++iter;
+			continue;
+		}
+
+		(*iter)->PostRender();
+		++iter;
+	}
+
 	mRootComponent->PostRender();
 }
 

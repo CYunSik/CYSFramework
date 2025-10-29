@@ -58,11 +58,8 @@ protected:
 	FVector3D mAxis[EAxis::End] =
 	{
 		FVector3D(1.f, 0.f, 0.f),
-		FVector3D(-1.f, 0.f, 0.f),
 		FVector3D(0.f, 1.f, 0.f),
-		FVector3D(0.f, -1.f, 0.f),
-		FVector3D(0.f, 0.f, 1.f),
-		FVector3D(0.f, 0.f, -1.f)
+		FVector3D(0.f, 0.f, 1.f)
 	};
 
 public:

@@ -18,6 +18,9 @@ protected:
 	// 위성 반대편 방향에 하나더 출력
 	CSharedPtr<class CStaticMeshComponent> mSub2;
 
+	// MovementComponent
+	CSharedPtr<class CMovementComponent> mMovement;
+
 	// 총알용 오브젝트
 	// 스킬 1
 	CSharedPtr<class CBulletObject> mSkill1Object;

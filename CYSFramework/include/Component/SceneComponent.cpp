@@ -467,11 +467,8 @@ void CSceneComponent::SetWorldRotation(const FVector3D& Rot)
 	FVector3D Axis[EAxis::End] =
 	{
 		FVector3D(1.f, 0.f, 0.f),
-		FVector3D(-1.f, 0.f, 0.f),
 		FVector3D(0.f, 1.f, 0.f),
-		FVector3D(0.f, -1.f, 0.f),
-		FVector3D(0.f, 0.f, 1.f),
-		FVector3D(0.f, 0.f, -1.f)
+		FVector3D(0.f, 0.f, 1.f)
 	};
 
 	// 회전이 적용되면 그 회전만큼축도 회전시켜 줄 것이다.
@@ -480,19 +477,13 @@ void CSceneComponent::SetWorldRotation(const FVector3D& Rot)
 
 	// 회전된 만큼 축을 돌려줄 것이다.
 	mAxis[EAxis::X] = Axis[EAxis::X].TransformNormal(matRot);
-	mAxis[EAxis::DownX] = Axis[EAxis::DownX].TransformNormal(matRot);
 	mAxis[EAxis::Y] = Axis[EAxis::Y].TransformNormal(matRot);
-	mAxis[EAxis::DownY] = Axis[EAxis::DownY].TransformNormal(matRot);
 	mAxis[EAxis::Z] = Axis[EAxis::Z].TransformNormal(matRot);
-	mAxis[EAxis::DownZ] = Axis[EAxis::DownZ].TransformNormal(matRot);
 
 	// 단위벡터로 만들어놔야 연산하기가 좋다.
 	mAxis[EAxis::X].Normalize();
-	mAxis[EAxis::DownX].Normalize();
 	mAxis[EAxis::Y].Normalize();
-	mAxis[EAxis::DownY].Normalize();
 	mAxis[EAxis::Z].Normalize();
-	mAxis[EAxis::DownZ].Normalize();
 
 	size_t Size = mChildList.size();
 

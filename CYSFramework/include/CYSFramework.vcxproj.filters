@@ -73,6 +73,9 @@
     <Filter Include="06.Object\02.Bullet">
       <UniqueIdentifier>{06a93a4d-fdab-457e-a095-3cfcc282e202}</UniqueIdentifier>
     </Filter>
+    <Filter Include="07.Component\02.NonSceneComponent">
+      <UniqueIdentifier>{d2f5959c-ab9b-4f7a-828d-d1bc5f782719}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -167,6 +170,9 @@
     </ClCompile>
     <ClCompile Include="Object\TornadoBullet.cpp">
       <Filter>06.Object\02.Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Component\MovementComponent.cpp">
+      <Filter>07.Component\02.NonSceneComponent</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -284,6 +290,9 @@
     <ClInclude Include="Object\TornadoBullet.h">
       <Filter>06.Object\02.Bullet</Filter>
     </ClInclude>
+    <ClInclude Include="Component\MovementComponent.h">
+      <Filter>07.Component\02.NonSceneComponent</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="CYSFramework.rc">
@@ -302,5 +311,8 @@
     <FxCompile Include="..\Bin\Shader\Share.fx">
       <Filter>04.Shader\01.HLSL</Filter>
     </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>
