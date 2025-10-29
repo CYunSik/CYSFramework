@@ -119,7 +119,10 @@ void CMovementComponent::PostRender()
 		}
 	}
 
-	mVelocity = FVector3D::Zero;
+	if (mVelocityInit)
+	{
+		mVelocity = FVector3D::Zero;
+	}
 
 	mMoveStep = FVector3D::Zero;
 }

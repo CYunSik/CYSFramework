@@ -9,6 +9,11 @@ class CComponent : public CObject
 	friend class CSceneObject;
 
 protected:
+	class CScene* mScene = nullptr;
+	class CSceneObject* mOwnerObject = nullptr;
+	std::string mName;
+
+protected:
 	CComponent();
 	CComponent(const CComponent& Com);
 	CComponent(CComponent&& Com);

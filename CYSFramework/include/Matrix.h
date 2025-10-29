@@ -64,6 +64,14 @@ __declspec(align(16)) union FMatrix
 
 	// 연산자
 	// 대입연산자
+
+	FVector4D& operator[](int Index)
+	{
+		assert(0 <= Index && Index <= 3);
+
+		return v[Index];
+	}
+
 	const FMatrix& operator = (const FMatrix& _m)
 	{
 		m = _m.m;

@@ -23,6 +23,8 @@ protected:
 	// 한 프레임당 이동할 거리 벡터
 	FVector3D mMoveStep;
 	float mSpeed = 1.f;
+	// 이동 초기화 여부
+	bool mVelocityInit = true;
 
 public:
 	const FVector3D& GetMoveStep() const
@@ -40,9 +42,14 @@ public:
 	{
 		mSpeed = Speed;
 	}
-	void Move(const FVector3D& Dir)
+
+	void AddMove(const FVector3D& Dir)
 	{
 		mVelocity += Dir;
+	}
+	void SetMove(const FVector3D& Dir)
+	{
+		mVelocity = Dir;
 	}
 
 	// 시점 함수

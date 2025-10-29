@@ -76,6 +76,9 @@
     <Filter Include="07.Component\02.NonSceneComponent">
       <UniqueIdentifier>{d2f5959c-ab9b-4f7a-828d-d1bc5f782719}</UniqueIdentifier>
     </Filter>
+    <Filter Include="05.Scene\02.CameraManager">
+      <UniqueIdentifier>{6b60863f-36d9-4e29-ae76-fb9e4a1b1431}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -173,6 +176,12 @@
     </ClCompile>
     <ClCompile Include="Component\MovementComponent.cpp">
       <Filter>07.Component\02.NonSceneComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="Component\CameraComponent.cpp">
+      <Filter>07.Component\01.SceneComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\CameraManager.cpp">
+      <Filter>05.Scene\02.CameraManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -292,6 +301,12 @@
     </ClInclude>
     <ClInclude Include="Component\MovementComponent.h">
       <Filter>07.Component\02.NonSceneComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="Component\CameraComponent.h">
+      <Filter>07.Component\01.SceneComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\CameraManager.h">
+      <Filter>05.Scene\02.CameraManager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

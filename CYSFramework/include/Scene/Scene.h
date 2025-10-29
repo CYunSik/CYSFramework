@@ -14,7 +14,8 @@ protected:
 protected:
 	// 입력
 	class CInput* mInput = nullptr;
-
+	// 카메라 매니저
+	class CCameraManager* mCameraManager = nullptr;
 
 	// 오브젝트
 	// 리스트로 관리 : 중간 삽입 삭제가 용이하기 때문
@@ -24,6 +25,11 @@ public:
 	class CInput* GetInput() const
 	{
 		return mInput;
+	}
+
+	class CCameraManager* GetCameraManager() const
+	{
+		return mCameraManager;
 	}
 
 public:

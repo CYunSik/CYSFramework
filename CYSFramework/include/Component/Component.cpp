@@ -1,4 +1,6 @@
 #include "Component.h"
+#include "../Object/SceneObject.h"
+#include "../Scene/Scene.h"
 
 CComponent::CComponent()
 {

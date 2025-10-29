@@ -148,7 +148,7 @@ void CPlayerObject::MoveUp(float DeltaTime)
 
 	//mRootComponent->SetWorldPos(Pos + Dir * DeltaTime * 3.f);
 
-	mMovement->Move(mRootComponent->GetAxis(EAxis::Y));
+	mMovement->AddMove(mRootComponent->GetAxis(EAxis::Y));
 }
 
 void CPlayerObject::MoveDown(float DeltaTime)
@@ -159,7 +159,7 @@ void CPlayerObject::MoveDown(float DeltaTime)
 
 	//mRootComponent->SetWorldPos(Pos + Dir * DeltaTime * -3.f);
 
-	mMovement->Move(mRootComponent->GetAxis(EAxis::Y) * -1);
+	mMovement->AddMove(mRootComponent->GetAxis(EAxis::Y) * -1);
 }
 
 void CPlayerObject::RotationZ(float DeltaTime)
