@@ -6,7 +6,7 @@ class CBulletObject : public CSceneObject
 	friend class CScene;
 
 private:
-	float mSpeed = 2.f;
+	float mSpeed = 300.f;
 
 public:
 	float GetBulletSpeed() const

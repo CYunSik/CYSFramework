@@ -5,13 +5,23 @@ class CGraphicShader abstract : public CShader
 {
 	friend class CShaderManager;
 
+protected:
+	CGraphicShader();
+	virtual ~CGraphicShader();
+
 private:
+	// 쉐이더에는
 	// 입력 레이아웃
-	// 정점 구조가 어떻게 구성되어 있는지 알려주는 것
+	// 입력 레이아웃은 정점 구조체가 어떻게 구성되어 있는지를 정의한다.
 	// FVertexColor == VS_INPUT_Color 같은 타입이다 라고 알려주는 것이다. 매칭시켜준다.
+	// gameinfo의 FVertexColor와 fx의 VS_Input_color 매칭해주는 것이다.
+
+	// 레지스터 번호 이름을 지정하는 구조체
+	// 해당 구조체 하나당 하나의 레지스터
 	ID3D11InputLayout* mInputLayout = nullptr;
 
 	// 레지스터에 지정을 위한 구조체
+	// 동적 배열로 만드는 이유는 입력 레지스터가 몇개가 될지 모르기 때문
 	std::vector<D3D11_INPUT_ELEMENT_DESC> mvecDesc;
 
 	unsigned int mInputLayerSize = 0;
@@ -39,10 +49,6 @@ private:
 	// 지오메트리 쉐이더
 	ID3D11GeometryShader* mGS = nullptr;
 	ID3DBlob* mGSBlob = nullptr;
-
-protected:
-	CGraphicShader();
-	~CGraphicShader();
 
 public:
 	void AddInputLayoutDesc(const char* Semantic, unsigned int SemanticIndex, DXGI_FORMAT Fmt, unsigned int InputSlot, unsigned int Size, D3D11_INPUT_CLASSIFICATION InputSlotClass, unsigned int InstanceDataStepRate);

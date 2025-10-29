@@ -34,6 +34,20 @@ bool CScene::Init()
 
 bool CScene::Init(const char* FileName)
 {
+	mInput = new CInput;
+	if (!mInput->Init())
+	{
+		SAFE_DELETE(mInput);
+		return false;
+	}
+
+	mCameraManager = new CCameraManager;
+	if (!mCameraManager->Init())
+	{
+		SAFE_DELETE(mCameraManager);
+		return false;
+	}
+
 	return true;
 }
 
@@ -88,6 +102,8 @@ void CScene::Update(float DeltaTime)
 		(*iter)->Update(DeltaTime);
 		++iter;
 	}
+
+	mCameraManager->Update(DeltaTime);
 }
 
 void CScene::PostUpdate(float DeltaTime)

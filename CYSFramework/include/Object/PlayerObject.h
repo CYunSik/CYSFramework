@@ -21,6 +21,9 @@ protected:
 	// MovementComponent
 	CSharedPtr<class CMovementComponent> mMovement;
 
+	// CameraComponent
+	CSharedPtr<class CCameraComponent> mCamera;
+
 	// 총알용 오브젝트
 	// 스킬 1
 	CSharedPtr<class CBulletObject> mSkill1Object;

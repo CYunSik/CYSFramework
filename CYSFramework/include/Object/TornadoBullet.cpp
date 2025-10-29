@@ -34,7 +34,7 @@ bool CTornadoBullet::Init()
 
 	mMesh->SetMesh("CenterRect");
 	mMesh->SetShader("ColorMeshShader");
-	mMesh->SetWorldScale(0.5f, 0.5f, 1.f);
+	mMesh->SetWorldScale(50.f, 50.f, 1.f);
 	mMesh->SetRelativePos(1.f, 0.f);
 
 	return true;

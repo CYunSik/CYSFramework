@@ -23,7 +23,7 @@ bool CColorMeshShader::Init()
 	}
 
 	// 레아이웃 정보 만들어주기
-	AddInputLayoutDesc("POSITIONT", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 12, D3D11_INPUT_PER_VERTEX_DATA, 0);
+	AddInputLayoutDesc("POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 12, D3D11_INPUT_PER_VERTEX_DATA, 0);
 	AddInputLayoutDesc("COLOR", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, 16, D3D11_INPUT_PER_VERTEX_DATA, 0);
 
 	if (!CreateInputLayout())

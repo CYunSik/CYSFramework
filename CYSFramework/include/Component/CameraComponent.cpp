@@ -37,7 +37,7 @@ void CCameraComponent::SetProjectionType(ECameraProjectionType Type)
 																 // 그려질 카메라 각도(시야각), 종횡비(카메라 비율), 최소 거리, 최대 거리
 		break;
 	case ECameraProjectionType::Ortho:			// 직교 투영
-		DirectX::XMMatrixOrthographicOffCenterLH(mWidth / -2.f, mWidth / 2.f, mHeight / -2.f, mHeight / 2.f, 0, mViewDistance);
+		mMatProj = DirectX::XMMatrixOrthographicOffCenterLH(mWidth / -2.f, mWidth / 2.f, mHeight / -2.f, mHeight / 2.f, 0, mViewDistance);
 		break;
 	}
 }
@@ -53,7 +53,7 @@ bool CCameraComponent::Init()
 	SetProjectionType(ECameraProjectionType::Perspective);
 
 	// 처음 생성된 카메라 컴포넌트면 이 친구를 CameraManager의 뷰타켓으로 지정한다.
-	if (mScene->GetCameraManager()->GetViewTarget())
+	if (!mScene->GetCameraManager()->GetViewTarget())
 	{
 		mScene->GetCameraManager()->SetViewTarget(this);
 	}
@@ -71,7 +71,7 @@ bool CCameraComponent::Init(const char* FileName)
 	SetProjectionType(ECameraProjectionType::Perspective);
 
 	// 처음 생성된 카메라 컴포넌트면 이 친구를 CameraManager의 뷰타켓으로 지정한다.
-	if (mScene->GetCameraManager()->GetViewTarget())
+	if (!mScene->GetCameraManager()->GetViewTarget())
 	{
 		mScene->GetCameraManager()->SetViewTarget(this);
 	}

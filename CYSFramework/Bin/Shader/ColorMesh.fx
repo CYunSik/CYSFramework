@@ -8,7 +8,7 @@
 
 struct VS_Input_Color
 {
-    float3 Pos : POSITIONT; // POSITION 0번 레지스터
+    float3 Pos : POSITION; // POSITION 0번 레지스터
     float4 Color : COLOR;   // COLOR 0번 레지스터
 };
 

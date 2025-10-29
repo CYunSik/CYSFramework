@@ -1,6 +1,7 @@
 #include "PlayerObject.h"
 #include "../Component/StaticMeshComponent.h"
 #include "../Component/MovementComponent.h"
+#include "../Component/CameraComponent.h"
 
 #include "../Scene/Scene.h"
 #include "../Scene/Input.h"
@@ -37,15 +38,21 @@ bool CPlayerObject::Init()
 	// 컴포넌트 하나 등록해줄거다.
 	mRoot = CreateComponent<CStaticMeshComponent>();
 	mMovement = CreateComponent<CMovementComponent>();
+	mCamera = CreateComponent<CCameraComponent>();
 
 	mRoot->SetMesh("CenterRect");
 	mRoot->SetShader("ColorMeshShader");
 
-	mRoot->SetWorldPos(0.f, 0.f, 5.5f);
+	mRoot->SetWorldPos(0.f, 0.f, 0.f);
+	mRoot->SetWorldScale(100.f, 100.f, 0.f);
 	SetRootComponent(mRoot);
 
 	mMovement->SetUpdateComponent(mRoot);
-	mMovement->SetMoveSpeed(2.f);
+	mMovement->SetMoveSpeed(500.f);
+	
+	// 카메라 세팅
+	mCamera->SetProjectionType(ECameraProjectionType::Ortho);
+	mRoot->AddChild(mCamera);
 
 	// 위성 만들기
 	mRotationPivot = CreateComponent<CSceneComponent>();
@@ -59,13 +66,13 @@ bool CPlayerObject::Init()
 	// 위성 1
 	mSub->SetMesh("CenterRect");
 	mSub->SetShader("ColorMeshShader");
-	mSub->SetRelativePos(-2.f, 0.f, 0.f);
+	mSub->SetRelativePos(-200.f, 0.f, 0.f);
 	mSub->SetRelativeScale(0.5f, 0.5f, 1.f);
 
 	// 위성 2
 	mSub2->SetMesh("CenterRect");
 	mSub2->SetShader("ColorMeshShader");
-	mSub2->SetRelativePos(2.f, 0.f, 0.f);
+	mSub2->SetRelativePos(200.f, 0.f, 0.f);
 	mSub2->SetRelativeScale(0.5f, 0.5f, 1.f);
 
 	// 입력
@@ -183,8 +190,8 @@ void CPlayerObject::Fire(float DeltaTime)
 	// 총알의 시작 위치 == 내 월드 위치
 	Root->SetWorldPos(mRootComponent->GetWorldPosition());
 	Root->SetWorldRotation(mRootComponent->GetWorldRotation());
+	Root->SetWorldScale(50.f, 50.f, 1.f);
 	Bullet->SetLifeTime(2.f);
-	Bullet->SetBulletSpeed(5.f);
 }
 
 void CPlayerObject::Skill1(float DeltaTime)
@@ -203,17 +210,17 @@ void CPlayerObject::Skill1(float DeltaTime)
 
 	FVector3D Scale = Root->GetWorldScale();
 
-	Scale.x += 2.f * DeltaTime;
-	Scale.y += 2.f * DeltaTime;
+	Scale.x += 200.f * DeltaTime;
+	Scale.y += 200.f * DeltaTime;
 
-	if (Scale.x >= 4.f)
+	if (Scale.x >= 400.f)
 	{
-		Scale.x = 4.f;
+		Scale.x = 400.f;
 	}
 
-	if (Scale.y >= 4.f)
+	if (Scale.y >= 400.f)
 	{
-		Scale.y = 4.f;
+		Scale.y = 400.f;
 	}
 
 	mSkill1Object->GetRootComponent()->SetWorldScale(Scale);
@@ -221,7 +228,7 @@ void CPlayerObject::Skill1(float DeltaTime)
 
 void CPlayerObject::Skill1Fire(float DeltaTime)
 {
-	mSkill1Object->SetBulletSpeed(3.f);
+	mSkill1Object->SetBulletSpeed(300.f);
 	mSkill1Object = nullptr;
 }
 
@@ -234,7 +241,6 @@ void CPlayerObject::Skill2(float DeltaTime)
 	// 총알의 시작 위치 == 내 월드 위치
 	Root->SetWorldPos(mRootComponent->GetWorldPosition());
 	Root->SetWorldRotation(mRootComponent->GetWorldRotation());
-	Bullet->SetBulletSpeed(5.f);
 	Bullet->SetLifeTime(2.f);
 }
 
@@ -265,16 +271,16 @@ void CPlayerObject::Skill3Update(float DeltaTime)
 		// 총알의 시작 위치 == 내 월드 위치
 		Root->SetWorldPos(mSub->GetWorldPosition());
 		Root->SetWorldRotation(mRootComponent->GetWorldRotation());
+		Root->SetWorldScale(50.f, 50.f, 1.f);
 		Bullet->SetLifeTime(2.f);
-		Bullet->SetBulletSpeed(5.f);
 
 		Bullet = mScene->CreateObj<CBulletObject>("SatelliteBullet");
 		Root = Bullet->GetRootComponent();
 		// 총알의 시작 위치 == 내 월드 위치
 		Root->SetWorldPos(mSub2->GetWorldPosition());
 		Root->SetWorldRotation(mRootComponent->GetWorldRotation());
+		Root->SetWorldScale(50.f, 50.f, 1.f);
 		Bullet->SetLifeTime(2.f);
-		Bullet->SetBulletSpeed(5.f);
 	}
 
 	mSkill3Time -= DeltaTime;
@@ -303,11 +309,11 @@ void CPlayerObject::Skill4Update(float DeltaTime)
 	{
 		// 위성이 멀어지기
 		FVector3D Pos = mSub->GetRelativePosition();
-		Pos.x += DeltaTime * -1.5f;
+		Pos.x += DeltaTime * -150.f;
 		mSub->SetRelativePos(Pos);
 
 		FVector3D Pos2 = mSub2->GetRelativePosition();
-		Pos2.x += DeltaTime * 1.5f;
+		Pos2.x += DeltaTime * 150.f;
 		mSub2->SetRelativePos(Pos2);
 
 		// 속도 증가
@@ -326,11 +332,11 @@ void CPlayerObject::Skill4Update(float DeltaTime)
 	{
 		// 위성이 돌아오기
 		FVector3D Pos = mSub->GetRelativePosition();
-		Pos.x -= DeltaTime * -1.5f;
+		Pos.x -= DeltaTime * -150.f;
 		mSub->SetRelativePos(Pos);
 
 		FVector3D Pos2 = mSub2->GetRelativePosition();
-		Pos2.x -= DeltaTime * 1.5f;
+		Pos2.x -= DeltaTime * 150.f;
 		mSub2->SetRelativePos(Pos2);
 
 		FVector3D Rot = mRotationPivot->GetRelativeRotation();
@@ -366,9 +372,9 @@ void CPlayerObject::Skill5(float DeltaTime)
 
 		Root->SetWorldPos(StartPos);
 		Root->SetWorldRotation(Rot);
+		Root->SetWorldScale(50.f, 50.f, 1.f);
 
 		Bullet->SetLifeTime(6.f);
-		Bullet->SetBulletSpeed(5.f);
 
 		Rot.z += 45;
 
@@ -416,7 +422,7 @@ void CPlayerObject::Skill5Update(float DeltaTime)
 		{
 			FVector3D Dir = PlayerPos - Pos;
 			Dir.Normalize();
-			Root->SetWorldPos(Pos + Dir * 8.f * DeltaTime);
+			Root->SetWorldPos(Pos + Dir * 300.f * DeltaTime);
 		}
 	}
 

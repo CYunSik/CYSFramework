@@ -3,6 +3,13 @@
 
 class CComputeShader : public CShader
 {
+protected:
+	CComputeShader();
+	virtual ~CComputeShader();
 
+public:
+	virtual bool Init() override;
+
+	virtual void SetShader() final;
 };
 

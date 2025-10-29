@@ -21,7 +21,7 @@ protected:
 	CSharedPtr<class CSceneComponent> mRootComponent;
 
 	// NonSceneComponent;
-	std::vector<CSharedPtr<class CComponent>> mNonSceneComponent;
+	std::vector<CSharedPtr<class CComponent>> mNonSceneComponentList;
 
 	float mLifeTime = 0.f;
 
@@ -88,7 +88,7 @@ public:
 
 		if (!Com)
 		{
-			mNonSceneComponent.emplace_back(Component);
+			mNonSceneComponentList.emplace_back(Component);
 		}
 
 		return Component;
