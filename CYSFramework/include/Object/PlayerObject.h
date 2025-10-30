@@ -21,6 +21,9 @@ protected:
 	// MovementComponent
 	CSharedPtr<class CMovementComponent> mMovement;
 
+	// RotationComponent
+	CSharedPtr<class CRotationComponent> mRotation;
+
 	// CameraComponent
 	CSharedPtr<class CCameraComponent> mCamera;
 

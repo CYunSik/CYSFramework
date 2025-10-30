@@ -1,17 +1,16 @@
 #pragma once
 #include "Component.h"
 
-class CMovementComponent : public CComponent
+class CRotationComponent : public CComponent
 {
-	// 씬이랑 오브젝트 모두 사용할거 같다.
 	friend class CScene;
 	friend class CSceneObject;
 
 protected:
-	CMovementComponent();
-	CMovementComponent(const CMovementComponent& Com);
-	CMovementComponent(CMovementComponent&& Com);
-	virtual ~CMovementComponent();
+	CRotationComponent();
+	CRotationComponent(const CRotationComponent& Com);
+	CRotationComponent(CRotationComponent&& Com);
+	virtual ~CRotationComponent();
 
 protected:
 	// 업데이트 할 컴포넌트
@@ -22,40 +21,57 @@ protected:
 	// 이동할 방향 벡터
 	FVector3D mVelocity;
 	// 한 프레임당 이동할 거리 벡터
-	FVector3D mMoveStep;
-	float mSpeed = 1.f;
+	FVector3D mRotationStep;
 	// 이동 초기화 여부
 	bool mVelocityInit = true;
 
 public:
-	const FVector3D& GetMoveStep() const
+	const FVector3D& GetRotationStep() const
 	{
-		return mMoveStep;
+		return mRotationStep;
 	}
 
-	float GetMoveDistance() const
+	float GetRotationDistance() const
 	{
-		return mMoveStep.Length();
+		return mRotationStep.Length();
 	}
 
 	void SetUpdateComponent(class CSceneComponent* Target);
-	void SetMoveSpeed(float Speed)
+
+	void AddMove(const FVector3D& Rot)
 	{
-		mSpeed = Speed;
+		mVelocity += Rot;
 	}
 
-	void AddMove(const FVector3D& Dir)
+	void AddMoveX(float x)
 	{
-		mVelocity += Dir;
+		mVelocity.x += x;
 	}
-	void SetMove(const FVector3D& Dir)
+	void AddMoveY(float y)
 	{
-		mVelocity = Dir;
+		mVelocity.y += y;
+	}
+	void AddMoveZ(float z)
+	{
+		mVelocity.z += z;
 	}
 
-	void SetMoveAxis(EAxis::Type Axis)
+	void SetMove(const FVector3D& Rot)
 	{
-		mMoveAxis = Axis;
+		mVelocity = Rot;
+	}
+
+	void SetMoveX(float x)
+	{
+		mVelocity.x = x;
+	}
+	void SetMoveY(float y)
+	{
+		mVelocity.y = y;
+	}
+	void SetMoveZ(float z)
+	{
+		mVelocity.z = z;
 	}
 
 	void SetVelocityInit(bool VelocityInit)
@@ -71,6 +87,7 @@ public:
 	virtual void Update(float DeltaTime);
 	virtual void PostUpdate(float DeltaTime);
 	virtual void PostRender();
-	virtual CMovementComponent* Clone();
+	virtual CRotationComponent* Clone();
+
 };
 

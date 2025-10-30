@@ -1,6 +1,7 @@
 #include "PlayerObject.h"
 #include "../Component/StaticMeshComponent.h"
 #include "../Component/MovementComponent.h"
+#include "../Component/RotationComponent.h"
 #include "../Component/CameraComponent.h"
 
 #include "../Scene/Scene.h"
@@ -38,6 +39,7 @@ bool CPlayerObject::Init()
 	// 컴포넌트 하나 등록해줄거다.
 	mRoot = CreateComponent<CStaticMeshComponent>();
 	mMovement = CreateComponent<CMovementComponent>();
+	mRotation = CreateComponent<CRotationComponent>();
 	mCamera = CreateComponent<CCameraComponent>();
 
 	mRoot->SetMesh("CenterRect");
@@ -49,6 +51,8 @@ bool CPlayerObject::Init()
 
 	mMovement->SetUpdateComponent(mRoot);
 	mMovement->SetMoveSpeed(500.f);
+
+	mRotation->SetUpdateComponent(mRoot);
 	
 	// 카메라 세팅
 	mCamera->SetProjectionType(ECameraProjectionType::Ortho);
@@ -171,14 +175,18 @@ void CPlayerObject::MoveDown(float DeltaTime)
 
 void CPlayerObject::RotationZ(float DeltaTime)
 {
-	FVector3D Rot = mRootComponent->GetWorldRotation();
-	mRootComponent->SetWorldRotationZ(Rot.z + 90.f * DeltaTime);
+	//FVector3D Rot = mRootComponent->GetWorldRotation();
+	//mRootComponent->SetWorldRotationZ(Rot.z + 90.f * DeltaTime);
+
+	mRotation->AddMoveZ(-90.f);
 }
 
 void CPlayerObject::RotationZInv(float DeltaTime)
 {
-	FVector3D Rot = mRootComponent->GetWorldRotation();
-	mRootComponent->SetWorldRotationZ(Rot.z + -90.f * DeltaTime);
+	//FVector3D Rot = mRootComponent->GetWorldRotation();
+	//mRootComponent->SetWorldRotationZ(Rot.z + -90.f * DeltaTime);
+
+	mRotation->AddMoveZ(90.f);
 }
 
 void CPlayerObject::Fire(float DeltaTime)

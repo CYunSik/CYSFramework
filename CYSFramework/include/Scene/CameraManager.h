@@ -1,6 +1,8 @@
 #pragma once
 #include "../GameInfo.h"
 
+// Input과 같은 시스템이다.
+
 class CCameraManager
 {
 	friend class CScene;

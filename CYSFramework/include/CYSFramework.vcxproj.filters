@@ -183,6 +183,9 @@
     <ClCompile Include="Scene\CameraManager.cpp">
       <Filter>05.Scene\02.CameraManager</Filter>
     </ClCompile>
+    <ClCompile Include="Component\RotationComponent.cpp">
+      <Filter>07.Component\02.NonSceneComponent</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameManager.h">
@@ -307,6 +310,9 @@
     </ClInclude>
     <ClInclude Include="Scene\CameraManager.h">
       <Filter>05.Scene\02.CameraManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Component\RotationComponent.h">
+      <Filter>07.Component\02.NonSceneComponent</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -7,6 +7,7 @@ E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Component\CameraComponen
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Component\Component.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\Component.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Component\MeshComponent.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\MeshComponent.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Component\MovementComponent.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\MovementComponent.obj
+E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Component\RotationComponent.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\RotationComponent.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Component\SceneComponent.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\SceneComponent.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Component\StaticMeshComponent.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\StaticMeshComponent.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Device.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\Device.obj

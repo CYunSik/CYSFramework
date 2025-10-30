@@ -1,5 +1,6 @@
 #include "SceneObject.h"
 #include "../Component/SceneComponent.h"
+#include "../Scene/Scene.h"
 
 CSceneObject::CSceneObject()
 {
