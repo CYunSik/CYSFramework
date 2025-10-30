@@ -9,6 +9,7 @@
 
 #include "BulletObject.h"
 #include "TornadoBullet.h"
+#include "TalonR.h"
 
 CPlayerObject::CPlayerObject()
 	: CSceneObject()
@@ -142,12 +143,6 @@ void CPlayerObject::Update(float DeltaTime)
 	if (mSkill4Enable)
 	{
 		Skill4Update(DeltaTime);
-	}
-
-	// 스킬 5
-	if (mSkill5Enable)
-	{
-		Skill5Update(DeltaTime);
 	}
 }
 
@@ -360,83 +355,26 @@ void CPlayerObject::Skill4Update(float DeltaTime)
 
 void CPlayerObject::Skill5(float DeltaTime)
 {
-	if (mSkill5Enable)
-	{
-		return;
-	}
-
-	mSkill5Enable = true;
-	mSkill5Time = 6.f;        // 1초 전진 + 3초 회전 + 2초 복귀
-	mSkill5TimeAcc = 0.f;
-	mSkill5Bullets.clear();
-
-	FVector3D StartPos = mRootComponent->GetWorldPosition();
+	//8방향으로 총알 발사
+	FVector3D Dir = mRoot->GetAxis(EAxis::Y);
 	FVector3D Rot = mRoot->GetWorldRotation();
+
+	FMatrix matRot;
+	matRot.RotationZ(45.f);
 
 	for (int i = 0; i < 8; ++i)
 	{
-		CBulletObject* Bullet = mScene->CreateObj<CBulletObject>("Skill5Bullet");
-		CSceneComponent* Root = Bullet->GetRootComponent();
+		CTalonR* Bullet = mScene->CreateObj<CTalonR>("TalonBullet");
 
-		Root->SetWorldPos(StartPos);
+		CSceneComponent* Root = Bullet->GetRootComponent();
+		FVector3D Pos = mRoot->GetWorldPosition();
+		Root->SetWorldPos(Pos + Dir);
 		Root->SetWorldRotation(Rot);
 		Root->SetWorldScale(50.f, 50.f, 1.f);
-
-		Bullet->SetLifeTime(6.f);
-
 		Rot.z += 45;
 
-		mSkill5Bullets.push_back(Bullet);
-	}
-}
-
-void CPlayerObject::Skill5Update(float DeltaTime)
-{
-	if (!mSkill5Enable)
-	{
-		return;
-	}
-
-	mSkill5TimeAcc += DeltaTime;
-
-	FVector3D PlayerPos = mRootComponent->GetWorldPosition();
-
-	for (auto* Bullet : mSkill5Bullets)
-	{
-		if (!Bullet)
-		{
-			continue;
-		}
-
-		CSceneComponent* Root = Bullet->GetRootComponent();
-		FVector3D Pos = Root->GetWorldPosition();
-
-		if (mSkill5TimeAcc < 1.f)
-		{
-		
-		}
-		// 총알 멈추고 제자리 회전
-		else if (mSkill5TimeAcc >= 1.f && mSkill5TimeAcc < 4.f)
-		{
-			Bullet->SetBulletSpeed(0.f);
-
-			// 자기 자신 기준 회전
-			FVector3D Rot = Root->GetWorldRotation();
-			Rot.z += 720.f * DeltaTime; // 초당 720도 회전
-			Root->SetWorldRotation(Rot);
-		}
-		// 플레이어에게 복귀
-		else if (mSkill5TimeAcc >= 4.f)
-		{
-			FVector3D Dir = PlayerPos - Pos;
-			Dir.Normalize();
-			Root->SetWorldPos(Pos + Dir * 300.f * DeltaTime);
-		}
-	}
-
-	if (mSkill5TimeAcc >= mSkill5Time)
-	{
-		mSkill5Enable = false;
-		mSkill5Bullets.clear();
+		Dir = Dir.TransformNormal(matRot);
+		Dir.Normalize();
+		Bullet->SetTarget(this);
 	}
 }

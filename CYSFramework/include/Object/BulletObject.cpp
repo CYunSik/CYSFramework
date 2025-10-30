@@ -1,6 +1,7 @@
 #include "BulletObject.h"
 #include "../Component/StaticMeshComponent.h"
 #include "../Component/MovementComponent.h"
+#include "../Component/RotationComponent.h"
 
 CBulletObject::CBulletObject()
 	: CSceneObject()
@@ -30,6 +31,7 @@ bool CBulletObject::Init()
 
 	mRoot = CreateComponent<CStaticMeshComponent>();
 	mMovement = CreateComponent<CMovementComponent>();
+	mRotation = CreateComponent<CRotationComponent>();
 
 	mRoot->SetMesh("CenterRect");
 	mRoot->SetShader("ColorMeshShader");
@@ -39,6 +41,9 @@ bool CBulletObject::Init()
 	mMovement->SetUpdateComponent(mRoot);
 	mMovement->SetMoveAxis(EAxis::Y);
 	mMovement->SetMoveSpeed(300.f);
+
+	// Rotation 세팅
+	mRotation->SetUpdateComponent(mRoot);
 
 	SetRootComponent(mRoot);
 

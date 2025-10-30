@@ -14,8 +14,10 @@ E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Device.cpp;E:\StudyCys\F
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\GameManager.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\GameManager.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\main.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\main.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Object\BulletObject.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\BulletObject.obj
+E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Object\MonsterObject.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\MonsterObject.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Object\PlayerObject.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\PlayerObject.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Object\SceneObject.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\SceneObject.obj
+E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Object\TalonR.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\TalonR.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Object\TornadoBullet.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\TornadoBullet.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Scene\CameraManager.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\CameraManager.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Scene\Input.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\Input.obj

@@ -79,6 +79,9 @@
     <Filter Include="05.Scene\02.CameraManager">
       <UniqueIdentifier>{6b60863f-36d9-4e29-ae76-fb9e4a1b1431}</UniqueIdentifier>
     </Filter>
+    <Filter Include="06.Object\03.Monster">
+      <UniqueIdentifier>{12c6f496-e255-49da-a9ce-793986de79fa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -185,6 +188,12 @@
     </ClCompile>
     <ClCompile Include="Component\RotationComponent.cpp">
       <Filter>07.Component\02.NonSceneComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="Object\TalonR.cpp">
+      <Filter>06.Object\02.Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Object\MonsterObject.cpp">
+      <Filter>06.Object\03.Monster</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -313,6 +322,12 @@
     </ClInclude>
     <ClInclude Include="Component\RotationComponent.h">
       <Filter>07.Component\02.NonSceneComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\TalonR.h">
+      <Filter>06.Object\02.Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\MonsterObject.h">
+      <Filter>06.Object\03.Monster</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

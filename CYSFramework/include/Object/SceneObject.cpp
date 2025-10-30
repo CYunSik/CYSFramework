@@ -439,22 +439,22 @@ void CSceneObject::SetWorldRotationAxis(float Angle, const FVector3D& Axis)
 
 void CSceneObject::SetWorldPos(const FVector3D& Pos)
 {
-	mRootComponent->SetWorldRotation(Pos);
+	mRootComponent->SetWorldPos(Pos);
 }
 
 void CSceneObject::SetWorldPos(float x, float y, float z)
 {
-	mRootComponent->SetWorldRotation(x, y, z);
+	mRootComponent->SetWorldPos(x, y, z);
 }
 
 void CSceneObject::SetWorldPos(const FVector2D& Pos)
 {
-	mRootComponent->SetWorldRotation(Pos);
+	mRootComponent->SetWorldPos(Pos);
 }
 
 void CSceneObject::SetWorldPos(float x, float y)
 {
-	mRootComponent->SetWorldRotation(x, y);
+	mRootComponent->SetWorldPos(x, y);
 }
 
 //Add

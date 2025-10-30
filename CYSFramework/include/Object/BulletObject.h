@@ -22,6 +22,7 @@ public:
 protected:
 	CSharedPtr<class CStaticMeshComponent> mRoot;
 	CSharedPtr<class CMovementComponent> mMovement;
+	CSharedPtr<class CRotationComponent> mRotation;
 
 protected:
 	CBulletObject();

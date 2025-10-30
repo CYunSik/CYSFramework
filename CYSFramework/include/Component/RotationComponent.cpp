@@ -20,7 +20,7 @@ CRotationComponent::~CRotationComponent()
 {
 }
 
-void CRotationComponent::SetUpdateComponent(class CSceneComponent* Target)
+void CRotationComponent::SetUpdateComponent(CSceneComponent* Target)
 {
 	mUpdateComponent = Target;
 }

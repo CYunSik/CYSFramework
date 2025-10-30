@@ -42,12 +42,6 @@ protected:
 	float mSkill4Time = 6.f;
 	float mSkill4TimeAcc = 0.f;
 
-	// 스킬 5
-	bool mSkill5Enable = false;
-	float mSkill5Time = 6.f;
-	float mSkill5TimeAcc = 0.f;
-	std::vector<CBulletObject*> mSkill5Bullets;
-
 public:
 	virtual bool Init();
 	virtual void Update(float DeltaTime);
@@ -78,6 +72,5 @@ private:
 
 	// 스킬 5 : 롤 탈론 궁극기 만들기 (플레이어 기준으로 8방향으로 총알을 발사하고 해당 총알이 몇초 돌다가 플레이어에게 다시 되돌아오는 부메랑 기능)
 	void Skill5(float DeltaTime);
-	void Skill5Update(float DeltaTime);
 };
 
