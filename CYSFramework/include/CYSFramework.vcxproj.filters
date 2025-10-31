@@ -82,6 +82,9 @@
     <Filter Include="06.Object\03.Monster">
       <UniqueIdentifier>{12c6f496-e255-49da-a9ce-793986de79fa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02.Share\04.Log">
+      <UniqueIdentifier>{591c6b4c-f5fd-4ffe-9ca5-6b59ff0b427d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -193,6 +196,15 @@
       <Filter>06.Object\02.Bullet</Filter>
     </ClCompile>
     <ClCompile Include="Object\MonsterObject.cpp">
+      <Filter>06.Object\03.Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Object\NearingMonster.cpp">
+      <Filter>06.Object\03.Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Share\Log.cpp">
+      <Filter>02.Share\04.Log</Filter>
+    </ClCompile>
+    <ClCompile Include="Object\GunnerMonster.cpp">
       <Filter>06.Object\03.Monster</Filter>
     </ClCompile>
   </ItemGroup>
@@ -327,6 +339,15 @@
       <Filter>06.Object\02.Bullet</Filter>
     </ClInclude>
     <ClInclude Include="Object\MonsterObject.h">
+      <Filter>06.Object\03.Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\NearingMonster.h">
+      <Filter>06.Object\03.Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Share\Log.h">
+      <Filter>02.Share\04.Log</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\GunnerMonster.h">
       <Filter>06.Object\03.Monster</Filter>
     </ClInclude>
   </ItemGroup>

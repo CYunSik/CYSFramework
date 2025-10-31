@@ -14,9 +14,11 @@ E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Device.cpp;E:\StudyCys\F
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\GameManager.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\GameManager.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\main.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\main.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Object\BulletObject.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\BulletObject.obj
+E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Object\GunnerMonster.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\GunnerMonster.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Object\MonsterObject.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\MonsterObject.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Object\PlayerObject.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\PlayerObject.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Object\SceneObject.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\SceneObject.obj
+E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Object\NearingMonster.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\NearingMonster.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Object\TalonR.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\TalonR.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Object\TornadoBullet.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\TornadoBullet.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Scene\CameraManager.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\CameraManager.obj
@@ -32,6 +34,7 @@ E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Shader\GraphicShader.cpp
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Shader\Shader.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\Shader.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Shader\ShaderManager.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\ShaderManager.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Shader\TransformCBuffer.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\TransformCBuffer.obj
+E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Share\Log.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\Log.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Share\Object.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\Object.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Share\Timer.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\Timer.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Vector3D.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\Vector3D.obj

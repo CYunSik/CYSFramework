@@ -42,9 +42,12 @@ protected:
 	float mSkill4Time = 6.f;
 	float mSkill4TimeAcc = 0.f;
 
+	int mHp = 100;
+
 public:
 	virtual bool Init();
 	virtual void Update(float DeltaTime);
+	void Damage(float Damage);
 
 private:
 	void MoveUp(float DeltaTime);

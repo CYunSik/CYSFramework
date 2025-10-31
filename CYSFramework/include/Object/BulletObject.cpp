@@ -40,7 +40,7 @@ bool CBulletObject::Init()
 	// Movement 세팅
 	mMovement->SetUpdateComponent(mRoot);
 	mMovement->SetMoveAxis(EAxis::Y);
-	mMovement->SetMoveSpeed(300.f);
+	mMovement->SetMoveSpeed(500.f);
 
 	// Rotation 세팅
 	mRotation->SetUpdateComponent(mRoot);

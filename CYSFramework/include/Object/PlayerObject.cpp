@@ -146,6 +146,11 @@ void CPlayerObject::Update(float DeltaTime)
 	}
 }
 
+void CPlayerObject::Damage(float Damage)
+{
+	mHp -= Damage;
+}
+
 void CPlayerObject::MoveUp(float DeltaTime)
 {
 	//FVector3D Pos = mRootComponent->GetWorldPosition();

@@ -15,8 +15,6 @@ protected:
 	CSharedPtr<class CStaticMeshComponent> mRoot;
 	CSharedPtr<CSceneObject> mTarget;
 
-	float mFireTime = 1.f;
-
 public:
 	void SetTarget(CSceneObject* Target)
 	{

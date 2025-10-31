@@ -1,6 +1,8 @@
 #include "SceneMain.h"
 #include "../Object/PlayerObject.h"
 #include "../Object/MonsterObject.h"
+#include "../Object/GunnerMonster.h"
+#include "../Object/NearingMonster.h"
 
 CSceneMain::CSceneMain()
 {
@@ -24,13 +26,13 @@ bool CSceneMain::Init()
 		return false;
 	}
 
-	CMonsterObject* Monster = CreateObj<CMonsterObject>("Monster");
-	Monster->SetWorldPos(-400.f, 300.f);
+	CGunnerMonster* Monster = CreateObj<CGunnerMonster>("GunnerMonster");
+	Monster->SetWorldPos(-500.f, 300.f);
 	Monster->SetTarget(Player);
 
-	CMonsterObject* Monster1 = CreateObj<CMonsterObject>("Monster");
-	Monster1->SetWorldPos(400.f, 300.f);
-	Monster1->SetTarget(Player);
+	CNearingMonster* Monster2 = CreateObj<CNearingMonster>("NearingMonster");
+	Monster2->SetWorldPos(500.f, 300.f);
+	Monster2->SetTarget(Player);
 
 	return true;
 }

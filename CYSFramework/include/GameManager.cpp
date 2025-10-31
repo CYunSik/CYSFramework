@@ -5,6 +5,7 @@
 
 // 매니져 헤더
 #include "Share/Timer.h"
+#include "Share/Log.h"
 #include "Device.h"
 
 #include "Asset/AssetManager.h"
@@ -26,6 +27,8 @@ CGameManager::CGameManager()
 
 CGameManager::~CGameManager()
 {
+	CLog::Destroy();
+
 	// DC 반납
 	ReleaseDC(mhWnd, mhDC);
 }
@@ -40,6 +43,11 @@ bool CGameManager::Init(HINSTANCE hInst)
 	RegisterWindowClass();
 
 	if (!Create())
+	{
+		return false;
+	}
+
+	if (!CLog::Init())
 	{
 		return false;
 	}
@@ -126,6 +134,20 @@ void CGameManager::Input(float DeltaTime)
 void CGameManager::Update(float DeltaTime)
 {
 	CSceneManager::GetInst()->Update(DeltaTime);
+
+	CLog::PrintLog("GameManger Update", ELogPrintType::All);
+
+	static bool push = false;
+
+	if (GetAsyncKeyState(VK_RETURN) & 0x8000)
+	{
+		push = true;
+	}
+	else if (push)
+	{
+		push = false;
+		CLog::SaveLog();
+	}
 }
 
 
@@ -291,6 +313,9 @@ LRESULT CGameManager::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPa
 
 		//	EndPaint(hWnd, &ps);
 		//}
+		break;
+
+	case WM_SYSKEYDOWN:
 		break;
 	case WM_DESTROY:
 		mLoop = false; // *윈도우를 종료하게되면 루프를 종료해준다.
