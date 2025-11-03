@@ -142,3 +142,23 @@ namespace EShaderBufferType
 		All = Vertex | Pixel | Hull | Domain | Geometry | Compute
 	};
 }
+
+// 충돌
+enum class EColliderType
+{
+	Collider2D,
+	Collider3D
+};
+
+// 충돌 모양
+enum class EColliderShape
+{
+	AABB2D,
+};
+
+// 충돌 정보
+struct FAABB2D
+{
+	FVector2D Min;	// 왼쪽 아래 점
+	FVector2D Max;	// 오른쪽 위 점
+};

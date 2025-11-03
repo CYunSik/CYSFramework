@@ -85,6 +85,18 @@
     <Filter Include="02.Share\04.Log">
       <UniqueIdentifier>{591c6b4c-f5fd-4ffe-9ca5-6b59ff0b427d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="07.Component\01.SceneComponent\01.Mesh">
+      <UniqueIdentifier>{8ac94368-4a0c-40b6-bcf0-26179d0c5e96}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="07.Component\01.SceneComponent\02.Camera">
+      <UniqueIdentifier>{85584a15-df39-4df1-b146-dcda59318958}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="07.Component\01.SceneComponent\03.Collider">
+      <UniqueIdentifier>{15daf3c4-8a88-4b50-8c8a-74bed3a673fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.Scene\03.Collision">
+      <UniqueIdentifier>{5efe9498-4ea2-42a9-a3d1-e2d51eb72976}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -159,12 +171,6 @@
     <ClCompile Include="Component\SceneComponent.cpp">
       <Filter>07.Component\01.SceneComponent</Filter>
     </ClCompile>
-    <ClCompile Include="Component\MeshComponent.cpp">
-      <Filter>07.Component\01.SceneComponent</Filter>
-    </ClCompile>
-    <ClCompile Include="Component\StaticMeshComponent.cpp">
-      <Filter>07.Component\01.SceneComponent</Filter>
-    </ClCompile>
     <ClCompile Include="Scene\SceneManager.cpp">
       <Filter>05.Scene</Filter>
     </ClCompile>
@@ -182,9 +188,6 @@
     </ClCompile>
     <ClCompile Include="Component\MovementComponent.cpp">
       <Filter>07.Component\02.NonSceneComponent</Filter>
-    </ClCompile>
-    <ClCompile Include="Component\CameraComponent.cpp">
-      <Filter>07.Component\01.SceneComponent</Filter>
     </ClCompile>
     <ClCompile Include="Scene\CameraManager.cpp">
       <Filter>05.Scene\02.CameraManager</Filter>
@@ -209,6 +212,27 @@
     </ClCompile>
     <ClCompile Include="Object\ZaryaBullet.cpp">
       <Filter>06.Object\02.Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Component\MeshComponent.cpp">
+      <Filter>07.Component\01.SceneComponent\01.Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Component\StaticMeshComponent.cpp">
+      <Filter>07.Component\01.SceneComponent\01.Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Component\CameraComponent.cpp">
+      <Filter>07.Component\01.SceneComponent\02.Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Component\ColliderBase.cpp">
+      <Filter>07.Component\01.SceneComponent\03.Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="Component\ColliderAABB2D.cpp">
+      <Filter>07.Component\01.SceneComponent\03.Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\SceneCollision.cpp">
+      <Filter>05.Scene\03.Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\CollisionQuadTree.cpp">
+      <Filter>05.Scene\03.Collision</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -305,12 +329,6 @@
     <ClInclude Include="Component\SceneComponent.h">
       <Filter>07.Component\01.SceneComponent</Filter>
     </ClInclude>
-    <ClInclude Include="Component\MeshComponent.h">
-      <Filter>07.Component\01.SceneComponent</Filter>
-    </ClInclude>
-    <ClInclude Include="Component\StaticMeshComponent.h">
-      <Filter>07.Component\01.SceneComponent</Filter>
-    </ClInclude>
     <ClInclude Include="Scene\SceneManager.h">
       <Filter>05.Scene</Filter>
     </ClInclude>
@@ -328,9 +346,6 @@
     </ClInclude>
     <ClInclude Include="Component\MovementComponent.h">
       <Filter>07.Component\02.NonSceneComponent</Filter>
-    </ClInclude>
-    <ClInclude Include="Component\CameraComponent.h">
-      <Filter>07.Component\01.SceneComponent</Filter>
     </ClInclude>
     <ClInclude Include="Scene\CameraManager.h">
       <Filter>05.Scene\02.CameraManager</Filter>
@@ -355,6 +370,27 @@
     </ClInclude>
     <ClInclude Include="Object\ZaryaBullet.h">
       <Filter>06.Object\02.Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="Component\MeshComponent.h">
+      <Filter>07.Component\01.SceneComponent\01.Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Component\StaticMeshComponent.h">
+      <Filter>07.Component\01.SceneComponent\01.Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Component\CameraComponent.h">
+      <Filter>07.Component\01.SceneComponent\02.Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Component\ColliderBase.h">
+      <Filter>07.Component\01.SceneComponent\03.Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="Component\ColliderAABB2D.h">
+      <Filter>07.Component\01.SceneComponent\03.Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\SceneCollision.h">
+      <Filter>05.Scene\03.Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\CollisionQuadTree.h">
+      <Filter>05.Scene\03.Collision</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

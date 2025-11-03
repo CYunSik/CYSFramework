@@ -2,6 +2,7 @@
 #include "../Object/SceneObject.h"
 #include "Input.h"
 #include "CameraManager.h"
+#include "SceneCollision.h"
 
 CScene::CScene()
 {
@@ -11,6 +12,7 @@ CScene::~CScene()
 {
 	SAFE_DELETE(mInput);
 	SAFE_DELETE(mCameraManager);
+	SAFE_DELETE(mCollision);
 }
 
 bool CScene::Init()
@@ -26,6 +28,16 @@ bool CScene::Init()
 	if (!mCameraManager->Init())
 	{
 		SAFE_DELETE(mCameraManager);
+		return false;
+	}
+
+	mCollision = new CSceneCollision;
+
+	mCollision->mScene = this;
+
+	if (!mCollision->Init())
+	{
+		SAFE_DELETE(mCollision);
 		return false;
 	}
 
@@ -45,6 +57,16 @@ bool CScene::Init(const char* FileName)
 	if (!mCameraManager->Init())
 	{
 		SAFE_DELETE(mCameraManager);
+		return false;
+	}
+
+	mCollision = new CSceneCollision;
+
+	mCollision->mScene = this;
+
+	if (!mCollision->Init())
+	{
+		SAFE_DELETE(mCollision);
 		return false;
 	}
 
@@ -132,26 +154,8 @@ void CScene::PostUpdate(float DeltaTime)
 
 void CScene::Collision(float DeltaTime)
 {
-	std::list<CSharedPtr<class CSceneObject>>::iterator iter;
-	std::list<CSharedPtr<class CSceneObject>>::iterator iterEnd = mObjList.end();
-
-	for (iter = mObjList.begin(); iter != iterEnd;)
-	{
-		if (!(*iter)->IsActive())
-		{
-			iter = mObjList.erase(iter);
-			iterEnd = mObjList.end();
-			continue;
-		}
-		else if (!(*iter)->IsEnable())
-		{
-			++iter;
-			continue;
-		}
-
-		(*iter)->Collision(DeltaTime);
-		++iter;
-	}
+	// SceneCollision이 해당 씬의 충돌을 모두 관리하게 한다!!
+	mCollision->Update(DeltaTime);
 }
 
 void CScene::PreRender()
