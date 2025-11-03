@@ -46,7 +46,7 @@ void CLog::PrintLog(const std::string& Text, ELogPrintType PrintType)
 
 	char TimeText[256] = {};
 
-	sprintf_s(TimeText, "[%d_%d_%d %d:%d:%d:%d]", sysTime.wYear, sysTime.wMonth, sysTime.wDay, sysTime.wHour, sysTime.wMinute, sysTime.wSecond, sysTime.wMilliseconds);
+	sprintf_s(TimeText, "[%d_%d_%d %d_%d_%d_%d]", sysTime.wYear, sysTime.wMonth, sysTime.wDay, sysTime.wHour, sysTime.wMinute, sysTime.wSecond, sysTime.wMilliseconds);
 
 	std::string OutputText = TimeText;
 

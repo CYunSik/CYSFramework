@@ -42,7 +42,7 @@ protected:
 	float mSkill4Time = 6.f;
 	float mSkill4TimeAcc = 0.f;
 
-	int mHp = 100;
+	float mHp = 100.f;
 
 public:
 	virtual bool Init();
@@ -75,5 +75,11 @@ private:
 
 	// 스킬 5 : 롤 탈론 궁극기 만들기 (플레이어 기준으로 8방향으로 총알을 발사하고 해당 총알이 몇초 돌다가 플레이어에게 다시 되돌아오는 부메랑 기능)
 	void Skill5(float DeltaTime);
+
+	// 스킬 6 : 오버워치 자리야 궁 (MonsterObject 끌어당기기)
+	void Skill6(float DeltaTime);
+
+	// 스킬 7 : MonsterObject 모두 밀쳐내기
+	void Skill7(float DeltaTime);
 };
 

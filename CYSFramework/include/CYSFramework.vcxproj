@@ -155,6 +155,7 @@
     <ClCompile Include="Object\NearingMonster.cpp" />
     <ClCompile Include="Object\TalonR.cpp" />
     <ClCompile Include="Object\TornadoBullet.cpp" />
+    <ClCompile Include="Object\ZaryaBullet.cpp" />
     <ClCompile Include="Scene\CameraManager.cpp" />
     <ClCompile Include="Scene\Input.cpp" />
     <ClCompile Include="Scene\Scene.cpp" />
@@ -199,6 +200,7 @@
     <ClInclude Include="Object\NearingMonster.h" />
     <ClInclude Include="Object\TalonR.h" />
     <ClInclude Include="Object\TornadoBullet.h" />
+    <ClInclude Include="Object\ZaryaBullet.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Scene\CameraManager.h" />
     <ClInclude Include="Scene\Input.h" />

@@ -2,6 +2,8 @@
 
 #include "../GameInfo.h"
 
+#include "../Share/SharedPtr.h"  // CSharedPtr 템플릿 인식
+
 // 월드를 구상하는 클래스이다.
 class CScene
 {
@@ -30,6 +32,11 @@ public:
 	class CCameraManager* GetCameraManager() const
 	{
 		return mCameraManager;
+	}
+
+	const std::list<CSharedPtr<CSceneObject>>& GetObjectList() const
+	{
+		return mObjList;
 	}
 
 public:
@@ -61,6 +68,23 @@ public:
 		
 		mObjList.push_back(Obj);
 		return Obj;
+	}
+
+	template<typename T>
+	void FindObjectsFromType(std::list<CSharedPtr<T>>& result)
+	{
+		auto iter = mObjList.begin();
+		auto iterEnd = mObjList.end();
+
+		for (; iter != iterEnd; ++iter)
+		{
+			T* Obj = dynamic_cast<T*>((*iter).Get());
+
+			if (Obj)
+			{
+				result.push_back(Obj);
+			}
+		}
 	}
 };
 

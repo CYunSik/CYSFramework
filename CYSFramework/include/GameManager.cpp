@@ -135,19 +135,19 @@ void CGameManager::Update(float DeltaTime)
 {
 	CSceneManager::GetInst()->Update(DeltaTime);
 
-	CLog::PrintLog("GameManger Update", ELogPrintType::All);
+	//CLog::PrintLog("GameManger Update", ELogPrintType::All);
 
-	static bool push = false;
+	//static bool push = false;
 
-	if (GetAsyncKeyState(VK_RETURN) & 0x8000)
-	{
-		push = true;
-	}
-	else if (push)
-	{
-		push = false;
-		CLog::SaveLog();
-	}
+	//if (GetAsyncKeyState(VK_RETURN) & 0x8000)
+	//{
+	//	push = true;
+	//}
+	//else if (push)
+	//{
+	//	push = false;
+	//	CLog::SaveLog();
+	//}
 }
 
 

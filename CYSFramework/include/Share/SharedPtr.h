@@ -28,7 +28,7 @@ public:
 			mObj->AddRef();
 		}
 	}
-	CSharedPtr(const CSharedPtr& Ptr)
+	CSharedPtr(const CSharedPtr<T>& Ptr)
 	{
 		mObj = Ptr.mObj;
 
@@ -37,7 +37,7 @@ public:
 			mObj->AddRef();
 		}
 	}
-	CSharedPtr(CSharedPtr&& Ptr) noexcept
+	CSharedPtr(CSharedPtr<T>&& Ptr) noexcept
 	{
 		mObj = Ptr.mObj;
 
@@ -48,7 +48,10 @@ public:
 	}
 	~CSharedPtr()
 	{
-
+		if (mObj)
+		{
+			mObj->Release();
+		}
 	}
 
 	// 연산자 = == !=
@@ -69,7 +72,7 @@ public:
 		}
 	}
 
-	void operator = (const CSharedPtr& Ptr)
+	void operator = (const CSharedPtr<T>& Ptr)
 	{
 		if (mObj)
 		{
@@ -85,7 +88,7 @@ public:
 		}
 	}
 
-	void operator = (CSharedPtr&& Ptr)
+	void operator = (CSharedPtr<T>&& Ptr)
 	{
 		if (mObj)
 		{
@@ -106,12 +109,12 @@ public:
 		return mObj == Obj;
 	}
 
-	bool operator == (const CSharedPtr& Ptr) const
+	bool operator == (const CSharedPtr<T>& Ptr) const
 	{
 		return mObj == Ptr.mObj;
 	}
 
-	bool operator == (CSharedPtr&& Ptr) const
+	bool operator == (CSharedPtr<T>&& Ptr) const
 	{
 		return mObj == Ptr.mObj;
 	}
@@ -121,12 +124,12 @@ public:
 		return mObj != Obj;
 	}
 
-	bool operator != (const CSharedPtr& Ptr) const
+	bool operator != (const CSharedPtr<T>& Ptr) const
 	{
 		return mObj != Ptr.mObj;
 	}
 
-	bool operator != (CSharedPtr&& Ptr) const
+	bool operator != (CSharedPtr<T>&& Ptr) const
 	{
 		return mObj != Ptr.mObj;
 	}

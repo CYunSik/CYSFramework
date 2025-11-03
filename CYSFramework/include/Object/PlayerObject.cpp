@@ -10,6 +10,7 @@
 #include "BulletObject.h"
 #include "TornadoBullet.h"
 #include "TalonR.h"
+#include "ZaryaBullet.h"
 
 CPlayerObject::CPlayerObject()
 	: CSceneObject()
@@ -120,6 +121,14 @@ bool CPlayerObject::Init()
 	// 스킬 5 : 롤 탈론 궁극기 만들기 (플레이어 기준으로 8방향으로 총알을 발사하고 해당 총알이 몇초 돌다가 플레이어에게 다시 되돌아오는 부메랑 기능)
 	mScene->GetInput()->AddBindKey("Skill5", '5');
 	mScene->GetInput()->AddBindFunction("Skill5", EInputType::Down, this, &CPlayerObject::Skill5);
+
+	// 스킬 6 : 오버워치 자리야 궁 (MonsterObject 끌어당기기)
+	mScene->GetInput()->AddBindKey("Skill6", '6');
+	mScene->GetInput()->AddBindFunction("Skill6", EInputType::Down, this, &CPlayerObject::Skill6);
+
+	// 스킬 7 : MonsterObject 모두 밀쳐내기
+	mScene->GetInput()->AddBindKey("Skill7", '7');
+	mScene->GetInput()->AddBindFunction("Skill7", EInputType::Down, this, &CPlayerObject::Skill7);
 
 	return true;
 }
@@ -382,4 +391,26 @@ void CPlayerObject::Skill5(float DeltaTime)
 		Dir.Normalize();
 		Bullet->SetTarget(this);
 	}
+}
+
+void CPlayerObject::Skill6(float DeltaTime)
+{
+	CZaryaBullet* Bullet = mScene->CreateObj<CZaryaBullet>("ZaryaBullet");
+
+	Bullet->SetWorldRotation(GetWorldRotation());
+	Bullet->SetWorldPos(GetWorldPosition());
+	Bullet->SetLifeTime(3.f);
+
+	Bullet->SetState(EZaryaState::Attraction);
+}
+
+void CPlayerObject::Skill7(float DeltaTime)
+{
+	CZaryaBullet* Bullet = mScene->CreateObj<CZaryaBullet>("ZaryaPushBullet");
+
+	Bullet->SetWorldRotation(GetWorldRotation());
+	Bullet->SetWorldPos(GetWorldPosition());
+	Bullet->SetLifeTime(3.f);
+
+	Bullet->SetState(EZaryaState::Push);
 }
