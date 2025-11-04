@@ -39,6 +39,13 @@ void CCollisionQuadTreeNode::AddCollider(CColliderBase* Collider, std::vector<CC
 		// 충돌 목록에 추가한다.
 		mColliderList.emplace_back(Collider);
 
+		// 노드가 가지고 있는 충돌체가 2개 이상일 경우 충돌 검사해야한다고 등록시켜준다.
+		// 2개일대만 등록시켜준 이유는 충돌체가 추가 될때마다 해당 노드를 충돌리스트에 한번만 추가하기 위해서
+		if (mColliderList.size() == 2)
+		{
+			mTree->AddCollisionNodeList(this);
+		}
+
 		// mColliderList에 추가했는데
 		// 사이즈가 mDivisionCount 갯수에 도달했는가
 		// 조건 1 : 충돌 목록에 추가된 개수가 노드를 분할해야할 개수 이상인지 판단하고
@@ -68,6 +75,9 @@ void CCollisionQuadTreeNode::AddCollider(CColliderBase* Collider, std::vector<CC
 
 			// 자식에게 모든 분배가 끝났기 때문에 충돌 목록을 비워준다.
 			mColliderList.clear();
+
+			// 쪼개졌으니까 나는 이제 충돌 검사 리스트에서 제거해줘
+			mTree->EraseCollisionNodeList(this);
 		}
 	}
 	else
@@ -99,6 +109,9 @@ void CCollisionQuadTreeNode::CreateChild(std::vector<CCollisionQuadTreeNode*>& N
 		mChild[i] = NodePool.back();
 		NodePool.pop_back();
 
+		// 모든 자식노드에게 어떤 트리의 노드인지 알려준다.
+		mChild[i]->mTree = mTree;
+
 		// 자식 노드의 크기는 현재 노드의 절반 크기를 지정해준다.
 		mChild[i]->mSize = mSize * 0.5f;
 
@@ -128,6 +141,26 @@ void CCollisionQuadTreeNode::CreateChild(std::vector<CCollisionQuadTreeNode*>& N
 
 		mChild[i]->mParent = this;
 		mChild[i]->mDepth = mDepth + 1;
+	}
+}
+
+void CCollisionQuadTreeNode::Collision(float DeltaTime)
+{
+	// 충돌간의 검사를 해주면 된다.
+}
+
+void CCollisionQuadTreeNode::ReturnNodePool(std::vector<CCollisionQuadTreeNode*>& NodePool)
+{
+	mColliderList.clear();
+
+	if (mChild[0])
+	{
+		for (int i = 0; i < 4; ++i)
+		{
+			NodePool.emplace_back(mChild[i]);
+			mChild[i]->ReturnNodePool(NodePool);
+			mChild[i] = nullptr;
+		}
 	}
 }
 
@@ -179,12 +212,35 @@ CCollisionQuadTree::CCollisionQuadTree()
 
 CCollisionQuadTree::~CCollisionQuadTree()
 {
+	size_t Size = mNodePool.size();
+
+	// SharedPtr이 아니기 때문에 지워줘야한다.
+	for (size_t i = 0; i < Size; ++i)
+	{
+		SAFE_DELETE(mNodePool[i]);
+	}
+
 	SAFE_DELETE(mRoot);
 }
 
 void CCollisionQuadTree::SetDivisionCount(int Count)
 {
 	mDivisionCount = Count;
+}
+
+void CCollisionQuadTree::EraseCollisionNodeList(CCollisionQuadTreeNode* Node)
+{
+	auto iter = mCollisionNodeList.begin();
+	auto iterEnd = mCollisionNodeList.end();
+
+	for (; iter != iterEnd; ++iter)
+	{
+		if (*iter == Node)
+		{
+			mCollisionNodeList.erase(iter);
+			break;
+		}
+	}
 }
 
 bool CCollisionQuadTree::Init()
@@ -201,6 +257,7 @@ bool CCollisionQuadTree::Init()
 	mRoot->mSize.x = RS.Width * 1.5f;
 	mRoot->mSize.y = RS.Height * 1.5f;
 	mRoot->mDivisionCount = mDivisionCount;
+	mRoot->mTree = this;
 
 	return true;
 }
@@ -222,4 +279,22 @@ void CCollisionQuadTree::Update(float DeltaTime)
 		mRoot->mCenter.x = Camera->GetWorldPosition().x;
 		mRoot->mCenter.y = Camera->GetWorldPosition().y;
 	}
+}
+
+void CCollisionQuadTree::Collision(float DeltaTime)
+{
+	// 노드를 순회하면서 충돌을 호출
+	auto iter = mCollisionNodeList.begin();
+	auto iterEnd = mCollisionNodeList.end();
+
+	for (; iter != iterEnd; ++iter)
+	{
+		(*iter)->Collision(DeltaTime);
+	}
+
+	// 충돌검사 후 충돌 리스트 제거
+	mCollisionNodeList.clear();
+
+	// 노드 회수 노드풀에 다시 돌려놓는다.
+	mRoot->ReturnNodePool(mNodePool);
 }

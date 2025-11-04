@@ -18,6 +18,7 @@ private:
 
 private:
 	class CScene* mScene = nullptr;
+	CCollisionQuadTree* mTree = nullptr;
 	// 부모 노드
 	CCollisionQuadTreeNode* mParent = nullptr;
 
@@ -42,6 +43,8 @@ private:
 public:
 	void AddCollider(class CColliderBase* Collider, std::vector<CCollisionQuadTreeNode*>& NodePool);
 	void CreateChild(std::vector<CCollisionQuadTreeNode*>& NodePool);
+	void Collision(float DeltaTime);
+	void ReturnNodePool(std::vector<CCollisionQuadTreeNode*>& NodePool);
 
 private:
 	// 충돌체가 이 노드에 속하는지 검사한다.
@@ -63,12 +66,24 @@ private:
 	// 노드 풀 : 이미 할당된 노드를 재사용하기 위해
 	std::vector<CCollisionQuadTreeNode*> mNodePool;
 
+	// 재귀를 줄이기 위한 노드 충돌 리스트
+	// 노드내에 2개 이상의 충돌체가 있을 경우에만 충돌 검사를 하겠다
+	// 노드들을 저장하기 위한 리스트
+	std::vector<CCollisionQuadTreeNode*> mCollisionNodeList;
+
 public:
 	void SetDivisionCount(int Count);
+	void AddCollisionNodeList(CCollisionQuadTreeNode* Node)
+	{
+		mCollisionNodeList.emplace_back(Node);
+	}
+
+	void EraseCollisionNodeList(CCollisionQuadTreeNode* Node);
 
 public:
 	bool Init();
 	void AddCollider(class CColliderBase* Collider);
 	void Update(float DeltaTime);
+	void Collision(float DeltaTime);
 };
 

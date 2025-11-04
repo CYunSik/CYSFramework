@@ -18,6 +18,18 @@ protected:
 	FAABB2D mAABB;
 
 public:
+	void SetBoxSize(const FVector2D& Size)
+	{
+		mBoxSize = Size;
+	}
+
+	void SetBoxSize(float x, float y)
+	{
+		mBoxSize.x = x;
+		mBoxSize.y = y;
+	}
+
+public:
 	virtual bool Init();
 	virtual bool Init(const char* FileName);
 	virtual void PreUpdate(float DeltaTime);

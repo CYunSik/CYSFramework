@@ -1,5 +1,6 @@
 #include "MonsterObject.h"
 #include "../Component/StaticMeshComponent.h"
+#include "../Component/ColliderAABB2D.h"
 #include "BulletObject.h"
 #include "../Scene/Scene.h"
 
@@ -29,11 +30,15 @@ bool CMonsterObject::Init()
 	}
 
 	mRoot = CreateComponent<CStaticMeshComponent>();
+	mBody = CreateComponent<CColliderAABB2D>();
 	mRoot->SetMesh("CenterRect");
 	mRoot->SetShader("ColorMeshShader");
 	mRoot->SetWorldScale(100.f, 100.f);
 	
 	SetRootComponent(mRoot);
+
+	mRoot->AddChild(mBody);
+	mBody->SetBoxSize(100.f, 100.f);
 
 	return true;
 }

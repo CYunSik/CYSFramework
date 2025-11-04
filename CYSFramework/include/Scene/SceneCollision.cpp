@@ -69,4 +69,7 @@ void CSceneCollision::Update(float DeltaTime)
 		mQuadTree->AddCollider(mColliderList2D[i]);
 		++i;
 	}	
+
+	// 충돌 검사
+	mQuadTree->Collision(DeltaTime);
 }

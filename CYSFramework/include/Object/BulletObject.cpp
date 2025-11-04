@@ -2,6 +2,7 @@
 #include "../Component/StaticMeshComponent.h"
 #include "../Component/MovementComponent.h"
 #include "../Component/RotationComponent.h"
+#include "../Component/ColliderAABB2D.h"
 
 CBulletObject::CBulletObject()
 	: CSceneObject()
@@ -30,6 +31,7 @@ bool CBulletObject::Init()
 	CSceneObject::Init();
 
 	mRoot = CreateComponent<CStaticMeshComponent>();
+	mBody = CreateComponent<CColliderAABB2D>();
 	mMovement = CreateComponent<CMovementComponent>();
 	mRotation = CreateComponent<CRotationComponent>();
 
@@ -46,6 +48,9 @@ bool CBulletObject::Init()
 	mRotation->SetUpdateComponent(mRoot);
 
 	SetRootComponent(mRoot);
+
+	mRoot->AddChild(mBody);
+	mBody->SetBoxSize(50.f, 50.f);
 
 	return true;
 }

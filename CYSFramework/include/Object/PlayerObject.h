@@ -13,6 +13,8 @@ protected:
 
 protected:
 	CSharedPtr<class CStaticMeshComponent> mRoot;
+	CSharedPtr<class CColliderAABB2D> mBody;
+
 	CSharedPtr<class CSceneComponent> mRotationPivot;
 	CSharedPtr<class CStaticMeshComponent> mSub;
 	// 위성 반대편 방향에 하나더 출력
