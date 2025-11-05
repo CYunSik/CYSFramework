@@ -103,6 +103,12 @@
     <Filter Include="04.Shader\02.Shader Class\02.FrameMesh">
       <UniqueIdentifier>{f832c21c-4a30-47b1-abeb-1321ae78540c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01.GameManager\02.ProfileManager">
+      <UniqueIdentifier>{5b017891-188b-4dc7-bcca-48e6a46cbf3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.GameManager\03.Collision">
+      <UniqueIdentifier>{35785f03-f0bc-4889-8597-e3b54c1c245b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -242,6 +248,12 @@
     </ClCompile>
     <ClCompile Include="Shader\FrameMeshShader.cpp">
       <Filter>04.Shader\02.Shader Class\02.FrameMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="ProfileManager.cpp">
+      <Filter>01.GameManager\02.ProfileManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Collision.cpp">
+      <Filter>01.GameManager\03.Collision</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -403,6 +415,12 @@
     </ClInclude>
     <ClInclude Include="Shader\FrameMeshShader.h">
       <Filter>04.Shader\02.Shader Class\02.FrameMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="ProfileManager.h">
+      <Filter>01.GameManager\02.ProfileManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Collision.h">
+      <Filter>01.GameManager\03.Collision</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

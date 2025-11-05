@@ -18,6 +18,8 @@
 #include "Shader/TransformCBuffer.h"
 #include "Scene/SceneManager.h"
 
+#include "ProfileManager.h"
+
 bool CGameManager::mLoop = true;
 
 CGameManager::CGameManager()
@@ -72,6 +74,13 @@ bool CGameManager::Init(HINSTANCE hInst)
 		return false;
 	}
 
+	// Collision Profile 매니져 초기화
+	if (!CProfileManager::GetInst()->Init())
+	{
+		return false;
+	}
+
+	// 타이머 초기화
 	CTimer::Init();
 
 	// 씬매니저 초기화

@@ -137,6 +137,7 @@
     <ClCompile Include="Asset\Mesh\Mesh.cpp" />
     <ClCompile Include="Asset\Mesh\MeshManager.cpp" />
     <ClCompile Include="Asset\Mesh\StaticMesh.cpp" />
+    <ClCompile Include="Collision.cpp" />
     <ClCompile Include="Component\CameraComponent.cpp" />
     <ClCompile Include="Component\ColliderAABB2D.cpp" />
     <ClCompile Include="Component\ColliderBase.cpp" />
@@ -158,6 +159,7 @@
     <ClCompile Include="Object\TalonR.cpp" />
     <ClCompile Include="Object\TornadoBullet.cpp" />
     <ClCompile Include="Object\ZaryaBullet.cpp" />
+    <ClCompile Include="ProfileManager.cpp" />
     <ClCompile Include="Scene\CameraManager.cpp" />
     <ClCompile Include="Scene\CollisionQuadTree.cpp" />
     <ClCompile Include="Scene\Input.cpp" />
@@ -185,6 +187,7 @@
     <ClInclude Include="Asset\Mesh\Mesh.h" />
     <ClInclude Include="Asset\Mesh\MeshManager.h" />
     <ClInclude Include="Asset\Mesh\StaticMesh.h" />
+    <ClInclude Include="Collision.h" />
     <ClInclude Include="Component\CameraComponent.h" />
     <ClInclude Include="Component\ColliderAABB2D.h" />
     <ClInclude Include="Component\ColliderBase.h" />
@@ -208,6 +211,7 @@
     <ClInclude Include="Object\TalonR.h" />
     <ClInclude Include="Object\TornadoBullet.h" />
     <ClInclude Include="Object\ZaryaBullet.h" />
+    <ClInclude Include="ProfileManager.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Scene\CameraManager.h" />
     <ClInclude Include="Scene\CollisionQuadTree.h" />

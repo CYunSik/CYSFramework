@@ -19,7 +19,7 @@ bool CConstantBuffer::Init(int Size, int Register, int ShaderBufferType)
 	// 버퍼 만들기
 	D3D11_BUFFER_DESC Desc = {};
 
-	// 상숭버퍼는 정보갱신이 많기 때문에 Dynamic으로 만들어준다.
+	// 상수버퍼는 정보갱신이 많기 때문에 Dynamic으로 만들어준다.
 	// ex) 플레이어 이동 할때마다 갱신이 일어나기 때문에..
 	Desc.Usage = D3D11_USAGE_DYNAMIC;
 

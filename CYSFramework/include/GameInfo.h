@@ -2,16 +2,14 @@
 
 // 미리 컴파일된 헤더
 #include <Windows.h>
-#include <crtdbg.h>
-
-#include <functional>
 
  // 자료구조 리스트
 #include <list>
 #include <vector>
 #include <map>				// 기본 트리
-
 #include <unordered_map>	// 해쉬 트리
+#include <crtdbg.h>
+#include <functional>
 
 #include <string>
 
@@ -161,4 +159,74 @@ struct FAABB2D
 {
 	FVector2D Min;	// 왼쪽 아래 점
 	FVector2D Max;	// 오른쪽 위 점
+};
+
+// 충돌 필터 정보
+// 채널
+namespace ECollisionChannel
+{
+	// enum값은 기본형으로 정수
+	// 옆에 : 넣으면 지정한 자료형으로
+	enum Type : unsigned char
+	{
+		Default,
+		Player,
+		Monster,
+		PlayerAttack,
+		MonsterAttack,
+		End
+	};
+}
+
+// 상호작용 : 충돌체끼리 충돌을 할지 말지 저장
+namespace ECollisionInteraction
+{
+	enum Type : unsigned char
+	{
+		Ignore,		// 충돌 무시
+		Collision,	// 충돌
+		End
+	};
+}
+
+
+/*
+	Player꺼 프로파일을 만들고 채널을 Player로 지정했다.
+	이때 다른 채널을 사용하는 프로파일과 충돌해야할지 여부에 따라서
+	충돌 함수를 호출해 줄 것이다.
+
+	다른 채널과 어떻게 되어 있는지는 미리 저장해야 한다.
+
+	// 1번 프로파일 플레이어 충돌정보
+	Channel : Player
+	Enable : true
+	Interaction[Default] = Collision;
+	Interaction[Player] = Ignore;
+	Interaction[Monster] = Ignore;
+	Interaction[PlayerAttack] = Ignore;
+	Interaction[MonsterAttack] = Collision;
+
+	// 2번 프로파일 몬스터 공격 프로파일
+	Channel : MonsterAttack
+	Enable : true
+	Interaction[Default] = Collision;
+	Interaction[Player] = Collision;
+	Interaction[Monster] = Ignore;
+	Interaction[PlayerAttack] = Ignore;
+	Interaction[MonsterAttack] = Collision;
+
+	if(Player->Interaction[MonsterAttck] == Collision && MonsterAttck->Interaction[Player] == Collision)
+	// 충돌했다!!
+*/
+
+// 프로파일
+// 채널과 상호작용을 이용해서 프로파일을 만들어준다.
+// 미리 등록시키는 형식(시스템)이다.
+struct FCollisionProfile
+{
+	std::string Name;
+	// 현재 프로파일이 사용하는 충돌 채널
+	ECollisionChannel::Type Channel = ECollisionChannel::Default;
+	bool Enable = true;
+	ECollisionInteraction::Type Interaction[ECollisionChannel::End];
 };

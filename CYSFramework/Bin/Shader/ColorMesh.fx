@@ -18,7 +18,7 @@ struct VS_Output_Color
     // 위치 값이 float4가 되는 이유 : 투영 단계에서 w값도 포함되어야 하기 때문이다.
     // SV를 붙여줘야 레스터라이즈 단계에서 얘가 위치 값이다. 를 인식한다.
     // 만약 SV를 안 붙이고 일반 POSITION이라고 한다면 레스터라이즈 단계에서 이게 사용할 위치값인지 아닌지 모른다.
-    float4 Pos : SV_Position;    // SV_POSITION 0번 레지스터
+    float4 Pos : SV_POSITION;    // SV_POSITION 0번 레지스터
     float4 Color : COLOR;        // COLOR 0번 레지스터
 };
 
@@ -52,7 +52,7 @@ PS_Output_Single ColorMeshPS(VS_Output_Color input)
 // 속성
 // 진입점 main -> 시작할 정점쉐이더(ColorMeshVS)
 // 쉐이더 형식 -> 효과(/fx)
-// 쉐이도 모델 5.0
+// 쉐이더 모델 5.0
 
 // FrameCenterRect
 float4 FrameMeshVS(float3 Pos : POSITION) : SV_POSITION

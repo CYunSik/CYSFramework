@@ -3,6 +3,7 @@ E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Asset\AssetManager.cpp;E
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Asset\Mesh\Mesh.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\Mesh.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Asset\Mesh\MeshManager.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\MeshManager.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Asset\Mesh\StaticMesh.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\StaticMesh.obj
+E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Collision.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\Collision.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Component\CameraComponent.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\CameraComponent.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Component\ColliderAABB2D.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\ColliderAABB2D.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Component\ColliderBase.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\ColliderBase.obj
@@ -24,6 +25,7 @@ E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Object\NearingMonster.cp
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Object\TalonR.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\TalonR.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Object\TornadoBullet.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\TornadoBullet.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Object\ZaryaBullet.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\ZaryaBullet.obj
+E:\StudyCys\Framework\CYSFramework\CYSFramework\include\ProfileManager.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\ProfileManager.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Scene\CameraManager.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\CameraManager.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Scene\CollisionQuadTree.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\CollisionQuadTree.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Scene\Input.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\Input.obj

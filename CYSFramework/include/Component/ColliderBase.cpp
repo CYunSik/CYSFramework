@@ -1,6 +1,7 @@
 #include "ColliderBase.h"
 #include "../Scene/Scene.h"
 #include "../Scene/SceneCollision.h"
+#include "../ProfileManager.h"
 
 CColliderBase::CColliderBase()
 {
@@ -20,12 +21,19 @@ CColliderBase::~CColliderBase()
 {
 }
 
+void CColliderBase::SetCollisionProfile(const std::string& Name)
+{
+	mProfile = CProfileManager::GetInst()->FindProfile(Name);
+}
+
 bool CColliderBase::Init()
 {
 	if (!CSceneComponent::Init())
 	{
 		return false;
 	}
+	
+	SetCollisionProfile("Default");
 
 	mScene->GetCollision()->AddCollider(this);
 
@@ -38,6 +46,8 @@ bool CColliderBase::Init(const char* FileName)
 	{
 		return false;
 	}
+
+	SetCollisionProfile("Default");
 
 	mScene->GetCollision()->AddCollider(this);
 
@@ -80,5 +90,5 @@ void CColliderBase::PostRender()
 
 CColliderBase* CColliderBase::Clone()
 {
-	return new CColliderBase(*this);
+	return nullptr;
 }

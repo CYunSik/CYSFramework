@@ -29,6 +29,16 @@ public:
 		mBoxSize.y = y;
 	}
 
+	const FAABB2D& GetBox() const
+	{
+		return mAABB;
+	}
+
+	const FVector2D& GetBoxSize() const
+	{
+		return mBoxSize;
+	}
+
 public:
 	virtual bool Init();
 	virtual bool Init(const char* FileName);
@@ -40,5 +50,8 @@ public:
 	virtual void Render();
 	virtual void PostRender();
 	virtual CColliderAABB2D* Clone();
+
+public:
+	virtual bool Collision(FVector3D& HitPoint, CColliderBase* Dest);
 };
 
