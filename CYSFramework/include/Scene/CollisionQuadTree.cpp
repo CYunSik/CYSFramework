@@ -6,13 +6,30 @@
 #include "../Scene/CameraManager.h"
 #include "../Device.h"
 
+#include "../Asset/AssetManager.h"
+#include "../Asset/Mesh/MeshManager.h"
+#include "../Asset/Mesh/Mesh.h"
+#include "../Shader/ShaderManager.h"
+#include "../Shader/Shader.h"
+#include "../Shader/TransformCBuffer.h"
+#include "../Scene/CameraManager.h"
+
 // 노드
 CCollisionQuadTreeNode::CCollisionQuadTreeNode()
 {
+#ifdef _DEBUG
+	mTransformCBuffer = new CTransformCBuffer;
+
+	mTransformCBuffer->Init();
+#endif // _DEBUG
 }
 
 CCollisionQuadTreeNode::~CCollisionQuadTreeNode()
 {
+#ifdef _DEBUG
+	SAFE_DELETE(mTransformCBuffer);
+#endif // _DEBUG
+
 	// 자식 노드가 하나라도 있을경우 무조건 4개 분할되어 있으니 4개 전부 제거해준다.
 	if (mChild[0])
 	{
@@ -40,7 +57,7 @@ void CCollisionQuadTreeNode::AddCollider(CColliderBase* Collider, std::vector<CC
 		mColliderList.emplace_back(Collider);
 
 		// 노드가 가지고 있는 충돌체가 2개 이상일 경우 충돌 검사해야한다고 등록시켜준다.
-		// 2개일대만 등록시켜준 이유는 충돌체가 추가 될때마다 해당 노드를 충돌리스트에 한번만 추가하기 위해서
+		// 2개일때만 등록시켜준 이유는 충돌체가 추가 될때마다 해당 노드를 충돌리스트에 한번만 추가하기 위해서
 		if (mColliderList.size() == 2)
 		{
 			mTree->AddCollisionNodeList(this);
@@ -112,6 +129,8 @@ void CCollisionQuadTreeNode::CreateChild(std::vector<CCollisionQuadTreeNode*>& N
 		// 모든 자식노드에게 어떤 트리의 노드인지 알려준다.
 		mChild[i]->mTree = mTree;
 
+		mChild[i]->mScene = mScene;
+
 		// 자식 노드의 크기는 현재 노드의 절반 크기를 지정해준다.
 		mChild[i]->mSize = mSize * 0.5f;
 
@@ -162,6 +181,43 @@ void CCollisionQuadTreeNode::ReturnNodePool(std::vector<CCollisionQuadTreeNode*>
 			mChild[i] = nullptr;
 		}
 	}
+}
+
+void CCollisionQuadTreeNode::Render(CMesh* Mesh, CShader* Shader)
+{
+#ifdef _DEBUG
+	// 크기, 위치
+	FMatrix matScale, matTranslate, matWorld;
+	matScale.Scaling(mSize);
+	matTranslate.Translation(mCenter);
+	// 곱하는 순서 정해져 있다. 주의
+	// 크자이공부!!
+	matWorld = matScale * matTranslate;
+
+	FMatrix matView, matProj;
+	matView = mScene->GetCameraManager()->GetViewMatrix();
+	matProj = mScene->GetCameraManager()->GetProjMatrix();
+
+	mTransformCBuffer->SetWorldMatrix(matWorld);
+	mTransformCBuffer->SetViewMatrix(matView);
+	mTransformCBuffer->SetProjMatrix(matProj);
+
+	mTransformCBuffer->UpdateBuffer();
+
+	Shader->SetShader();
+
+	Mesh->Render();
+
+	if (mChild[0])
+	{
+		mChild[0]->Render(Mesh, Shader);
+		mChild[1]->Render(Mesh, Shader);
+		mChild[2]->Render(Mesh, Shader);
+		mChild[3]->Render(Mesh, Shader);
+	}
+
+#endif // _DEBUG
+
 }
 
 bool CCollisionQuadTreeNode::IsInCollider(CColliderBase* Collider)
@@ -245,6 +301,11 @@ void CCollisionQuadTree::EraseCollisionNodeList(CCollisionQuadTreeNode* Node)
 
 bool CCollisionQuadTree::Init()
 {
+#ifdef _DEBUG
+	mMesh = CAssetManager::GetInst()->GetMeshManager()->FindMesh("FrameCenterRect");
+	mShader = CShaderManager::GetInst()->FindShader("FrameMeshShader");
+#endif // _DEBUG
+
 	// 루트노드 만들어주기
 	mRoot = new CCollisionQuadTreeNode;
 
@@ -296,5 +357,22 @@ void CCollisionQuadTree::Collision(float DeltaTime)
 	mCollisionNodeList.clear();
 
 	// 노드 회수 노드풀에 다시 돌려놓는다.
+	//mRoot->ReturnNodePool(mNodePool);
+}
+
+void CCollisionQuadTree::Render()
+{
+	mRoot->Render(mMesh, mShader);
+
+	// 화면에 출력하기 위해 필요한 것들
+	// 메쉬
+
+	// 쉐이더
+
+	// 상수 버퍼 데이터
+}
+
+void CCollisionQuadTree::ReturnNodePool()
+{
 	mRoot->ReturnNodePool(mNodePool);
 }

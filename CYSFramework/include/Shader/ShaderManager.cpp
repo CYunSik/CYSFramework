@@ -1,5 +1,6 @@
 #include "ShaderManager.h"
 #include "ColorMeshShader.h"
+#include "FrameMeshShader.h"
 #include "ConstantBuffer.h"
 
 CShaderManager::CShaderManager()
@@ -80,6 +81,7 @@ void CShaderManager::ReleaseCBuffer(const std::string& Name)
 bool CShaderManager::Init()
 {
 	CreateShader<CColorMeshShader>("ColorMeshShader");
+	CreateShader<CFrameMeshShader>("FrameMeshShader");
 
 	// 우리가 사용할 상수버퍼도 만들어둔다.
 	CreateConstantBuffer("Transform", sizeof(FTransformCBufferInfo), 0, EShaderBufferType::Vertex);

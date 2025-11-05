@@ -97,6 +97,12 @@
     <Filter Include="05.Scene\03.Collision">
       <UniqueIdentifier>{5efe9498-4ea2-42a9-a3d1-e2d51eb72976}</UniqueIdentifier>
     </Filter>
+    <Filter Include="04.Shader\02.Shader Class\01.ColorMesh">
+      <UniqueIdentifier>{7467a20c-612f-4aa1-8b00-e657dec85108}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Shader\02.Shader Class\02.FrameMesh">
+      <UniqueIdentifier>{f832c21c-4a30-47b1-abeb-1321ae78540c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -139,9 +145,6 @@
       <Filter>04.Shader\02.Shader Class</Filter>
     </ClCompile>
     <ClCompile Include="Shader\ComputeShader.cpp">
-      <Filter>04.Shader\02.Shader Class</Filter>
-    </ClCompile>
-    <ClCompile Include="Shader\ColorMeshShader.cpp">
       <Filter>04.Shader\02.Shader Class</Filter>
     </ClCompile>
     <ClCompile Include="Shader\ConstantBuffer.cpp">
@@ -234,6 +237,12 @@
     <ClCompile Include="Scene\CollisionQuadTree.cpp">
       <Filter>05.Scene\03.Collision</Filter>
     </ClCompile>
+    <ClCompile Include="Shader\ColorMeshShader.cpp">
+      <Filter>04.Shader\02.Shader Class\01.ColorMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader\FrameMeshShader.cpp">
+      <Filter>04.Shader\02.Shader Class\02.FrameMesh</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameManager.h">
@@ -291,9 +300,6 @@
       <Filter>04.Shader\02.Shader Class</Filter>
     </ClInclude>
     <ClInclude Include="Shader\ComputeShader.h">
-      <Filter>04.Shader\02.Shader Class</Filter>
-    </ClInclude>
-    <ClInclude Include="Shader\ColorMeshShader.h">
       <Filter>04.Shader\02.Shader Class</Filter>
     </ClInclude>
     <ClInclude Include="Matrix.h">
@@ -391,6 +397,12 @@
     </ClInclude>
     <ClInclude Include="Scene\CollisionQuadTree.h">
       <Filter>05.Scene\03.Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader\ColorMeshShader.h">
+      <Filter>04.Shader\02.Shader Class\01.ColorMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader\FrameMeshShader.h">
+      <Filter>04.Shader\02.Shader Class\02.FrameMesh</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

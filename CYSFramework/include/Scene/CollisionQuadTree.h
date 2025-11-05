@@ -2,7 +2,7 @@
 #include "../GameInfo.h"
 #include "../Component/ColliderBase.h"
 
-#define QUADTREE_DIVISION_COUNT 10
+#define QUADTREE_DIVISION_COUNT 5
 #define QUADTREE_DEPTH_MAX 4
 
 // 이진 트리 만든다고 생각. 
@@ -40,11 +40,16 @@ private:
 	// 해당 노드에 속한 충돌체들
 	std::vector<CSharedPtr<class CColliderBase>> mColliderList;
 
+#ifdef _DEBUG
+	class CTransformCBuffer* mTransformCBuffer;
+#endif // _DEBUG
+
 public:
 	void AddCollider(class CColliderBase* Collider, std::vector<CCollisionQuadTreeNode*>& NodePool);
 	void CreateChild(std::vector<CCollisionQuadTreeNode*>& NodePool);
 	void Collision(float DeltaTime);
 	void ReturnNodePool(std::vector<CCollisionQuadTreeNode*>& NodePool);
+	void Render(class CMesh* Mesh, class CShader* Shader);
 
 private:
 	// 충돌체가 이 노드에 속하는지 검사한다.
@@ -80,10 +85,17 @@ public:
 
 	void EraseCollisionNodeList(CCollisionQuadTreeNode* Node);
 
+#ifdef _DEBUG
+	CSharedPtr<class CMesh> mMesh;
+	CSharedPtr<class CShader> mShader;
+#endif // _DEBUG
+
 public:
 	bool Init();
 	void AddCollider(class CColliderBase* Collider);
 	void Update(float DeltaTime);
 	void Collision(float DeltaTime);
+	void Render();
+	void ReturnNodePool();
 };
 

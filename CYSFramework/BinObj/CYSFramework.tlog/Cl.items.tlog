@@ -35,6 +35,7 @@ E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Shader\ColorMeshShader.c
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Shader\ComputeShader.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\ComputeShader.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Shader\ConstantBuffer.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\ConstantBuffer.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Shader\ConstantBufferData.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\ConstantBufferData.obj
+E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Shader\FrameMeshShader.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\FrameMeshShader.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Shader\GraphicShader.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\GraphicShader.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Shader\Shader.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\Shader.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Shader\ShaderManager.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\ShaderManager.obj

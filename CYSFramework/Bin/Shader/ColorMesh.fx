@@ -53,3 +53,25 @@ PS_Output_Single ColorMeshPS(VS_Output_Color input)
 // 진입점 main -> 시작할 정점쉐이더(ColorMeshVS)
 // 쉐이더 형식 -> 효과(/fx)
 // 쉐이도 모델 5.0
+
+// FrameCenterRect
+float4 FrameMeshVS(float3 Pos : POSITION) : SV_POSITION
+{
+    // 유연한 형변환 0으로 초기화
+    float4 output = (float4) 0;
+    
+    // Output.Pos의 X Y Z가 들어가고
+    // W값은 1이 들어간다.
+    output = mul(float4(Pos, 1.f), gmatWVP);
+    
+    return output;
+}
+
+PS_Output_Single FrameMeshPS(float4 Pos : SV_POSITION)
+{
+    PS_Output_Single output = (PS_Output_Single) 0;
+    
+    output.Color = float4(1.f, 1.f, 1.f, 1.f);
+    
+    return output;
+}
