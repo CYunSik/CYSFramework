@@ -1,6 +1,7 @@
 #pragma once
 #include "SceneComponent.h"
 
+// 충돌 종류(AABB, ...)를 만들기 전에 최상위 부모 (공통된 일을 넣어준다.)
 class CColliderBase : public CSceneComponent
 {
 	friend class CScene;
@@ -37,16 +38,13 @@ protected:
 #ifdef _DEBUG
 
 	// 위치용 상수버퍼
-	//class CTransformCBuffer* mTransformCBuffer = nullptr;
-
+	class CTransformCBuffer* mTransformCBuffer = nullptr;
 	// 충돌체 상수버퍼
-	//class CColliderCBuffer* mCBuffer = nullptr;
-
+	class CColliderCBuffer* mCBuffer = nullptr;
 	// 메쉬
-	//CSharedPtr<class CMesh> mMesh;
-	
+	CSharedPtr<class CMesh> mMesh;
 	// 쉐이더
-	//CSharedPtr<class CShader> mShader;
+	CSharedPtr<class CShader> mShader;
 
 #endif // _DEBUG
 

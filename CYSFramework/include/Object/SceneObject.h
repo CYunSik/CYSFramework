@@ -25,6 +25,9 @@ protected:
 
 	float mLifeTime = 0.f;
 
+	// 무적 상태 여부
+	bool mDamageEnable = true;
+
 public:
 	void SetLifeTime(float Time)
 	{
@@ -67,6 +70,10 @@ public:
 	virtual void Render();
 	virtual void PostRender();
 	virtual CSceneObject* Clone();
+
+public:
+						// 데미지,      데미지를 준 대상
+	virtual float Damage(float Attack, CSceneObject* Obj);
 
 public:
 	// 컴포넌트 생성해주는 친구

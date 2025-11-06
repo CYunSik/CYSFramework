@@ -3,6 +3,7 @@
 #include "../Component/ColliderAABB2D.h"
 #include "BulletObject.h"
 #include "../Scene/Scene.h"
+#include "../Share/Log.h"
 
 CMonsterObject::CMonsterObject()
 {
@@ -20,6 +21,28 @@ CMonsterObject::CMonsterObject(CMonsterObject&& Obj)
 
 CMonsterObject::~CMonsterObject()
 {
+}
+
+void CMonsterObject::CollisionMonster(const FVector3D& HitPoint, CColliderBase* Dest)
+{
+	CLog::PrintLog("CollisionMonster");
+
+	// Dest->GetProfile()->Channel == ECollisionChannel::PlayerAttack();
+
+}
+
+float CMonsterObject::Damage(float Attack, CSceneObject* Obj)
+{
+	float Dmg = CSceneObject::Damage(Attack, Obj);
+
+	mHP -= (int)Dmg;
+
+	if (mHP <= 0)
+	{
+		Destroy();
+	}
+
+	return Dmg;
 }
 
 bool CMonsterObject::Init()
@@ -40,6 +63,7 @@ bool CMonsterObject::Init()
 	mRoot->AddChild(mBody);
 	mBody->SetBoxSize(100.f, 100.f);
 	mBody->SetCollisionProfile("Monster");
+	mBody->SetCollisionBeginFunc<CMonsterObject>(this, &CMonsterObject::CollisionMonster);
 
 	return true;
 }

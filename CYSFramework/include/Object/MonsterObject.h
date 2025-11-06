@@ -16,6 +16,15 @@ protected:
 	CSharedPtr<class CColliderAABB2D> mBody;
 	CSharedPtr<CSceneObject> mTarget;
 
+	// 몬스터 체력
+	int mHP = 5;
+
+private:
+	void CollisionMonster(const FVector3D& HitPoint, class CColliderBase* Dest);
+
+public:
+	virtual float Damage(float Attack, CSceneObject* Obj);
+
 public:
 	void SetTarget(CSceneObject* Target)
 	{

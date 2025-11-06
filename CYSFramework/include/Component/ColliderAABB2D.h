@@ -1,6 +1,7 @@
 #pragma once
 #include "ColliderBase.h"
 
+// 충돌 기능
 class CColliderAABB2D : public CColliderBase
 {
 	friend class CScene;
