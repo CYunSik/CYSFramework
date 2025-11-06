@@ -33,6 +33,7 @@ E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Scene\Scene.cpp;E:\Study
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Scene\SceneCollision.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\SceneCollision.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Scene\SceneMain.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\SceneMain.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Scene\SceneManager.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\SceneManager.obj
+E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Shader\ColliderCBuffer.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\ColliderCBuffer.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Shader\ColorMeshShader.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\ColorMeshShader.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Shader\ComputeShader.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\ComputeShader.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Shader\ConstantBuffer.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\ConstantBuffer.obj

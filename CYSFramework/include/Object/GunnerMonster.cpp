@@ -68,6 +68,7 @@ void CGunnerMonster::Update(float DeltaTime)
 		++mFireCount;
 
 		CBulletObject* Bullet = mScene->CreateObj<CBulletObject>("Bullet");
+		Bullet->SetBulletCollisionProfile("MonsterAttack");
 		Bullet->SetWorldScale(50.f, 50.f);
 		Bullet->SetWorldRotation(GetWorldRotation());
 		Bullet->SetWorldPos(GetWorldPosition());
@@ -83,6 +84,7 @@ void CGunnerMonster::Update(float DeltaTime)
 			for (float AngleOffSet : RotationOffSets)
 			{
 				Bullet = mScene->CreateObj<CBulletObject>("Bullet");
+				Bullet->SetBulletCollisionProfile("MonsterAttack");
 
 				Bullet->SetWorldScale(50.f, 50.f);
 				Bullet->SetWorldRotation(GetWorldRotation());

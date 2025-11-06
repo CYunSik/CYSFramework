@@ -3,6 +3,7 @@
 #include "../Component/MovementComponent.h"
 #include "../Component/RotationComponent.h"
 #include "../Component/ColliderAABB2D.h"
+#include "../Share/Log.h"
 
 CBulletObject::CBulletObject()
 	: CSceneObject()
@@ -24,6 +25,11 @@ CBulletObject::CBulletObject(CBulletObject&& Obj)
 CBulletObject::~CBulletObject()
 {
 
+}
+
+void CBulletObject::SetBulletCollisionProfile(const std::string& Name)
+{
+	mBody->SetCollisionProfile(Name);
 }
 
 bool CBulletObject::Init()
@@ -51,6 +57,8 @@ bool CBulletObject::Init()
 
 	mRoot->AddChild(mBody);
 	mBody->SetBoxSize(50.f, 50.f);
+	mBody->SetCollisionProfile("PlayerAttack");
+	mBody->SetCollisionBeginFunc<CBulletObject>(this, &CBulletObject::CollisionBullet);
 
 	return true;
 }
@@ -62,4 +70,11 @@ void CBulletObject::Update(float DeltaTime)
 	//FVector3D Pos = mRoot->GetWorldPosition();
 	//// 이동할 위치의 새로운 위치 값 = 내 위치 + 내 Y축 * 속도 * DeltaTime
 	//mRoot->SetWorldPos(Pos + mRootComponent->GetAxis(EAxis::Y) * mSpeed * DeltaTime);
+}
+
+void CBulletObject::CollisionBullet(const FVector3D& HitPoint, CColliderBase* Dest)
+{
+	CLog::PrintLog("Bullet Hit Collision", ELogPrintType::All);
+
+	Destroy();
 }

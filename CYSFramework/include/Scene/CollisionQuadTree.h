@@ -88,6 +88,7 @@ public:
 #ifdef _DEBUG
 	CSharedPtr<class CMesh> mMesh;
 	CSharedPtr<class CShader> mShader;
+	class CColliderCBuffer* mColliderCBuffer;
 #endif // _DEBUG
 
 public:

@@ -14,6 +14,8 @@
 #include "../Shader/TransformCBuffer.h"
 #include "../Scene/CameraManager.h"
 
+#include "../Shader/ColliderCBuffer.h"
+
 // 노드
 CCollisionQuadTreeNode::CCollisionQuadTreeNode()
 {
@@ -171,6 +173,7 @@ void CCollisionQuadTreeNode::Collision(float DeltaTime)
 
 	for (size_t i = 0; i < Size;)
 	{
+		CColliderBase* Src = mColliderList[i];
 		if (!mColliderList[i]->IsActive())
 		{
 			if (i < Size - 1)
@@ -201,6 +204,7 @@ void CCollisionQuadTreeNode::Collision(float DeltaTime)
 
 		for (size_t j = i + 1; j < Size;)
 		{
+			CColliderBase* Dest = mColliderList[j];
 			if (!mColliderList[j]->IsActive())
 			{
 				if (j < Size - 1)
@@ -243,11 +247,12 @@ void CCollisionQuadTreeNode::Collision(float DeltaTime)
 			if (mColliderList[i]->Collision(HitPoint, mColliderList[j]))
 			{
 				// 둘이 충돌되었다.
-				int i = 10;
+				// Src->함수 호출;
+				Src->CallCollisionBegin(HitPoint, Dest);
+
+				// Dest->함수 호출;
+				Dest->CallCollisionBegin(HitPoint, Src);
 			}
-
-
-
 			++j;
 		}
 		++i;
@@ -354,6 +359,8 @@ CCollisionQuadTree::CCollisionQuadTree()
 
 CCollisionQuadTree::~CCollisionQuadTree()
 {
+	SAFE_DELETE(mColliderCBuffer);
+
 	size_t Size = mNodePool.size();
 
 	// SharedPtr이 아니기 때문에 지워줘야한다.
@@ -390,6 +397,12 @@ bool CCollisionQuadTree::Init()
 #ifdef _DEBUG
 	mMesh = CAssetManager::GetInst()->GetMeshManager()->FindMesh("FrameCenterRect");
 	mShader = CShaderManager::GetInst()->FindShader("FrameMeshShader");
+
+	mColliderCBuffer = new CColliderCBuffer;
+
+	mColliderCBuffer->Init();
+
+	mColliderCBuffer->SetColor(1.f, 1.f, 0.f, 1.f);
 #endif // _DEBUG
 
 	// 루트노드 만들어주기
@@ -448,7 +461,12 @@ void CCollisionQuadTree::Collision(float DeltaTime)
 
 void CCollisionQuadTree::Render()
 {
+#ifdef _DEBUG
+	mColliderCBuffer->UpdateBuffer();
+
 	mRoot->Render(mMesh, mShader);
+#endif // _DEBUG
+
 
 	// 화면에 출력하기 위해 필요한 것들
 	// 메쉬

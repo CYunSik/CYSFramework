@@ -26,6 +26,26 @@ void CColliderBase::SetCollisionProfile(const std::string& Name)
 	mProfile = CProfileManager::GetInst()->FindProfile(Name);
 }
 
+void CColliderBase::CallCollisionBegin(const FVector3D& HitPoint, CColliderBase* Dest)
+{
+	mCollision = true;
+
+	if (mCollisionBeginFunc)
+	{
+		mCollisionBeginFunc(HitPoint, Dest);
+	}
+}
+
+void CColliderBase::CallCollisionEnd(CColliderBase* Dest)
+{
+	// mCollision = false;
+
+	if (mCollisionEndFunc)
+	{
+		mCollisionEndFunc(Dest);
+	}
+}
+
 bool CColliderBase::Init()
 {
 	if (!CSceneComponent::Init())
