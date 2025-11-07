@@ -1,9 +1,30 @@
 #include "Collision.h"
 #include "Component/ColliderAABB2D.h"
+#include "Component/ColliderSphere2D.h"
 
 bool CCollision::CollisionAABB2DToAABB2D(FVector3D& HitPoint, CColliderAABB2D* Src,CColliderAABB2D* Dest)
 {
 	if(CollisionAABB2DToAABB2D(HitPoint, Src->GetBox(), Dest->GetBox()))
+	{
+		return true;
+	}
+
+	return false;
+}
+
+bool CCollision::CollisionSphere2DToSphere2D(FVector3D& HitPoint, CColliderSphere2D* Src, CColliderSphere2D* Dest)
+{
+	if (CollisionSphere2DToSphere2D(HitPoint, Src->GetWorldPosition(), Src->GetRadius(), Dest->GetWorldPosition(), Dest->GetRadius()))
+	{
+		return true;
+	}
+
+	return false;
+}
+
+bool CCollision::CollisionAABB2DToSphere2D(FVector3D& HitPoint, CColliderAABB2D* Src, CColliderSphere2D* Dest)
+{
+	if (CollisionAABB2DToSphere2D(HitPoint, Src->GetBox(), Dest->GetWorldPosition(), Dest->GetRadius()))
 	{
 		return true;
 	}
@@ -52,4 +73,52 @@ bool CCollision::CollisionAABB2DToAABB2D(FVector3D& HitPoint, const FAABB2D& Src
 	HitPoint.y = (Min.y + Max.y) * 0.5f;
 
 	return true;
+}
+
+bool CCollision::CollisionSphere2DToSphere2D(FVector3D& HitPoint, const FVector3D& SrcCenter, float SrcRadius, const FVector3D& DestCenter, float DestRadius)
+{
+	// Src와 Dest의 원충돌이 일어날것이다.
+	// 두 원의 중심간의 거리를 구한다.
+	float Dist = SrcCenter.Distance(DestCenter);
+
+	// 원충돌 했니?
+	// 두 원점의 거리가 두 원의 반지름의 합보다 작니?
+	if (Dist <= SrcRadius + DestRadius)
+	{
+		// 충돌
+
+		// 충돌 지점의 길이의 절반을 구한다.
+		float Gap = SrcRadius + DestRadius - Dist;
+		Gap *= 0.5f;
+
+		// 두 중심을 잇는 방향 벡터를 구한다.
+		FVector3D Dir = DestCenter - SrcCenter;
+		Dir.Normalize();	// Src에서 Dest로 가는 방향을 구했다.
+
+		// 충돌했으면 HitPoint 어디니?
+		HitPoint = SrcCenter + Dir * (SrcRadius - Gap);	// 충돌 사이 좌표
+
+		return true;
+	}
+
+	// 충돌 안함!
+	return false;
+}
+
+bool CCollision::CollisionAABB2DToSphere2D(FVector3D& HitPoint, const FAABB2D& Src, const FVector3D& DestCenter, float DestRadius)
+{
+	// 1. 원의 중심이 사각형의 안에 있는지 검사해야한다.
+	
+
+	// 2. 대각선이 아닌 상 하 좌 우 범위에 들어가는지 검사한다.
+	// 사각형의 크기에서 반지름 만큼 더한 사각형 안에 있는지 검사한다.
+
+	// 3. 대각선 영역을 검사한다.
+	// 가장 가까운 꼭짓점을 구하고
+	// 해당 꼭짓점이랑 원의 중심이랑 거리가 반지름보다 작은지 확인해야한다.
+
+	// HitPoint는 
+	// 사각형과 원의 MinMax 사각형의 중간지점으로 한다.
+
+	return false;
 }

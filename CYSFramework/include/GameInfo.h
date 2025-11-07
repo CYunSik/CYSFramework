@@ -152,6 +152,7 @@ enum class EColliderType
 enum class EColliderShape
 {
 	AABB2D,
+	Sphere2D
 };
 
 // 충돌 정보

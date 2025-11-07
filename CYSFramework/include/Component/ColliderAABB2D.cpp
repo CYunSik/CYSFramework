@@ -130,5 +130,5 @@ bool CColliderAABB2D::Collision(FVector3D& HitPoint, CColliderBase* Dest)
 		break;
 	}
 	
-	return true;
+	return false;
 }

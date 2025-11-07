@@ -1,6 +1,8 @@
 #include "MonsterObject.h"
 #include "../Component/StaticMeshComponent.h"
 #include "../Component/ColliderAABB2D.h"
+#include "../Component/ColliderSphere2D.h"
+
 #include "BulletObject.h"
 #include "../Scene/Scene.h"
 #include "../Share/Log.h"
@@ -58,7 +60,9 @@ bool CMonsterObject::Init()
 	}
 
 	mRoot = CreateComponent<CStaticMeshComponent>();
-	mBody = CreateComponent<CColliderAABB2D>();
+	//mBody = CreateComponent<CColliderAABB2D>();
+	mBody = CreateComponent<CColliderSphere2D>();
+
 	mRoot->SetMesh("CenterRect");
 	mRoot->SetShader("ColorMeshShader");
 	mRoot->SetWorldScale(100.f, 100.f);
@@ -66,7 +70,8 @@ bool CMonsterObject::Init()
 	SetRootComponent(mRoot);
 
 	mRoot->AddChild(mBody);
-	mBody->SetBoxSize(100.f, 100.f);
+	//mBody->SetBoxSize(100.f, 100.f);
+	mBody->SetRadius(50.f);
 	mBody->SetCollisionProfile("Monster");
 	mBody->SetCollisionBeginFunc<CMonsterObject>(this, &CMonsterObject::CollisionMonster);
 
