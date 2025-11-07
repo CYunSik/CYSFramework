@@ -24,6 +24,7 @@ protected:
 	std::vector<CSharedPtr<class CComponent>> mNonSceneComponentList;
 
 	float mLifeTime = 0.f;
+	CSharedPtr<class CObjectSpawnPoint> mSpawnPoint;
 
 	// 무적 상태 여부
 	bool mDamageEnable = true;
@@ -57,6 +58,9 @@ public:
 	}
 
 	void SetRootComponent(class CSceneComponent* Root);
+
+	// 스폰 포인트
+	void SetSpawnPoint(class CObjectSpawnPoint* Point);
 
 	// 시점 함수
 public:

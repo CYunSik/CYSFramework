@@ -20,6 +20,8 @@
 
 #include "ProfileManager.h"
 
+#include "time.h"
+
 bool CGameManager::mLoop = true;
 
 CGameManager::CGameManager()
@@ -82,6 +84,7 @@ bool CGameManager::Init(HINSTANCE hInst)
 
 	// 타이머 초기화
 	CTimer::Init();
+	srand((unsigned int)time(0));
 
 	// 씬매니저 초기화
 	if (!CSceneManager::GetInst()->Init())

@@ -1,5 +1,4 @@
 #include "Scene.h"
-#include "../Object/SceneObject.h"
 #include "Input.h"
 #include "CameraManager.h"
 #include "SceneCollision.h"

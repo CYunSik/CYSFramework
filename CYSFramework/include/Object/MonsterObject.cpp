@@ -4,6 +4,7 @@
 #include "BulletObject.h"
 #include "../Scene/Scene.h"
 #include "../Share/Log.h"
+#include "ObjectSpawnPoint.h"
 
 CMonsterObject::CMonsterObject()
 {
@@ -39,6 +40,10 @@ float CMonsterObject::Damage(float Attack, CSceneObject* Obj)
 
 	if (mHP <= 0)
 	{
+		if (mSpawnPoint != nullptr)
+		{
+			mSpawnPoint->ClearObject();
+		}
 		Destroy();
 	}
 

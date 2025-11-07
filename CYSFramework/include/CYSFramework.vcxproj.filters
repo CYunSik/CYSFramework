@@ -112,6 +112,9 @@
     <Filter Include="04.Shader\03.ConstantBuffer\02.Collider">
       <UniqueIdentifier>{211b1a14-f09c-4ddb-a5c8-bdf000411dd0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="07.Component\01.SceneComponent\03.Collider\01.2D">
+      <UniqueIdentifier>{9321313c-3533-4a6b-a333-4dae861a7ca2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -237,9 +240,6 @@
     <ClCompile Include="Component\ColliderBase.cpp">
       <Filter>07.Component\01.SceneComponent\03.Collider</Filter>
     </ClCompile>
-    <ClCompile Include="Component\ColliderAABB2D.cpp">
-      <Filter>07.Component\01.SceneComponent\03.Collider</Filter>
-    </ClCompile>
     <ClCompile Include="Scene\SceneCollision.cpp">
       <Filter>05.Scene\03.Collision</Filter>
     </ClCompile>
@@ -260,6 +260,18 @@
     </ClCompile>
     <ClCompile Include="Shader\ColliderCBuffer.cpp">
       <Filter>04.Shader\03.ConstantBuffer\02.Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="Object\MonsterSpawner.cpp">
+      <Filter>06.Object\03.Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Object\ObjectSpawnPoint.cpp">
+      <Filter>06.Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Component\ColliderAABB2D.cpp">
+      <Filter>07.Component\01.SceneComponent\03.Collider\01.2D</Filter>
+    </ClCompile>
+    <ClCompile Include="Component\ColliderSphere2D.cpp">
+      <Filter>07.Component\01.SceneComponent\03.Collider\01.2D</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -407,9 +419,6 @@
     <ClInclude Include="Component\ColliderBase.h">
       <Filter>07.Component\01.SceneComponent\03.Collider</Filter>
     </ClInclude>
-    <ClInclude Include="Component\ColliderAABB2D.h">
-      <Filter>07.Component\01.SceneComponent\03.Collider</Filter>
-    </ClInclude>
     <ClInclude Include="Scene\SceneCollision.h">
       <Filter>05.Scene\03.Collision</Filter>
     </ClInclude>
@@ -430,6 +439,18 @@
     </ClInclude>
     <ClInclude Include="Shader\ColliderCBuffer.h">
       <Filter>04.Shader\03.ConstantBuffer\02.Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\MonsterSpawner.h">
+      <Filter>06.Object\03.Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\ObjectSpawnPoint.h">
+      <Filter>06.Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Component\ColliderAABB2D.h">
+      <Filter>07.Component\01.SceneComponent\03.Collider\01.2D</Filter>
+    </ClInclude>
+    <ClInclude Include="Component\ColliderSphere2D.h">
+      <Filter>07.Component\01.SceneComponent\03.Collider\01.2D</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

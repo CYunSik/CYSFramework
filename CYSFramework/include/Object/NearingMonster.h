@@ -12,7 +12,8 @@ protected:
 	virtual ~CNearingMonster();
 
 protected:
-	float mFireTime = 1.f;
+	float mAttackTime = 1.f;
+	float mDetectAngle = 45.f;
 
 public:
 	virtual bool Init();

@@ -16,6 +16,8 @@ protected:
 	CSharedPtr<class CColliderAABB2D> mBody;
 	CSharedPtr<CSceneObject> mTarget;
 
+	float mDetectDistance = 0.f;
+	
 	// 몬스터 체력
 	int mHP = 5;
 

@@ -1,6 +1,7 @@
 #include "GunnerMonster.h"
 #include "BulletObject.h"
 #include "../Scene/Scene.h"
+#include "PlayerObject.h"
 
 CGunnerMonster::CGunnerMonster()
 {
@@ -26,6 +27,8 @@ bool CGunnerMonster::Init()
 	{
 		return false;
 	}
+
+	SetTarget(mScene->FindObjectFromType<CPlayerObject>());
 
 	return true;
 }

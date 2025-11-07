@@ -7,6 +7,7 @@ E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Collision.cpp;E:\StudyCy
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Component\CameraComponent.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\CameraComponent.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Component\ColliderAABB2D.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\ColliderAABB2D.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Component\ColliderBase.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\ColliderBase.obj
+E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Component\ColliderSphere2D.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\ColliderSphere2D.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Component\Component.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\Component.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Component\MeshComponent.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\MeshComponent.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Component\MovementComponent.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\MovementComponent.obj
@@ -19,6 +20,8 @@ E:\StudyCys\Framework\CYSFramework\CYSFramework\include\main.cpp;E:\StudyCys\Fra
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Object\BulletObject.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\BulletObject.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Object\GunnerMonster.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\GunnerMonster.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Object\MonsterObject.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\MonsterObject.obj
+E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Object\MonsterSpawner.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\MonsterSpawner.obj
+E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Object\ObjectSpawnPoint.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\ObjectSpawnPoint.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Object\PlayerObject.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\PlayerObject.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Object\SceneObject.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\SceneObject.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Object\NearingMonster.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\NearingMonster.obj

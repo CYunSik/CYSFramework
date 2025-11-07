@@ -79,6 +79,15 @@
     <OutDir>../Bin/</OutDir>
     <IntDir>../BinObj/</IntDir>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>../Bin/</OutDir>
+    <IntDir>../BinObj/</IntDir>
+    <TargetName>$(ProjectName)_Debug</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>../Bin/</OutDir>
+    <IntDir>../BinObj/</IntDir>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -141,6 +150,7 @@
     <ClCompile Include="Component\CameraComponent.cpp" />
     <ClCompile Include="Component\ColliderAABB2D.cpp" />
     <ClCompile Include="Component\ColliderBase.cpp" />
+    <ClCompile Include="Component\ColliderSphere2D.cpp" />
     <ClCompile Include="Component\Component.cpp" />
     <ClCompile Include="Component\MeshComponent.cpp" />
     <ClCompile Include="Component\MovementComponent.cpp" />
@@ -153,6 +163,8 @@
     <ClCompile Include="Object\BulletObject.cpp" />
     <ClCompile Include="Object\GunnerMonster.cpp" />
     <ClCompile Include="Object\MonsterObject.cpp" />
+    <ClCompile Include="Object\MonsterSpawner.cpp" />
+    <ClCompile Include="Object\ObjectSpawnPoint.cpp" />
     <ClCompile Include="Object\PlayerObject.cpp" />
     <ClCompile Include="Object\SceneObject.cpp" />
     <ClCompile Include="Object\NearingMonster.cpp" />
@@ -192,6 +204,7 @@
     <ClInclude Include="Component\CameraComponent.h" />
     <ClInclude Include="Component\ColliderAABB2D.h" />
     <ClInclude Include="Component\ColliderBase.h" />
+    <ClInclude Include="Component\ColliderSphere2D.h" />
     <ClInclude Include="Component\Component.h" />
     <ClInclude Include="Component\MeshComponent.h" />
     <ClInclude Include="Component\MovementComponent.h" />
@@ -206,6 +219,8 @@
     <ClInclude Include="Object\BulletObject.h" />
     <ClInclude Include="Object\GunnerMonster.h" />
     <ClInclude Include="Object\MonsterObject.h" />
+    <ClInclude Include="Object\MonsterSpawner.h" />
+    <ClInclude Include="Object\ObjectSpawnPoint.h" />
     <ClInclude Include="Object\PlayerObject.h" />
     <ClInclude Include="Object\SceneObject.h" />
     <ClInclude Include="Object\NearingMonster.h" />

@@ -4,9 +4,6 @@
 #include "../Scene/Scene.h"
 #include "PlayerObject.h"
 
-// 로그찍기
-#include <sstream>
-
 CNearingMonster::CNearingMonster()
 {
 }
@@ -32,6 +29,14 @@ bool CNearingMonster::Init()
 		return false;
 	}
 
+	CPlayerObject* pPlayer = mScene->FindObjectFromName<CPlayerObject>("Player");
+	if (pPlayer)
+	{
+		SetTarget(pPlayer);
+	}
+
+	mDetectDistance = 400.f;
+
 	return true;
 }
 
@@ -39,39 +44,63 @@ void CNearingMonster::Update(float DeltaTime)
 {
 	CMonsterObject::Update(DeltaTime);
 
-	mFireTime -= DeltaTime;
-
+	//타겟이 있니?
 	if (mTarget)
 	{
+		//나랑 타겟의 거리를 측정한다. 
 		float Distance = GetWorldPosition().Distance(mTarget->GetWorldPosition());
 
-		// 플레이어와 거리가 300이하일때
-		if (Distance <= 300.f)
+		//측정한 거리가 내 사정거리 안이야?
+		if (Distance <= mDetectDistance)	// 탐지 되었어!
 		{
-			// 플레이어 따라가기
-			float Angle = GetWorldPosition().GetViewTargetAngle(mTarget->GetWorldPosition());
+			//타겟쪽으로 회전시켜줘 
+			float RotAngle = GetWorldPosition().GetViewTargetAngle(mTarget->GetWorldPosition());
 
-			SetWorldRotationZ(Angle);
+			SetWorldRotationZ(RotAngle);
 
-			if (mFireTime <= 0)
+			//타겟과의 각도를 계산한다. 
+			//타겟을 바라보는 방향벡터를 구한다. 
+			FVector3D View = mTarget->GetWorldPosition() - GetWorldPosition();
+			View.Normalize();
+
+			float Angle = GetAxis(EAxis::Y).GetAngle(View);
+			// 내가 타겟을 바라보는 각도 < 내 공격 각도 안이야?
+			if (Angle < mDetectAngle)
 			{
-				mFireTime = 1.f;
+				//공격
+				//Attack time 주기마다. 
+				mAttackTime -= DeltaTime;
 
-				CBulletObject* Bullet = mScene->CreateObj<CBulletObject>("Bullet");
-				Bullet->SetWorldScale(50.f, 50.f);
-				Bullet->SetWorldRotation(GetWorldRotation());
-				Bullet->SetWorldPos(GetWorldPosition());
-
-				Bullet->SetLifeTime(2.f);
-
-				CPlayerObject* Player = dynamic_cast<CPlayerObject*>(mTarget.Get());
-
-				if (Player)
+				if (mAttackTime <= 0.f)
 				{
-					// Player에게 데미지를 준다.
-					Player->Damage(1);
+					mAttackTime += 1.f;
+
+					//공격을 할것이다. 
+					CPlayerObject* Player = dynamic_cast<CPlayerObject*>(mTarget.Get());
+
+					if (Player)
+					{
+						//Player에게 대미지를 줄것이다.
+						Player->Damage(1);
+					}
+
+					CBulletObject* Bullet = mScene->CreateObj<CBulletObject>("Bullet");
+					Bullet->SetBulletCollisionProfile("MonsterAttack");
+					Bullet->SetWorldScale(50.f, 50.f);
+					Bullet->SetWorldRotation(GetWorldRotation());
+					Bullet->SetWorldPos(GetWorldPosition());
+
+					Bullet->SetLifeTime(2.f);
 				}
 			}
+			else
+			{
+				mAttackTime = 1.f;
+			}
+		}
+		else
+		{
+			mAttackTime = 1.f;
 		}
 	}
 }
