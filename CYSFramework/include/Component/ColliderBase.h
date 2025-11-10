@@ -45,6 +45,8 @@ protected:
 	CSharedPtr<class CMesh> mMesh;
 	// 쉐이더
 	CSharedPtr<class CShader> mShader;
+	// 회전 유무
+	bool mEnableRotation = false;
 
 #endif // _DEBUG
 

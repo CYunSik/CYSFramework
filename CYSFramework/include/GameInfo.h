@@ -152,7 +152,8 @@ enum class EColliderType
 enum class EColliderShape
 {
 	AABB2D,
-	Sphere2D
+	Sphere2D,
+	OBB2D
 };
 
 // 충돌 정보
@@ -160,6 +161,16 @@ struct FAABB2D
 {
 	FVector2D Min;	// 왼쪽 아래 점
 	FVector2D Max;	// 오른쪽 위 점
+};
+
+struct FOBB2D
+{
+	// 중심점
+	FVector2D Center;
+	// 축 인덱스 0 : X축		인덱스 1 : Y축
+	FVector2D Axis[2];
+	// 길이의 반
+	FVector2D HalfSize;
 };
 
 // 충돌 필터 정보

@@ -7,6 +7,7 @@ E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Collision.cpp;E:\StudyCy
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Component\CameraComponent.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\CameraComponent.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Component\ColliderAABB2D.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\ColliderAABB2D.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Component\ColliderBase.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\ColliderBase.obj
+E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Component\ColliderOBB2D.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\ColliderOBB2D.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Component\ColliderSphere2D.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\ColliderSphere2D.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Component\Component.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\Component.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Component\MeshComponent.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\MeshComponent.obj

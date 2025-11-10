@@ -2,6 +2,7 @@
 #include "../Component/StaticMeshComponent.h"
 #include "../Component/ColliderAABB2D.h"
 #include "../Component/ColliderSphere2D.h"
+#include "../Component/ColliderOBB2D.h"
 
 #include "BulletObject.h"
 #include "../Scene/Scene.h"
@@ -60,8 +61,9 @@ bool CMonsterObject::Init()
 	}
 
 	mRoot = CreateComponent<CStaticMeshComponent>();
-	mBody = CreateComponent<CColliderAABB2D>();
+	//mBody = CreateComponent<CColliderAABB2D>();
 	//mBody = CreateComponent<CColliderSphere2D>();
+	mBody = CreateComponent<CColliderOBB2D>();
 
 	mRoot->SetMesh("CenterRect");
 	mRoot->SetShader("ColorMeshShader");

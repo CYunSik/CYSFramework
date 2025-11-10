@@ -143,12 +143,18 @@ void CColliderBase::Render()
 #ifdef _DEBUG
 	// Transform 상수버퍼 데이터 넣어주기
 	// 크기, 위치
-	FMatrix matScale, matTranslate, matWorld;
+	FMatrix matScale, matRot, matTranslate, matWorld;
 	matScale.Scaling(mWorldScale);
+
+	if (mEnableRotation)
+	{
+		matRot.Rotation(mWorldRot);
+	}
+
 	matTranslate.Translation(mWorldPos);
 
 	// 크자이공부!!
-	matWorld = matScale * matTranslate;
+	matWorld = matScale * matRot * matTranslate;
 
 	FMatrix matView, matProj;
 	matView = mScene->GetCameraManager()->GetViewMatrix();
