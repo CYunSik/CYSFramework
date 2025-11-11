@@ -41,6 +41,9 @@ void CColliderBase::SetCollisionProfile(const std::string& Name)
 
 void CColliderBase::CallCollisionBegin(const FVector3D& HitPoint, CColliderBase* Dest)
 {
+	// 충돌이 시작된 것이므로 충돌목록에 추가해준다.
+	AddCollisionObject(Dest);
+
 	mCollision = true;
 
 	if (mCollisionBeginFunc)
@@ -51,12 +54,45 @@ void CColliderBase::CallCollisionBegin(const FVector3D& HitPoint, CColliderBase*
 
 void CColliderBase::CallCollisionEnd(CColliderBase* Dest)
 {
-	// mCollision = false;
+	// Dest와 충돌이 끝났으므로 목록에서 제거해준다.
+	EraseCollisionObject(Dest);
+
+	// mCollisionObjects가 empty라면 해당 충돌체는 누구와도 충돌하고 있지 않은 것이다.
+	if (mCollisionObjects.empty())
+	{
+		mCollision = false;
+	}
 
 	if (mCollisionEndFunc)
 	{
 		mCollisionEndFunc(Dest);
 	}
+}
+
+void CColliderBase::AddCollisionObject(CColliderBase* Collider)
+{
+	// unordered_map은 랜덤 액세스를 지원한다.
+	// 해당 키값이 없을 경우 노드를 하나 새로 만들고 있을경우 해당 노드를 가져온다.
+	// 랜덤 액세스 : 임의 접근
+	mCollisionObjects[Collider] = true;
+}
+
+// 충돌 리스트에 해당 충돌체가 있는지 확인한다.
+bool CColliderBase::CheckCollisionObject(CColliderBase* Collider)
+{
+	auto iter =  mCollisionObjects.find(Collider);
+
+	if (iter == mCollisionObjects.end())
+	{
+		return false;
+	}
+
+	return true;
+}
+
+void CColliderBase::EraseCollisionObject(CColliderBase* Collider)
+{
+	mCollisionObjects.erase(Collider);
 }
 
 bool CColliderBase::Init()

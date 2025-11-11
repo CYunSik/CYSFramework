@@ -240,18 +240,35 @@ void CCollisionQuadTreeNode::Collision(float DeltaTime)
 				++j;
 				continue;
 			}
-			
+
 			// 충돌했는지 여부를 검사할것이다.
 			FVector3D HitPoint;
 
+			// 쿼드트리 노드에서 내가 충돌했는지 검사한다.
 			if (mColliderList[i]->Collision(HitPoint, mColliderList[j]))
 			{
 				// 둘이 충돌되었다.
 				// Src->함수 호출;
-				Src->CallCollisionBegin(HitPoint, Dest);
+				// 처음인지 검사해주자
+				if (!Src->CheckCollisionObject(Dest))
+				{
+					Src->CallCollisionBegin(HitPoint, Dest);
 
-				// Dest->함수 호출;
-				Dest->CallCollisionBegin(HitPoint, Src);
+					// Dest->함수 호출;
+					Dest->CallCollisionBegin(HitPoint, Src);
+				}
+				else
+				{
+					// 오버랩중
+				}
+			}
+			else if (Src->CheckCollisionObject(Dest))	// 충돌을 안했을때
+			{
+				// 두 충돌체가 현재 충돌이 안됬을 경우
+				// 이전에 충돌하고 있는지 확인하고
+				// 충돌하고 있었으면 CollisionEnd 함수를 호출해준다.
+				Src->CallCollisionEnd(Dest);
+				Dest->CallCollisionEnd(Src);
 			}
 			++j;
 		}

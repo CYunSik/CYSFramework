@@ -29,10 +29,15 @@ CMonsterObject::~CMonsterObject()
 
 void CMonsterObject::CollisionMonster(const FVector3D& HitPoint, CColliderBase* Dest)
 {
-	CLog::PrintLog("CollisionMonster");
+	CLog::PrintLog("CollisionBegin");
 
 	// Dest->GetProfile()->Channel == ECollisionChannel::PlayerAttack();
 
+}
+
+void CMonsterObject::CollisionMonsterEnd(CColliderBase* Dest)
+{
+	CLog::PrintLog("CollisionEnd");
 }
 
 float CMonsterObject::Damage(float Attack, CSceneObject* Obj)
@@ -76,6 +81,7 @@ bool CMonsterObject::Init()
 	//mBody->SetRadius(50.f);
 	mBody->SetCollisionProfile("Monster");
 	mBody->SetCollisionBeginFunc<CMonsterObject>(this, &CMonsterObject::CollisionMonster);
+	mBody->SetCollisionEndFunc<CMonsterObject>(this, &CMonsterObject::CollisionMonsterEnd);
 
 	return true;
 }
