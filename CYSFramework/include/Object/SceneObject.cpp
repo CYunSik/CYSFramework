@@ -16,6 +16,20 @@ CSceneObject::CSceneObject(CSceneObject&& Obj)
 
 CSceneObject::~CSceneObject()
 {
+	mRootComponent->EraseOwner();
+
+	size_t Size = mNonSceneComponentList.size();
+
+	for (size_t i = 0; i < Size; ++i)
+	{
+		mNonSceneComponentList[i]->EraseOwner();
+	}
+
+	// mSpawnPoint 좀있다 클리어 시켜주기
+	if (mSpawnPoint)
+	{
+		mSpawnPoint->ClearObject();
+	}
 }
 
 void CSceneObject::SetRootComponent(CSceneComponent* Root)

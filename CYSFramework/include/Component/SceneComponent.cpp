@@ -252,7 +252,18 @@ CSceneComponent* CSceneComponent::Clone()
 	return new CSceneComponent(*this);
 }
 
+void CSceneComponent::EraseOwner()
+{
+	CComponent::EraseOwner();
 
+	std::vector<CSharedPtr<CSceneComponent>>::iterator iter = mChildList.begin();
+	std::vector<CSharedPtr<CSceneComponent>>::iterator iterEnd = mChildList.end();
+
+	for (; iter != iterEnd; ++iter)
+	{
+		(*iter)->EraseOwner();
+	}
+}
 
 
 ////////// 좌표

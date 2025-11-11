@@ -67,3 +67,7 @@ CComponent* CComponent::Clone()
 {
 	return nullptr;
 }
+
+void CComponent::EraseOwner()
+{
+}

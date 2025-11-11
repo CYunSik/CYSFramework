@@ -27,6 +27,14 @@ CColliderBase::CColliderBase(CColliderBase&& Com)
 
 CColliderBase::~CColliderBase()
 {
+	auto iter = mCollisionObjects.begin();
+	auto iterEnd = mCollisionObjects.end();
+
+	for (; iter != iterEnd; ++iter)
+	{
+		iter->first->CallCollisionEnd(this);
+	}
+
 #ifdef _DEBUG
 	SAFE_DELETE(mTransformCBuffer);
 	SAFE_DELETE(mCBuffer);
@@ -225,7 +233,7 @@ void CColliderBase::Render()
 
 #endif // _DEBUG
 
-	mCollision = false;
+	//mCollision = false;
 }
 
 void CColliderBase::PostRender()
@@ -236,4 +244,19 @@ void CColliderBase::PostRender()
 CColliderBase* CColliderBase::Clone()
 {
 	return nullptr;
+}
+
+void CColliderBase::EraseOwner()
+{
+	CSceneComponent::EraseOwner();
+
+	if (mCollisionBeginFunc && mBeginObj == GetOwner())
+	{
+		mCollisionBeginFunc = nullptr;
+	}
+
+	if (mCollisionEndFunc && mEndObj == GetOwner())
+	{
+		mCollisionEndFunc = nullptr;
+	}
 }

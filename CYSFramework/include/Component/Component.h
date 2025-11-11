@@ -53,6 +53,6 @@ public:
 	virtual void Render();
 	virtual void PostRender();
 	virtual CComponent* Clone();
-
+	virtual void EraseOwner();
 };
 
