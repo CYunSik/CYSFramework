@@ -19,10 +19,12 @@ E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Device.cpp;E:\StudyCys\F
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\GameManager.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\GameManager.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\main.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\main.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Object\BulletObject.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\BulletObject.obj
+E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Object\ContinuousdamageBullet.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\ContinuousdamageBullet.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Object\GunnerMonster.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\GunnerMonster.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Object\MonsterObject.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\MonsterObject.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Object\MonsterSpawner.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\MonsterSpawner.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Object\ObjectSpawnPoint.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\ObjectSpawnPoint.obj
+E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Object\PenetrationBullet.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\PenetrationBullet.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Object\PlayerObject.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\PlayerObject.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Object\SceneObject.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\SceneObject.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Object\NearingMonster.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\NearingMonster.obj

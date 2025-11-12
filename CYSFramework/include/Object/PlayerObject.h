@@ -85,5 +85,11 @@ private:
 
 	// 스킬 7 : MonsterObject 모두 밀쳐내기
 	void Skill7(float DeltaTime);
+
+	// 스킬 8 : 지속데미지 총알
+	void Skill8(float DeltaTime);
+
+	// 스킬 9 : 관통 총알
+	void Skill9(float DeltaTime);
 };
 

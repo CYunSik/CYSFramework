@@ -226,10 +226,10 @@ void CDevice::ClearBackBuffer(float ClearColor[4])
 	mContext->ClearRenderTargetView(mTargetView, ClearColor);
 }
 
-void CDevice::ClearDepthStencill(float Depth, unsigned char Stencilll)
+void CDevice::ClearDepthStencill(float Depth, unsigned char Stencill)
 {
 	// 들어온 인자로 깊이와 스텐실을 초기화 하겠다.
-	mContext->ClearDepthStencilView(mDepthView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, Depth, Stencilll);
+	mContext->ClearDepthStencilView(mDepthView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, Depth, Stencill);
 }
 
 void CDevice::SetTarget()

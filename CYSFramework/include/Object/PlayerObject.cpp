@@ -14,6 +14,8 @@
 #include "TornadoBullet.h"
 #include "TalonR.h"
 #include "ZaryaBullet.h"
+#include "ContinuousdamageBullet.h"
+#include "PenetrationBullet.h"
 
 CPlayerObject::CPlayerObject()
 	: CSceneObject()
@@ -141,6 +143,14 @@ bool CPlayerObject::Init()
 	// 스킬 7 : MonsterObject 모두 밀쳐내기
 	mScene->GetInput()->AddBindKey("Skill7", '7');
 	mScene->GetInput()->AddBindFunction("Skill7", EInputType::Down, this, &CPlayerObject::Skill7);
+
+	// 스킬 8 : 지속데미지 총알 (지속데미지 총알 범위 안에 있는 모든 몬스터들 전부에게)
+	mScene->GetInput()->AddBindKey("Skill8", '8');
+	mScene->GetInput()->AddBindFunction("Skill8", EInputType::Down, this, &CPlayerObject::Skill8);
+
+	// 스킬 9 : 관통 총알 (지금은 바로 총알이 충돌하면 사라지지만 원하는 수를 지정해서 그 수만큼은 관통되게 만들어준다.)
+	mScene->GetInput()->AddBindKey("Skill9", '9');
+	mScene->GetInput()->AddBindFunction("Skill9", EInputType::Down, this, &CPlayerObject::Skill9);
 
 	return true;
 }
@@ -426,4 +436,22 @@ void CPlayerObject::Skill7(float DeltaTime)
 	Bullet->SetLifeTime(3.f);
 
 	Bullet->SetState(EZaryaState::Push);
+}
+
+void CPlayerObject::Skill8(float DeltaTime)
+{
+	CContinuousdamageBullet* Bullet = mScene->CreateObj<CContinuousdamageBullet>("ContinuousBullet");
+
+	Bullet->SetWorldRotation(GetWorldRotation());
+	Bullet->SetWorldPos(GetWorldPosition());
+	Bullet->SetLifeTime(5.f);
+}
+
+void CPlayerObject::Skill9(float DeltaTime)
+{
+	CPenetrationBullet* Bullet = mScene->CreateObj<CPenetrationBullet>("PenetrationBullet");
+
+	Bullet->SetWorldRotation(GetWorldRotation());
+	Bullet->SetWorldPos(GetWorldPosition());
+	Bullet->SetLifeTime(3.f);
 }

@@ -67,7 +67,7 @@ public:
 
 public:
 	void ClearBackBuffer(float ClearColor[4]);
-	void ClearDepthStencill(float Depth, unsigned char Stencilll);
+	void ClearDepthStencill(float Depth, unsigned char Stencill);
 	void SetTarget();	// 출력할 타겟을 지정해준다.	어떤 화면 그릴지 지정해준다.
 
 	// 화면에 출력하기
