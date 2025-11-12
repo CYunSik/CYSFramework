@@ -1,5 +1,6 @@
 #include "Collision.h"
 #include "Component/ColliderAABB2D.h"
+#include "Component/ColliderLine2D.h"
 #include "Component/ColliderOBB2D.h"
 #include "Component/ColliderSphere2D.h"
 
@@ -56,6 +57,47 @@ bool CCollision::CollisionAABB2DToOBB2D(FVector3D& HitPoint, CColliderAABB2D* Sr
 bool CCollision::CollisionSphere2DToOBB2D(FVector3D& HitPoint, CColliderSphere2D* Src, CColliderOBB2D* Dest)
 {
 	if (CollisionSphere2DToOBB2D(HitPoint, Src->GetWorldPosition(), Src->GetRadius(), Dest->GetBox()))
+	{
+		return true;
+	}
+
+	return false;
+}
+
+bool CCollision::CollisionLine2DToLine2D(FVector3D& HitPoint, class CColliderLine2D* Src, class CColliderLine2D* Dest)
+{
+	if (CollisionLine2DToLine2D(HitPoint, Src->GetLine(), Dest->GetLine()))
+	{
+		return true;
+	}
+
+	return false;
+}
+
+bool CCollision::CollisionLine2DToAABB2D(FVector3D& HitPoint, class CColliderLine2D* Src, class CColliderAABB2D* Dest)
+{
+	if (CollisionLine2DToAABB2D(HitPoint, Src->GetLine(), Dest->GetBox()))
+	{
+		return true;
+	}
+
+	return false;
+}
+
+bool CCollision::CollisionLine2DToOBB2D(FVector3D& HitPoint, class CColliderLine2D* Src, class CColliderOBB2D* Dest)
+{
+	if (CollisionLine2DToOBB2D(HitPoint, Src->GetLine(), Dest->GetBox()))
+	{
+		return true;
+	}
+
+	return false;
+}
+
+bool CCollision::CollisionLine2DToSphere2D(FVector3D& HitPoint, class CColliderLine2D* Src,
+	class CColliderSphere2D* Dest)
+{
+	if (CollisionLine2DToSphere2D(HitPoint, Src->GetLine(), Dest->GetWorldPosition(), Dest->GetRadius()))
 	{
 		return true;
 	}
@@ -347,6 +389,90 @@ bool CCollision::CollisionSphere2DToOBB2D(FVector3D& HitPoint, const FVector3D& 
 	return true;
 }
 
+bool CCollision::CollisionLine2DToLine2D(FVector3D& HitPoint, const FLine2D& Src, const FLine2D& Dest)
+{
+	// A : Src.Start
+	// B : Src.End
+	// C : Dest.Start
+	// D : Dest.End
+	FVector2D A = Src.Start;
+	FVector2D B = Src.End;
+	FVector2D C = Dest.Start;
+	FVector2D D = Dest.End;
+
+	// A B C
+	int ccw1 = CCW2D(A, B, C);
+	// A B D
+	int ccw2 = CCW2D(A, B, D);
+	// C D A
+	int ccw3 = CCW2D(C, D, A);
+	// C D B
+	int ccw4 = CCW2D(C, D, B);
+
+	if (ccw1 * ccw2 < 0 && ccw3 * ccw4 < 0)
+	{
+		// 두 직선은 충돌했다.
+		// 추가 제작 필요
+
+		return true;
+	}
+
+	// 직선 검사
+	// 직선 A B에 점 C가 있니?
+	if (ccw1 == 0 && PointOnLine2D(A, B, C))
+	{
+		HitPoint.x = C.x;
+		HitPoint.y = C.y;
+
+		return true;
+	}
+
+	// A B D
+	if (ccw2 == 0 && PointOnLine2D(A, B, D))
+	{
+		HitPoint.x = D.x;
+		HitPoint.y = D.y;
+
+		return true;
+	}
+
+	// C D A
+	if (ccw3 == 0 && PointOnLine2D(C, D, A))
+	{
+		HitPoint.x = A.x;
+		HitPoint.y = A.y;
+
+		return true;
+	}
+
+	// C D B
+	if (ccw4 == 0 && PointOnLine2D(C, D, B))
+	{
+		HitPoint.x = B.x;
+		HitPoint.y = B.y;
+
+		return true;
+	}
+
+	return false;
+}
+
+bool CCollision::CollisionLine2DToAABB2D(FVector3D& HitPoint, const FLine2D& Src, const FAABB2D& Dest)
+{
+	return false;
+}
+
+bool CCollision::CollisionLine2DToOBB2D(FVector3D& HitPoint, const FLine2D& Src, const FOBB2D& Dest)
+{
+	return false;
+}
+
+bool CCollision::CollisionLine2DToSphere2D(FVector3D& HitPoint, const FLine2D& Src, const FVector3D& Center,
+	float Radius)
+{
+	return false;
+}
+
 // 축 검사
 // 정사영
 bool CCollision::ComputeAxisProjection(const FVector2D& CenterLine, const FVector2D& SeparationAxis, float AxisHalfSize,
@@ -433,4 +559,74 @@ FOBB2D CCollision::CreateOBB2D(const FAABB2D& Info)
 	result.HalfSize = (Info.Max - Info.Min) * 0.5f;
 
 	return result;
+}
+
+ECCWResult::Type CCollision::CCW2D(const FVector2D& P1, const FVector2D& P2, const FVector2D& P3)
+{
+	// CCW(Counter ClockWise) 알고리즘
+	// 점 3개가 이루는 방향을 계산하는 알고리즘
+	// CCW(A, B, C) = (Bx - Ax) * (Cy - Ay) - (By - Ay) * (Cx - Ax)
+	// CCW(P1, P2, P3) = (P2x - P1x) * (P3y - P1y) - (P2y - P1y) * (P3x - P1x)
+
+	// CCW는 외적이다.
+	float Cross = (P2.x - P1.x) * (P3.y - P1.y) - (P2.y - P1.y) * (P3.x - P1.x);
+
+	// 음수
+	if (Cross < 0)
+	{
+		return ECCWResult::CW;
+	}
+	// 양수
+	else if (Cross > 0)
+	{
+		return ECCWResult::CCW;
+	}
+	// 직선
+	return ECCWResult::Line;
+}
+
+bool CCollision::PointOnLine2D(const FVector2D& LineStart, const FVector2D& LineEnd, const FVector2D& Point)
+{
+	float MinX, MinY, MaxX, MaxY;
+
+	if (LineStart.x < LineEnd.x)
+	{
+		MinX = LineStart.x;
+		MaxX = LineEnd.x;
+	}
+	else
+	{
+		MinX = LineEnd.x;
+		MaxX = LineStart.x;
+	}
+
+	if (LineStart.y < LineEnd.y)
+	{
+		MinY = LineStart.y;
+		MaxY = LineEnd.y;
+	}
+	else
+	{
+		MinY = LineEnd.y;
+		MaxY = LineStart.y;
+	}
+
+	if (Point.x < MinX)
+	{
+		return false;
+	}
+	else if (MaxX < Point.x)
+	{
+		return false;
+	}
+	else if (Point.y < MinY)
+	{
+		return false;
+	}
+	else if (MaxY < Point.y)
+	{
+		return false;
+	}
+
+	return true;
 }

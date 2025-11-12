@@ -282,6 +282,9 @@
     <ClCompile Include="Object\PenetrationBullet.cpp">
       <Filter>06.Object\02.Bullet</Filter>
     </ClCompile>
+    <ClCompile Include="Component\ColliderLine2D.cpp">
+      <Filter>07.Component\01.SceneComponent\03.Collider\01.2D</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameManager.h">
@@ -469,6 +472,9 @@
     </ClInclude>
     <ClInclude Include="Object\PenetrationBullet.h">
       <Filter>06.Object\02.Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="Component\ColliderLine2D.h">
+      <Filter>07.Component\01.SceneComponent\03.Collider\01.2D</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

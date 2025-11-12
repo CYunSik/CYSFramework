@@ -3,6 +3,9 @@
 #include "BulletObject.h"
 #include "../Scene/Scene.h"
 #include "PlayerObject.h"
+#include "../Component/ColliderLine2D.h"
+#include "../Component/ColliderOBB2D.h"
+#include "../Component/ColliderSphere2D.h"
 
 CNearingMonster::CNearingMonster()
 {
@@ -28,6 +31,13 @@ bool CNearingMonster::Init()
 	{
 		return false;
 	}
+
+	mLine = CreateComponent<CColliderLine2D>();
+
+	mBody->AddChild(mLine);
+	mLine->SetLineDistance(200.f);
+	mLine->SetCollisionProfile("Monster");
+	mLine->SetLineAxis(EAxis::X);
 
 	CPlayerObject* pPlayer = mScene->FindObjectFromName<CPlayerObject>("Player");
 	if (pPlayer)

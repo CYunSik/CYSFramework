@@ -153,7 +153,8 @@ enum class EColliderShape
 {
 	AABB2D,
 	Sphere2D,
-	OBB2D
+	OBB2D,
+	Line2D
 };
 
 // 충돌 정보
@@ -171,6 +172,12 @@ struct FOBB2D
 	FVector2D Axis[2];
 	// 길이의 반
 	FVector2D HalfSize;
+};
+
+struct FLine2D
+{
+	FVector2D Start;
+	FVector2D End;
 };
 
 // 충돌 필터 정보

@@ -15,6 +15,8 @@ protected:
 	float mAttackTime = 1.f;
 	float mDetectAngle = 45.f;
 
+	CSharedPtr<class CColliderLine2D> mLine;
+
 public:
 	virtual bool Init();
 	virtual void Update(float DeltaTime);

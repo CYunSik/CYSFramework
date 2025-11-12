@@ -85,9 +85,9 @@ bool CSceneMain::Init()
 	MonsterPoint->SetSpawnTime(5.f);
 	MonsterPoint->SetWorldPos(1210.f, 200.f);
 
-	//CGunnerMonster* Monster = CreateObj<CGunnerMonster>("GunnerMonster1");
-	//Monster->SetWorldPos(-500.f, 300.f);
-	//Monster->SetTarget(Player);
+	CGunnerMonster* Monster = CreateObj<CGunnerMonster>("GunnerMonster1");
+	Monster->SetWorldPos(-400.f, 300.f);
+	Monster->SetTarget(Player);
 
 	//CNearingMonster* Monster2 = CreateObj<CNearingMonster>("NearingMonster");
 	//Monster2->SetWorldPos(500.f, 300.f);
