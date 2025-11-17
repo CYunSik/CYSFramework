@@ -65,6 +65,12 @@ public:
 
 	static bool CollisionLine2DToSphere2D(FVector3D& HitPoint, const FLine2D& Src, const FVector3D& Center, float Radius);
 
+	// 점 충돌
+	static bool CollisionPointToAABB2D(const FVector2D& Point, const FAABB2D& Info);
+	static bool CollisionPointToOBB2D(const FVector2D& Point, const FOBB2D& Info);
+	static bool CollisionPointToSphere2D(const FVector2D& Point, const FVector2D& Center, float Radius);
+	static bool CollisionPointToLine2D(const FVector2D& Point, const FLine2D& Info);
+
 private:
 	// 1. 두 중심의 축 2. 분리축 3. Src 크기의 반 4. Dest 축 5. Dest 크기
 	static bool ComputeAxisProjection(const FVector2D& CenterLine, const FVector2D& SeparationAxis, float AxisHalfSize, const FVector2D* DestAxis, const FVector2D& DestHalfSize);

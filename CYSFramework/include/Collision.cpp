@@ -412,7 +412,30 @@ bool CCollision::CollisionLine2DToLine2D(FVector3D& HitPoint, const FLine2D& Src
 	if (ccw1 * ccw2 < 0 && ccw3 * ccw4 < 0)
 	{
 		// 두 직선은 충돌했다.
-		// 추가 제작 필요
+
+		// 1. 방향 벡터를 계산해준다.
+		float V1x = B.x - A.x;
+		float V1y = B.y - A.y;
+
+		float V2x = D.x - C.x;
+		float V2y = D.y - C.y;
+
+		// 크래머의 공식을 이용
+		// 2. 두 시작점 A와 C사이의 벡터 R(R = C - A)을 구한다.
+		float Rx = C.x - A.x;
+		float Ry = C.y - A.y;
+
+		// 3. 행렬식 (D, Determinant) 계산
+		// 행렬식이 0이면 해가 하나 있다.
+		float Determinant = V1x * V2y - V1y * V2x;
+
+		// U를 대체할 값
+		float numerator = Rx * V2y - Ry * V2x;
+		float t = numerator / Determinant;
+
+		// 최종 교차점
+		HitPoint.x = A.x + V1x * t;
+		HitPoint.y = A.y + V1y * t;
 
 		return true;
 	}
@@ -459,18 +482,258 @@ bool CCollision::CollisionLine2DToLine2D(FVector3D& HitPoint, const FLine2D& Src
 
 bool CCollision::CollisionLine2DToAABB2D(FVector3D& HitPoint, const FLine2D& Src, const FAABB2D& Dest)
 {
-	return false;
+	// 선을 구성하는 두 점이 사각형 안에 들어가니?
+	if (CollisionPointToAABB2D(Src.Start, Dest))
+	{
+		HitPoint.x = Src.Start.x;
+		HitPoint.y = Src.Start.y;
+
+		return true;
+	}
+
+	if (CollisionPointToAABB2D(Src.End, Dest))
+	{
+		HitPoint.x = Src.End.x;
+		HitPoint.y = Src.End.y;
+
+		return true;
+	}
+
+	// 사각형을 구성하는 4개의 변과 선이 충돌하니?
+	FLine2D AABBLine[4];
+
+	// 좌하 -> 좌상
+	AABBLine[0].Start = Dest.Min;
+	AABBLine[0].End.x = Dest.Min.x;
+	AABBLine[0].End.y = Dest.Max.y;
+
+	// 좌상 -> 우상
+	AABBLine[1].Start.x = Dest.Min.x;
+	AABBLine[1].Start.y = Dest.Max.y;
+	AABBLine[1].End = Dest.Max;
+
+	// 우상 -> 우하
+	AABBLine[2].Start = Dest.Max;
+	AABBLine[2].End.x = Dest.Max.x;
+	AABBLine[2].End.y = Dest.Min.y;
+
+	// 우하 -> 좌하
+	AABBLine[3].Start.x = Dest.Max.x;
+	AABBLine[3].Start.y = Dest.Min.y;
+	AABBLine[3].End = Dest.Min;
+
+	bool result = false;
+	float resultDist = -1.f;
+
+	FVector2D HitResult;
+
+	for (int i = 0; i < 4; ++i)
+	{
+		if (CollisionLine2DToLine2D(HitPoint, Src, AABBLine[i]))
+		{
+			result = true;
+
+			FVector2D v;
+			v.x = HitPoint.x;
+			v.y = HitPoint.y;
+
+			float Dist = Src.Start.Distance(v);
+
+			if (Dist == -1.f)
+			{
+				HitResult = v;
+				resultDist = Dist;
+			}
+			else if (Dist < resultDist)
+			{
+				HitResult = v;
+				resultDist = Dist;
+			}
+		}
+	}
+
+	if (result)
+	{
+		HitPoint.x = HitResult.x;
+		HitPoint.y = HitResult.y;
+	}
+
+	return result;
 }
 
 bool CCollision::CollisionLine2DToOBB2D(FVector3D& HitPoint, const FLine2D& Src, const FOBB2D& Dest)
 {
-	return false;
+	// 선을 구성하는 두 점이 사각형 안에 들어가니?
+	if (CollisionPointToOBB2D(Src.Start, Dest))
+	{
+		HitPoint.x = Src.Start.x;
+		HitPoint.y = Src.Start.y;
+
+		return true;
+	}
+
+	if (CollisionPointToOBB2D(Src.End, Dest))
+	{
+		HitPoint.x = Src.End.x;
+		HitPoint.y = Src.End.y;
+
+		return true;
+	}
+
+	// 사각형을 구성하는 점을 만들어준다.
+	FVector2D Pos[4];
+	// 좌상
+	Pos[0] = Dest.Center - Dest.Axis[EAxis::X] * Dest.HalfSize.x + Dest.Axis[EAxis::Y] * Dest.HalfSize.y;
+	// 좌하
+	Pos[1] = Dest.Center - Dest.Axis[EAxis::X] * Dest.HalfSize.x - Dest.Axis[EAxis::Y] * Dest.HalfSize.y;
+	// 우상
+	Pos[2] = Dest.Center + Dest.Axis[EAxis::X] * Dest.HalfSize.x + Dest.Axis[EAxis::Y] * Dest.HalfSize.y;
+	// 우하
+	Pos[3] = Dest.Center + Dest.Axis[EAxis::X] * Dest.HalfSize.x - Dest.Axis[EAxis::Y] * Dest.HalfSize.y;
+
+	// 사각형을 구성하는 4개의 변과 선이 충돌하니?
+	FLine2D OBBLine[4];
+
+	// 좌상 : 0, 좌하 : 1, 우상 : 2, 우하 : 3
+	// 좌상 -> 우상
+	OBBLine[0].Start = Pos[0];
+	OBBLine[0].End = Pos[2];
+
+	// 우상 -> 우하
+	OBBLine[1].Start = Pos[2];
+	OBBLine[1].End = Pos[3];
+
+	// 우하 -> 좌하
+	OBBLine[2].Start = Pos[3];
+	OBBLine[2].End = Pos[1];
+
+	// 좌하 -> 좌상
+	OBBLine[2].Start = Pos[1];
+	OBBLine[2].End = Pos[0];
+
+	bool result = false;
+	float resultDist = -1.f;
+
+	FVector2D HitResult;
+
+	for (int i = 0; i < 4; ++i)
+	{
+		if (CollisionLine2DToLine2D(HitPoint, Src, OBBLine[i]))
+		{
+			result = true;
+
+			FVector2D v;
+			v.x = HitPoint.x;
+			v.y = HitPoint.y;
+
+			float Dist = Src.Start.Distance(v);
+
+			if (Dist == -1.f)
+			{
+				HitResult = v;
+				resultDist = Dist;
+			}
+			else if (Dist < resultDist)
+			{
+				HitResult = v;
+				resultDist = Dist;
+			}
+		}
+	}
+
+	if (result)
+	{
+		HitPoint.x = HitResult.x;
+		HitPoint.y = HitResult.y;
+	}
+
+	return result;
 }
 
 bool CCollision::CollisionLine2DToSphere2D(FVector3D& HitPoint, const FLine2D& Src, const FVector3D& Center,
 	float Radius)
 {
 	return false;
+}
+
+bool CCollision::CollisionPointToAABB2D(const FVector2D& Point, const FAABB2D& Info)
+{
+	if (Point.x < Info.Min.x)
+	{
+		return false;
+	}
+	else if (Info.Max.x < Point.x)
+	{
+		return false;
+	}
+	else if (Point.y < Info.Min.y)
+	{
+		return false;
+	}
+	else if (Info.Max.y < Point.y)
+	{
+		return false;
+	}
+
+	return true;
+}
+
+bool CCollision::CollisionPointToOBB2D(const FVector2D& Point, const FOBB2D& Info)
+{
+	// 점과 사각형의 중심
+	FVector2D CenterLine = Point - Info.Center;
+
+	// 사각형의 X축
+	float Dist = abs(CenterLine.Dot(Info.Axis[EAxis::X]));
+
+	if (Dist > Info.HalfSize.x)
+	{
+		return false;
+	}
+
+	// 사각형의 Y축
+	Dist = abs(CenterLine.Dot(Info.Axis[EAxis::Y]));
+
+	if (Dist > Info.HalfSize.y)
+	{
+		return false;
+	}
+
+	return true;
+}
+
+bool CCollision::CollisionPointToSphere2D(const FVector2D& Point, const FVector2D& Center, float Radius)
+{
+	// 원의 중심과 점의 거리를 구하고
+	float Dist = Center.Distance(Point);
+
+	// 그 거리가 반지름 보다 작으면 충돌
+	return Dist <= Radius;
+}
+
+bool CCollision::CollisionPointToLine2D(const FVector2D& Point, const FLine2D& Info)
+{
+	// 직선의 벡터
+	// AB방향벡터
+	FVector2D LineDir = Info.End - Info.Start;
+	LineDir.Normalize();	// 길이를 1로 만들어준다.
+
+	// 시작점에서 점으로 가는 방향벡터를 만들어준다.
+	FVector2D LineDir1 = Point - Info.Start;
+	LineDir1.Normalize();
+
+	float Angle = LineDir.Dot(LineDir1);
+
+	if (Angle < 1.f)
+	{
+		return false;
+	}
+
+	// 같은 직선상에 있으면 거리에 따라서 충돌 여부를 확인해 줘야한다.
+	float Dist = Info.Start.Distance(Info.End);
+	float Dist1 = Info.Start.Distance(Point);
+
+	return Dist >= Dist1;
 }
 
 // 축 검사
