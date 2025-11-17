@@ -1,6 +1,7 @@
 #include "ColliderOBB2D.h"
 
 #include "ColliderAABB2D.h"
+#include "ColliderLine2D.h"
 #include "../Collision.h"
 #include "../Asset/AssetManager.h"
 #include "../Asset/Mesh/Mesh.h"
@@ -165,6 +166,8 @@ bool CColliderOBB2D::Collision(FVector3D& HitPoint, CColliderBase* Dest)
 		return CCollision::CollisionSphere2DToOBB2D(HitPoint, (CColliderSphere2D*)Dest, this);
 	case EColliderShape::OBB2D:
 		return CCollision::CollisionOBB2DToOBB2D(HitPoint, this, (CColliderOBB2D*)Dest);
+	case EColliderShape::Line2D:
+		return CCollision::CollisionLine2DToOBB2D(HitPoint, (CColliderLine2D*)Dest, this);
 	}
 
 	return false;
