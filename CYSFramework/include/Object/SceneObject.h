@@ -29,6 +29,11 @@ protected:
 	// 무적 상태 여부
 	bool mDamageEnable = true;
 
+protected:
+	float mMoveSpeed = 500.f;     // 플레이어 기본 이동 속도를 저장
+	bool  mBlocked = false;       // 이동 차단 상태
+	CSceneObject* mBlocker = nullptr;
+
 public:
 	void SetLifeTime(float Time)
 	{
@@ -78,6 +83,7 @@ public:
 public:
 						// 데미지,      데미지를 준 대상
 	virtual float Damage(float Attack, CSceneObject* Obj);
+	virtual void SetMovement(float Speed, CSceneObject* Obj);
 
 public:
 	// 컴포넌트 생성해주는 친구

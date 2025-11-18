@@ -7,6 +7,7 @@
 #include "../Component/ColliderSphere2D.h"
 #include "../Component/ColliderOBB2D.h"
 #include "../Component/ColliderLine2D.h"
+#include "../Component/ColliderBase.h"
 
 #include "../Scene/Scene.h"
 #include "../Scene/Input.h"
@@ -49,7 +50,7 @@ bool CPlayerObject::Init()
 	//mBody = CreateComponent<CColliderAABB2D>();
 	//mBody = CreateComponent<CColliderSphere2D>();
 	mBody = CreateComponent<CColliderOBB2D>();
-	mLine = CreateComponent<CColliderLine2D>();
+	//mLine = CreateComponent<CColliderLine2D>();
 
 	mMovement = CreateComponent<CMovementComponent>();
 	mRotation = CreateComponent<CRotationComponent>();
@@ -67,10 +68,10 @@ bool CPlayerObject::Init()
 	//mBody->SetRadius(50.f);
 	mBody->SetCollisionProfile("Player");
 
-	mBody->AddChild(mLine);
-	mLine->SetCollisionProfile("Player");
-	mLine->SetLineDistance(300.f);
-	mLine->SetRelativePos(0.f, 50.f);
+	//mBody->AddChild(mLine);
+	//mLine->SetCollisionProfile("Player");
+	//mLine->SetLineDistance(300.f);
+	//mLine->SetRelativePos(0.f, 50.f);
 
 	mMovement->SetUpdateComponent(mRoot);
 	mMovement->SetMoveSpeed(500.f);
@@ -164,7 +165,17 @@ bool CPlayerObject::Init()
 
 void CPlayerObject::Update(float DeltaTime)
 {
+	// 1) 이동 이전 위치 저장
+	FVector3D PrevPos = GetWorldPosition();
+
+	// 2) 실제 이동 (MovementComponent → SetWorldPos)
 	CSceneObject::Update(DeltaTime);
+
+	// 3) 충돌이면 되돌리기
+	if (mBody->IsCollision())
+	{
+		SetWorldPos(PrevPos);
+	}
 
 	// 위성을 돌려주면 된다.
 	FVector3D Rot = mRotationPivot->GetRelativeRotation();

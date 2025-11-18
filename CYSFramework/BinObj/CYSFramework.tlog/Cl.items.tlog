@@ -3,6 +3,8 @@ E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Asset\AssetManager.cpp;E
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Asset\Mesh\Mesh.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\Mesh.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Asset\Mesh\MeshManager.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\MeshManager.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Asset\Mesh\StaticMesh.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\StaticMesh.obj
+E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Asset\Texture\Texture.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\Texture.obj
+E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Asset\Texture\TextureManager.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\TextureManager.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Collision.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\Collision.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Component\CameraComponent.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\CameraComponent.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Component\ColliderAABB2D.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\ColliderAABB2D.obj
@@ -19,6 +21,7 @@ E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Component\StaticMeshComp
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Device.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\Device.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\GameManager.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\GameManager.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\main.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\main.obj
+E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Object\BlockObject.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\BlockObject.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Object\BulletObject.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\BulletObject.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Object\ContinuousdamageBullet.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\ContinuousdamageBullet.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Object\GunnerMonster.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\GunnerMonster.obj

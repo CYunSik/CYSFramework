@@ -9,6 +9,7 @@ public:
 
 private:
 	class CMeshManager* mMeshManager = nullptr;
+	class CTextureManager* mTextureManager = nullptr;
 
 public:
 	class CMeshManager* GetMeshManager() const

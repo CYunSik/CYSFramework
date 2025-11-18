@@ -5,6 +5,7 @@
 #include "../Object/NearingMonster.h"
 #include "../Object/MonsterSpawner.h"
 #include "../Object/ObjectSpawnPoint.h"
+#include "../Object/BlockObject.h"
 
 CSceneMain::CSceneMain()
 {
@@ -88,6 +89,9 @@ bool CSceneMain::Init()
 	CGunnerMonster* Monster = CreateObj<CGunnerMonster>("GunnerMonster1");
 	Monster->SetWorldPos(-400.f, 300.f);
 	Monster->SetTarget(Player);
+
+	CBlockObject* Block = CreateObj<CBlockObject>("Block1");
+	Block->SetWorldPos(-700.f, 0.f);
 
 	//CNearingMonster* Monster2 = CreateObj<CNearingMonster>("NearingMonster");
 	//Monster2->SetWorldPos(500.f, 300.f);

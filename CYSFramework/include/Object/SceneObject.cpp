@@ -267,6 +267,21 @@ float CSceneObject::Damage(float Attack, CSceneObject* Obj)
 	return Attack;
 }
 
+void CSceneObject::SetMovement(float Speed, CSceneObject* Obj)
+{
+	if (Speed == 0.f)
+	{
+		mBlocked = true;
+		mBlocker = Obj;
+	}
+	else
+	{
+		mBlocked = false;
+		mBlocker = nullptr;
+		mMoveSpeed = Speed;
+	}
+}
+
 //Transform
 const FMatrix& CSceneObject::GetScaleMatrix() const
 {

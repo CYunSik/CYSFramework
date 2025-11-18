@@ -115,6 +115,9 @@
     <Filter Include="07.Component\01.SceneComponent\03.Collider\01.2D">
       <UniqueIdentifier>{9321313c-3533-4a6b-a333-4dae861a7ca2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="03.Asset\02.Texture">
+      <UniqueIdentifier>{774d85ea-037b-4735-b27b-f7fea9cb7e50}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -284,6 +287,15 @@
     </ClCompile>
     <ClCompile Include="Component\ColliderLine2D.cpp">
       <Filter>07.Component\01.SceneComponent\03.Collider\01.2D</Filter>
+    </ClCompile>
+    <ClCompile Include="Object\BlockObject.cpp">
+      <Filter>06.Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Asset\Texture\Texture.cpp">
+      <Filter>03.Asset\02.Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="Asset\Texture\TextureManager.cpp">
+      <Filter>03.Asset\02.Texture</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -476,6 +488,18 @@
     <ClInclude Include="Component\ColliderLine2D.h">
       <Filter>07.Component\01.SceneComponent\03.Collider\01.2D</Filter>
     </ClInclude>
+    <ClInclude Include="Object\BlockObject.h">
+      <Filter>06.Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Asset\Texture\DirectXTex.h">
+      <Filter>03.Asset\02.Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="Asset\Texture\Texture.h">
+      <Filter>03.Asset\02.Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="Asset\Texture\TextureManager.h">
+      <Filter>03.Asset\02.Texture</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="CYSFramework.rc">
@@ -497,5 +521,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
+    <None Include="Asset\Texture\DirectXTex.inl">
+      <Filter>03.Asset\02.Texture</Filter>
+    </None>
   </ItemGroup>
 </Project>

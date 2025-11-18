@@ -88,6 +88,12 @@ public:
 		return mMax;
 	}
 
+	bool IsCollision() const
+	{
+		return mCollision;
+	}
+
+
 public:
 	void SetCollisionProfile(const std::string& Name);
 	void CallCollisionBegin(const FVector3D& HitPoint, CColliderBase* Dest);

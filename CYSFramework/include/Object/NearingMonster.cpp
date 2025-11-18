@@ -32,12 +32,12 @@ bool CNearingMonster::Init()
 		return false;
 	}
 
-	mLine = CreateComponent<CColliderLine2D>();
+	//mLine = CreateComponent<CColliderLine2D>();
 
-	mBody->AddChild(mLine);
-	mLine->SetLineDistance(200.f);
-	mLine->SetCollisionProfile("Monster");
-	mLine->SetLineAxis(EAxis::X);
+	//mBody->AddChild(mLine);
+	//mLine->SetLineDistance(200.f);
+	//mLine->SetCollisionProfile("Monster");
+	//mLine->SetLineAxis(EAxis::X);
 
 	CPlayerObject* pPlayer = mScene->FindObjectFromName<CPlayerObject>("Player");
 	if (pPlayer)
