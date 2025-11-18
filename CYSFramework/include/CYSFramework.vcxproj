@@ -143,6 +143,7 @@
   <ItemGroup>
     <ClCompile Include="Asset\Asset.cpp" />
     <ClCompile Include="Asset\AssetManager.cpp" />
+    <ClCompile Include="Asset\Material\Material.cpp" />
     <ClCompile Include="Asset\Mesh\Mesh.cpp" />
     <ClCompile Include="Asset\Mesh\MeshManager.cpp" />
     <ClCompile Include="Asset\Mesh\StaticMesh.cpp" />
@@ -205,6 +206,7 @@
   <ItemGroup>
     <ClInclude Include="Asset\Asset.h" />
     <ClInclude Include="Asset\AssetManager.h" />
+    <ClInclude Include="Asset\Material\Material.h" />
     <ClInclude Include="Asset\Mesh\Mesh.h" />
     <ClInclude Include="Asset\Mesh\MeshManager.h" />
     <ClInclude Include="Asset\Mesh\StaticMesh.h" />

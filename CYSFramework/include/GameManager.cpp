@@ -22,6 +22,11 @@
 
 #include "time.h"
 
+// 전역변수
+// GameInfo에 extern을 선언해준다.
+// 그럼 GameInfo를 받아간 파일들은 모두 gRootPath를 사용할 수 있다.
+TCHAR gRootPath[MAX_PATH];
+
 bool CGameManager::mLoop = true;
 
 CGameManager::CGameManager()

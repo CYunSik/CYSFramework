@@ -121,6 +121,9 @@
     <Filter Include="05.Scene\04.Asset">
       <UniqueIdentifier>{f93442a2-e280-4d80-b887-e4de418b54bd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="03.Asset\03.Material">
+      <UniqueIdentifier>{6a4ba59d-b263-45fd-9e0c-8816854c280b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -302,6 +305,9 @@
     </ClCompile>
     <ClCompile Include="Scene\SceneAssetManager.cpp">
       <Filter>05.Scene\04.Asset</Filter>
+    </ClCompile>
+    <ClCompile Include="Asset\Material\Material.cpp">
+      <Filter>03.Asset\03.Material</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -508,6 +514,9 @@
     </ClInclude>
     <ClInclude Include="Scene\SceneAssetManager.h">
       <Filter>05.Scene\04.Asset</Filter>
+    </ClInclude>
+    <ClInclude Include="Asset\Material\Material.h">
+      <Filter>03.Asset\03.Material</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

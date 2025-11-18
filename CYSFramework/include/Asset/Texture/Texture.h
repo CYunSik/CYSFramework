@@ -11,6 +11,7 @@ struct FTextureInfo
 	DirectX::ScratchImage* Image = nullptr;
 
 	// 쉐이더 리소스 뷰
+	// 쉐이더에 들어갈 데이터의 포맷을 만들어준다.
 	ID3D11ShaderResourceView* SRV = nullptr;
 	// 이미지 크기
 	unsigned int Width = 0;
@@ -29,11 +30,36 @@ struct FTextureInfo
 
 class CTexture : public CAsset
 {
+	friend class CTextureManager;
+
 private:
 	CTexture();
 	~CTexture();
 
 private:
-	FTextureInfo* mData;
+	std::vector<FTextureInfo*> mTextureList;
+
+public:
+	const FTextureInfo* GetTexture(int Index = 0)
+	{
+		return mTextureList[Index];
+	}
+
+	int GetTextureCount() const
+	{
+		return (int)mTextureList.size();
+	}
+
+public:
+	// 파일명
+	bool LoadTexture(const TCHAR* FileName);
+	bool LoadTextureFullPath(const TCHAR* FullPath);
+
+public:
+	void SetShader(int Register, int ShaderBufferType, int TextureIndex);
+	void ResetShader(int Register, int ShaderBufferType);
+
+protected:
+	bool CreateResourceView(int Index = 0);
 
 };
