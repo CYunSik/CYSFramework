@@ -183,6 +183,7 @@
     <ClCompile Include="Scene\CollisionQuadTree.cpp" />
     <ClCompile Include="Scene\Input.cpp" />
     <ClCompile Include="Scene\Scene.cpp" />
+    <ClCompile Include="Scene\SceneAssetManager.cpp" />
     <ClCompile Include="Scene\SceneCollision.cpp" />
     <ClCompile Include="Scene\SceneMain.cpp" />
     <ClCompile Include="Scene\SceneManager.cpp" />
@@ -248,6 +249,7 @@
     <ClInclude Include="Scene\CollisionQuadTree.h" />
     <ClInclude Include="Scene\Input.h" />
     <ClInclude Include="Scene\Scene.h" />
+    <ClInclude Include="Scene\SceneAssetManager.h" />
     <ClInclude Include="Scene\SceneCollision.h" />
     <ClInclude Include="Scene\SceneMain.h" />
     <ClInclude Include="Scene\SceneManager.h" />

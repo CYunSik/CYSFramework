@@ -118,6 +118,9 @@
     <Filter Include="03.Asset\02.Texture">
       <UniqueIdentifier>{774d85ea-037b-4735-b27b-f7fea9cb7e50}</UniqueIdentifier>
     </Filter>
+    <Filter Include="05.Scene\04.Asset">
+      <UniqueIdentifier>{f93442a2-e280-4d80-b887-e4de418b54bd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -296,6 +299,9 @@
     </ClCompile>
     <ClCompile Include="Asset\Texture\TextureManager.cpp">
       <Filter>03.Asset\02.Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\SceneAssetManager.cpp">
+      <Filter>05.Scene\04.Asset</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -499,6 +505,9 @@
     </ClInclude>
     <ClInclude Include="Asset\Texture\TextureManager.h">
       <Filter>03.Asset\02.Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\SceneAssetManager.h">
+      <Filter>05.Scene\04.Asset</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -2,7 +2,7 @@
 #include "../Component/StaticMeshComponent.h"
 #include "../Component/MovementComponent.h"
 #include "../Component/RotationComponent.h"
-#include "../Component/ColliderAABB2D.h"
+#include "../Component/ColliderOBB2D.h"
 #include "../Share/Log.h"
 
 CBulletObject::CBulletObject()
@@ -37,7 +37,7 @@ bool CBulletObject::Init()
 	CSceneObject::Init();
 
 	mRoot = CreateComponent<CStaticMeshComponent>();
-	mBody = CreateComponent<CColliderAABB2D>();
+	mBody = CreateComponent<CColliderOBB2D>();
 	mMovement = CreateComponent<CMovementComponent>();
 	mRotation = CreateComponent<CRotationComponent>();
 

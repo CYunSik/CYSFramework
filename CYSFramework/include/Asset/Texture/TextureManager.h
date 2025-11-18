@@ -15,5 +15,8 @@ private:
 
 public:
 	bool Init();
+
+	class CTexture* FindTexture(const std::string& Name);
+	void ReleaseTexture(class CAsset* Texture);
 };
 

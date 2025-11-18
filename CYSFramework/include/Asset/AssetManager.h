@@ -19,5 +19,6 @@ public:
 
 public:
 	bool Init();
+	void ReleaseAsset(class CAsset* Asset);
 };
 

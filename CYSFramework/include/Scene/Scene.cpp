@@ -2,6 +2,7 @@
 #include "Input.h"
 #include "CameraManager.h"
 #include "SceneCollision.h"
+#include "SceneAssetManager.h"
 
 CScene::CScene()
 {
@@ -12,6 +13,7 @@ CScene::~CScene()
 	SAFE_DELETE(mInput);
 	SAFE_DELETE(mCameraManager);
 	SAFE_DELETE(mCollision);
+	SAFE_DELETE(mAssetManager);
 }
 
 bool CScene::Init()
@@ -37,6 +39,14 @@ bool CScene::Init()
 	if (!mCollision->Init())
 	{
 		SAFE_DELETE(mCollision);
+		return false;
+	}
+
+	mAssetManager = new CSceneAssetManager;
+	mAssetManager->mScene = this;
+	if (!mAssetManager->Init())
+	{
+		SAFE_DELETE(mAssetManager);
 		return false;
 	}
 
@@ -66,6 +76,14 @@ bool CScene::Init(const char* FileName)
 	if (!mCollision->Init())
 	{
 		SAFE_DELETE(mCollision);
+		return false;
+	}
+
+	mAssetManager = new CSceneAssetManager;
+	mAssetManager->mScene = this;
+	if (!mAssetManager->Init())
+	{
+		SAFE_DELETE(mAssetManager);
 		return false;
 	}
 

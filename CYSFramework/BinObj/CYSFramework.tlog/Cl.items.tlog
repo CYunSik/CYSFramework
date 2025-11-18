@@ -40,6 +40,7 @@ E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Scene\CameraManager.cpp;
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Scene\CollisionQuadTree.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\CollisionQuadTree.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Scene\Input.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\Input.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Scene\Scene.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\Scene.obj
+E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Scene\SceneAssetManager.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\SceneAssetManager.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Scene\SceneCollision.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\SceneCollision.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Scene\SceneMain.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\SceneMain.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Scene\SceneManager.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\SceneManager.obj

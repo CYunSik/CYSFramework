@@ -249,3 +249,10 @@ struct FCollisionProfile
 	bool Enable = true;
 	ECollisionInteraction::Type Interaction[ECollisionChannel::End];
 };
+
+// 에셋 타입
+enum class EAssetType
+{
+	Mesh,
+	Texture
+};

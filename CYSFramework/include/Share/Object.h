@@ -26,6 +26,11 @@ public:
 		return mEnable;
 	}
 
+	int GetRefCount() const
+	{
+		return mRefCount;
+	}
+
 public:
 	virtual void AddRef();
 	virtual void Release();

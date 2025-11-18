@@ -22,6 +22,9 @@ protected:
 	// 충돌
 	class CSceneCollision* mCollision = nullptr;
 
+	// 에셋
+	class CSceneAssetManager* mAssetManager = nullptr;
+
 	// 오브젝트
 	// 리스트로 관리 : 중간 삽입 삭제가 용이하기 때문
 	std::list<CSharedPtr<class CSceneObject>> mObjList;
@@ -42,6 +45,11 @@ public:
 	class CSceneCollision* GetCollision() const
 	{
 		return mCollision;
+	}
+
+	class CSceneAssetManager* GetAssetManager() const
+	{
+		return mAssetManager;
 	}
 
 	const std::list<CSharedPtr<CSceneObject>>& GetObjectList() const

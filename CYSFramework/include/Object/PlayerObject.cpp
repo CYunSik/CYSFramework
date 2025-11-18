@@ -165,13 +165,13 @@ bool CPlayerObject::Init()
 
 void CPlayerObject::Update(float DeltaTime)
 {
-	// 1) 이동 이전 위치 저장
+	// 이동 이전 위치 저장
 	FVector3D PrevPos = GetWorldPosition();
 
-	// 2) 실제 이동 (MovementComponent → SetWorldPos)
+	// 실제 이동 (MovementComponent -> SetWorldPos)
 	CSceneObject::Update(DeltaTime);
 
-	// 3) 충돌이면 되돌리기
+	// 충돌이면 되돌리기
 	if (mBody->IsCollision())
 	{
 		SetWorldPos(PrevPos);

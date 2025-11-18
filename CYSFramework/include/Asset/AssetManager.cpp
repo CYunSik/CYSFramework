@@ -1,5 +1,6 @@
 #include "AssetManager.h"
 
+#include "Asset.h"
 #include "Mesh/MeshManager.h"
 #include "Texture/TextureManager.h"
 
@@ -39,4 +40,17 @@ bool CAssetManager::Init()
 
 
 	return true;
+}
+
+void CAssetManager::ReleaseAsset(CAsset* Asset)
+{
+	switch (Asset->GetAssetType())
+	{
+	case EAssetType::Mesh:
+		mMeshManager->ReleaseMesh(Asset);
+		break;
+	case EAssetType::Texture:
+		mTextureManager->ReleaseTexture(Asset);
+		break;
+	}
 }
