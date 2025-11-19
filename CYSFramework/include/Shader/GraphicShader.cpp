@@ -131,7 +131,7 @@ bool CGraphicShader::LoadPixelShader(const char* EntryName, const TCHAR* FileNam
 	// GetBufferSize -> 컴파일 된 코드의 크기
 	if (FAILED(CDevice::GetInst()->GetDevice()->CreatePixelShader(mPSBlob->GetBufferPointer(), mPSBlob->GetBufferSize(), nullptr, &mPS)))
 	{
-
+		return false;
 	}
 
 	return true;

@@ -28,5 +28,14 @@ public:
 	class CMesh* FindMesh(const std::string& Name);
 
 #pragma endregion
+
+#pragma region Texture
+
+	bool LoadTexture(const std::string& Name, const TCHAR* FileName);
+	bool LoadTextureFullPath(const std::string& Name, const TCHAR* FullPath);
+
+	class CTexture* FindTexture(const std::string& Name);
+
+#pragma endregion
 };
 

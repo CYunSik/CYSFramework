@@ -309,6 +309,9 @@
     <ClCompile Include="Asset\Material\Material.cpp">
       <Filter>03.Asset\03.Material</Filter>
     </ClCompile>
+    <ClCompile Include="Asset\Material\MaterialManager.cpp">
+      <Filter>03.Asset\03.Material</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameManager.h">
@@ -516,6 +519,9 @@
       <Filter>05.Scene\04.Asset</Filter>
     </ClInclude>
     <ClInclude Include="Asset\Material\Material.h">
+      <Filter>03.Asset\03.Material</Filter>
+    </ClInclude>
+    <ClInclude Include="Asset\Material\MaterialManager.h">
       <Filter>03.Asset\03.Material</Filter>
     </ClInclude>
   </ItemGroup>
