@@ -124,6 +124,9 @@
     <Filter Include="03.Asset\03.Material">
       <UniqueIdentifier>{6a4ba59d-b263-45fd-9e0c-8816854c280b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="04.Shader\03.ConstantBuffer\03.Material">
+      <UniqueIdentifier>{dd6856ba-0067-4440-91d2-dd921308caed}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -311,6 +314,12 @@
     </ClCompile>
     <ClCompile Include="Asset\Material\MaterialManager.cpp">
       <Filter>03.Asset\03.Material</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader\MaterialCBuffer.cpp">
+      <Filter>04.Shader\03.ConstantBuffer\03.Material</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector4D.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -523,6 +532,9 @@
     </ClInclude>
     <ClInclude Include="Asset\Material\MaterialManager.h">
       <Filter>03.Asset\03.Material</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader\MaterialCBuffer.h">
+      <Filter>04.Shader\03.ConstantBuffer\03.Material</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

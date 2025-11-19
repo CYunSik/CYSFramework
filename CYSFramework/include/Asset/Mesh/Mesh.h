@@ -20,6 +20,8 @@ struct FMeshSlot
 {
 	// 인덱스 버퍼 : 여러곳에서 사용할 수 있다.
 	FIndexBuffer IndexBuffer;
+
+	CSharedPtr<class CMaterial> Material;
 };
 
 
@@ -46,6 +48,17 @@ protected:
 		TRIANGLESTRIP	: 삼각형 끼리 연결 해준다. 게임에서는 트레일 같은거 만들때 사용한다. 궤적 만들때 사용한다.
 	*/
 	D3D11_PRIMITIVE_TOPOLOGY mPrimitive;
+
+public:
+	int GetSlotCount() const
+	{
+		return static_cast<int>(mMeshSlot.size());
+	}
+
+	const FMeshSlot* GetSlot(int SlotIndex) const
+	{
+		return mMeshSlot[SlotIndex];
+	}
 
 public:
 	/*
@@ -78,6 +91,7 @@ public:
 
 public:
 	void Render();
+	void Render(int SlotIndex);
 
 };
 

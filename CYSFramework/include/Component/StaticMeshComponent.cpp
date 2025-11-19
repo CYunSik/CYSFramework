@@ -4,6 +4,8 @@
 #include "../Shader/Shader.h"
 #include "../Shader/ShaderManager.h"
 #include "../Asset/AssetManager.h"
+#include "../Asset/Material/Material.h"
+#include "../Asset/Material/MaterialManager.h"
 #include "../Asset/Mesh/MeshManager.h"
 #include "../Scene/Scene.h"
 #include "../Scene/SceneAssetManager.h"
@@ -42,11 +44,90 @@ void CStaticMeshComponent::SetMesh(const std::string& Name)
 	// mMesh = (CStaticMesh*)CAssetManager::GetInst()->GetMeshManager()->FindMesh(Name);
 
 	mMesh = (CStaticMesh*)mScene->GetAssetManager()->FindMesh(Name);
+
+	mMaterialSlots.clear();
+	
+	// 메쉬가 가지고 있는 슬롯을 얻어와 채워준다.
+	if (mMesh)
+	{
+		int SlotCount = mMesh->GetSlotCount();
+
+		for (int i = 0; i < SlotCount; ++i)
+		{
+			const FMeshSlot* Slot = mMesh->GetSlot(i);
+			mMaterialSlots.emplace_back(Slot->Material);
+		}
+	}
 }
 
 void CStaticMeshComponent::SetMesh(CMesh* Mesh)
 {
 	mMesh = (CStaticMesh*)Mesh;
+
+	mMaterialSlots.clear();
+	// 메쉬가 가지고 있는 슬롯을 얻어와 채워준다.
+	if (mMesh)
+	{
+		int SlotCount = mMesh->GetSlotCount();
+
+		for (int i = 0; i < SlotCount; ++i)
+		{
+			const FMeshSlot* Slot = mMesh->GetSlot(i);
+			mMaterialSlots.emplace_back(Slot->Material);
+		}
+	}
+}
+
+// 머티리얼 변경
+void CStaticMeshComponent::SetMaterial(int SlotIndex, const std::string Name)
+{
+	CMaterial* Material = nullptr;
+
+	if (mScene)
+	{
+		Material = mScene->GetAssetManager()->FindMaterial(Name);
+	}
+	else
+	{
+		Material = CAssetManager::GetInst()->GetMaterialManager()->FindMaterial(Name);
+	}
+
+	if (Material)
+	{
+		Material = Material->Clone();
+	}
+
+	mMaterialSlots[SlotIndex] = Material;
+}
+
+void CStaticMeshComponent::SetMaterial(int SlotIndex, class CMaterial* Material)
+{
+	mMaterialSlots[SlotIndex] = Material;
+}
+
+void CStaticMeshComponent::AddTexture(int SlotIndex, class CTexture* Texture, int Register, int ShaderBufferType, int TextureIndex)
+{
+	mMaterialSlots[SlotIndex]->AddTexture(Texture, Register, ShaderBufferType, TextureIndex);
+}
+
+void CStaticMeshComponent::AddTexture(int SlotIndex, const std::string& Name, int Register, int ShaderBufferType, int TextureIndex)
+{
+	mMaterialSlots[SlotIndex]->AddTexture(Name, Register, ShaderBufferType, TextureIndex);
+}
+
+void CStaticMeshComponent::AddTexture(int SlotIndex, const std::string& Name, const TCHAR* FileName, int Register, int ShaderBufferType, int TextureIndex)
+{
+	mMaterialSlots[SlotIndex]->AddTexture(Name, FileName, Register, ShaderBufferType, TextureIndex);
+}
+
+void CStaticMeshComponent::SetBaseColor(int SlotIndex, float r, float g, float b, float a)
+{
+	mMaterialSlots[SlotIndex]->SetBaseColor(r, g, b, a);
+}
+
+void CStaticMeshComponent::SetOpacity(int SlotIndex, float Opacity)
+{
+	mMaterialSlots[SlotIndex]->SetOpacity(Opacity);
 }
 
 bool CStaticMeshComponent::Init()
@@ -93,6 +174,25 @@ void CStaticMeshComponent::Render()
 	CMeshComponent::Render();
 
 	mShader->SetShader();
+
+	// MaterialSlots
+	int SlotCount = mMesh->GetSlotCount();
+
+	for (int i = 0; i < SlotCount; ++i)
+	{
+		if (mMaterialSlots[i])
+		{
+			mMaterialSlots[i]->SetMaterial();
+		}
+
+		mMesh->Render(i);
+
+		if (mMaterialSlots[i])
+		{
+			mMaterialSlots[i]->ResetMaterial();
+		}
+	}
+
 	mMesh->Render();
 }
 

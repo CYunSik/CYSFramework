@@ -53,6 +53,7 @@ E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Shader\ConstantBuffer.cp
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Shader\ConstantBufferData.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\ConstantBufferData.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Shader\FrameMeshShader.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\FrameMeshShader.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Shader\GraphicShader.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\GraphicShader.obj
+E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Shader\MaterialCBuffer.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\MaterialCBuffer.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Shader\Shader.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\Shader.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Shader\ShaderManager.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\ShaderManager.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Shader\TransformCBuffer.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\TransformCBuffer.obj
@@ -60,3 +61,4 @@ E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Share\Log.cpp;E:\StudyCy
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Share\Object.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\Object.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Share\Timer.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\Timer.obj
 E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Vector3D.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\Vector3D.obj
+E:\StudyCys\Framework\CYSFramework\CYSFramework\include\Vector4D.cpp;E:\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\Vector4D.obj

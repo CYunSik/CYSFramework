@@ -1,122 +1,154 @@
 #include "Mesh.h"
 #include "../../Device.h"
 
+#include "../Material/Material.h"
+
 CMesh::CMesh()
 {
-    mAssetType = EAssetType::Mesh;
+	mAssetType = EAssetType::Mesh;
 }
 
 CMesh::~CMesh()
 {
-    size_t Size = mMeshSlot.size();
+	size_t Size = mMeshSlot.size();
 
-    for (size_t i = 0; i < Size; ++i)
-    {
-        SAFE_DELETE(mMeshSlot[i]);
-    }
+	for (size_t i = 0; i < Size; ++i)
+	{
+		SAFE_DELETE(mMeshSlot[i]);
+	}
 
 }
 
 bool CMesh::CreateMesh(void* VertexData, int Size, int Count, D3D11_USAGE VertexUsage, D3D11_PRIMITIVE_TOPOLOGY Primitive, void* IndexData, int IndexSize, int IndexCount, DXGI_FORMAT Fmt, D3D11_USAGE IndexUsage)
 {
-    mVertexBuffer.Size = Size;
-    mVertexBuffer.Count = Count;
-    mVertexBuffer.Data = new char[Size * Count];
-    memcpy(mVertexBuffer.Data, VertexData, Size * Count);
+	mVertexBuffer.Size = Size;
+	mVertexBuffer.Count = Count;
+	mVertexBuffer.Data = new char[Size * Count];
+	memcpy(mVertexBuffer.Data, VertexData, Size * Count);
 
-    // 정점 버퍼 만들기
-    if (!CreateBuffer(&mVertexBuffer.Buffer, D3D11_BIND_VERTEX_BUFFER, VertexData, Size, Count, VertexUsage))
-    {
-        return false;
-    }
+	// 정점 버퍼 만들기
+	if (!CreateBuffer(&mVertexBuffer.Buffer, D3D11_BIND_VERTEX_BUFFER, VertexData, Size, Count, VertexUsage))
+	{
+		return false;
+	}
 
-    mPrimitive = Primitive;
+	mPrimitive = Primitive;
 
-    // 인덱스 버퍼 만들기
-    if (IndexData)
-    {
-        FMeshSlot* Slot = new FMeshSlot;
-        Slot->IndexBuffer.Size = IndexSize;
-        Slot->IndexBuffer.Count = IndexCount;
-        Slot->IndexBuffer.Fmt = Fmt;
-        Slot->IndexBuffer.Data = new char[IndexSize * IndexCount];
-        memcpy(Slot->IndexBuffer.Data, IndexData, IndexSize * IndexCount);
+	// 인덱스 버퍼 만들기
+	if (IndexData)
+	{
+		FMeshSlot* Slot = new FMeshSlot;
+		Slot->IndexBuffer.Size = IndexSize;
+		Slot->IndexBuffer.Count = IndexCount;
+		Slot->IndexBuffer.Fmt = Fmt;
+		Slot->IndexBuffer.Data = new char[IndexSize * IndexCount];
+		memcpy(Slot->IndexBuffer.Data, IndexData, IndexSize * IndexCount);
 
-        if (!CreateBuffer(&Slot->IndexBuffer.Buffer, D3D11_BIND_INDEX_BUFFER, IndexData, IndexSize, IndexCount, IndexUsage))
-        {
-            SAFE_DELETE(Slot);
-            return false;
-        }
-        mMeshSlot.push_back(Slot);
-    }
+		if (!CreateBuffer(&Slot->IndexBuffer.Buffer, D3D11_BIND_INDEX_BUFFER, IndexData, IndexSize, IndexCount, IndexUsage))
+		{
+			SAFE_DELETE(Slot);
+			return false;
+		}
+		mMeshSlot.push_back(Slot);
+	}
 
 
-    return true;
+	return true;
 }
 
 bool CMesh::CreateBuffer(ID3D11Buffer** Buffer, D3D11_BIND_FLAG Flag, void* Data, int Size, int Count, D3D11_USAGE Usage)
 {
-    // 버퍼 사용 설명서 만들어서
-    // 설명서 대로 만들어주세요
-    // 디바이스에 요청하는 것
-    // 버퍼 만드는 용도이다
-    D3D11_BUFFER_DESC BufferDesc = {};
+	// 버퍼 사용 설명서 만들어서
+	// 설명서 대로 만들어주세요
+	// 디바이스에 요청하는 것
+	// 버퍼 만드는 용도이다
+	D3D11_BUFFER_DESC BufferDesc = {};
 
-    BufferDesc.ByteWidth = Size * Count;
-   
-    if (Usage == D3D11_USAGE_DYNAMIC)
-    {
-        BufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
-    }
-    else if (Usage == D3D11_USAGE_STAGING)
-    {
-        BufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE | D3D11_CPU_ACCESS_READ;
-    }
-    BufferDesc.BindFlags = Flag;
-    BufferDesc.Usage = Usage;
+	BufferDesc.ByteWidth = Size * Count;
 
-    // 버퍼를 생성한다.
-    D3D11_SUBRESOURCE_DATA BufferData = {};
-    BufferData.pSysMem = Data;
+	if (Usage == D3D11_USAGE_DYNAMIC)
+	{
+		BufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+	}
+	else if (Usage == D3D11_USAGE_STAGING)
+	{
+		BufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE | D3D11_CPU_ACCESS_READ;
+	}
+	BufferDesc.BindFlags = Flag;
+	BufferDesc.Usage = Usage;
 
-    if (FAILED(CDevice::GetInst()->GetDevice()->CreateBuffer(&BufferDesc, &BufferData, Buffer)))
-    {
-        return false;
-    }
+	// 버퍼를 생성한다.
+	D3D11_SUBRESOURCE_DATA BufferData = {};
+	BufferData.pSysMem = Data;
+
+	if (FAILED(CDevice::GetInst()->GetDevice()->CreateBuffer(&BufferDesc, &BufferData, Buffer)))
+	{
+		return false;
+	}
 
 
-    return true;
+	return true;
 }
 
 void CMesh::Render()
 {
-    // 그려줄 도형 타입을 지정해준다.
-    CDevice::GetInst()->GetContext()->IASetPrimitiveTopology(mPrimitive);
+	// 그려줄 도형 타입을 지정해준다.
+	CDevice::GetInst()->GetContext()->IASetPrimitiveTopology(mPrimitive);
 
-    // 버텍스 버퍼 세팅 해준다.
-    UINT stride = mVertexBuffer.Size;
-    UINT Offset = 0;
-    CDevice::GetInst()->GetContext()->IASetVertexBuffers(0, 1, &mVertexBuffer.Buffer, &stride, &Offset);
+	// 버텍스 버퍼 세팅 해준다.
+	UINT stride = mVertexBuffer.Size;
+	UINT Offset = 0;
+	CDevice::GetInst()->GetContext()->IASetVertexBuffers(0, 1, &mVertexBuffer.Buffer, &stride, &Offset);
 
-    // 인덱스 버퍼 유무 판단
-    size_t SlotSize = mMeshSlot.size();
+	// 인덱스 버퍼 유무 판단
+	size_t SlotSize = mMeshSlot.size();
 
-    if (SlotSize > 0)
-    {
-        for (size_t i = 0; i < SlotSize; ++i)
-        {
-            CDevice::GetInst()->GetContext()->IASetIndexBuffer(mMeshSlot[i]->IndexBuffer.Buffer, mMeshSlot[i]->IndexBuffer.Fmt, 0);
+	if (SlotSize > 0)
+	{
+		for (size_t i = 0; i < SlotSize; ++i)
+		{
+			CDevice::GetInst()->GetContext()->IASetIndexBuffer(mMeshSlot[i]->IndexBuffer.Buffer, mMeshSlot[i]->IndexBuffer.Fmt, 0);
 
-            // 인덱스 참고하여 화면에 도형을 그린다.
-            // 인덱스 갯수, 인덱스 위치, 버텍스의 시작 위치
-            CDevice::GetInst()->GetContext()->DrawIndexed(mMeshSlot[i]->IndexBuffer.Count, 0, 0);
-        }
-    }
-    else
-    {
-        // 인덱스 버퍼가 없으므로 그냥 그려줄 것이다.
-        CDevice::GetInst()->GetContext()->IASetIndexBuffer(nullptr, DXGI_FORMAT_UNKNOWN, 0);
-        // 정점만 출력해라
-        CDevice::GetInst()->GetContext()->Draw(mVertexBuffer.Count, 0);
-    }
+			// 인덱스 참고하여 화면에 도형을 그린다.
+			// 인덱스 갯수, 인덱스 위치, 버텍스의 시작 위치
+			CDevice::GetInst()->GetContext()->DrawIndexed(mMeshSlot[i]->IndexBuffer.Count, 0, 0);
+		}
+	}
+	else
+	{
+		// 인덱스 버퍼가 없으므로 그냥 그려줄 것이다.
+		CDevice::GetInst()->GetContext()->IASetIndexBuffer(nullptr, DXGI_FORMAT_UNKNOWN, 0);
+		// 정점만 출력해라
+		CDevice::GetInst()->GetContext()->Draw(mVertexBuffer.Count, 0);
+	}
+}
+
+void CMesh::Render(int SlotIndex)
+{
+	// 그려줄 도형 타입을 지정해준다.
+	CDevice::GetInst()->GetContext()->IASetPrimitiveTopology(mPrimitive);
+
+	// 버텍스 버퍼 세팅 해준다.
+	UINT stride = mVertexBuffer.Size;
+	UINT Offset = 0;
+	CDevice::GetInst()->GetContext()->IASetVertexBuffers(0, 1, &mVertexBuffer.Buffer, &stride, &Offset);
+
+	// 인덱스 버퍼 유무 판단
+	size_t SlotSize = mMeshSlot.size();
+
+	if (SlotSize > 0)
+	{
+		CDevice::GetInst()->GetContext()->IASetIndexBuffer(mMeshSlot[SlotIndex]->IndexBuffer.Buffer, mMeshSlot[SlotIndex]->IndexBuffer.Fmt, 0);
+
+		// 인덱스 참고하여 화면에 도형을 그린다.
+		// 인덱스 갯수, 인덱스 위치, 버텍스의 시작 위치
+		CDevice::GetInst()->GetContext()->DrawIndexed(mMeshSlot[SlotIndex]->IndexBuffer.Count, 0, 0);
+	}
+	else
+	{
+		// 인덱스 버퍼가 없으므로 그냥 그려줄 것이다.
+		CDevice::GetInst()->GetContext()->IASetIndexBuffer(nullptr, DXGI_FORMAT_UNKNOWN, 0);
+		// 정점만 출력해라
+		CDevice::GetInst()->GetContext()->Draw(mVertexBuffer.Count, 0);
+	}
 }

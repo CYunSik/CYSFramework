@@ -196,6 +196,7 @@
     <ClCompile Include="Shader\ConstantBufferData.cpp" />
     <ClCompile Include="Shader\FrameMeshShader.cpp" />
     <ClCompile Include="Shader\GraphicShader.cpp" />
+    <ClCompile Include="Shader\MaterialCBuffer.cpp" />
     <ClCompile Include="Shader\Shader.cpp" />
     <ClCompile Include="Shader\ShaderManager.cpp" />
     <ClCompile Include="Shader\TransformCBuffer.cpp" />
@@ -203,6 +204,7 @@
     <ClCompile Include="Share\Object.cpp" />
     <ClCompile Include="Share\Timer.cpp" />
     <ClCompile Include="Vector3D.cpp" />
+    <ClCompile Include="Vector4D.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Asset\Asset.h" />
@@ -265,6 +267,7 @@
     <ClInclude Include="Shader\ConstantBufferData.h" />
     <ClInclude Include="Shader\FrameMeshShader.h" />
     <ClInclude Include="Shader\GraphicShader.h" />
+    <ClInclude Include="Shader\MaterialCBuffer.h" />
     <ClInclude Include="Shader\Shader.h" />
     <ClInclude Include="Shader\ShaderManager.h" />
     <ClInclude Include="Shader\TransformCBuffer.h" />

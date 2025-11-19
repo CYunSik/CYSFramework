@@ -93,8 +93,12 @@ bool CShaderManager::Init()
 
 	// 우리가 사용할 상수버퍼도 만들어둔다.
 	CreateConstantBuffer("Transform", sizeof(FTransformCBufferInfo), 0, EShaderBufferType::Vertex);
+
+	// 머티리얼 용 상수버퍼
+	CreateConstantBuffer("Material", sizeof(FMaterialCBufferInfo), 1, EShaderBufferType::Pixel);
+
 	// 충돌체에 사용할 상수버퍼
-	CreateConstantBuffer("Collider", sizeof(FColliderCBufferInfo), 1, EShaderBufferType::Pixel);
+	CreateConstantBuffer("Collider", sizeof(FColliderCBufferInfo), 2, EShaderBufferType::Pixel);
 
 	return true;
 }

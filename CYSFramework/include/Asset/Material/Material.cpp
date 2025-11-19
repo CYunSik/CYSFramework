@@ -3,21 +3,115 @@
 #include "../AssetManager.h"
 #include "../../Scene/Scene.h"
 #include "../../Scene/SceneAssetManager.h"
+#include "../../Shader/MaterialCBuffer.h"
 #include "../Texture/Texture.h"
 #include "../../Shader/ShaderManager.h"
 #include "../Texture/TextureManager.h"
+#include "../../Device.h"
+
+ID3D11SamplerState* CMaterial::mSampler[ETextureSamplerType::End];
 
 CMaterial::CMaterial()
 {
+	mCBuffer = new CMaterialCBuffer;
+	mCBuffer->Init();
+}
+
+CMaterial::CMaterial(const CMaterial& Material)
+{
+	mCBuffer = new CMaterialCBuffer;
+	mCBuffer->Init();
+
+	mTextureList.clear();
+
+	mPS = Material.mPS;
+	mBaseColor = Material.mBaseColor;
+	mOpacity = Material.mOpacity;
+	mSamplerType = Material.mSamplerType;
+
+	mCBuffer->SetBaseColor(mBaseColor);
+	mCBuffer->SetOpacity(mOpacity);
+
+	size_t Size = Material.mTextureList.size();
+
+	for (size_t i = 0; i < Size; ++i)
+	{
+		FMaterialTextureInfo* Info = new FMaterialTextureInfo;
+		*Info = *Material.mTextureList[i];
+		mTextureList.emplace_back(Info);
+	}
+
+	if (!mTextureList.empty())
+	{
+		// 텍스쳐가 사용하는 상수버퍼가 있으면 여기에 작업
+		mCBuffer->SetTextureSize(mTextureList[0]->Texture->GetTexture(0)->Width, mTextureList[0]->Texture->GetTexture(0)->Height);
+	}
+
+	mRefCount = 0;
 }
 
 CMaterial::~CMaterial()
 {
+	SAFE_DELETE(mCBuffer);
+
 	size_t Size = mTextureList.size();
 
 	for (size_t i = 0; i < Size; ++i)
 	{
 		SAFE_DELETE(mTextureList[i]);
+	}
+}
+
+void CMaterial::SetSampler(ETextureSamplerType::Type Type)
+{
+	// 디스크립션
+	D3D11_SAMPLER_DESC Desc = {};
+
+	// MIN : 이미지 축소
+	// MAG : 이미지 확대
+	// MIP : MinMag을 사용하겠다.
+	switch (Type)
+	{
+	case ETextureSamplerType::Point:
+		Desc.Filter = D3D11_FILTER_MIN_MAG_MIP_POINT;
+		break;
+	case ETextureSamplerType::Linear:
+		Desc.Filter = D3D11_FILTER_MIN_MAG_MIP_LINEAR;
+		break;
+	case ETextureSamplerType::Anisotropic:
+		Desc.Filter = D3D11_FILTER_ANISOTROPIC;
+		break;
+	}
+
+	/*
+		WRAP	: UV 0 ~ 1을 벗어나면 다시 0 ~ 1 사이로 반복한다.
+		MIRROR	: UV 0 ~ 1을 벗어나면 거울에 비친것처럼 반전되어 반복한다.
+		CLAMP	: UV 0 ~ 1을 벗어나면 가장자리 픽셀 색상으로 고정된다.
+	*/
+	Desc.AddressU = D3D11_TEXTURE_ADDRESS_WRAP;
+	Desc.AddressV = D3D11_TEXTURE_ADDRESS_WRAP;
+	Desc.AddressW = D3D11_TEXTURE_ADDRESS_WRAP;
+
+	// LOD 사용시 필요하다. (LOD : 멀어질수록 or 가까워질수록 뚜렷해질건지)
+	// 사용안할거라 필요없다.
+	Desc.MipLODBias = 0.f;
+	Desc.MaxAnisotropy = 1;
+	// 샘플링 비교 함수
+	Desc.ComparisonFunc = D3D11_COMPARISON_NEVER;
+	Desc.MinLOD = -FLT_MAX;
+	Desc.MaxLOD = FLT_MAX;
+
+	if (FAILED(CDevice::GetInst()->GetDevice()->CreateSamplerState(&Desc, &mSampler[Type])))
+	{
+		return;
+	}
+}
+
+void CMaterial::DestroySampler()
+{
+	for (int i = 0; i < ETextureSamplerType::End; ++i)
+	{
+		SAFE_RELEASE(mSampler[i]);
 	}
 }
 
@@ -33,7 +127,7 @@ void CMaterial::AddTexture(class CTexture* Texture, int Register, int ShaderBuff
 	TexInfo->TextureIndex = TextureIndex;
 
 	// 텍스쳐가 사용하는 상수버퍼가 있으면 여기에 작업
-
+	mCBuffer->SetTextureSize(TexInfo->Texture->GetTexture(TextureIndex)->Width, TexInfo->Texture->GetTexture(TextureIndex)->Height);
 
 	mTextureList.emplace_back(TexInfo);
 }
@@ -61,7 +155,7 @@ void CMaterial::AddTexture(const std::string& Name, int Register, int ShaderBuff
 	TexInfo->TextureIndex = TextureIndex;
 
 	// 텍스쳐가 사용하는 상수버퍼가 있으면 여기에 작업
-
+	mCBuffer->SetTextureSize(TexInfo->Texture->GetTexture(TextureIndex)->Width, TexInfo->Texture->GetTexture(TextureIndex)->Height);
 
 	mTextureList.emplace_back(TexInfo);
 }
@@ -101,7 +195,7 @@ void CMaterial::AddTexture(const std::string& Name, const TCHAR* FileName, int R
 	TexInfo->TextureIndex = TextureIndex;
 
 	// 텍스쳐가 사용하는 상수버퍼가 있으면 여기에 작업
-
+	mCBuffer->SetTextureSize(TexInfo->Texture->GetTexture(TextureIndex)->Width, TexInfo->Texture->GetTexture(TextureIndex)->Height);
 
 	mTextureList.emplace_back(TexInfo);
 }
@@ -134,4 +228,63 @@ void CMaterial::SetPixelShader(const std::string& Name, const char* EntryName, c
 	}
 
 	mPS = mps->PS;
+}
+
+void CMaterial::ClearShader()
+{
+	mPS = nullptr;
+}
+
+void CMaterial::SetBaseColor(const FVector4D& Color)
+{
+	mBaseColor = Color;
+	mCBuffer->SetBaseColor(Color);
+}
+
+void CMaterial::SetBaseColor(float r, float g, float b, float a)
+{
+	mBaseColor = FVector4D(r, g, b, a);
+	mCBuffer->SetBaseColor(mBaseColor);
+}
+
+void CMaterial::SetOpacity(float Opacity)
+{
+	mOpacity = Opacity;
+	mCBuffer->SetOpacity(Opacity);
+}
+
+// 그리기전에 해당 머티리얼 세팅으로 데이터를 넣어준다.
+void CMaterial::SetMaterial()
+{
+	// 상수버퍼 세팅
+	mCBuffer->UpdateBuffer();
+
+	// 샘플러 세팅
+	CDevice::GetInst()->GetContext()->PSSetSamplers(0, 1, &mSampler[mSamplerType]);
+
+	// 픽셀쉐이더 세팅
+	if (mPS)
+	{
+		CDevice::GetInst()->GetContext()->PSSetShader(mPS, nullptr, 0);
+	}
+
+	size_t TextCount = mTextureList.size();
+	for (size_t i = 0; i < TextCount; ++i)
+	{
+		mTextureList[i]->Texture->SetShader(mTextureList[i]->Register, mTextureList[i]->ShaderBufferType, mTextureList[i]->TextureIndex);
+	}
+}
+
+void CMaterial::ResetMaterial()
+{
+	size_t TextCount = mTextureList.size();
+	for (size_t i = 0; i < TextCount; ++i)
+	{
+		mTextureList[i]->Texture->ResetShader(mTextureList[i]->Register, mTextureList[i]->ShaderBufferType);
+	}
+}
+
+CMaterial* CMaterial::Clone()
+{
+	return new CMaterial(*this);
 }

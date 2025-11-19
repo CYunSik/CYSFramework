@@ -37,5 +37,12 @@ public:
 	class CTexture* FindTexture(const std::string& Name);
 
 #pragma endregion
+
+#pragma region Material
+
+	bool CreateMaterial(const std::string& Name);
+	class CMaterial* FindMaterial(const std::string& Name);
+
+#pragma endregion
 };
 

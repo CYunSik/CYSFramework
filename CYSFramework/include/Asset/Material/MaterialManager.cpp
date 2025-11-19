@@ -7,10 +7,14 @@ CMaterialManager::CMaterialManager()
 
 CMaterialManager::~CMaterialManager()
 {
+	CMaterial::DestroySampler();
 }
 
 bool CMaterialManager::Init()
 {
+	CMaterial::SetSampler(ETextureSamplerType::Point);
+	CMaterial::SetSampler(ETextureSamplerType::Linear);
+	CMaterial::SetSampler(ETextureSamplerType::Anisotropic);
 
 	return true;
 }
