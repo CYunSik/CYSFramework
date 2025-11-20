@@ -38,6 +38,10 @@ E:\CYS\StudyCys\Framework\CYSFramework\CYSFramework\include\Object\TalonR.cpp;E:
 E:\CYS\StudyCys\Framework\CYSFramework\CYSFramework\include\Object\TornadoBullet.cpp;E:\CYS\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\TornadoBullet.obj
 E:\CYS\StudyCys\Framework\CYSFramework\CYSFramework\include\Object\ZaryaBullet.cpp;E:\CYS\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\ZaryaBullet.obj
 E:\CYS\StudyCys\Framework\CYSFramework\CYSFramework\include\ProfileManager.cpp;E:\CYS\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\ProfileManager.obj
+E:\CYS\StudyCys\Framework\CYSFramework\CYSFramework\include\Render\BlendState.cpp;E:\CYS\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\BlendState.obj
+E:\CYS\StudyCys\Framework\CYSFramework\CYSFramework\include\Render\RenderManager.cpp;E:\CYS\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\RenderManager.obj
+E:\CYS\StudyCys\Framework\CYSFramework\CYSFramework\include\Render\RenderState.cpp;E:\CYS\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\RenderState.obj
+E:\CYS\StudyCys\Framework\CYSFramework\CYSFramework\include\Render\RenderStateManager.cpp;E:\CYS\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\RenderStateManager.obj
 E:\CYS\StudyCys\Framework\CYSFramework\CYSFramework\include\Scene\CameraManager.cpp;E:\CYS\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\CameraManager.obj
 E:\CYS\StudyCys\Framework\CYSFramework\CYSFramework\include\Scene\CollisionQuadTree.cpp;E:\CYS\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\CollisionQuadTree.obj
 E:\CYS\StudyCys\Framework\CYSFramework\CYSFramework\include\Scene\Input.cpp;E:\CYS\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\Input.obj

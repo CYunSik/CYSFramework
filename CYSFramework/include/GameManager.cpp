@@ -18,6 +18,10 @@
 #include "Shader/TransformCBuffer.h"
 #include "Scene/SceneManager.h"
 
+#include "Render/RenderManager.h"
+#include "Render/RenderState.h"
+#include "Render/RenderStateManager.h"
+
 #include "ProfileManager.h"
 
 #include "time.h"
@@ -71,8 +75,14 @@ bool CGameManager::Init(HINSTANCE hInst)
 		return false;
 	}
 
-	// Shader매니져 초기화
+	// Shader 매니져 초기화
 	if (!CShaderManager::GetInst()->Init())
+	{
+		return false;
+	}
+
+	// Render 매니져
+	if (!CRenderManager::GetInst()->Init())
 	{
 		return false;
 	}
@@ -182,8 +192,23 @@ void CGameManager::Render(float DeltaTime)
 	CDevice::GetInst()->ClearDepthStencill(1.f, 0);
 	CDevice::GetInst()->SetTarget();
 
+	// 출력
+	// 블렌스테이트 세팅
+	CRenderState* AlphaBlend = CRenderManager::GetInst()->GetStateManager()->FindState("AlphaBlend");
+
+	if (AlphaBlend)
+	{
+		AlphaBlend->SetState();
+	}
+
 	// 준비된 도화지에 출력
 	CSceneManager::GetInst()->Render();
+
+	// 블렌드 스테이트 회수
+	if (AlphaBlend)
+	{
+		AlphaBlend->ResetState();
+	}
 
 	//static CTransformCBuffer buffer;
 	//static FVector3D Pos, Rot;

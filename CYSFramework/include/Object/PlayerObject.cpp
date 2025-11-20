@@ -57,7 +57,7 @@ bool CPlayerObject::Init()
 	mCamera = CreateComponent<CCameraComponent>();
 
 	mRoot->SetMesh("CenterTexRect");
-	mRoot->AddTexture(0, "BonoBono", TEXT("Texture/spr_krisb_idle_0.png"), 0);
+	mRoot->AddTexture(0, "BonoBono", TEXT("Texture/BonoBono.png"), 0);
 	mRoot->SetOpacity(0, 0.5f);
 	//mRoot->SetShader("ColorMeshShader");
 
@@ -193,16 +193,15 @@ bool CPlayerObject::Init()
 void CPlayerObject::Update(float DeltaTime)
 {
 	// 이동 이전 위치 저장
-	FVector3D PrevPos = GetWorldPosition();
+	//FVector3D PrevPos = GetWorldPosition();
 
-	// 실제 이동 (MovementComponent -> SetWorldPos)
 	CSceneObject::Update(DeltaTime);
 
 	// 충돌이면 되돌리기
-	if (mBody->IsCollision())
-	{
-		SetWorldPos(PrevPos);
-	}
+	//if (mBody->IsCollision())
+	//{
+	//	SetWorldPos(PrevPos);
+	//}
 
 	// 위성을 돌려주면 된다.
 	FVector3D Rot = mRotationPivot->GetRelativeRotation();

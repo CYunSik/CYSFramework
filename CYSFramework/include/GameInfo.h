@@ -272,3 +272,14 @@ enum class EAssetType
 	Mesh,
 	Texture
 };
+
+// 렌더 스테이트 타입
+namespace ERenderStateType
+{
+	enum Type
+	{
+		Blend,
+		Rasterizer,
+		DepthStencil
+	};
+}
