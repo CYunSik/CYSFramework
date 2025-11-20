@@ -2,6 +2,7 @@
 #include "ColorMeshShader.h"
 #include "FrameMeshShader.h"
 #include "ConstantBuffer.h"
+#include "StaticMeshShader.h"
 
 #include "../Device.h"
 
@@ -90,6 +91,13 @@ bool CShaderManager::Init()
 {
 	CreateShader<CColorMeshShader>("ColorMeshShader");
 	CreateShader<CFrameMeshShader>("FrameMeshShader");
+	CreateShader<CStaticMeshShader>("StaticMeshShader");
+
+	// 전용 픽셀쉐이더만 만들어둔다.
+	if (!LoadPixelShader("DefaultMaterialShader", "DefaultMaterialPS", TEXT("Mesh.fx")))
+	{
+		return false;
+	}
 
 	// 우리가 사용할 상수버퍼도 만들어둔다.
 	CreateConstantBuffer("Transform", sizeof(FTransformCBufferInfo), 0, EShaderBufferType::Vertex);

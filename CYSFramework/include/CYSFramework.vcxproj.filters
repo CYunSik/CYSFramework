@@ -127,6 +127,12 @@
     <Filter Include="04.Shader\03.ConstantBuffer\03.Material">
       <UniqueIdentifier>{dd6856ba-0067-4440-91d2-dd921308caed}</UniqueIdentifier>
     </Filter>
+    <Filter Include="04.Shader\02.Shader Class\03.StaticMesh">
+      <UniqueIdentifier>{ef81b7d4-5869-4b2b-855e-e36c06c0d73a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="08.Render">
+      <UniqueIdentifier>{b765ab30-a799-460f-a3c3-741b97a74f84}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -320,6 +326,9 @@
     </ClCompile>
     <ClCompile Include="Vector4D.cpp">
       <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader\StaticMeshShader.cpp">
+      <Filter>04.Shader\02.Shader Class\03.StaticMesh</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -536,6 +545,9 @@
     <ClInclude Include="Shader\MaterialCBuffer.h">
       <Filter>04.Shader\03.ConstantBuffer\03.Material</Filter>
     </ClInclude>
+    <ClInclude Include="Shader\StaticMeshShader.h">
+      <Filter>04.Shader\02.Shader Class\03.StaticMesh</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="CYSFramework.rc">
@@ -552,6 +564,9 @@
       <Filter>04.Shader\01.HLSL</Filter>
     </FxCompile>
     <FxCompile Include="..\Bin\Shader\Share.fx">
+      <Filter>04.Shader\01.HLSL</Filter>
+    </FxCompile>
+    <FxCompile Include="..\Bin\Shader\Mesh.fx">
       <Filter>04.Shader\01.HLSL</Filter>
     </FxCompile>
   </ItemGroup>

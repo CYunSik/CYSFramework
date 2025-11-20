@@ -13,8 +13,8 @@ CAssetManager::CAssetManager()
 CAssetManager::~CAssetManager()
 {
 	SAFE_DELETE(mMeshManager);
-	SAFE_DELETE(mTextureManager);
 	SAFE_DELETE(mMaterialManager);
+	SAFE_DELETE(mTextureManager);
 }
 
 bool CAssetManager::Init()
@@ -40,6 +40,15 @@ bool CAssetManager::Init()
 		}
 	}
 
+	// 머티리얼
+	mMaterialManager = new CMaterialManager;
+
+	if (!mMaterialManager->Init())
+	{
+		SAFE_DELETE(mMaterialManager);
+		return false;
+	}
+
 	// 메쉬를 관리
 	mMeshManager = new CMeshManager;
 
@@ -55,15 +64,6 @@ bool CAssetManager::Init()
 	if (!mTextureManager->Init())
 	{
 		SAFE_DELETE(mTextureManager);
-		return false;
-	}
-
-	// 머티리얼
-	mMaterialManager = new CMaterialManager;
-
-	if (!mMaterialManager->Init())
-	{
-		SAFE_DELETE(mMaterialManager);
 		return false;
 	}
 

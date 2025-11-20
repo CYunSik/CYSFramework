@@ -18,6 +18,10 @@ protected:
 	CSharedPtr<class CColliderOBB2D> mBody;
 	//CSharedPtr<class CColliderLine2D> mLine;
 
+	CSharedPtr<class CStaticMeshComponent> mPlayer2;
+	CSharedPtr<class CStaticMeshComponent> mPlayer3;
+	std::vector<FVector3D> mPlayerTrail;
+
 	CSharedPtr<class CSceneComponent> mRotationPivot;
 	CSharedPtr<class CStaticMeshComponent> mSub;
 	// 위성 반대편 방향에 하나더 출력
@@ -54,9 +58,16 @@ public:
 	virtual void Update(float DeltaTime);
 	void Damage(float Damage);
 
+	const std::vector<FVector3D>& GetTrail() const
+	{
+		return mPlayerTrail;
+	}
+
 private:
 	void MoveUp(float DeltaTime);
 	void MoveDown(float DeltaTime);
+	void MoveLeft(float DeltaTime);
+	void MoveRight(float DeltaTime);
 
 	void RotationZ(float DeltaTime);
 	void RotationZInv(float DeltaTime);

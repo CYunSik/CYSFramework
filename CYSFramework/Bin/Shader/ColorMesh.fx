@@ -22,7 +22,7 @@ struct VS_Output_Color
 {
     // 위치 값이 float4가 되는 이유 : 투영 단계에서 w값도 포함되어야 하기 때문이다.
     // SV를 붙여줘야 레스터라이즈 단계에서 얘가 위치 값이다. 를 인식한다.
-    // 만약 SV를 안 붙이고 일반 POSITION이라고 한다면 레스터라이즈 단계에서 이게 사용할 위치값인지 아닌지 모른다.
+    // 만약 SV(SystemValue)를 안 붙이고 일반 POSITION이라고 한다면 레스터라이즈 단계에서 이게 사용할 위치값인지 아닌지 모른다.
     float4 Pos : SV_POSITION;    // SV_POSITION 0번 레지스터
     float4 Color : COLOR;        // COLOR 0번 레지스터
 };

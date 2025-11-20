@@ -56,8 +56,10 @@ bool CPlayerObject::Init()
 	mRotation = CreateComponent<CRotationComponent>();
 	mCamera = CreateComponent<CCameraComponent>();
 
-	mRoot->SetMesh("CenterRect");
-	mRoot->SetShader("ColorMeshShader");
+	mRoot->SetMesh("CenterTexRect");
+	mRoot->AddTexture(0, "BonoBono", TEXT("Texture/spr_krisb_idle_0.png"), 0);
+	mRoot->SetOpacity(0, 0.5f);
+	//mRoot->SetShader("ColorMeshShader");
 
 	mRoot->SetWorldPos(0.f, 0.f, 0.f);
 	mRoot->SetWorldScale(100.f, 100.f, 1.f);
@@ -67,6 +69,25 @@ bool CPlayerObject::Init()
 	mBody->SetBoxSize(100.f, 100.f);
 	//mBody->SetRadius(50.f);
 	mBody->SetCollisionProfile("Player");
+
+	// 플레이어 2 플레이어 3
+	//mPlayer2 = CreateComponent<CStaticMeshComponent>();
+	//mPlayer3 = CreateComponent<CStaticMeshComponent>();
+
+	//mPlayer2->SetMesh("CenterRect");
+	//mPlayer2->SetShader("ColorMeshShader");
+
+	//mPlayer3->SetMesh("CenterRect");
+	//mPlayer3->SetShader("ColorMeshShader");
+
+	//mPlayer2->SetRelativePos(0.f, -120.f, 0.f);
+	//mPlayer2->SetRelativeScale(1.f, 1.f, 1.f);
+
+	//mPlayer3->SetRelativePos(0.f, -240.f, 0.f);
+	//mPlayer3->SetRelativeScale(1.f, 1.f, 1.f);
+
+	//mRoot->AddChild(mPlayer2);
+	//mRoot->AddChild(mPlayer3);
 
 	//mBody->AddChild(mLine);
 	//mLine->SetCollisionProfile("Player");
@@ -110,11 +131,17 @@ bool CPlayerObject::Init()
 	mScene->GetInput()->AddBindKey("MoveDown", 'S');
 	mScene->GetInput()->AddBindFunction("MoveDown", EInputType::Hold, this, &CPlayerObject::MoveDown);
 
+	mScene->GetInput()->AddBindKey("MoveLeft", 'A');
+	mScene->GetInput()->AddBindFunction("MoveLeft", EInputType::Hold, this, &CPlayerObject::MoveLeft);
+
+	mScene->GetInput()->AddBindKey("MoveRight", 'D');
+	mScene->GetInput()->AddBindFunction("MoveRight", EInputType::Hold, this, &CPlayerObject::MoveRight);
+
 	// 회전
-	mScene->GetInput()->AddBindKey("RotationZ", 'D');
+	mScene->GetInput()->AddBindKey("RotationZ", 'E');
 	mScene->GetInput()->AddBindFunction("RotationZ", EInputType::Hold, this, &CPlayerObject::RotationZ);
 
-	mScene->GetInput()->AddBindKey("RotationInv", 'A');
+	mScene->GetInput()->AddBindKey("RotationInv", 'Q');
 	mScene->GetInput()->AddBindFunction("RotationInv", EInputType::Hold, this, &CPlayerObject::RotationZInv);
 
 	// 총알 발사
@@ -220,6 +247,16 @@ void CPlayerObject::MoveDown(float DeltaTime)
 	//mRootComponent->SetWorldPos(Pos + Dir * DeltaTime * -3.f);
 
 	mMovement->AddMove(mRootComponent->GetAxis(EAxis::Y) * -1);
+}
+
+void CPlayerObject::MoveLeft(float DeltaTime)
+{
+	mMovement->AddMove(mRootComponent->GetAxis(EAxis::X) * -1);
+}
+
+void CPlayerObject::MoveRight(float DeltaTime)
+{
+	mMovement->AddMove(mRootComponent->GetAxis(EAxis::X));
 }
 
 void CPlayerObject::RotationZ(float DeltaTime)

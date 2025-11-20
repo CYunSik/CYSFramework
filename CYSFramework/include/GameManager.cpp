@@ -71,12 +71,14 @@ bool CGameManager::Init(HINSTANCE hInst)
 		return false;
 	}
 
-	if (!CAssetManager::GetInst()->Init())
+	// Shader매니져 초기화
+	if (!CShaderManager::GetInst()->Init())
 	{
 		return false;
 	}
 
-	if (!CShaderManager::GetInst()->Init())
+	// 에셋 매니져 초기화
+	if (!CAssetManager::GetInst()->Init())
 	{
 		return false;
 	}

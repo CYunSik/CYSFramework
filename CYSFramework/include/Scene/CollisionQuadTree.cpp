@@ -419,7 +419,7 @@ bool CCollisionQuadTree::Init()
 
 	mColliderCBuffer->Init();
 
-	mColliderCBuffer->SetColor(1.f, 1.f, 0.f, 1.f);
+	mColliderCBuffer->SetColor(1.f, 0.f, 0.f, 1.f);
 #endif // _DEBUG
 
 	// 루트노드 만들어주기

@@ -134,12 +134,18 @@ bool CStaticMeshComponent::Init()
 {
 	CMeshComponent::Init();
 
+	// 쉐이더 설정해주기
+	SetShader("StaticMeshShader");
+
 	return true;
 }
 
 bool CStaticMeshComponent::Init(const char* FileName)
 {
 	CMeshComponent::Init(FileName);
+
+	// 쉐이더 설정해주기
+	SetShader("StaticMeshShader");
 
 	return true;
 }

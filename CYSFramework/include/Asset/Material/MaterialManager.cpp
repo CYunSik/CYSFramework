@@ -16,6 +16,14 @@ bool CMaterialManager::Init()
 	CMaterial::SetSampler(ETextureSamplerType::Linear);
 	CMaterial::SetSampler(ETextureSamplerType::Anisotropic);
 
+	// 기본 머티리얼 제공
+	CreateMaterial("DefaultMaterial");
+
+	CMaterial* Mtrl = FindMaterial("DefaultMaterial");
+
+	Mtrl->SetPixelShader("DefaultMaterialShader");
+	Mtrl->SetSamplerType(ETextureSamplerType::Linear);
+
 	return true;
 }
 

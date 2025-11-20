@@ -99,6 +99,9 @@ public:
 	// 불투명도
 	void SetOpacity(float Opacity);
 
+	// 샘플러 타입
+	void SetSamplerType(ETextureSamplerType::Type SamplerType);
+
 	// 그리기 용도로
 	void SetMaterial();
 	void ResetMaterial();
