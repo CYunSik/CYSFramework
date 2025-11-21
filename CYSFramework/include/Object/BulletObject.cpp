@@ -48,7 +48,7 @@ bool CBulletObject::Init()
 	// Movement 세팅
 	mMovement->SetUpdateComponent(mRoot);
 	mMovement->SetMoveAxis(EAxis::Y);
-	mMovement->SetMoveSpeed(500.f);
+	mMovement->SetMoveSpeed(400.f);
 
 	// Rotation 세팅
 	mRotation->SetUpdateComponent(mRoot);
@@ -56,9 +56,19 @@ bool CBulletObject::Init()
 	SetRootComponent(mRoot);
 
 	mRoot->AddChild(mBody);
-	mBody->SetBoxSize(50.f, 50.f);
+	mBody->SetBoxSize(40.f, 40.f);
 	mBody->SetCollisionProfile("PlayerAttack");
 	mBody->SetCollisionBeginFunc<CBulletObject>(this, &CBulletObject::CollisionBullet);
+
+	//mRoot->SetMesh("CenterTexRect");
+	//mRoot->SetMaterial(0, "Bullet1");
+	//mRoot->SetShader("StaticMeshShader");
+	//mRoot->SetOpacity(0, 1.f);
+
+	mRoot->SetMesh("CenterTexRect");
+	mRoot->SetMaterial(0, "Bullet1");
+	mRoot->SetShader("StaticMeshShader");
+	mRoot->SetOpacity(0, 1.f);
 
 	return true;
 }

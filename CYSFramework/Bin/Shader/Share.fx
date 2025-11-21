@@ -75,6 +75,6 @@ SamplerState gBaseSampler : register(s0);
 // 텍스쳐
 Texture2D gBaseTexture : register(t0);
 // 나중에 더 사용하려면 추가
-//Texture2D gBaseTexture2 : register(t1);
+Texture2D gBaseTexture2 : register(t1);
 //Texture2D gBaseTexture3 : register(t2);
 //Texture2D gBaseTexture4 : register(t3);

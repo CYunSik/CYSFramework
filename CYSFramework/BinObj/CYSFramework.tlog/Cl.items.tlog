@@ -19,6 +19,7 @@ E:\CYS\StudyCys\Framework\CYSFramework\CYSFramework\include\Component\MeshCompon
 E:\CYS\StudyCys\Framework\CYSFramework\CYSFramework\include\Component\MovementComponent.cpp;E:\CYS\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\MovementComponent.obj
 E:\CYS\StudyCys\Framework\CYSFramework\CYSFramework\include\Component\RotationComponent.cpp;E:\CYS\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\RotationComponent.obj
 E:\CYS\StudyCys\Framework\CYSFramework\CYSFramework\include\Component\SceneComponent.cpp;E:\CYS\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\SceneComponent.obj
+E:\CYS\StudyCys\Framework\CYSFramework\CYSFramework\include\Component\SpriteComponent.cpp;E:\CYS\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\SpriteComponent.obj
 E:\CYS\StudyCys\Framework\CYSFramework\CYSFramework\include\Component\StaticMeshComponent.cpp;E:\CYS\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\StaticMeshComponent.obj
 E:\CYS\StudyCys\Framework\CYSFramework\CYSFramework\include\Device.cpp;E:\CYS\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\Device.obj
 E:\CYS\StudyCys\Framework\CYSFramework\CYSFramework\include\GameManager.cpp;E:\CYS\StudyCys\Framework\CYSFramework\CYSFramework\BinObj\GameManager.obj

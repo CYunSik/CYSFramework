@@ -32,6 +32,11 @@ bool CNearingMonster::Init()
 		return false;
 	}
 
+	mRoot->SetMesh("CenterTexRect");
+	mRoot->SetMaterial(0, "Spade2");
+	mRoot->SetShader("StaticMeshShader");
+	mRoot->SetOpacity(0, 1.f);
+
 	//mLine = CreateComponent<CColliderLine2D>();
 
 	//mBody->AddChild(mLine);
@@ -96,7 +101,7 @@ void CNearingMonster::Update(float DeltaTime)
 
 					CBulletObject* Bullet = mScene->CreateObj<CBulletObject>("Bullet");
 					Bullet->SetBulletCollisionProfile("MonsterAttack");
-					Bullet->SetWorldScale(50.f, 50.f);
+					Bullet->SetWorldScale(40.f, 40.f);
 					Bullet->SetWorldRotation(GetWorldRotation());
 					Bullet->SetWorldPos(GetWorldPosition());
 

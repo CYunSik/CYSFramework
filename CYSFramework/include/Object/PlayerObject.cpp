@@ -57,16 +57,16 @@ bool CPlayerObject::Init()
 	mCamera = CreateComponent<CCameraComponent>();
 
 	mRoot->SetMesh("CenterTexRect");
-	mRoot->AddTexture(0, "BonoBono", TEXT("Texture/BonoBono.png"), 0);
-	mRoot->SetOpacity(0, 0.5f);
+	mRoot->AddTexture(0, "Heart", TEXT("Texture/spr_heart_0.png"), 0);
+	mRoot->SetOpacity(0, 1.f);
 	//mRoot->SetShader("ColorMeshShader");
 
 	mRoot->SetWorldPos(0.f, 0.f, 0.f);
-	mRoot->SetWorldScale(100.f, 100.f, 1.f);
+	mRoot->SetWorldScale(20.f, 20.f, 1.f);
 	SetRootComponent(mRoot);
 
 	mRoot->AddChild(mBody);
-	mBody->SetBoxSize(100.f, 100.f);
+	mBody->SetBoxSize(20.f, 20.f);
 	//mBody->SetRadius(50.f);
 	mBody->SetCollisionProfile("Player");
 
@@ -95,7 +95,7 @@ bool CPlayerObject::Init()
 	//mLine->SetRelativePos(0.f, 50.f);
 
 	mMovement->SetUpdateComponent(mRoot);
-	mMovement->SetMoveSpeed(500.f);
+	mMovement->SetMoveSpeed(300.f);
 
 	mRotation->SetUpdateComponent(mRoot);
 	
@@ -104,25 +104,25 @@ bool CPlayerObject::Init()
 	mRoot->AddChild(mCamera);
 
 	// 위성 만들기
-	mRotationPivot = CreateComponent<CSceneComponent>();
-	mSub = CreateComponent<CStaticMeshComponent>();
-	mSub2 = CreateComponent<CStaticMeshComponent>();
+	//mRotationPivot = CreateComponent<CSceneComponent>();
+	//mSub = CreateComponent<CStaticMeshComponent>();
+	//mSub2 = CreateComponent<CStaticMeshComponent>();
 
-	mRoot->AddChild(mRotationPivot);
-	mRotationPivot->AddChild(mSub);
-	mRotationPivot->AddChild(mSub2);
+	//mRoot->AddChild(mRotationPivot);
+	//mRotationPivot->AddChild(mSub);
+	//mRotationPivot->AddChild(mSub2);
 
-	// 위성 1
-	mSub->SetMesh("CenterRect");
-	mSub->SetShader("ColorMeshShader");
-	mSub->SetRelativePos(-200.f, 0.f, 0.f);
-	mSub->SetRelativeScale(0.5f, 0.5f, 1.f);
+	//// 위성 1
+	//mSub->SetMesh("CenterRect");
+	//mSub->SetShader("ColorMeshShader");
+	//mSub->SetRelativePos(-200.f, 0.f, 0.f);
+	//mSub->SetRelativeScale(0.5f, 0.5f, 1.f);
 
-	// 위성 2
-	mSub2->SetMesh("CenterRect");
-	mSub2->SetShader("ColorMeshShader");
-	mSub2->SetRelativePos(200.f, 0.f, 0.f);
-	mSub2->SetRelativeScale(0.5f, 0.5f, 1.f);
+	//// 위성 2
+	//mSub2->SetMesh("CenterRect");
+	//mSub2->SetShader("ColorMeshShader");
+	//mSub2->SetRelativePos(200.f, 0.f, 0.f);
+	//mSub2->SetRelativeScale(0.5f, 0.5f, 1.f);
 
 	// 입력
 	mScene->GetInput()->AddBindKey("MoveUp", 'W');
@@ -159,13 +159,13 @@ bool CPlayerObject::Init()
 	mScene->GetInput()->AddBindKey("Skill2", '2');
 	mScene->GetInput()->AddBindFunction("Skill2", EInputType::Down, this, &CPlayerObject::Skill2);
 
-	// 스킬 3 : 위성 발사
-	mScene->GetInput()->AddBindKey("Skill3", '3');
-	mScene->GetInput()->AddBindFunction("Skill3", EInputType::Down, this, &CPlayerObject::Skill3);
+	//// 스킬 3 : 위성 발사
+	//mScene->GetInput()->AddBindKey("Skill3", '3');
+	//mScene->GetInput()->AddBindFunction("Skill3", EInputType::Down, this, &CPlayerObject::Skill3);
 
-	// 스킬 4 : 돌아가는 위성의 범위를 늘렸다가 몇초후 다시 되돌아오기, 가능하면 위성의 속도도 늘렸다가 줄이기
-	mScene->GetInput()->AddBindKey("Skill4", '4');
-	mScene->GetInput()->AddBindFunction("Skill4", EInputType::Down, this, &CPlayerObject::Skill4);
+	//// 스킬 4 : 돌아가는 위성의 범위를 늘렸다가 몇초후 다시 되돌아오기, 가능하면 위성의 속도도 늘렸다가 줄이기
+	//mScene->GetInput()->AddBindKey("Skill4", '4');
+	//mScene->GetInput()->AddBindFunction("Skill4", EInputType::Down, this, &CPlayerObject::Skill4);
 
 	// 스킬 5 : 롤 탈론 궁극기 만들기 (플레이어 기준으로 8방향으로 총알을 발사하고 해당 총알이 몇초 돌다가 플레이어에게 다시 되돌아오는 부메랑 기능)
 	mScene->GetInput()->AddBindKey("Skill5", '5');
@@ -204,21 +204,21 @@ void CPlayerObject::Update(float DeltaTime)
 	//}
 
 	// 위성을 돌려주면 된다.
-	FVector3D Rot = mRotationPivot->GetRelativeRotation();
-	Rot.z += DeltaTime * 180.f;
-	mRotationPivot->SetRelativeRotationZ(Rot.z);
+	//FVector3D Rot = mRotationPivot->GetRelativeRotation();
+	//Rot.z += DeltaTime * 180.f;
+	//mRotationPivot->SetRelativeRotationZ(Rot.z);
 
-	// 스킬 3
-	if (mSkill3Enable)
-	{
-		Skill3Update(DeltaTime);
-	}
+	//// 스킬 3
+	//if (mSkill3Enable)
+	//{
+	//	Skill3Update(DeltaTime);
+	//}
 
-	// 스킬 4
-	if (mSkill4Enable)
-	{
-		Skill4Update(DeltaTime);
-	}
+	//// 스킬 4
+	//if (mSkill4Enable)
+	//{
+	//	Skill4Update(DeltaTime);
+	//}
 }
 
 void CPlayerObject::Damage(float Damage)
@@ -284,7 +284,7 @@ void CPlayerObject::Fire(float DeltaTime)
 	// 총알의 시작 위치 == 내 월드 위치
 	Root->SetWorldPos(mRootComponent->GetWorldPosition());
 	Root->SetWorldRotation(mRootComponent->GetWorldRotation());
-	Root->SetWorldScale(50.f, 50.f, 1.f);
+	Root->SetWorldScale(30.f, 30.f, 1.f);
 	Bullet->SetLifeTime(2.f);
 }
 

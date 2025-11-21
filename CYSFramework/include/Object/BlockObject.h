@@ -13,6 +13,7 @@ protected:
 
 protected:
     CSharedPtr<class CStaticMeshComponent> mRoot;
+    CSharedPtr<class CStaticMeshComponent> mRoot2;
     CSharedPtr<class CColliderAABB2D> mBody;
 
 public:

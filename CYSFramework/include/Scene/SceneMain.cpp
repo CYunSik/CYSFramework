@@ -1,4 +1,7 @@
 #include "SceneMain.h"
+
+#include "SceneAssetManager.h"
+#include "../Asset/Material/Material.h"
 #include "../Object/PlayerObject.h"
 #include "../Object/MonsterObject.h"
 #include "../Object/GunnerMonster.h"
@@ -22,6 +25,62 @@ bool CSceneMain::Init()
 		return false;
 	}
 
+	/////////////// 사용할 머티리얼 만들기
+	mAssetManager->CreateMaterial("Spade1");
+
+	CMaterial* Material = mAssetManager->FindMaterial("Spade1");
+	Material->SetPixelShader("DefaultMaterialShader");
+	Material->SetSamplerType(ETextureSamplerType::Linear);
+	Material->AddTexture("Spade1", TEXT("Texture/spr_bomb_spade_ch1_0.png"), 0);
+
+	mAssetManager->CreateMaterial("Spade2");
+
+	CMaterial* Material7 = mAssetManager->FindMaterial("Spade2");
+	Material7->SetPixelShader("DefaultMaterialShader");
+	Material7->SetSamplerType(ETextureSamplerType::Linear);
+	Material7->AddTexture("Spade2", TEXT("Texture/spr_bomb_spade_ch1_1.png"), 0);
+
+	mAssetManager->CreateMaterial("Monster2");
+
+	CMaterial* Material2 = mAssetManager->FindMaterial("Monster2");
+	Material2->SetPixelShader("DefaultMaterialShader");
+	Material2->SetSamplerType(ETextureSamplerType::Linear);
+	Material2->AddTexture("Monster2", TEXT("Texture/spr_joker_teleport_r_ch1_1.png"), 0);
+
+	// 제빌 스페이스 총알
+	mAssetManager->CreateMaterial("Bullet1");
+
+	CMaterial* Material3 = mAssetManager->FindMaterial("Bullet1");
+	Material3->SetPixelShader("DefaultMaterialShader");
+	Material3->SetSamplerType(ETextureSamplerType::Linear);
+	Material3->AddTexture("Bullet1", TEXT("Texture/spr_spadebullet.png"), 0);
+
+	// 제빌 다이아몬드 총알
+	mAssetManager->CreateMaterial("Bullet2");
+
+	CMaterial* Material4 = mAssetManager->FindMaterial("Bullet2");
+	Material4->SetPixelShader("DefaultMaterialShader");
+	Material4->SetSamplerType(ETextureSamplerType::Linear);
+	Material4->AddTexture("Bullet2", TEXT("Texture/spr_diamondbullet_ch1.png"), 0);
+
+
+	// 전투 박스
+	mAssetManager->CreateMaterial("HitBox1");
+
+	CMaterial* Material5 = mAssetManager->FindMaterial("HitBox1");
+	Material5->SetPixelShader("DefaultMaterialShader");
+	Material5->SetSamplerType(ETextureSamplerType::Linear);
+	Material5->AddTexture("HitBox1", TEXT("Texture/spr_battlebg_stretch_hitbox_0.png"), 0);
+
+	mAssetManager->CreateMaterial("HitBox2");
+
+	CMaterial* Material6 = mAssetManager->FindMaterial("HitBox2");
+	Material6->SetPixelShader("DefaultMaterialShader");
+	Material6->SetSamplerType(ETextureSamplerType::Linear);
+	Material6->AddTexture("HitBox2", TEXT("Texture/spr_battlebg_stretch_hitbox_1.png"), 0);
+
+	//////////////////////////////////////
+
 	CPlayerObject* Player = CreateObj<CPlayerObject>("Player");
 
 	if (Player == nullptr)
@@ -41,7 +100,7 @@ bool CSceneMain::Init()
 	MonsterPoint->SetSpawnType(EObjectSpawnType::GunnerMonster);
 	MonsterPoint->SetSpawnLoopType(EObjectSpawnLoopType::Loop);
 	MonsterPoint->SetSpawnCountType(EObjectSpawnCountType::CountDestroy);
-	MonsterPoint->SetImmediateSpawn(false);
+	MonsterPoint->SetImmediateSpawn(true);
 	MonsterPoint->SetSpawnTime(5.f);
 	MonsterPoint->SetDestroySpawnCount(3);
 	MonsterPoint->SetWorldPos(-400.f, 200.f);
@@ -49,14 +108,14 @@ bool CSceneMain::Init()
 	MonsterPoint = CreateObj<CObjectSpawnPoint>("MonsterPoint3");
 	MonsterPoint->SetSpawnType(EObjectSpawnType::GunnerMonster);
 	MonsterPoint->SetSpawnLoopType(EObjectSpawnLoopType::Loop);
-	MonsterPoint->SetImmediateSpawn(false);
+	MonsterPoint->SetImmediateSpawn(true);
 	MonsterPoint->SetSpawnTime(5.f);
 	MonsterPoint->SetWorldPos(400.f, -200.f);
 
 	MonsterPoint = CreateObj<CObjectSpawnPoint>("MonsterPoint4");
 	MonsterPoint->SetSpawnType(EObjectSpawnType::GunnerMonster);
 	MonsterPoint->SetSpawnLoopType(EObjectSpawnLoopType::Loop);
-	MonsterPoint->SetImmediateSpawn(false);
+	MonsterPoint->SetImmediateSpawn(true);
 	MonsterPoint->SetSpawnTime(3.5f);
 	MonsterPoint->SetWorldPos(-400.f, -200.f);
 
@@ -67,31 +126,31 @@ bool CSceneMain::Init()
 	MonsterPoint->SetSpawnTime(10.f);
 	MonsterPoint->SetWorldPos(200.f, 0.f);
 
+	CBlockObject* Block = CreateObj<CBlockObject>("HitBox");
+	Block->SetWorldPos(0.f, 0.f, 2.f);
+
 	// 관통 테스트
-	MonsterPoint = CreateObj<CObjectSpawnPoint>("MonsterPoint6");
-	MonsterPoint->SetSpawnType(EObjectSpawnType::GunnerMonster);
-	MonsterPoint->SetSpawnLoopType(EObjectSpawnLoopType::Loop);
-	MonsterPoint->SetSpawnTime(5.f);
-	MonsterPoint->SetWorldPos(1000.f, 200.f);
+	//MonsterPoint = CreateObj<CObjectSpawnPoint>("MonsterPoint6");
+	//MonsterPoint->SetSpawnType(EObjectSpawnType::GunnerMonster);
+	//MonsterPoint->SetSpawnLoopType(EObjectSpawnLoopType::Loop);
+	//MonsterPoint->SetSpawnTime(5.f);
+	//MonsterPoint->SetWorldPos(1000.f, 200.f);
 
-	MonsterPoint = CreateObj<CObjectSpawnPoint>("MonsterPoint7");
-	MonsterPoint->SetSpawnType(EObjectSpawnType::GunnerMonster);
-	MonsterPoint->SetSpawnLoopType(EObjectSpawnLoopType::Loop);
-	MonsterPoint->SetSpawnTime(5.f);
-	MonsterPoint->SetWorldPos(1110.f, 200.f);
+	//MonsterPoint = CreateObj<CObjectSpawnPoint>("MonsterPoint7");
+	//MonsterPoint->SetSpawnType(EObjectSpawnType::GunnerMonster);
+	//MonsterPoint->SetSpawnLoopType(EObjectSpawnLoopType::Loop);
+	//MonsterPoint->SetSpawnTime(5.f);
+	//MonsterPoint->SetWorldPos(1110.f, 200.f);
 
-	MonsterPoint = CreateObj<CObjectSpawnPoint>("MonsterPoint8");
-	MonsterPoint->SetSpawnType(EObjectSpawnType::GunnerMonster);
-	MonsterPoint->SetSpawnLoopType(EObjectSpawnLoopType::Loop);
-	MonsterPoint->SetSpawnTime(5.f);
-	MonsterPoint->SetWorldPos(1210.f, 200.f);
+	//MonsterPoint = CreateObj<CObjectSpawnPoint>("MonsterPoint8");
+	//MonsterPoint->SetSpawnType(EObjectSpawnType::GunnerMonster);
+	//MonsterPoint->SetSpawnLoopType(EObjectSpawnLoopType::Loop);
+	//MonsterPoint->SetSpawnTime(5.f);
+	//MonsterPoint->SetWorldPos(1210.f, 200.f);
 
-	CGunnerMonster* Monster = CreateObj<CGunnerMonster>("GunnerMonster1");
-	Monster->SetWorldPos(-400.f, 300.f);
-	Monster->SetTarget(Player);
-
-	CBlockObject* Block = CreateObj<CBlockObject>("Block1");
-	Block->SetWorldPos(-700.f, 0.f);
+	//CGunnerMonster* Monster = CreateObj<CGunnerMonster>("GunnerMonster1");
+	//Monster->SetWorldPos(-400.f, 300.f);
+	//Monster->SetTarget(Player);
 
 	//CNearingMonster* Monster2 = CreateObj<CNearingMonster>("NearingMonster");
 	//Monster2->SetWorldPos(500.f, 300.f);

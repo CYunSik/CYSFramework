@@ -136,6 +136,9 @@
     <Filter Include="08.Render\01.RenderState">
       <UniqueIdentifier>{dfdf30b1-d53c-4032-a023-b1488f9a4722}</UniqueIdentifier>
     </Filter>
+    <Filter Include="07.Component\01.SceneComponent\04.Sprite">
+      <UniqueIdentifier>{f24fc4e6-69b3-4070-993d-3391c156b949}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -344,6 +347,9 @@
     </ClCompile>
     <ClCompile Include="Render\BlendState.cpp">
       <Filter>08.Render\01.RenderState</Filter>
+    </ClCompile>
+    <ClCompile Include="Component\SpriteComponent.cpp">
+      <Filter>07.Component\01.SceneComponent\04.Sprite</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -574,6 +580,9 @@
     </ClInclude>
     <ClInclude Include="Render\BlendState.h">
       <Filter>08.Render\01.RenderState</Filter>
+    </ClInclude>
+    <ClInclude Include="Component\SpriteComponent.h">
+      <Filter>07.Component\01.SceneComponent\04.Sprite</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

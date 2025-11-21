@@ -162,6 +162,7 @@
     <ClCompile Include="Component\MovementComponent.cpp" />
     <ClCompile Include="Component\RotationComponent.cpp" />
     <ClCompile Include="Component\SceneComponent.cpp" />
+    <ClCompile Include="Component\SpriteComponent.cpp" />
     <ClCompile Include="Component\StaticMeshComponent.cpp" />
     <ClCompile Include="Device.cpp" />
     <ClCompile Include="GameManager.cpp" />
@@ -234,6 +235,7 @@
     <ClInclude Include="Component\MovementComponent.h" />
     <ClInclude Include="Component\RotationComponent.h" />
     <ClInclude Include="Component\SceneComponent.h" />
+    <ClInclude Include="Component\SpriteComponent.h" />
     <ClInclude Include="Component\StaticMeshComponent.h" />
     <ClInclude Include="Device.h" />
     <ClInclude Include="EngineMath.h" />

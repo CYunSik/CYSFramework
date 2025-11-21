@@ -49,6 +49,9 @@ protected:
 	FVector3D mWorldRot;
 	FVector3D mWorldPos;
 
+	// Pivot
+	FVector3D mPivot;
+
 	// 변환행렬
 	FMatrix mMatScale;
 	FMatrix mMatRot;
@@ -122,6 +125,38 @@ public:
 		return mWorldPos;
 	}
 
+	// Pivot
+	const FVector3D& GetPivot() const
+	{
+		return mPivot;
+	}
+
+public:
+	void SetPivot(const FVector3D& Pivot)
+	{
+		mPivot = Pivot;
+	}
+
+	void SetPivot(const FVector2D& Pivot)
+	{
+		mPivot.x = Pivot.x;
+		mPivot.y = Pivot.y;
+	}
+
+	void SetPivot(float x, float y, float z)
+	{
+		mPivot.x = x;
+		mPivot.y = y;
+		mPivot.z = z;
+	}
+
+	void SetPivot(float x, float y)
+	{
+		mPivot.x = x;
+		mPivot.y = y;
+	}
+
+public:
 	// Setter
 	// 상대 좌표
 	void SetRelativeScale(const FVector3D& Scale);
