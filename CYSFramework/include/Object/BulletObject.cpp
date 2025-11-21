@@ -56,7 +56,7 @@ bool CBulletObject::Init()
 	SetRootComponent(mRoot);
 
 	mRoot->AddChild(mBody);
-	mBody->SetBoxSize(40.f, 40.f);
+	mBody->SetBoxSize(30.f, 30.f);
 	mBody->SetCollisionProfile("PlayerAttack");
 	mBody->SetCollisionBeginFunc<CBulletObject>(this, &CBulletObject::CollisionBullet);
 
