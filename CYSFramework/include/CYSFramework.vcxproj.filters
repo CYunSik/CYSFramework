@@ -139,6 +139,12 @@
     <Filter Include="07.Component\01.SceneComponent\04.Sprite">
       <UniqueIdentifier>{f24fc4e6-69b3-4070-993d-3391c156b949}</UniqueIdentifier>
     </Filter>
+    <Filter Include="04.Shader\03.ConstantBuffer\04.Sprite">
+      <UniqueIdentifier>{c9592805-b84a-4d07-a322-cfcfe19907ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Shader\02.Shader Class\04. Sprite">
+      <UniqueIdentifier>{4628a1e4-da5f-4177-996f-a46933346580}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -350,6 +356,12 @@
     </ClCompile>
     <ClCompile Include="Component\SpriteComponent.cpp">
       <Filter>07.Component\01.SceneComponent\04.Sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader\SpriteCBuffer.cpp">
+      <Filter>04.Shader\03.ConstantBuffer\04.Sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader\SpriteShader.cpp">
+      <Filter>04.Shader\02.Shader Class\04. Sprite</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -584,6 +596,12 @@
     <ClInclude Include="Component\SpriteComponent.h">
       <Filter>07.Component\01.SceneComponent\04.Sprite</Filter>
     </ClInclude>
+    <ClInclude Include="Shader\SpriteCBuffer.h">
+      <Filter>04.Shader\03.ConstantBuffer\04.Sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader\SpriteShader.h">
+      <Filter>04.Shader\02.Shader Class\04. Sprite</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="CYSFramework.rc">
@@ -603,6 +621,9 @@
       <Filter>04.Shader\01.HLSL</Filter>
     </FxCompile>
     <FxCompile Include="..\Bin\Shader\Mesh.fx">
+      <Filter>04.Shader\01.HLSL</Filter>
+    </FxCompile>
+    <FxCompile Include="..\Bin\Shader\Sprite.fx">
       <Filter>04.Shader\01.HLSL</Filter>
     </FxCompile>
   </ItemGroup>

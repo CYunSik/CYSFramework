@@ -12,7 +12,8 @@ protected:
 	virtual ~CPlayerObject();
 
 protected:
-	CSharedPtr<class CStaticMeshComponent> mRoot;
+	//CSharedPtr<class CStaticMeshComponent> mRoot;
+	CSharedPtr<class CSpriteComponent> mRoot;
 	//CSharedPtr<class CColliderAABB2D> mBody;
 	//CSharedPtr<class CColliderSphere2D> mBody;
 	CSharedPtr<class CColliderOBB2D> mBody;
@@ -23,9 +24,9 @@ protected:
 	std::vector<FVector3D> mPlayerTrail;
 
 	CSharedPtr<class CSceneComponent> mRotationPivot;
-	CSharedPtr<class CStaticMeshComponent> mSub;
+	CSharedPtr<class CSpriteComponent> mSub;
 	// 위성 반대편 방향에 하나더 출력
-	CSharedPtr<class CStaticMeshComponent> mSub2;
+	CSharedPtr<class CSpriteComponent> mSub2;
 
 	// MovementComponent
 	CSharedPtr<class CMovementComponent> mMovement;

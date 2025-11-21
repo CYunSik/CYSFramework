@@ -13,6 +13,8 @@ struct FTransformCBufferInfo
 	FMatrix matProj;
 	FMatrix matWV;
 	FMatrix matWVP;
+	FVector3D Pivot;
+	float Empty;
 };
 
 // 레지스터 1
@@ -30,8 +32,14 @@ struct FMaterialCBufferInfo
 	float Empty;
 };
 
-
+// 스프라이트용 상수버퍼
 // 레지스터 2
+struct FSpriteCBufferInfo
+{
+	FVector4D Tint;
+};
+
+// 레지스터 3
 struct FColliderCBufferInfo
 {
 	FVector4D Color;

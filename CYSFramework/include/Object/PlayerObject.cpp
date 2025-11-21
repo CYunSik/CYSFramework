@@ -19,6 +19,8 @@
 #include "ContinuousdamageBullet.h"
 #include "PenetrationBullet.h"
 
+#include "../Component/SpriteComponent.h"
+
 CPlayerObject::CPlayerObject()
 	: CSceneObject()
 {
@@ -46,7 +48,8 @@ bool CPlayerObject::Init()
 	// 루트 컴포넌트는 자식 컴포넌트들을 호출해준다.
 
 	// 컴포넌트 하나 등록해줄거다.
-	mRoot = CreateComponent<CStaticMeshComponent>();
+	//mRoot = CreateComponent<CStaticMeshComponent>();
+	mRoot = CreateComponent<CSpriteComponent>();
 	//mBody = CreateComponent<CColliderAABB2D>();
 	//mBody = CreateComponent<CColliderSphere2D>();
 	mBody = CreateComponent<CColliderOBB2D>();
@@ -56,9 +59,11 @@ bool CPlayerObject::Init()
 	mRotation = CreateComponent<CRotationComponent>();
 	mCamera = CreateComponent<CCameraComponent>();
 
-	mRoot->SetMesh("CenterTexRect");
-	mRoot->AddTexture(0, "Heart", TEXT("Texture/spr_heart_0.png"), 0);
-	mRoot->SetOpacity(0, 1.f);
+	//mRoot->SetMesh("CenterTexRect");
+	mRoot->SetTexture("Heart", TEXT("Texture/spr_heart_0.png"), 0);
+	mRoot->SetTint(1.f, 1.f, 1.f);
+	mRoot->SetPivot(0.5f, 0.5f);
+	mRoot->SetOpacity(1.f);
 	//mRoot->SetShader("ColorMeshShader");
 
 	mRoot->SetWorldPos(0.f, 0.f, 0.f);

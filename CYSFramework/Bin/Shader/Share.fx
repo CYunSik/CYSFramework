@@ -53,6 +53,8 @@ cbuffer Transform : register(b0)
     matrix gmatProj;    // 투영(프로젝션) 행렬
     matrix gmatWV;      // 월드 * 카메라
     matrix gmatWVP;     // 월드 * 카메라 * 투영
+    float3 gPivot;      // 피봇
+    float gTransformEmpty;
 }
 
 cbuffer Material : register(b1)
@@ -75,6 +77,6 @@ SamplerState gBaseSampler : register(s0);
 // 텍스쳐
 Texture2D gBaseTexture : register(t0);
 // 나중에 더 사용하려면 추가
-Texture2D gBaseTexture2 : register(t1);
+//Texture2D gBaseTexture2 : register(t1);
 //Texture2D gBaseTexture3 : register(t2);
 //Texture2D gBaseTexture4 : register(t3);

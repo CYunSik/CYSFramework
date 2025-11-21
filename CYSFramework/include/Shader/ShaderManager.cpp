@@ -3,6 +3,7 @@
 #include "FrameMeshShader.h"
 #include "ConstantBuffer.h"
 #include "StaticMeshShader.h"
+#include "SpriteShader.h"
 
 #include "../Device.h"
 
@@ -92,6 +93,7 @@ bool CShaderManager::Init()
 	CreateShader<CColorMeshShader>("ColorMeshShader");
 	CreateShader<CFrameMeshShader>("FrameMeshShader");
 	CreateShader<CStaticMeshShader>("StaticMeshShader");
+	CreateShader<CSpriteShader>("SpriteShader");
 
 	// 전용 픽셀쉐이더만 만들어둔다.
 	if (!LoadPixelShader("DefaultMaterialShader", "DefaultMaterialPS", TEXT("Mesh.fx")))
@@ -105,8 +107,11 @@ bool CShaderManager::Init()
 	// 머티리얼 용 상수버퍼
 	CreateConstantBuffer("Material", sizeof(FMaterialCBufferInfo), 1, EShaderBufferType::Pixel);
 
+	// 스프라이트 전용 상수버퍼
+	CreateConstantBuffer("Sprite", sizeof(FSpriteCBufferInfo), 2, EShaderBufferType::Pixel);
+
 	// 충돌체에 사용할 상수버퍼
-	CreateConstantBuffer("Collider", sizeof(FColliderCBufferInfo), 2, EShaderBufferType::Pixel);
+	CreateConstantBuffer("Collider", sizeof(FColliderCBufferInfo), 3, EShaderBufferType::Pixel);
 
 	return true;
 }

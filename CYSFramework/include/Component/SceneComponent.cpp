@@ -1,22 +1,32 @@
 #include "SceneComponent.h"
 
+#include "../Scene/CameraManager.h"
+#include "../Scene/Scene.h"
+#include "../Shader/TransformCBuffer.h"
+
 CSceneComponent::CSceneComponent()
 	: CComponent()
 {
+	mTransformCBuffer = new CTransformCBuffer;
+	mTransformCBuffer->Init();
 }
 
 CSceneComponent::CSceneComponent(const CSceneComponent& Com)
 	: CComponent(Com)
 {
+	mTransformCBuffer = Com.mTransformCBuffer->Clone();
 }
 
 CSceneComponent::CSceneComponent(CSceneComponent&& Com)
 	: CComponent(Com)
 {
+	mTransformCBuffer = Com.mTransformCBuffer;
+	Com.mTransformCBuffer = nullptr;
 }
 
 CSceneComponent::~CSceneComponent()
 {
+	SAFE_DELETE(mTransformCBuffer);
 	size_t Size = mChildList.size();
 	for (size_t i = 0; i < Size; ++i)
 	{
@@ -217,6 +227,20 @@ void CSceneComponent::Render()
 		(*iter)->Render();
 		++iter;
 	}
+
+	mTransformCBuffer->SetWorldMatrix(mMatWorld);
+	FMatrix matView, matProj;
+	matView = mScene->GetCameraManager()->GetViewMatrix();
+	matProj = mScene->GetCameraManager()->GetProjMatrix();
+
+	mTransformCBuffer->SetViewMatrix(matView);
+	mTransformCBuffer->SetProjMatrix(matProj);
+	mTransformCBuffer->SetPivot(mPivot);
+
+	//FMatrix matProj = DirectX::XMMatrixPerspectiveFovLH(DirectX::XMConvertToRadians(90.f), 1280.f / 720.f, 0.5f, 1000.f);
+	//mTransformCBuffer->SetProjMatrix(matProj);
+
+	mTransformCBuffer->UpdateBuffer();
 }
 
 void CSceneComponent::PostRender()

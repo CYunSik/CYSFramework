@@ -12,6 +12,9 @@
     <ContentFile>
       <FullPath>E:\CYS\StudyCys\Framework\CYSFramework\CYSFramework\Bin\Mesh.cso</FullPath>
     </ContentFile>
+    <ContentFile>
+      <FullPath>E:\CYS\StudyCys\Framework\CYSFramework\CYSFramework\Bin\Sprite.cso</FullPath>
+    </ContentFile>
   </ContentFiles>
   <SatelliteDlls />
   <NonRecipeFileRefs />

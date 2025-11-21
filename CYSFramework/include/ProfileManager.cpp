@@ -39,7 +39,7 @@ bool CProfileManager::Init()
 	SetInteraction("PlayerAttack", ECollisionChannel::Monster, ECollisionInteraction::Collision);
 
 	// MonsterAttack
-	SetInteraction("MonsterAttack", ECollisionChannel::Default, ECollisionInteraction::Collision);
+	SetInteraction("MonsterAttack", ECollisionChannel::Default, ECollisionInteraction::Ignore);
 	SetInteraction("MonsterAttack", ECollisionChannel::Player, ECollisionInteraction::Collision);
 
 	// Monster

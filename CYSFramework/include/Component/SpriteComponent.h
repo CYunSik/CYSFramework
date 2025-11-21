@@ -13,12 +13,32 @@ protected:
 	virtual ~CSpriteComponent();
 
 protected:
+	CSharedPtr<class CMesh> mMesh;
 	CSharedPtr<class CShader> mShader;
-	//CSharedPtr<class CMesh> mMesh;
+	// 출력할 이미지 한장
+	CSharedPtr<class CTexture> mTexture;
+	FVector4D mTint = FVector4D::White;
+	int mTextureIndex = 0;
+
+	class CSpriteCBuffer* mSpriteCBuffer;
 
 public:
+	// 쉐이더 세팅
 	void SetShader(const std::string& Name);
 	void SetShader(class CShader* Shader);
+
+	// 텍스쳐 세팅
+	// Name으로 찾아와서 텍스쳐를 넣어주는 방법
+	void SetTexture(const std::string& Name, int TextureIndex = 0);
+	// 파일 이름으로 텍스쳐 매니져에서 로드 후 추가하기
+	void SetTexture(const std::string& Name, const TCHAR* FileName, int TextureIndex = 0);
+	// 세팅 바로 해주기
+	void SetTexture(class CTexture* Texture, int TextureIndex = 0);
+
+	// 색상
+	void SetTint(float r, float g, float b);
+	// 오파시티
+	void SetOpacity(float Opacity);
 
 	// 시점 함수
 public:

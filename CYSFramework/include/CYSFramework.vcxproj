@@ -204,6 +204,8 @@
     <ClCompile Include="Shader\MaterialCBuffer.cpp" />
     <ClCompile Include="Shader\Shader.cpp" />
     <ClCompile Include="Shader\ShaderManager.cpp" />
+    <ClCompile Include="Shader\SpriteCBuffer.cpp" />
+    <ClCompile Include="Shader\SpriteShader.cpp" />
     <ClCompile Include="Shader\StaticMeshShader.cpp" />
     <ClCompile Include="Shader\TransformCBuffer.cpp" />
     <ClCompile Include="Share\Log.cpp" />
@@ -281,6 +283,8 @@
     <ClInclude Include="Shader\MaterialCBuffer.h" />
     <ClInclude Include="Shader\Shader.h" />
     <ClInclude Include="Shader\ShaderManager.h" />
+    <ClInclude Include="Shader\SpriteCBuffer.h" />
+    <ClInclude Include="Shader\SpriteShader.h" />
     <ClInclude Include="Shader\StaticMeshShader.h" />
     <ClInclude Include="Shader\TransformCBuffer.h" />
     <ClInclude Include="Share\Log.h" />
@@ -334,6 +338,11 @@
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Effect</ShaderType>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
+    </FxCompile>
+    <FxCompile Include="..\Bin\Shader\Sprite.fx">
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">SpriteVS</EntryPointName>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Effect</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
     </FxCompile>
   </ItemGroup>
   <ItemGroup>

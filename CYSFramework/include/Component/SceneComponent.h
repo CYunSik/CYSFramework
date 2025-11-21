@@ -38,6 +38,8 @@ public:
 	///////////////////////
 	// Transform 관련 정보를 SceneComponent가 가지고 있게 할것이다.
 protected:
+	class CTransformCBuffer* mTransformCBuffer;
+
 	// 상대좌표 월드(절대)좌표
 	// 상대 크기 회전 위치
 	FVector3D mRelativeScale = FVector3D(1.f, 1.f, 1.f);
