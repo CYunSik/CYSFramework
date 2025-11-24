@@ -65,19 +65,19 @@ bool CSceneMain::Init()
 
 
 	// 전투 박스
-	mAssetManager->CreateMaterial("HitBox1");
+	//mAssetManager->CreateMaterial("HitBox1");
 
-	CMaterial* Material5 = mAssetManager->FindMaterial("HitBox1");
-	Material5->SetPixelShader("DefaultMaterialShader");
-	Material5->SetSamplerType(ETextureSamplerType::Linear);
-	Material5->AddTexture("HitBox1", TEXT("Texture/spr_battlebg_stretch_hitbox_0.png"), 0);
+	//CMaterial* Material5 = mAssetManager->FindMaterial("HitBox1");
+	//Material5->SetPixelShader("DefaultMaterialShader");
+	//Material5->SetSamplerType(ETextureSamplerType::Linear);
+	//Material5->AddTexture("HitBox1", TEXT("Texture/spr_battlebg_stretch_hitbox_0.png"), 0);
 
-	mAssetManager->CreateMaterial("HitBox2");
+	//mAssetManager->CreateMaterial("HitBox2");
 
-	CMaterial* Material6 = mAssetManager->FindMaterial("HitBox2");
-	Material6->SetPixelShader("DefaultMaterialShader");
-	Material6->SetSamplerType(ETextureSamplerType::Linear);
-	Material6->AddTexture("HitBox2", TEXT("Texture/spr_battlebg_stretch_hitbox_1.png"), 0);
+	//CMaterial* Material6 = mAssetManager->FindMaterial("HitBox2");
+	//Material6->SetPixelShader("DefaultMaterialShader");
+	//Material6->SetSamplerType(ETextureSamplerType::Linear);
+	//Material6->AddTexture("HitBox2", TEXT("Texture/spr_battlebg_stretch_hitbox_1.png"), 0);
 
 	//////////////////////////////////////
 

@@ -19,9 +19,12 @@ protected:
 	CSharedPtr<class CColliderOBB2D> mBody;
 	//CSharedPtr<class CColliderLine2D> mLine;
 
-	CSharedPtr<class CStaticMeshComponent> mPlayer2;
-	CSharedPtr<class CStaticMeshComponent> mPlayer3;
+	CSharedPtr<CSpriteComponent> mSusie;	// 수지
+	CSharedPtr<CSpriteComponent> mRalsei;	// 랄세이
+
+	// Trail
 	std::vector<FVector3D> mPlayerTrail;
+	std::vector<FVector3D> mSusieTrail;
 
 	CSharedPtr<class CSceneComponent> mRotationPivot;
 	CSharedPtr<class CSpriteComponent> mSub;

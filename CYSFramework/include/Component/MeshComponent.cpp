@@ -7,6 +7,8 @@
 CMeshComponent::CMeshComponent()
 	: CSceneComponent()
 {
+	mRenderType = EComponentRender::Render;
+
 	//mTransformCBuffer = new CTransformCBuffer;
 	//mTransformCBuffer->Init();
 }
@@ -67,18 +69,18 @@ void CMeshComponent::Render()
 {
 	CSceneComponent::Render();
 
-	//mTransformCBuffer->SetWorldMatrix(mMatWorld);
-	//FMatrix matView, matProj;
-	//matView = mScene->GetCameraManager()->GetViewMatrix();
-	//matProj = mScene->GetCameraManager()->GetProjMatrix();
+	mTransformCBuffer->SetWorldMatrix(mMatWorld);
+	FMatrix matView, matProj;
+	matView = mScene->GetCameraManager()->GetViewMatrix();
+	matProj = mScene->GetCameraManager()->GetProjMatrix();
 
-	//mTransformCBuffer->SetViewMatrix(matView);
-	//mTransformCBuffer->SetProjMatrix(matProj);
+	mTransformCBuffer->SetViewMatrix(matView);
+	mTransformCBuffer->SetProjMatrix(matProj);
 
 	//FMatrix matProj = DirectX::XMMatrixPerspectiveFovLH(DirectX::XMConvertToRadians(90.f), 1280.f / 720.f, 0.5f, 1000.f);
 	//mTransformCBuffer->SetProjMatrix(matProj);
 
-	//mTransformCBuffer->UpdateBuffer();
+	mTransformCBuffer->UpdateBuffer();
 }
 
 void CMeshComponent::PostRender()

@@ -194,21 +194,23 @@ void CGameManager::Render(float DeltaTime)
 
 	// 출력
 	// 블렌스테이트 세팅
-	CRenderState* AlphaBlend = CRenderManager::GetInst()->GetStateManager()->FindState("AlphaBlend");
+	//CRenderState* AlphaBlend = CRenderManager::GetInst()->GetStateManager()->FindState("AlphaBlend");
 
-	if (AlphaBlend)
-	{
-		AlphaBlend->SetState();
-	}
+	//if (AlphaBlend)
+	//{
+	//	AlphaBlend->SetState();
+	//}
 
 	// 준비된 도화지에 출력
 	CSceneManager::GetInst()->Render();
 
+	CRenderManager::GetInst()->Render();
+
 	// 블렌드 스테이트 회수
-	if (AlphaBlend)
-	{
-		AlphaBlend->ResetState();
-	}
+	//if (AlphaBlend)
+	//{
+	//	AlphaBlend->ResetState();
+	//}
 
 	//static CTransformCBuffer buffer;
 	//static FVector3D Pos, Rot;

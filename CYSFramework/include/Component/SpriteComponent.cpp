@@ -12,9 +12,13 @@
 #include "../Scene/Scene.h"
 #include "../Scene/SceneAssetManager.h"
 #include "../Shader/SpriteCBuffer.h"
+#include "../Shader/TransformCBuffer.h"
+#include "../Component/CameraComponent.h"
+#include "../Scene/CameraManager.h"
 
 CSpriteComponent::CSpriteComponent()
 {
+	mRenderType = EComponentRender::Render;
 }
 
 CSpriteComponent::CSpriteComponent(const CSpriteComponent& Com)
@@ -178,6 +182,21 @@ void CSpriteComponent::Render()
 	// 스프라이트 상수버퍼 세팅해주기
 	mSpriteCBuffer->SetTint(mTint);
 	mSpriteCBuffer->UpdateBuffer();
+
+	// Transform;
+	mTransformCBuffer->SetWorldMatrix(mMatWorld);
+	FMatrix matView, matProj;
+	matView = mScene->GetCameraManager()->GetViewMatrix();
+	matProj = mScene->GetCameraManager()->GetProjMatrix();
+
+	mTransformCBuffer->SetViewMatrix(matView);
+	mTransformCBuffer->SetProjMatrix(matProj);
+	mTransformCBuffer->SetPivot(mPivot);
+
+	//FMatrix matProj = DirectX::XMMatrixPerspectiveFovLH(DirectX::XMConvertToRadians(90.f), 1280.f / 720.f, 0.5f, 1000.f);
+	//mTransformCBuffer->SetProjMatrix(matProj);
+
+	mTransformCBuffer->UpdateBuffer();
 
 	mShader->SetShader();
 

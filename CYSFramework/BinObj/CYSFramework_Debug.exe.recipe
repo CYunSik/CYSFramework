@@ -2,18 +2,18 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>E:\CYS\StudyCys\Framework\CYSFramework\CYSFramework\Bin\CYSFramework_Debug.exe</FullPath>
+      <FullPath>E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\Bin\CYSFramework_Debug.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles>
     <ContentFile>
-      <FullPath>E:\CYS\StudyCys\Framework\CYSFramework\CYSFramework\Bin\ColorMesh.cso</FullPath>
+      <FullPath>E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\Bin\ColorMesh.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>E:\CYS\StudyCys\Framework\CYSFramework\CYSFramework\Bin\Mesh.cso</FullPath>
+      <FullPath>E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\Bin\Mesh.cso</FullPath>
     </ContentFile>
     <ContentFile>
-      <FullPath>E:\CYS\StudyCys\Framework\CYSFramework\CYSFramework\Bin\Sprite.cso</FullPath>
+      <FullPath>E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\Bin\Sprite.cso</FullPath>
     </ContentFile>
   </ContentFiles>
   <SatelliteDlls />

@@ -195,7 +195,7 @@ void CSceneObject::PreRender()
 		++iter;
 	}
 
-	mRootComponent->PreRender();
+	//mRootComponent->PreRender();
 }
 
 void CSceneObject::Render()
@@ -222,7 +222,7 @@ void CSceneObject::Render()
 		++iter;
 	}
 
-	mRootComponent->Render();
+	//mRootComponent->Render();
 }
 
 void CSceneObject::PostRender()
@@ -249,12 +249,43 @@ void CSceneObject::PostRender()
 		++iter;
 	}
 
-	mRootComponent->PostRender();
+	//mRootComponent->PostRender();
 }
 
 CSceneObject* CSceneObject::Clone()
 {
 	return nullptr;
+}
+
+void CSceneObject::Destroy()
+{
+	CObject::Destroy();
+
+	// 삭제될때 컴포넌트들 레퍼런스 카운트 삭제
+
+	{
+		auto iter = mNonSceneComponentList.begin();
+		auto iterEnd = mNonSceneComponentList.end();
+
+		for (; iter != iterEnd; ++iter)
+		{
+			(*iter)->Destroy();
+		}
+
+		mNonSceneComponentList.clear();
+	}
+
+	{
+		auto iter = mSceneComponentList.begin();
+		auto iterEnd = mSceneComponentList.end();
+
+		for (; iter != iterEnd; ++iter)
+		{
+			(*iter)->Destroy();
+		}
+
+		mSceneComponentList.clear();
+	}
 }
 
 float CSceneObject::Damage(float Attack, CSceneObject* Obj)

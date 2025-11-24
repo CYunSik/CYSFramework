@@ -1,8 +1,10 @@
 #include "BulletObject.h"
 #include "../Component/StaticMeshComponent.h"
+#include "../Component/SpriteComponent.h"
 #include "../Component/MovementComponent.h"
 #include "../Component/RotationComponent.h"
 #include "../Component/ColliderOBB2D.h"
+#include "../Component/ColliderSphere2D.h"
 #include "../Share/Log.h"
 
 CBulletObject::CBulletObject()
@@ -36,14 +38,16 @@ bool CBulletObject::Init()
 {
 	CSceneObject::Init();
 
-	mRoot = CreateComponent<CStaticMeshComponent>();
-	mBody = CreateComponent<CColliderOBB2D>();
+	mRoot = CreateComponent<CSpriteComponent>();
+	mBody = CreateComponent<CColliderSphere2D>();
 	mMovement = CreateComponent<CMovementComponent>();
 	mRotation = CreateComponent<CRotationComponent>();
 
-	mRoot->SetMesh("CenterRect");
-	mRoot->SetShader("ColorMeshShader");
-	mRoot->SetWorldScale(0.5f, 0.5f, 1.f);
+	mRoot->SetTexture("SpadeBullet", TEXT("Texture/spr_spadebullet.png"), 0);
+	mRoot->SetTint(1.f, 1.f, 1.f);
+	mRoot->SetPivot(0.5f, 0.5f);
+	mRoot->SetOpacity(1.f);
+	mRoot->SetWorldScale(30.f, 30.f, 1.f);
 
 	// Movement 세팅
 	mMovement->SetUpdateComponent(mRoot);
@@ -56,19 +60,10 @@ bool CBulletObject::Init()
 	SetRootComponent(mRoot);
 
 	mRoot->AddChild(mBody);
-	mBody->SetBoxSize(30.f, 30.f);
+	//mBody->SetBoxSize(30.f, 30.f);
+	mBody->SetRadius(10.f);
 	mBody->SetCollisionProfile("PlayerAttack");
 	mBody->SetCollisionBeginFunc<CBulletObject>(this, &CBulletObject::CollisionBullet);
-
-	//mRoot->SetMesh("CenterTexRect");
-	//mRoot->SetMaterial(0, "Bullet1");
-	//mRoot->SetShader("StaticMeshShader");
-	//mRoot->SetOpacity(0, 1.f);
-
-	mRoot->SetMesh("CenterTexRect");
-	mRoot->SetMaterial(0, "Bullet1");
-	mRoot->SetShader("StaticMeshShader");
-	mRoot->SetOpacity(0, 1.f);
 
 	return true;
 }

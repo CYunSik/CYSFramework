@@ -1,5 +1,6 @@
 #include "NearingMonster.h"
 #include "../Component/StaticMeshComponent.h"
+#include "../Component/SpriteComponent.h"
 #include "BulletObject.h"
 #include "../Scene/Scene.h"
 #include "PlayerObject.h"
@@ -32,10 +33,12 @@ bool CNearingMonster::Init()
 		return false;
 	}
 
-	mRoot->SetMesh("CenterTexRect");
-	mRoot->SetMaterial(0, "Spade2");
-	mRoot->SetShader("StaticMeshShader");
-	mRoot->SetOpacity(0, 1.f);
+	mRoot->SetTexture("BlackSpadeBoom", TEXT("Texture/spr_bomb_spade_ch1_1.png"), 0);
+	mRoot->SetTint(1.f, 1.f, 1.f);
+	mRoot->SetPivot(0.5f, 0.5f);
+	mRoot->SetOpacity(1.f);
+
+	mRoot->SetWorldScale(50.f, 50.f, 1.f);
 
 	//mLine = CreateComponent<CColliderLine2D>();
 

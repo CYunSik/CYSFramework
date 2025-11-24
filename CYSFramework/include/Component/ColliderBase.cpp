@@ -13,6 +13,10 @@
 
 CColliderBase::CColliderBase()
 {
+#ifdef _DEBUG
+	mRenderType = EComponentRender::Render;
+#endif
+
 }
 
 CColliderBase::CColliderBase(const CColliderBase& Com)

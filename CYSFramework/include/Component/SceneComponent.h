@@ -18,6 +18,9 @@ protected:
 	CSceneComponent* mParent = nullptr;
 	std::vector<CSharedPtr<CSceneComponent>> mChildList;
 
+	// 해당 SceneComponent가 그려질지 여부
+	EComponentRender mRenderType = EComponentRender::None;
+
 public:
 	void AddChild(CSceneComponent* Child);
 

@@ -3,6 +3,7 @@
 #include "../Scene/CameraManager.h"
 #include "../Scene/Scene.h"
 #include "../Shader/TransformCBuffer.h"
+#include "../Render/RenderManager.h"
 
 CSceneComponent::CSceneComponent()
 	: CComponent()
@@ -43,11 +44,33 @@ void CSceneComponent::AddChild(CSceneComponent* Child)
 
 bool CSceneComponent::Init()
 {
+	if (!CComponent::Init())
+	{
+		return false;
+	}
+
+	// 내가 그려질 타입이니?
+	if (mRenderType == EComponentRender::Render)
+	{
+		CRenderManager::GetInst()->AddRenderList(this); // this는 포인터다
+	}
+
 	return true;
 }
 
 bool CSceneComponent::Init(const char* FileName)
 {
+	if (!CComponent::Init(FileName))
+	{
+		return false;
+	}
+
+	// 내가 그려질 타입이니?
+	if (mRenderType == EComponentRender::Render)
+	{
+		CRenderManager::GetInst()->AddRenderList(this); // this는 포인터다
+	}
+
 	return true;
 }
 
@@ -177,56 +200,56 @@ void CSceneComponent::PreRender()
 	// 크기 * 자전 * 이동
 	mMatWorld = mMatScale * mMatRot * mMatTranslate;
 
-	std::vector<CSharedPtr<CSceneComponent>>::iterator iter;
-	std::vector<CSharedPtr<CSceneComponent>>::iterator iterEnd = mChildList.end();
+	//std::vector<CSharedPtr<CSceneComponent>>::iterator iter;
+	//std::vector<CSharedPtr<CSceneComponent>>::iterator iterEnd = mChildList.end();
 
-	for (iter = mChildList.begin(); iter != iterEnd;)
-	{
-		if (!(*iter)->IsActive())	// 삭제할 타이밍
-		{
-			// 삭제할 컴포넌트랑 자료구조의 마지막 요소랑 스왑 해준다.
-			std::swap(*iter, mChildList.back());
+	//for (iter = mChildList.begin(); iter != iterEnd;)
+	//{
+	//	if (!(*iter)->IsActive())	// 삭제할 타이밍
+	//	{
+	//		// 삭제할 컴포넌트랑 자료구조의 마지막 요소랑 스왑 해준다.
+	//		std::swap(*iter, mChildList.back());
 
-			mChildList.pop_back();
-			iterEnd = mChildList.end();
-			continue;
-		}
-		else if (!(*iter)->IsEnable())
-		{
-			++iter;
-			continue;
-		}
-		(*iter)->PreRender();
-		++iter;
-	}
+	//		mChildList.pop_back();
+	//		iterEnd = mChildList.end();
+	//		continue;
+	//	}
+	//	else if (!(*iter)->IsEnable())
+	//	{
+	//		++iter;
+	//		continue;
+	//	}
+	//	(*iter)->PreRender();
+	//	++iter;
+	//}
 }
 
 void CSceneComponent::Render()
 {
 	CComponent::Render();
 
-	std::vector<CSharedPtr<CSceneComponent>>::iterator iter;
-	std::vector<CSharedPtr<CSceneComponent>>::iterator iterEnd = mChildList.end();
+	//std::vector<CSharedPtr<CSceneComponent>>::iterator iter;
+	//std::vector<CSharedPtr<CSceneComponent>>::iterator iterEnd = mChildList.end();
 
-	for (iter = mChildList.begin(); iter != iterEnd;)
-	{
-		if (!(*iter)->IsActive())	// 삭제할 타이밍
-		{
-			// 삭제할 컴포넌트랑 자료구조의 마지막 요소랑 스왑 해준다.
-			std::swap(*iter, mChildList.back());
+	//for (iter = mChildList.begin(); iter != iterEnd;)
+	//{
+	//	if (!(*iter)->IsActive())	// 삭제할 타이밍
+	//	{
+	//		// 삭제할 컴포넌트랑 자료구조의 마지막 요소랑 스왑 해준다.
+	//		std::swap(*iter, mChildList.back());
 
-			mChildList.pop_back();
-			iterEnd = mChildList.end();
-			continue;
-		}
-		else if (!(*iter)->IsEnable())
-		{
-			++iter;
-			continue;
-		}
-		(*iter)->Render();
-		++iter;
-	}
+	//		mChildList.pop_back();
+	//		iterEnd = mChildList.end();
+	//		continue;
+	//	}
+	//	else if (!(*iter)->IsEnable())
+	//	{
+	//		++iter;
+	//		continue;
+	//	}
+	//	(*iter)->Render();
+	//	++iter;
+	//}
 
 	mTransformCBuffer->SetWorldMatrix(mMatWorld);
 	FMatrix matView, matProj;
@@ -247,28 +270,28 @@ void CSceneComponent::PostRender()
 {
 	CComponent::PostRender();
 
-	std::vector<CSharedPtr<CSceneComponent>>::iterator iter;
-	std::vector<CSharedPtr<CSceneComponent>>::iterator iterEnd = mChildList.end();
+	//std::vector<CSharedPtr<CSceneComponent>>::iterator iter;
+	//std::vector<CSharedPtr<CSceneComponent>>::iterator iterEnd = mChildList.end();
 
-	for (iter = mChildList.begin(); iter != iterEnd;)
-	{
-		if (!(*iter)->IsActive())	// 삭제할 타이밍
-		{
-			// 삭제할 컴포넌트랑 자료구조의 마지막 요소랑 스왑 해준다.
-			std::swap(*iter, mChildList.back());
+	//for (iter = mChildList.begin(); iter != iterEnd;)
+	//{
+	//	if (!(*iter)->IsActive())	// 삭제할 타이밍
+	//	{
+	//		// 삭제할 컴포넌트랑 자료구조의 마지막 요소랑 스왑 해준다.
+	//		std::swap(*iter, mChildList.back());
 
-			mChildList.pop_back();
-			iterEnd = mChildList.end();
-			continue;
-		}
-		else if (!(*iter)->IsEnable())
-		{
-			++iter;
-			continue;
-		}
-		(*iter)->PostRender();
-		++iter;
-	}
+	//		mChildList.pop_back();
+	//		iterEnd = mChildList.end();
+	//		continue;
+	//	}
+	//	else if (!(*iter)->IsEnable())
+	//	{
+	//		++iter;
+	//		continue;
+	//	}
+	//	(*iter)->PostRender();
+	//	++iter;
+	//}
 }
 
 CSceneComponent* CSceneComponent::Clone()

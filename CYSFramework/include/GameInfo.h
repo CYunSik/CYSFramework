@@ -283,3 +283,19 @@ namespace ERenderStateType
 		DepthStencil
 	};
 }
+
+// SceneComponent가 그려질지 여부를 선택한다.
+enum class EComponentRender
+{
+	None,
+	Render
+};
+
+// 렌더 정렬 타입
+enum class ERenderSortType
+{
+	None,
+	Y,
+	Alpha
+	// 추가적으로 만들고싶은 정렬 있으면 여기 등록
+};

@@ -59,40 +59,41 @@ bool CPlayerObject::Init()
 	mRotation = CreateComponent<CRotationComponent>();
 	mCamera = CreateComponent<CCameraComponent>();
 
+	// 크리스
 	//mRoot->SetMesh("CenterTexRect");
-	mRoot->SetTexture("Heart", TEXT("Texture/spr_heart_0.png"), 0);
+	mRoot->SetTexture("Heart", TEXT("Texture/spr_krisd_dark_0.png"), 0);
 	mRoot->SetTint(1.f, 1.f, 1.f);
 	mRoot->SetPivot(0.5f, 0.5f);
 	mRoot->SetOpacity(1.f);
 	//mRoot->SetShader("ColorMeshShader");
 
 	mRoot->SetWorldPos(0.f, 0.f, 0.f);
-	mRoot->SetWorldScale(20.f, 20.f, 1.f);
+	mRoot->SetWorldScale(50.f, 50.f, 1.f);
 	SetRootComponent(mRoot);
 
 	mRoot->AddChild(mBody);
-	mBody->SetBoxSize(20.f, 20.f);
+	mBody->SetBoxSize(50.f, 50.f);
 	//mBody->SetRadius(50.f);
 	mBody->SetCollisionProfile("Player");
 
-	// 플레이어 2 플레이어 3
-	//mPlayer2 = CreateComponent<CStaticMeshComponent>();
-	//mPlayer3 = CreateComponent<CStaticMeshComponent>();
+	// 수지, 랄세이
+	mSusie = CreateComponent<CSpriteComponent>();
+	mSusie->SetTexture("Susie", TEXT("Texture/spr_susie_down_dw.png"), 0);
+	mSusie->SetPivot(0.5f, 0.5f);
+	mSusie->SetOpacity(1.f);
+	mRoot->AddChild(mSusie);
 
-	//mPlayer2->SetMesh("CenterRect");
-	//mPlayer2->SetShader("ColorMeshShader");
+	mRalsei = CreateComponent<CSpriteComponent>();
+	mRalsei->SetTexture("Ralsei", TEXT("Texture/spr_ralsei_down.png"), 0);
+	mRalsei->SetPivot(0.5f, 0.5f);
+	mRalsei->SetOpacity(1.f);
+	mSusie->AddChild(mRalsei);
 
-	//mPlayer3->SetMesh("CenterRect");
-	//mPlayer3->SetShader("ColorMeshShader");
-
-	//mPlayer2->SetRelativePos(0.f, -120.f, 0.f);
-	//mPlayer2->SetRelativeScale(1.f, 1.f, 1.f);
-
-	//mPlayer3->SetRelativePos(0.f, -240.f, 0.f);
-	//mPlayer3->SetRelativeScale(1.f, 1.f, 1.f);
-
-	//mRoot->AddChild(mPlayer2);
-	//mRoot->AddChild(mPlayer3);
+	for (int i = 0; i < 300; ++i)
+	{
+		mPlayerTrail.push_back(GetWorldPosition());
+		mSusieTrail.push_back(mSusie->GetWorldPosition());
+	}
 
 	//mBody->AddChild(mLine);
 	//mLine->SetCollisionProfile("Player");
@@ -100,10 +101,10 @@ bool CPlayerObject::Init()
 	//mLine->SetRelativePos(0.f, 50.f);
 
 	mMovement->SetUpdateComponent(mRoot);
-	mMovement->SetMoveSpeed(300.f);
+	mMovement->SetMoveSpeed(400.f);
 
 	mRotation->SetUpdateComponent(mRoot);
-	
+
 	// 카메라 세팅
 	mCamera->SetProjectionType(ECameraProjectionType::Ortho);
 	mRoot->AddChild(mCamera);
@@ -130,16 +131,16 @@ bool CPlayerObject::Init()
 	//mSub2->SetRelativeScale(0.5f, 0.5f, 1.f);
 
 	// 입력
-	mScene->GetInput()->AddBindKey("MoveUp", 'W');
+	mScene->GetInput()->AddBindKey("MoveUp", VK_UP);
 	mScene->GetInput()->AddBindFunction("MoveUp", EInputType::Hold, this, &CPlayerObject::MoveUp);
 
-	mScene->GetInput()->AddBindKey("MoveDown", 'S');
+	mScene->GetInput()->AddBindKey("MoveDown", VK_DOWN);
 	mScene->GetInput()->AddBindFunction("MoveDown", EInputType::Hold, this, &CPlayerObject::MoveDown);
 
-	mScene->GetInput()->AddBindKey("MoveLeft", 'A');
+	mScene->GetInput()->AddBindKey("MoveLeft", VK_LEFT);
 	mScene->GetInput()->AddBindFunction("MoveLeft", EInputType::Hold, this, &CPlayerObject::MoveLeft);
 
-	mScene->GetInput()->AddBindKey("MoveRight", 'D');
+	mScene->GetInput()->AddBindKey("MoveRight", VK_RIGHT);
 	mScene->GetInput()->AddBindFunction("MoveRight", EInputType::Hold, this, &CPlayerObject::MoveRight);
 
 	// 회전
@@ -197,8 +198,63 @@ bool CPlayerObject::Init()
 
 void CPlayerObject::Update(float DeltaTime)
 {
-	// 이동 이전 위치 저장
-	//FVector3D PrevPos = GetWorldPosition();
+	// 이전 프레임 위치 저장용
+	static bool bFirst = true;
+	static FVector3D PrevPos = FVector3D::Zero;
+
+	if (bFirst)
+	{
+		PrevPos = GetWorldPosition();
+		bFirst = false;
+	}
+
+	// 현재 위치
+	FVector3D CurPos = GetWorldPosition();
+	FVector3D Diff = CurPos - PrevPos;
+
+	bool bMoved = (Diff.Length() > 0.0000001f);
+
+	// 움직였을 때만 Trail 저장
+	if (bMoved)
+	{
+		mPlayerTrail.push_back(CurPos);
+
+		if (mPlayerTrail.size() > 2000)
+		{
+			mPlayerTrail.erase(mPlayerTrail.begin());
+		}
+	}
+
+	PrevPos = CurPos;
+
+	// 움직일 때만 따라오기
+	if (bMoved)
+	{
+		int Delay = 300;
+
+		// 수지가 크리스 따라가기
+		if (mPlayerTrail.size() > Delay)
+		{
+			FVector3D TargetPos = mPlayerTrail[mPlayerTrail.size() - Delay - 1];
+			FVector3D Relative = TargetPos - mRoot->GetWorldPosition();
+			mSusie->SetRelativePos(Relative);
+		}
+
+		// 수지 위치 저장
+		mSusieTrail.push_back(mSusie->GetWorldPosition());
+		if (mSusieTrail.size() > 2000)
+		{
+			mSusieTrail.erase(mSusieTrail.begin());
+		}
+
+		// 랄세이가 수지 따라가기
+		if (mSusieTrail.size() > Delay)
+		{
+			FVector3D TargetPos = mSusieTrail[mSusieTrail.size() - Delay - 1];
+			FVector3D Relative = TargetPos - mSusie->GetWorldPosition();
+			mRalsei->SetRelativePos(Relative);
+		}
+	}
 
 	CSceneObject::Update(DeltaTime);
 

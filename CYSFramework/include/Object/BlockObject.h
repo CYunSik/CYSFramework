@@ -12,8 +12,8 @@ protected:
     virtual ~CBlockObject();
 
 protected:
-    CSharedPtr<class CStaticMeshComponent> mRoot;
-    CSharedPtr<class CStaticMeshComponent> mRoot2;
+    CSharedPtr<class CSpriteComponent> mRoot;
+    CSharedPtr<class CSpriteComponent> mRoot2;
     CSharedPtr<class CColliderAABB2D> mBody;
 
 public:

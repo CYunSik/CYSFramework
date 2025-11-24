@@ -2,6 +2,7 @@
 
 #include "PlayerObject.h"
 #include "../Component/StaticMeshComponent.h"
+#include "../Component/SpriteComponent.h"
 #include "../Component/ColliderAABB2D.h"
 #include "../Scene/Scene.h"
 
@@ -30,27 +31,27 @@ bool CBlockObject::Init()
         return false;
     }
 
-    mRoot = CreateComponent<CStaticMeshComponent>();
-    mRoot2 = CreateComponent<CStaticMeshComponent>();
+    mRoot = CreateComponent<CSpriteComponent>();
+    mRoot2 = CreateComponent<CSpriteComponent>();
     //mBody = CreateComponent<CColliderAABB2D>();
 
     //mRoot->SetMesh("CenterRect");
     //mRoot->SetShader("ColorMeshShader");
-    mRoot->SetMesh("CenterTexRect");
-    mRoot->SetMaterial(0, "HitBox1");
-    mRoot->SetBaseColor(0, 0.f, 1.f, 0.f, 1.f);
-    mRoot->SetShader("StaticMeshShader");
-    mRoot->SetOpacity(0, 1.f);
-    mRoot->SetWorldScale(250.f, 250.f);
+
+    mRoot->SetTexture("HitBox1", TEXT("Texture/spr_battlebg_stretch_hitbox_0.png"), 0);
+    mRoot->SetTint(0.f, 1.f, 0.f);
+    mRoot->SetPivot(0.5f, 0.5f);
+    mRoot->SetOpacity(1.f);
+    mRoot->SetWorldScale(250.f, 250.f, 1.f);
 
     SetRootComponent(mRoot);
-    mRoot->AddChild(mRoot2);
+    //mRoot->AddChild(mRoot2);
 
-    mRoot2->SetMesh("CenterTexRect");
-    mRoot2->SetMaterial(0, "HitBox2");
-    mRoot2->SetShader("StaticMeshShader");
-    mRoot2->SetOpacity(0, 1.f);
-    mRoot2->SetWorldScale(255.f, 255.f);
+    //mRoot2->SetTexture("HitBox2", TEXT("Texture/spr_battlebg_stretch_hitbox_1.png"), 0);
+    //mRoot2->SetTint(1.f, 1.f, 1.f);
+    //mRoot2->SetPivot(0.5f, 0.5f);
+    //mRoot2->SetOpacity(1.f);
+    //mRoot2->SetWorldScale(255.f, 255.f, 1.f);
 	
 	//mRoot->AddChild(mBody);
  //   mBody->SetBoxSize(300.f, 10.f);

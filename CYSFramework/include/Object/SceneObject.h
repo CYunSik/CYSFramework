@@ -23,6 +23,8 @@ protected:
 	// NonSceneComponent;
 	std::vector<CSharedPtr<class CComponent>> mNonSceneComponentList;
 
+	std::vector<CSharedPtr<class CComponent>> mSceneComponentList;
+
 	float mLifeTime = 0.f;
 	CSharedPtr<class CObjectSpawnPoint> mSpawnPoint;
 
@@ -79,6 +81,7 @@ public:
 	virtual void Render();
 	virtual void PostRender();
 	virtual CSceneObject* Clone();
+	virtual void Destroy() override;
 
 public:
 						// 데미지,      데미지를 준 대상
@@ -106,6 +109,10 @@ public:
 		if (!Com)
 		{
 			mNonSceneComponentList.emplace_back(Component);
+		}
+		else
+		{
+			mSceneComponentList.emplace_back(Component);
 		}
 
 		return Component;

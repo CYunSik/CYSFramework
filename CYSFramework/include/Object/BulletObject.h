@@ -24,8 +24,8 @@ public:
 	void SetBulletCollisionProfile(const std::string& Name);
 
 protected:
-	CSharedPtr<class CStaticMeshComponent> mRoot;
-	CSharedPtr<class CColliderOBB2D> mBody;
+	CSharedPtr<class CSpriteComponent> mRoot;
+	CSharedPtr<class CColliderSphere2D> mBody;
 	CSharedPtr<class CMovementComponent> mMovement;
 	CSharedPtr<class CRotationComponent> mRotation;
 

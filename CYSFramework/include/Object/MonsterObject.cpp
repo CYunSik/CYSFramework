@@ -9,6 +9,7 @@
 #include "../Share/Log.h"
 #include "ObjectSpawnPoint.h"
 #include "../Component/MovementComponent.h"
+#include "../Component/SpriteComponent.h"
 
 CMonsterObject::CMonsterObject()
 {
@@ -66,16 +67,11 @@ bool CMonsterObject::Init()
 		return false;
 	}
 
-	mRoot = CreateComponent<CStaticMeshComponent>();
-	mRoot2 = CreateComponent<CStaticMeshComponent>();
+	mRoot = CreateComponent<CSpriteComponent>();
 	mMovement = CreateComponent<CMovementComponent>();
 	//mBody = CreateComponent<CColliderAABB2D>();
 	//mBody = CreateComponent<CColliderSphere2D>();
 	mBody = CreateComponent<CColliderOBB2D>();
-
-	mRoot->SetMesh("CenterRect");
-	mRoot->SetShader("ColorMeshShader");
-	mRoot->SetWorldScale(50.f, 50.f);
 	
 	SetRootComponent(mRoot);
 
