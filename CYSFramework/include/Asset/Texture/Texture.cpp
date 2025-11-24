@@ -121,6 +121,55 @@ bool CTexture::LoadTextureFullPath(const TCHAR* FullPath)
 	return CreateResourceView(0);
 }
 
+bool CTexture::LoadTexture(const std::vector<const TCHAR*>& FileName)
+{
+	size_t Size = FileName.size();
+
+	for (size_t i = 0; i < Size; ++i)
+	{
+		if (!LoadTexture(FileName[i]))
+		{
+			return false;
+		}
+	}
+
+	return true;
+}
+
+bool CTexture::LoadTextureFullPath(const std::vector<const TCHAR*>& FullPath)
+{
+	size_t Size = FullPath.size();
+
+	for (size_t i = 0; i < Size; ++i)
+	{
+		if (!LoadTextureFullPath(FullPath[i]))
+		{
+			return false;
+		}
+	}
+
+	return true;
+}
+
+bool CTexture::LoadTexture(const TCHAR* FileName, const TCHAR* Ext, int Count)
+{
+	for (int i = 0; i < Count; ++i)
+	{
+		// 파일 이름 인덱스 . 확장자
+		// (ex) Frmae0.PNG
+		TCHAR _FileName[MAX_PATH] = {};
+
+		wsprintf(_FileName, TEXT("%s%d.%s"), FileName, i, Ext);
+
+		if (!LoadTexture(_FileName))
+		{
+			return false;
+		}
+	}
+
+	return true;
+}
+
 void CTexture::SetShader(int Register, int ShaderBufferType, int TextureIndex)
 {
 	// 1번 인자 : 레지스터 번호

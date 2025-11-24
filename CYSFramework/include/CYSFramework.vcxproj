@@ -141,6 +141,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Asset\Animation\Animation2DData.cpp" />
+    <ClCompile Include="Asset\Animation\Animation2DManager.cpp" />
     <ClCompile Include="Asset\Asset.cpp" />
     <ClCompile Include="Asset\AssetManager.cpp" />
     <ClCompile Include="Asset\Material\Material.cpp" />
@@ -168,6 +170,7 @@
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Object\BlockObject.cpp" />
+    <ClCompile Include="Object\BoomMonster.cpp" />
     <ClCompile Include="Object\BulletObject.cpp" />
     <ClCompile Include="Object\ContinuousdamageBullet.cpp" />
     <ClCompile Include="Object\GunnerMonster.cpp" />
@@ -215,6 +218,8 @@
     <ClCompile Include="Vector4D.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Asset\Animation\Animation2DData.h" />
+    <ClInclude Include="Asset\Animation\Animation2DManager.h" />
     <ClInclude Include="Asset\Asset.h" />
     <ClInclude Include="Asset\AssetManager.h" />
     <ClInclude Include="Asset\Material\Material.h" />
@@ -245,6 +250,7 @@
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="Matrix.h" />
     <ClInclude Include="Object\BlockObject.h" />
+    <ClInclude Include="Object\BoomMonster.h" />
     <ClInclude Include="Object\BulletObject.h" />
     <ClInclude Include="Object\ContinuousdamageBullet.h" />
     <ClInclude Include="Object\GunnerMonster.h" />

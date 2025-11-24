@@ -85,6 +85,57 @@ bool CSceneAssetManager::LoadTextureFullPath(const std::string& Name, const TCHA
 	return true;
 }
 
+bool CSceneAssetManager::LoadTexture(const std::string& Name, const std::vector<const TCHAR*>& FileName)
+{
+	if (!CAssetManager::GetInst()->GetTextureManager()->LoadTexture(Name, FileName))
+	{
+		return false;
+	}
+
+	auto iter = mAssetMap.find(Name);
+
+	if (iter == mAssetMap.end())
+	{
+		mAssetMap.insert(std::make_pair(Name, CAssetManager::GetInst()->GetTextureManager()->FindTexture(Name)));
+	}
+
+	return true;
+}
+
+bool CSceneAssetManager::LoadTextureFullPath(const std::string& Name, const std::vector<const TCHAR*>& FullPath)
+{
+	if (!CAssetManager::GetInst()->GetTextureManager()->LoadTexture(Name, FullPath))
+	{
+		return false;
+	}
+
+	auto iter = mAssetMap.find(Name);
+
+	if (iter == mAssetMap.end())
+	{
+		mAssetMap.insert(std::make_pair(Name, CAssetManager::GetInst()->GetTextureManager()->FindTexture(Name)));
+	}
+
+	return true;
+}
+
+bool CSceneAssetManager::LoadTexture(const std::string& Name, const TCHAR* FileName, const TCHAR* Ext, int Count)
+{
+	if (!CAssetManager::GetInst()->GetTextureManager()->LoadTexture(Name, FileName, Ext, Count))
+	{
+		return false;
+	}
+
+	auto iter = mAssetMap.find(Name);
+
+	if (iter == mAssetMap.end())
+	{
+		mAssetMap.insert(std::make_pair(Name, CAssetManager::GetInst()->GetTextureManager()->FindTexture(Name)));
+	}
+
+	return true;
+}
+
 bool CSceneAssetManager::CreateMaterial(const std::string& Name)
 {
 	if (!CAssetManager::GetInst()->GetMaterialManager()->CreateMaterial(Name))

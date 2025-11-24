@@ -11,6 +11,7 @@ private:
 	class CMeshManager* mMeshManager = nullptr;
 	class CTextureManager* mTextureManager = nullptr;
 	class CMaterialManager* mMaterialManager = nullptr;
+	class CAnimation2DManager* mAnimation2DManager = nullptr;
 
 public:
 	class CMeshManager* GetMeshManager() const
@@ -26,6 +27,11 @@ public:
 	class CMaterialManager* GetMaterialManager() const
 	{
 		return mMaterialManager;
+	}
+
+	class CAnimation2DManager* GetAnimationManager() const
+	{
+		return mAnimation2DManager;
 	}
 
 public:

@@ -11,7 +11,8 @@ enum class EObjectSpawnType
 	TalonR,
 	TornadoBullet,
 	GunnerMonster,
-	NearingMonster
+	NearingMonster,
+	BoomMonster
 };
 
 // 스폰하는데 반복여부? 한번 또는 반복

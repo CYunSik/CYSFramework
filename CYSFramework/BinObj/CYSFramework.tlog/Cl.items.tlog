@@ -1,3 +1,5 @@
+E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Asset\Animation\Animation2DData.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\Animation2DData.obj
+E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Asset\Animation\Animation2DManager.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\Animation2DManager.obj
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Asset\Asset.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\Asset.obj
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Asset\AssetManager.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\AssetManager.obj
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Asset\Material\Material.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\Material.obj
@@ -25,6 +27,7 @@ E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Device.cpp;E:\CYS\CYS_D
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\GameManager.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\GameManager.obj
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\main.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\main.obj
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Object\BlockObject.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\BlockObject.obj
+E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Object\BoomMonster.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\BoomMonster.obj
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Object\BulletObject.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\BulletObject.obj
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Object\ContinuousdamageBullet.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\ContinuousdamageBullet.obj
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Object\GunnerMonster.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\GunnerMonster.obj

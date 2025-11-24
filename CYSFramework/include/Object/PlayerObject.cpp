@@ -61,7 +61,7 @@ bool CPlayerObject::Init()
 
 	// 크리스
 	//mRoot->SetMesh("CenterTexRect");
-	mRoot->SetTexture("Heart", TEXT("Texture/spr_krisd_dark_0.png"), 0);
+	mRoot->SetTexture("Kris", TEXT("Texture/spr_krisd_dark_0.png"), 0);
 	mRoot->SetTint(1.f, 1.f, 1.f);
 	mRoot->SetPivot(0.5f, 0.5f);
 	mRoot->SetOpacity(1.f);
@@ -78,18 +78,18 @@ bool CPlayerObject::Init()
 
 	// 수지, 랄세이
 	mSusie = CreateComponent<CSpriteComponent>();
-	mSusie->SetTexture("Susie", TEXT("Texture/spr_susie_down_dw.png"), 0);
+	mSusie->SetTexture("Susie", TEXT("Texture/spr_susied_dark_0.png"), 0);
 	mSusie->SetPivot(0.5f, 0.5f);
 	mSusie->SetOpacity(1.f);
 	mRoot->AddChild(mSusie);
 
 	mRalsei = CreateComponent<CSpriteComponent>();
-	mRalsei->SetTexture("Ralsei", TEXT("Texture/spr_ralsei_down.png"), 0);
+	mRalsei->SetTexture("Ralsei", TEXT("Texture/spr_ralseid_0.png"), 0);
 	mRalsei->SetPivot(0.5f, 0.5f);
 	mRalsei->SetOpacity(1.f);
 	mSusie->AddChild(mRalsei);
 
-	for (int i = 0; i < 300; ++i)
+	for (int i = 0; i < 501; ++i)
 	{
 		mPlayerTrail.push_back(GetWorldPosition());
 		mSusieTrail.push_back(mSusie->GetWorldPosition());
@@ -101,7 +101,7 @@ bool CPlayerObject::Init()
 	//mLine->SetRelativePos(0.f, 50.f);
 
 	mMovement->SetUpdateComponent(mRoot);
-	mMovement->SetMoveSpeed(400.f);
+	mMovement->SetMoveSpeed(350.f);
 
 	mRotation->SetUpdateComponent(mRoot);
 
@@ -230,7 +230,7 @@ void CPlayerObject::Update(float DeltaTime)
 	// 움직일 때만 따라오기
 	if (bMoved)
 	{
-		int Delay = 300;
+		int Delay = 500;
 
 		// 수지가 크리스 따라가기
 		if (mPlayerTrail.size() > Delay)

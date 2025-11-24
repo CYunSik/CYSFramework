@@ -145,6 +145,9 @@
     <Filter Include="04.Shader\02.Shader Class\04. Sprite">
       <UniqueIdentifier>{4628a1e4-da5f-4177-996f-a46933346580}</UniqueIdentifier>
     </Filter>
+    <Filter Include="03.Asset\04. Animation">
+      <UniqueIdentifier>{0da5995b-524c-460c-ac1d-bea86b920ae7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -362,6 +365,15 @@
     </ClCompile>
     <ClCompile Include="Shader\SpriteShader.cpp">
       <Filter>04.Shader\02.Shader Class\04. Sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="Object\BoomMonster.cpp">
+      <Filter>06.Object\03.Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Asset\Animation\Animation2DData.cpp">
+      <Filter>03.Asset\04. Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Asset\Animation\Animation2DManager.cpp">
+      <Filter>03.Asset\04. Animation</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -601,6 +613,15 @@
     </ClInclude>
     <ClInclude Include="Shader\SpriteShader.h">
       <Filter>04.Shader\02.Shader Class\04. Sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\BoomMonster.h">
+      <Filter>06.Object\03.Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Asset\Animation\Animation2DData.h">
+      <Filter>03.Asset\04. Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Asset\Animation\Animation2DManager.h">
+      <Filter>03.Asset\04. Animation</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

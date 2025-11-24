@@ -1,5 +1,6 @@
 #include "ObjectSpawnPoint.h"
 
+#include "BoomMonster.h"
 #include "../Component/SceneComponent.h"
 #include "../Scene/Scene.h"
 #include "PlayerObject.h"
@@ -95,6 +96,9 @@ void CObjectSpawnPoint::Spawn()
 		break;
 	case EObjectSpawnType::NearingMonster:
 		mSpawnObject = mScene->CreateObj<CNearingMonster>("NearingMonster");
+		break;
+	case EObjectSpawnType::BoomMonster:
+		mSpawnObject = mScene->CreateObj<CBoomMonster>("BoomMonster");
 		break;
 	}
 

@@ -55,6 +55,13 @@ public:
 	bool LoadTexture(const TCHAR* FileName);
 	bool LoadTextureFullPath(const TCHAR* FullPath);
 
+	// 텍스쳐 여러장 불러오기
+	bool LoadTexture(const std::vector<const TCHAR*>& FileName);
+	bool LoadTextureFullPath(const std::vector<const TCHAR*>& FullPath);
+
+	// 규칙적인 파일 이름으로 여러장 불러온다.
+	bool LoadTexture(const TCHAR* FileName, const TCHAR* Ext, int Count);
+
 public:
 	void SetShader(int Register, int ShaderBufferType, int TextureIndex);
 	void ResetShader(int Register, int ShaderBufferType);

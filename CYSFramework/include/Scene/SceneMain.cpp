@@ -9,6 +9,7 @@
 #include "../Object/MonsterSpawner.h"
 #include "../Object/ObjectSpawnPoint.h"
 #include "../Object/BlockObject.h"
+#include "../Object/BoomMonster.h"
 
 CSceneMain::CSceneMain()
 {
@@ -96,28 +97,28 @@ bool CSceneMain::Init()
 	MonsterPoint->SetDestroySpawnCount(3);
 	MonsterPoint->SetWorldPos(400.f, 200.f);
 
-	MonsterPoint = CreateObj<CObjectSpawnPoint>("MonsterPoint2");
-	MonsterPoint->SetSpawnType(EObjectSpawnType::GunnerMonster);
-	MonsterPoint->SetSpawnLoopType(EObjectSpawnLoopType::Loop);
-	MonsterPoint->SetSpawnCountType(EObjectSpawnCountType::CountDestroy);
-	MonsterPoint->SetImmediateSpawn(true);
-	MonsterPoint->SetSpawnTime(5.f);
-	MonsterPoint->SetDestroySpawnCount(3);
-	MonsterPoint->SetWorldPos(-400.f, 200.f);
+	//MonsterPoint = CreateObj<CObjectSpawnPoint>("MonsterPoint2");
+	//MonsterPoint->SetSpawnType(EObjectSpawnType::GunnerMonster);
+	//MonsterPoint->SetSpawnLoopType(EObjectSpawnLoopType::Loop);
+	//MonsterPoint->SetSpawnCountType(EObjectSpawnCountType::CountDestroy);
+	//MonsterPoint->SetImmediateSpawn(true);
+	//MonsterPoint->SetSpawnTime(5.f);
+	//MonsterPoint->SetDestroySpawnCount(3);
+	//MonsterPoint->SetWorldPos(-400.f, 200.f);
 
-	MonsterPoint = CreateObj<CObjectSpawnPoint>("MonsterPoint3");
-	MonsterPoint->SetSpawnType(EObjectSpawnType::GunnerMonster);
-	MonsterPoint->SetSpawnLoopType(EObjectSpawnLoopType::Loop);
-	MonsterPoint->SetImmediateSpawn(true);
-	MonsterPoint->SetSpawnTime(5.f);
-	MonsterPoint->SetWorldPos(400.f, -200.f);
+	//MonsterPoint = CreateObj<CObjectSpawnPoint>("MonsterPoint3");
+	//MonsterPoint->SetSpawnType(EObjectSpawnType::GunnerMonster);
+	//MonsterPoint->SetSpawnLoopType(EObjectSpawnLoopType::Loop);
+	//MonsterPoint->SetImmediateSpawn(true);
+	//MonsterPoint->SetSpawnTime(5.f);
+	//MonsterPoint->SetWorldPos(400.f, -200.f);
 
-	MonsterPoint = CreateObj<CObjectSpawnPoint>("MonsterPoint4");
-	MonsterPoint->SetSpawnType(EObjectSpawnType::GunnerMonster);
-	MonsterPoint->SetSpawnLoopType(EObjectSpawnLoopType::Loop);
-	MonsterPoint->SetImmediateSpawn(true);
-	MonsterPoint->SetSpawnTime(3.5f);
-	MonsterPoint->SetWorldPos(-400.f, -200.f);
+	//MonsterPoint = CreateObj<CObjectSpawnPoint>("MonsterPoint4");
+	//MonsterPoint->SetSpawnType(EObjectSpawnType::GunnerMonster);
+	//MonsterPoint->SetSpawnLoopType(EObjectSpawnLoopType::Loop);
+	//MonsterPoint->SetImmediateSpawn(true);
+	//MonsterPoint->SetSpawnTime(3.5f);
+	//MonsterPoint->SetWorldPos(-400.f, -200.f);
 
 	MonsterPoint = CreateObj<CObjectSpawnPoint>("MonsterPoint5");
 	MonsterPoint->SetSpawnType(EObjectSpawnType::NearingMonster);
@@ -128,6 +129,43 @@ bool CSceneMain::Init()
 
 	CBlockObject* Block = CreateObj<CBlockObject>("HitBox");
 	Block->SetWorldPos(0.f, 0.f, 2.f);
+
+	// 클로버 폭탄
+	CBoomMonster* ClubMonster = CreateObj<CBoomMonster>("ClubMonster");
+	ClubMonster->SetWorldPos(-200.f, 300.f);
+	ClubMonster->SetDownTime(1.f);
+
+	CBoomMonster* ClubMonster2 = CreateObj<CBoomMonster>("ClubMonster2");
+	ClubMonster2->SetWorldPos(-350.f, 500.f);
+	ClubMonster2->SetDownTime(1.5f);
+
+	CBoomMonster* ClubMonster3 = CreateObj<CBoomMonster>("ClubMonster3");
+	ClubMonster3->SetWorldPos(200.f, 400.f);
+	ClubMonster3->SetDownTime(0.8f);
+
+	CBoomMonster* ClubMonster4 = CreateObj<CBoomMonster>("ClubMonster4");
+	ClubMonster4->SetWorldPos(350.f, 500.f);
+	ClubMonster4->SetDownTime(2.f);
+
+	CBoomMonster* ClubMonster5 = CreateObj<CBoomMonster>("ClubMonster5");
+	ClubMonster5->SetWorldPos(400.f, 700.f);
+	ClubMonster5->SetDownTime(3.f);
+
+	CBoomMonster* ClubMonster6 = CreateObj<CBoomMonster>("ClubMonster6");
+	ClubMonster6->SetWorldPos(350.f, 1000.f);
+	ClubMonster6->SetDownTime(3.5f);
+
+	CBoomMonster* ClubMonster7 = CreateObj<CBoomMonster>("ClubMonster7");
+	ClubMonster7->SetWorldPos(400.f, 600.f);
+	ClubMonster7->SetDownTime(1.7f);
+
+	CBoomMonster* ClubMonster8 = CreateObj<CBoomMonster>("ClubMonster8");
+	ClubMonster8->SetWorldPos(-200.f, 600.f);
+	ClubMonster8->SetDownTime(1.3f);
+
+	CBoomMonster* ClubMonster9 = CreateObj<CBoomMonster>("ClubMonster9");
+	ClubMonster9->SetWorldPos(-400.f, 800.f);
+	ClubMonster9->SetDownTime(2.2f);
 
 	// 관통 테스트
 	//MonsterPoint = CreateObj<CObjectSpawnPoint>("MonsterPoint6");

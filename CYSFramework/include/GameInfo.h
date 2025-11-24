@@ -270,7 +270,9 @@ struct FCollisionProfile
 enum class EAssetType
 {
 	Mesh,
-	Texture
+	Texture,
+	Material,
+	Animation
 };
 
 // 렌더 스테이트 타입
@@ -298,4 +300,11 @@ enum class ERenderSortType
 	Y,
 	Alpha
 	// 추가적으로 만들고싶은 정렬 있으면 여기 등록
+};
+
+// 애니메이션 텍스쳐 타입
+enum class EAnimationTextureType
+{
+	SpriteSheet,
+	Frame
 };
