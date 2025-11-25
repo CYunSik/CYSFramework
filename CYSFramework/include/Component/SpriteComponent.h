@@ -20,6 +20,9 @@ protected:
 	FVector4D mTint = FVector4D::White;
 	int mTextureIndex = 0;
 
+	// 애니메이션 출력용도
+	class CAnimation2D* mAnimation = nullptr;
+
 	class CSpriteCBuffer* mSpriteCBuffer;
 
 public:

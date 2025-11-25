@@ -15,6 +15,7 @@
 #include "../Shader/TransformCBuffer.h"
 #include "../Component/CameraComponent.h"
 #include "../Scene/CameraManager.h"
+#include "../Animation/Animation2D.h"
 
 CSpriteComponent::CSpriteComponent()
 {

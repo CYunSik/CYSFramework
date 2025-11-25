@@ -1,0 +1,53 @@
+#pragma once
+
+#include "../GameInfo.h"
+#include "Animation2DSequence.h"
+
+class CAnimation2D
+{
+	friend class CSpriteComponent;
+
+private:
+	CAnimation2D();
+	CAnimation2D(const CAnimation2D& Anim);
+	virtual ~CAnimation2D();
+
+private:
+	// 현재 씬
+	class CScene* mScene = nullptr;
+
+	// 주인 SpriteComponent
+	class CSpriteComponent* mOwner = nullptr;
+
+	// 애니메이션 시퀀스 맵
+	std::unordered_map<std::string, CAnimation2DSequence*> mSequenceMap;
+
+	// 현재 재생중인 시퀀스
+	CAnimation2DSequence* mCurrentSequence = nullptr;
+
+public:
+	bool Init();
+	void Update(float DeltaTime);
+
+private:
+	CAnimation2DSequence* FindSequence(const std::string& Name);
+
+public:
+	// 시퀀스 추가
+	bool AddSequence(const std::string& Name, float PlayTime = 1.f, float PlayRate = 1.f, bool Loop = false, bool Reverse = false);
+
+	bool AddSequence(class CAnimation2DData* Asset, float PlayTime = 1.f, float PlayRate = 1.f, bool Loop = false, bool Reverse = false);
+
+	// Setter
+	void SetPlayTime(const std::string& Name, float PlayTime);
+	void SetPlayRate(const std::string& Name, float PlayRate);
+	void SetLoop(const std::string& Name, bool Loop);
+	void SetReverse(const std::string& Name, bool Reverse);
+
+	// 애니메이션 변경
+	void ChangeAnimation(const std::string& Name);
+
+	CAnimation2D* Clone();
+
+};
+

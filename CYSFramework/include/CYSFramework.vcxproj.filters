@@ -148,6 +148,9 @@
     <Filter Include="03.Asset\04. Animation">
       <UniqueIdentifier>{0da5995b-524c-460c-ac1d-bea86b920ae7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="09.Animation">
+      <UniqueIdentifier>{ef5cc91b-ac06-4603-bc71-6b2f58f82f6f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -374,6 +377,12 @@
     </ClCompile>
     <ClCompile Include="Asset\Animation\Animation2DManager.cpp">
       <Filter>03.Asset\04. Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation\Animation2D.cpp">
+      <Filter>09.Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation\Animation2DSequence.cpp">
+      <Filter>09.Animation</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -622,6 +631,12 @@
     </ClInclude>
     <ClInclude Include="Asset\Animation\Animation2DManager.h">
       <Filter>03.Asset\04. Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation\Animation2D.h">
+      <Filter>09.Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation\Animation2DSequence.h">
+      <Filter>09.Animation</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

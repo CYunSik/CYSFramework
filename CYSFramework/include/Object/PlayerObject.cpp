@@ -189,7 +189,7 @@ bool CPlayerObject::Init()
 	mScene->GetInput()->AddBindKey("Skill8", '8');
 	mScene->GetInput()->AddBindFunction("Skill8", EInputType::Down, this, &CPlayerObject::Skill8);
 
-	// 스킬 9 : 관통 총알 (지금은 바로 총알이 충돌하면 사라지지만 원하는 수를 지정해서 그 수만큼은 관통되게 만들어준다.)
+	// 스킬 9 : 관통 총알 (지금은 바로 총알이 충돌하면 사라지지만 원하는 수를 지정해서 그 수만큼은 관통되게 만들어준다.) 
 	mScene->GetInput()->AddBindKey("Skill9", '9');
 	mScene->GetInput()->AddBindFunction("Skill9", EInputType::Down, this, &CPlayerObject::Skill9);
 
@@ -198,18 +198,20 @@ bool CPlayerObject::Init()
 
 void CPlayerObject::Update(float DeltaTime)
 {
+	CSceneObject::Update(DeltaTime);
+
 	// 이전 프레임 위치 저장용
 	static bool bFirst = true;
 	static FVector3D PrevPos = FVector3D::Zero;
 
 	if (bFirst)
 	{
-		PrevPos = GetWorldPosition();
+		PrevPos = mRoot->GetWorldPosition();
 		bFirst = false;
 	}
 
 	// 현재 위치
-	FVector3D CurPos = GetWorldPosition();
+	FVector3D CurPos = mRoot->GetWorldPosition();
 	FVector3D Diff = CurPos - PrevPos;
 
 	bool bMoved = (Diff.Length() > 0.0000001f);
@@ -255,8 +257,6 @@ void CPlayerObject::Update(float DeltaTime)
 			mRalsei->SetRelativePos(Relative);
 		}
 	}
-
-	CSceneObject::Update(DeltaTime);
 
 	// 충돌이면 되돌리기
 	//if (mBody->IsCollision())
