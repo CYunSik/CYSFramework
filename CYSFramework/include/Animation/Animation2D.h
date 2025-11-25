@@ -2,6 +2,7 @@
 
 #include "../GameInfo.h"
 #include "Animation2DSequence.h"
+#include "../Shader/Animation2DCBuffer.h"
 
 class CAnimation2D
 {
@@ -11,6 +12,15 @@ private:
 	CAnimation2D();
 	CAnimation2D(const CAnimation2D& Anim);
 	virtual ~CAnimation2D();
+
+	// 상수버퍼
+private:
+	static CAnimation2DCBuffer* mAnimCBuffer;
+
+public:
+	static void CreateCBuffer();
+	static void DestroyCBuffer();
+	static void DisableAnimation();
 
 private:
 	// 현재 씬
@@ -48,6 +58,8 @@ public:
 	void ChangeAnimation(const std::string& Name);
 
 	CAnimation2D* Clone();
+
+	void SetShader();
 
 };
 

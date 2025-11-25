@@ -114,11 +114,13 @@ bool CTexture::LoadTextureFullPath(const TCHAR* FullPath)
 	}
 
 	Texture->Image = Image;
-	mTextureList.emplace_back(Texture);
 
+	int RSVNumber = (int)mTextureList.size();
+
+	mTextureList.emplace_back(Texture);
 	// 여기까지해서 이미지 정보를 불러왔다.
 
-	return CreateResourceView(0);
+	return CreateResourceView(RSVNumber);
 }
 
 bool CTexture::LoadTexture(const std::vector<const TCHAR*>& FileName)

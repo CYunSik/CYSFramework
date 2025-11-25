@@ -107,11 +107,14 @@ bool CShaderManager::Init()
 	// 머티리얼 용 상수버퍼
 	CreateConstantBuffer("Material", sizeof(FMaterialCBufferInfo), 1, EShaderBufferType::Pixel);
 
+	// 애니메이션 용 상수버퍼
+	CreateConstantBuffer("Animation2D", sizeof(FAnimation2DCBufferInfo), 2, EShaderBufferType::Vertex);
+
 	// 스프라이트 전용 상수버퍼
-	CreateConstantBuffer("Sprite", sizeof(FSpriteCBufferInfo), 2, EShaderBufferType::Pixel);
+	CreateConstantBuffer("Sprite", sizeof(FSpriteCBufferInfo), 3, EShaderBufferType::Pixel);
 
 	// 충돌체에 사용할 상수버퍼
-	CreateConstantBuffer("Collider", sizeof(FColliderCBufferInfo), 3, EShaderBufferType::Pixel);
+	CreateConstantBuffer("Collider", sizeof(FColliderCBufferInfo), 4, EShaderBufferType::Pixel);
 
 	return true;
 }

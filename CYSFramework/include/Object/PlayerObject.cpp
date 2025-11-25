@@ -8,6 +8,7 @@
 #include "../Component/ColliderOBB2D.h"
 #include "../Component/ColliderLine2D.h"
 #include "../Component/ColliderBase.h"
+#include "../Animation/Animation2D.h"
 
 #include "../Scene/Scene.h"
 #include "../Scene/Input.h"
@@ -70,6 +71,9 @@ bool CPlayerObject::Init()
 	mRoot->SetWorldPos(0.f, 0.f, 0.f);
 	mRoot->SetWorldScale(50.f, 50.f, 1.f);
 	SetRootComponent(mRoot);
+
+	mAnimation = mRoot->CreateAnimation2D<CAnimation2D>();
+	mAnimation->AddSequence("PlayerIdle", 1.f, 1.f, true, false);
 
 	mRoot->AddChild(mBody);
 	mBody->SetBoxSize(50.f, 50.f);

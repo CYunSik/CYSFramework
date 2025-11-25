@@ -40,6 +40,9 @@ protected:
 	// CameraComponent
 	CSharedPtr<class CCameraComponent> mCamera;
 
+	// 애니메이션
+	class CAnimation2D* mAnimation = nullptr;
+
 	// 총알용 오브젝트
 	// 스킬 1
 	CSharedPtr<class CBulletObject> mSkill1Object;

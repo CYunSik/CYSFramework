@@ -56,6 +56,7 @@ E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Scene\SceneAssetManager
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Scene\SceneCollision.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\SceneCollision.obj
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Scene\SceneMain.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\SceneMain.obj
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Scene\SceneManager.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\SceneManager.obj
+E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Shader\Animation2DCBuffer.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\Animation2DCBuffer.obj
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Shader\ColliderCBuffer.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\ColliderCBuffer.obj
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Shader\ColorMeshShader.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\ColorMeshShader.obj
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Shader\ComputeShader.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\ComputeShader.obj

@@ -34,6 +34,7 @@ CSpriteComponent::CSpriteComponent(CSpriteComponent&& Com)
 
 CSpriteComponent::~CSpriteComponent()
 {
+	//SAFE_DELETE(mAnimation);
 	SAFE_DELETE(mSpriteCBuffer);
 }
 
@@ -91,6 +92,11 @@ void CSpriteComponent::SetTexture(class CTexture* Texture, int TextureIndex)
 {
 	mTexture = Texture;
 	mTextureIndex = TextureIndex;
+}
+
+void CSpriteComponent::SetTextureIndex(int Index)
+{
+	mTextureIndex = Index;
 }
 
 void CSpriteComponent::SetTint(float r, float g, float b)
@@ -159,6 +165,11 @@ void CSpriteComponent::PreUpdate(float DeltaTime)
 void CSpriteComponent::Update(float DeltaTime)
 {
 	CSceneComponent::Update(DeltaTime);
+
+	if (mAnimation)
+	{
+		mAnimation->Update(DeltaTime);
+	}
 }
 
 void CSpriteComponent::PostUpdate(float DeltaTime)
@@ -179,6 +190,17 @@ void CSpriteComponent::PreRender()
 void CSpriteComponent::Render()
 {
 	CSceneComponent::Render();
+
+	// 애니메이션 상수버퍼 세팅
+	if (mAnimation)
+	{
+		// 애니메이션 세팅
+		mAnimation->SetShader();
+	}
+	else
+	{
+		CAnimation2D::DisableAnimation();
+	}
 
 	// 스프라이트 상수버퍼 세팅해주기
 	mSpriteCBuffer->SetTint(mTint);

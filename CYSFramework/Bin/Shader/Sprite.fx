@@ -14,7 +14,7 @@ struct VS_Output_Tex
     float2 UV : TEXCOORD;
 };
 
-cbuffer Sprite : register(b2)
+cbuffer Sprite : register(b3)
 {
     float4 gSpriteTint;
 }
@@ -26,7 +26,7 @@ VS_Output_Tex SpriteVS(VS_Input_Tex input)
     float3 Pos = input.Pos - gPivot;
 
     output.Pos = mul(float4(Pos, 1.f), gmatWVP);
-    output.UV = input.UV;
+    output.UV = UpdateAnimation2D(input.UV);
     
     return output;
 }

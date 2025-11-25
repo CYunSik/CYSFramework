@@ -10,10 +10,20 @@ CAnimation2DSequence::CAnimation2DSequence(const CAnimation2DSequence& Anim)
 {
 	// 얕은 복사
 	*this = Anim;
+
+	mNotifyList.clear();
 }
 
 CAnimation2DSequence::~CAnimation2DSequence()
 {
+	size_t Size = mNotifyList.size();
+
+	for (size_t i = 0; i < Size; ++i)
+	{
+		SAFE_DELETE(mNotifyList[i]);
+	}
+
+	mNotifyList.clear();
 }
 
 const std::string& CAnimation2DSequence::GetName() const
@@ -21,10 +31,18 @@ const std::string& CAnimation2DSequence::GetName() const
 	return mAsset->GetName();
 }
 
+CAnimation2DSequence* CAnimation2DSequence::Clone()
+{
+	return new CAnimation2DSequence(*this);
+}
+
 void CAnimation2DSequence::SetAsset(class CAnimation2DData* Asset)
 {
 	mAsset = Asset;
 
+	// 1프레임이 변경되어야 하는 시간 설정
+	// mPlayTime이 1초이고 프레임이 10프레임이면
+	// 1프레임이 변경되어야 하는 시간은 0.1초가 된다.
 	mFrameTime = mPlayTime / mAsset->GetFrameCount();
 }
 
@@ -35,6 +53,25 @@ void CAnimation2DSequence::SetPlayTime(float PlayTime)
 	if (mAsset)
 	{
 		mFrameTime = mPlayTime / mAsset->GetFrameCount();
+	}
+}
+
+void CAnimation2DSequence::CallNotify()
+{
+	size_t Size = mNotifyList.size();
+
+	for (size_t i = 0; i < Size; ++i)
+	{
+		// 해당 프레임 때
+		if (mNotifyList[i]->Frame == mFrame)
+		{
+			// 함수 포인터가 있으면
+			if (mNotifyList[i]->Function)
+			{
+				// 함수 실행
+				mNotifyList[i]->Function();
+			}
+		}
 	}
 }
 
@@ -56,7 +93,7 @@ void CAnimation2DSequence::Update(float DelaTime)
 			{
 				// 마지막 프레임이네?
 				// EndFunction이 허용되어 있고 함수가 바인드 되어있니?
-				if (mEndFunctionEnable && mEndFunction)
+				if (mEndFunction && mEndFunctionEnable)
 				{
 					mEndFunctionEnable = false;
 					mEndFunction();
@@ -80,7 +117,7 @@ void CAnimation2DSequence::Update(float DelaTime)
 
 			if (mFrame == mAsset->GetFrameCount())
 			{
-				if (mEndFunctionEnable && mEndFunction)
+				if (mEndFunction && mEndFunctionEnable)
 				{
 					mEndFunctionEnable = false;
 					mEndFunction();
@@ -89,7 +126,7 @@ void CAnimation2DSequence::Update(float DelaTime)
 				if (mLoop)
 				{
 					mEndFunctionEnable = true;
-					mFrame = mAsset->GetFrameCount() - 1;
+					mFrame = 0;
 				}
 				else
 				{
@@ -101,29 +138,5 @@ void CAnimation2DSequence::Update(float DelaTime)
 		}
 		// 계산한 mFrame을 가지고 현재 실행시켜줄 Notify가 있는가?
 		CallNotify();
-	}
-}
-
-CAnimation2DSequence* CAnimation2DSequence::Clone()
-{
-	return new CAnimation2DSequence(*this);
-}
-
-void CAnimation2DSequence::CallNotify()
-{
-	size_t Size = mNotifyList.size();
-
-	for (size_t i = 0; i < Size; ++i)
-	{
-		// 해당 프레임 때
-		if (mNotifyList[i]->Frame == mFrame)
-		{
-			// 함수 포인터가 있으면
-			if (mNotifyList[i]->Function)
-			{
-				// 함수 실행
-				mNotifyList[i]->Function();
-			}
-		}
 	}
 }

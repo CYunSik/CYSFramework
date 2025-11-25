@@ -3,9 +3,12 @@
 #include "../Asset/AssetManager.h"
 #include "../Asset/Animation/Animation2DData.h"
 #include "../Asset/Animation/Animation2DManager.h"
+#include "../Asset/Texture/Texture.h"
 #include "../Component/SpriteComponent.h"
 #include "../Scene/Scene.h"
 #include "../Scene/SceneAssetManager.h"
+
+CAnimation2DCBuffer* CAnimation2D::mAnimCBuffer = nullptr;
 
 CAnimation2D::CAnimation2D()
 {
@@ -17,6 +20,31 @@ CAnimation2D::CAnimation2D(const CAnimation2D& Anim)
 
 CAnimation2D::~CAnimation2D()
 {
+	auto iter = mSequenceMap.begin();
+	auto iterEnd = mSequenceMap.end();
+
+	for (; iter != iterEnd; ++iter)
+	{
+		SAFE_DELETE(iter->second);
+	}
+}
+
+void CAnimation2D::CreateCBuffer()
+{
+	mAnimCBuffer = new CAnimation2DCBuffer;
+
+	mAnimCBuffer->Init();
+}
+
+void CAnimation2D::DestroyCBuffer()
+{
+	SAFE_DELETE(mAnimCBuffer);
+}
+
+void CAnimation2D::DisableAnimation()
+{
+	mAnimCBuffer->SetAnimation2DEnable(false);
+	mAnimCBuffer->UpdateBuffer();
 }
 
 bool CAnimation2D::Init()
@@ -210,4 +238,38 @@ void CAnimation2D::ChangeAnimation(const std::string& Name)
 CAnimation2D* CAnimation2D::Clone()
 {
 	return new CAnimation2D(*this);
+}
+
+void CAnimation2D::SetShader()
+{
+	// UV값을 계산해서 상수버퍼로 넘겨줄 것이다.
+	// Frame 정보를 가지고 UV좌표를 구할것이다.
+	float LTX = 0.f, LTY = 0.f, RBX = 1.f, RBY = 1.f;
+
+	int CurrentFrame = mCurrentSequence->mFrame;
+
+	const FAnimationFrame& Frame = mCurrentSequence->mAsset->GetFrame(CurrentFrame);
+
+	EAnimationTextureType TextType = mCurrentSequence->mAsset->GetAnimationTextureType();
+
+	CTexture* Texture = mCurrentSequence->mAsset->GetTexture();
+
+	switch (TextType)
+	{
+	case EAnimationTextureType::SpriteSheet:
+		LTX = Frame.Start.x / Texture->GetTexture()->Width;
+		LTY = Frame.Start.y / Texture->GetTexture()->Height;
+		RBX = LTX + Frame.Size.x / Texture->GetTexture()->Width;
+		RBY = LTY + Frame.Size.y / Texture->GetTexture()->Height;
+		mOwner->SetTextureIndex(0);
+		break;
+	case EAnimationTextureType::Frame:
+		mOwner->SetTextureIndex(CurrentFrame);
+		break;
+	}
+
+	mAnimCBuffer->SetAnimation2DEnable(true);
+	mAnimCBuffer->SetUV(LTX, LTY, RBX, RBY);
+	
+	mAnimCBuffer->UpdateBuffer();
 }

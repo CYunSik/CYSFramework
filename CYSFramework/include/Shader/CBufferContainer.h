@@ -32,6 +32,25 @@ struct FMaterialCBufferInfo
 	float Empty;
 };
 
+// 애니메이션 정보
+struct FAnimation2DCBufferInfo
+{
+	// Lef-Top
+	FVector2D LTUV;	// 8
+
+	// Right-Bottom
+	FVector2D RBUV;	// 8
+
+	// 애니메이션 사용여부
+	int AnimEnable;	// 4
+
+	// 반전여부
+	int AnimFlip;
+
+	// 빈 데이터 16배수로 보내줘야한다.
+	FVector2D Empty;
+};
+
 // 스프라이트용 상수버퍼
 // 레지스터 2
 struct FSpriteCBufferInfo

@@ -1,5 +1,6 @@
 #pragma once
 #include "SceneComponent.h"
+#include "../Animation/Animation2D.h"
 
 class CSpriteComponent : public CSceneComponent
 {
@@ -25,6 +26,30 @@ protected:
 
 	class CSpriteCBuffer* mSpriteCBuffer;
 
+	// 애니메이션 객체 생성해주기
+public:
+	template<typename T>
+	T* CreateAnimation2D()
+	{
+		mAnimation = new T;
+
+		mAnimation->mOwner = this;
+		mAnimation->mScene = mScene;
+
+		if (!mAnimation->Init())
+		{
+			SAFE_DELETE(mAnimation);
+			return nullptr;
+		}
+		return static_cast<T*>(mAnimation);
+	}
+
+	template<typename T>
+	T* GetAnimationInstance()
+	{
+		return dynamic_cast<T*>(mAnimation);
+	}
+
 public:
 	// 쉐이더 세팅
 	void SetShader(const std::string& Name);
@@ -37,6 +62,8 @@ public:
 	void SetTexture(const std::string& Name, const TCHAR* FileName, int TextureIndex = 0);
 	// 세팅 바로 해주기
 	void SetTexture(class CTexture* Texture, int TextureIndex = 0);
+
+	void SetTextureIndex(int Index);
 
 	// 색상
 	void SetTint(float r, float g, float b);

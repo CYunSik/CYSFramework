@@ -71,6 +71,24 @@ cbuffer Material : register(b1)
     float gMtrlEmpty;
 }
 
+cbuffer Animation2D : register(b2)
+{
+	// Lef-Top
+    float2 gAnim2DLTUV; // 8
+
+	// Right-Bottom
+    float2 gAnim2DRBUV; // 8
+
+	// 애니메이션 사용여부
+    int gAnim2DEnable; // 4
+
+    // 애니메이션 반전 여부
+    int gAnim2DFlip;
+
+	// 빈 데이터 16배수로 보내줘야한다.
+    float2 Empty;
+}
+
 // 샘플러
 SamplerState gBaseSampler : register(s0);
 
@@ -80,3 +98,33 @@ Texture2D gBaseTexture : register(t0);
 //Texture2D gBaseTexture2 : register(t1);
 //Texture2D gBaseTexture3 : register(t2);
 //Texture2D gBaseTexture4 : register(t3);
+
+float2 UpdateAnimation2D(float2 UV)
+{
+    if (gAnim2DEnable == 0)
+    {
+        return UV;
+    }
+
+    float2 Result = (float2) 0;
+
+    if (UV.x == 0.f) // 좌
+    {
+        Result.x = gAnim2DLTUV.x;
+    }
+    else // 우
+    {
+        Result.x = gAnim2DRBUV.x;
+    }
+
+    if (UV.y == 0.f) // 위
+    {
+        Result.y = gAnim2DLTUV.y;
+    }
+    else // 아래
+    {
+        Result.y = gAnim2DRBUV.y;
+    }
+
+    return Result;
+}

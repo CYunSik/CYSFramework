@@ -15,6 +15,9 @@ private:
 	// 정렬타입
 	ERenderSortType mRenderSortType = ERenderSortType::Y;
 
+	// 기본 샘플러
+	ID3D11SamplerState* mSampler = nullptr;
+
 public:
 	class CRenderStateManager* GetStateManager()
 	{

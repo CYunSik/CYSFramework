@@ -1,5 +1,6 @@
 #include "Animation2DManager.h"
 #include "Animation2DData.h"
+#include "../../Animation/Animation2D.h"
 
 CAnimation2DManager::CAnimation2DManager()
 {
@@ -7,10 +8,33 @@ CAnimation2DManager::CAnimation2DManager()
 
 CAnimation2DManager::~CAnimation2DManager()
 {
+	CAnimation2D::DestroyCBuffer();
 }
 
 bool CAnimation2DManager::Init()
 {
+	// 애니메이션용 상수 버퍼 생성
+	CAnimation2D::CreateCBuffer();
+
+	// 애니메이션 하나 등록하기
+	// Texture/Player/Player.png
+	CreateAnimation("PlayerIdle");
+	SetAnimationTextureType("PlayerIdle", EAnimationTextureType::SpriteSheet);
+	SetTexture("PlayerIdle", "PlayerSprite", TEXT("Texture/Player/Player.png"));
+
+	for (int i = 0; i < 5; ++i)
+	{
+		AddFrame("PlayerIdle", i * 200.f, 0.f, 200.f, 200.f);
+	}
+
+	CreateAnimation("KrisIdle");
+	SetAnimationTextureType("KrisIdle", EAnimationTextureType::Frame);
+	SetTexture("KrisIdle", "KrisSprite", TEXT("Texture/spr_krisb_idle/spr_krisb_idle_0"), TEXT(".png"),6);
+
+	for (int i = 0; i < 6; ++i)
+	{
+		AddFrame("KrisIdle",  0.f, 0.f, 36.f, 38.f);
+	}
 
 	return true;
 }

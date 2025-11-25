@@ -2,6 +2,7 @@
 
 #include "RenderStateManager.h"
 #include "../Component/SceneComponent.h"
+#include "../Device.h"
 
 CRenderManager::CRenderManager()
 {
@@ -9,7 +10,7 @@ CRenderManager::CRenderManager()
 
 CRenderManager::~CRenderManager()
 {
-	ClearRenderList();
+	SAFE_RELEASE(mSampler);
 	SAFE_DELETE(mStateManager);
 }
 
@@ -31,6 +32,34 @@ bool CRenderManager::Init()
 	{
 		return false;
 	}
+
+	D3D11_SAMPLER_DESC Desc = {};
+
+	Desc.Filter = D3D11_FILTER_MIN_MAG_MIP_LINEAR;
+
+	/*
+	WRAP	: UV 0 ~ 1을 벗어나면 다시 0~ 1 사이로 반복한다.
+	MIRROR	: UV 0 ~ 1을 벗어나면 거울에 비친것처럼 반전되어 반복한다.
+	CLAMP	:  UV 0 ~ 1을 벗어나면 가장자리 픽셀 색상으로 고정된다.
+	*/
+	Desc.AddressU = D3D11_TEXTURE_ADDRESS_WRAP;
+	Desc.AddressV = D3D11_TEXTURE_ADDRESS_WRAP;
+	Desc.AddressW = D3D11_TEXTURE_ADDRESS_WRAP;
+
+	//LOD 사용시 필요하다.
+	//우리는 사용안할것이기에 필요없다. 
+	Desc.MipLODBias = 0.f;
+	Desc.MaxAnisotropy = 1;
+	// 샘플링 비교 함수
+	Desc.ComparisonFunc = D3D11_COMPARISON_NEVER;
+	Desc.MinLOD = -FLT_MAX;
+	Desc.MaxLOD = FLT_MAX;
+
+	if (FAILED(CDevice::GetInst()->GetDevice()->CreateSamplerState(&Desc, &mSampler)))
+	{
+		return false;
+	}
+
 	return true;
 }
 
@@ -54,6 +83,9 @@ void CRenderManager::Render()
 		}
 		break;
 	}
+
+	// 기본 샘플러 세팅
+	CDevice::GetInst()->GetContext()->PSGetSamplers(0, 1, &mSampler);
 
 	// 그리기
 	auto iter = mRenderList.begin();
