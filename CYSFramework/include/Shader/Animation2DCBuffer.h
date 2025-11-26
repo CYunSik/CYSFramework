@@ -32,9 +32,9 @@ public:
 		mData.AnimEnable = Enable ? 1 : 0;
 	}
 
-	//void SetAnimation2DFlip(bool Flip)
-	//{
-	//	mData.AnimFlip = Flip ? 1 : 0;
-	//}
+	void SetAnimation2DFlip(bool Flip)
+	{
+		mData.AnimFlip = Flip ? 1 : 0;
+	}
 };
 

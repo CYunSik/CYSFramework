@@ -43,6 +43,8 @@ protected:
 	// 애니메이션
 	class CAnimation2D* mAnimation = nullptr;
 
+	bool mAutoBasePose = true;
+
 	// 총알용 오브젝트
 	// 스킬 1
 	CSharedPtr<class CBulletObject> mSkill1Object;
@@ -110,5 +112,9 @@ private:
 
 	// 스킬 9 : 관통 총알
 	void Skill9(float DeltaTime);
+
+	// 애니메이션 바인드 함수
+	void AttackEnd();
+	void AttackNotify();
 };
 

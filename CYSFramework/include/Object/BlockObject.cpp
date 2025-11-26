@@ -39,12 +39,14 @@ bool CBlockObject::Init()
     //mRoot->SetShader("ColorMeshShader");
 
     mRoot->SetTexture("HitBox1", TEXT("Texture/spr_battlebg_stretch_hitbox_0.png"), 0);
-    mRoot->SetTint(0.f, 1.f, 0.f);
     mRoot->SetPivot(0.5f, 0.5f);
     mRoot->SetOpacity(1.f);
-    mRoot->SetWorldScale(250.f, 250.f, 1.f);
+    mRoot->SetWorldScale(1280.f, 720.f, 1.f);
 
     SetRootComponent(mRoot);
+
+    mAnimation = mRoot->CreateAnimation2D<CAnimation2D>();
+    mAnimation->AddSequence("JevilCarousel", 1.f, 1.f, true, false);
     //mRoot->AddChild(mRoot2);
 
     //mRoot2->SetTexture("HitBox2", TEXT("Texture/spr_battlebg_stretch_hitbox_1.png"), 0);

@@ -18,6 +18,7 @@ bool CAnimation2DManager::Init()
 
 	// 애니메이션 하나 등록하기
 	// Texture/Player/Player.png
+	// 스프라이트 형식으로 만들기
 	CreateAnimation("PlayerIdle");
 	SetAnimationTextureType("PlayerIdle", EAnimationTextureType::SpriteSheet);
 	SetTexture("PlayerIdle", "PlayerSprite", TEXT("Texture/Player/Player.png"));
@@ -27,14 +28,111 @@ bool CAnimation2DManager::Init()
 		AddFrame("PlayerIdle", i * 200.f, 0.f, 200.f, 200.f);
 	}
 
-	CreateAnimation("KrisIdle");
-	SetAnimationTextureType("KrisIdle", EAnimationTextureType::Frame);
-	SetTexture("KrisIdle", "KrisSprite", TEXT("Texture/spr_krisb_idle/spr_krisb_idle_0"), TEXT(".png"),6);
+	// 플레이어 오른쪽 걷기
+	CreateAnimation("KrisWalkRight");
+	SetAnimationTextureType("KrisWalkRight", EAnimationTextureType::Frame);
 
-	for (int i = 0; i < 6; ++i)
+	std::vector<const TCHAR*> FileNames;
+	FileNames.emplace_back(TEXT("Texture/Player/spr_krisr_dark/spr_krisr_dark_0.png"));
+	FileNames.emplace_back(TEXT("Texture/Player/spr_krisr_dark/spr_krisr_dark_1.png"));
+	FileNames.emplace_back(TEXT("Texture/Player/spr_krisr_dark/spr_krisr_dark_2.png"));
+	FileNames.emplace_back(TEXT("Texture/Player/spr_krisr_dark/spr_krisr_dark_3.png"));
+
+	SetTexture("KrisWalkRight", "KrisWalkRight", FileNames);
+	AddFrameCount("KrisWalkRight", 4, 0.f, 0.f, 19.f, 38.f);
+
+	// 플레이어 왼쪽 걷기
+	CreateAnimation("KrisWalkLeft");
+	SetAnimationTextureType("KrisWalkLeft", EAnimationTextureType::Frame);
+	FileNames.clear();
+	FileNames.emplace_back(TEXT("Texture/Player/spr_krisl_dark/spr_krisl_dark_0.png"));
+	FileNames.emplace_back(TEXT("Texture/Player/spr_krisl_dark/spr_krisl_dark_1.png"));
+	FileNames.emplace_back(TEXT("Texture/Player/spr_krisl_dark/spr_krisl_dark_2.png"));
+	FileNames.emplace_back(TEXT("Texture/Player/spr_krisl_dark/spr_krisl_dark_3.png"));
+
+	SetTexture("KrisWalkLeft", "KrisWalkLeft", FileNames);
+	AddFrameCount("KrisWalkLeft", 4, 0.f, 0.f, 19.f, 38.f);
+
+	// 플레이어 위로 걷기
+	CreateAnimation("KrisWalkUp");
+	SetAnimationTextureType("KrisWalkUp", EAnimationTextureType::Frame);
+	FileNames.clear();
+	FileNames.emplace_back(TEXT("Texture/Player/spr_krisu_dark/spr_krisu_dark_0.png"));
+	FileNames.emplace_back(TEXT("Texture/Player/spr_krisu_dark/spr_krisu_dark_1.png"));
+	FileNames.emplace_back(TEXT("Texture/Player/spr_krisu_dark/spr_krisu_dark_2.png"));
+	FileNames.emplace_back(TEXT("Texture/Player/spr_krisu_dark/spr_krisu_dark_3.png"));
+
+	SetTexture("KrisWalkUp", "KrisWalkUp", FileNames);
+	AddFrameCount("KrisWalkUp", 4, 0.f, 0.f, 19.f, 38.f);
+
+	// 플레이어 아래로 걷기
+	CreateAnimation("KrisWalkDown");
+	SetAnimationTextureType("KrisWalkDown", EAnimationTextureType::Frame);
+	FileNames.clear();
+	FileNames.emplace_back(TEXT("Texture/Player/spr_krisd_dark/spr_krisd_dark_0.png"));
+	FileNames.emplace_back(TEXT("Texture/Player/spr_krisd_dark/spr_krisd_dark_1.png"));
+	FileNames.emplace_back(TEXT("Texture/Player/spr_krisd_dark/spr_krisd_dark_2.png"));
+	FileNames.emplace_back(TEXT("Texture/Player/spr_krisd_dark/spr_krisd_dark_3.png"));
+
+	SetTexture("KrisWalkDown", "KrisWalkDown", FileNames);
+	AddFrameCount("KrisWalkDown", 4, 0.f, 0.f, 19.f, 38.f);
+
+	// 플레이어 공격
+	CreateAnimation("KrisAttack");
+	SetAnimationTextureType("KrisAttack", EAnimationTextureType::Frame);
+	FileNames.clear();
+	FileNames.emplace_back(TEXT("Texture/Player/spr_krisb_attack/spr_krisb_attack_old_ch1_0.png"));
+	FileNames.emplace_back(TEXT("Texture/Player/spr_krisb_attack/spr_krisb_attack_old_ch1_1.png"));
+	FileNames.emplace_back(TEXT("Texture/Player/spr_krisb_attack/spr_krisb_attack_old_ch1_2.png"));
+	FileNames.emplace_back(TEXT("Texture/Player/spr_krisb_attack/spr_krisb_attack_old_ch1_3.png"));
+	FileNames.emplace_back(TEXT("Texture/Player/spr_krisb_attack/spr_krisb_attack_old_ch1_4.png"));
+	FileNames.emplace_back(TEXT("Texture/Player/spr_krisb_attack/spr_krisb_attack_old_ch1_5.png"));
+	FileNames.emplace_back(TEXT("Texture/Player/spr_krisb_attack/spr_krisb_attack_old_ch1_6.png"));
+	FileNames.emplace_back(TEXT("Texture/Player/spr_krisb_attack/spr_krisb_attack_old_ch1_7.png"));
+
+	SetTexture("KrisAttack", "KrisAttack", FileNames);
+	AddFrameCount("KrisAttack", 8, 0.f, 0.f, 63.f, 50.f);
+
+	// 플레이어 공격 이펙트
+	CreateAnimation("AttackEffect");
+	SetAnimationTextureType("AttackEffect", EAnimationTextureType::Frame);
+	FileNames.clear();
+	FileNames.emplace_back(TEXT("Texture/Player/spr_attack_slap1/spr_attack_slap1_0.png"));
+	FileNames.emplace_back(TEXT("Texture/Player/spr_attack_slap1/spr_attack_slap1_1.png"));
+	FileNames.emplace_back(TEXT("Texture/Player/spr_attack_slap1/spr_attack_slap1_2.png"));
+	FileNames.emplace_back(TEXT("Texture/Player/spr_attack_slap1/spr_attack_slap1_3.png"));
+	FileNames.emplace_back(TEXT("Texture/Player/spr_attack_slap1/spr_attack_slap1_4.png"));
+	FileNames.emplace_back(TEXT("Texture/Player/spr_attack_slap1/spr_attack_slap1_5.png"));
+	FileNames.emplace_back(TEXT("Texture/Player/spr_attack_slap1/spr_attack_slap1_6.png"));
+	FileNames.emplace_back(TEXT("Texture/Player/spr_attack_slap1/spr_attack_slap1_7.png"));
+
+	SetTexture("AttackEffect", "AttackEffect", FileNames);
+	AddFrameCount("AttackEffect", 8, 0.f, 0.f, 44.f, 45.f);
+
+	// 제빌 배경
+	CreateAnimation("JevilCarousel");
+	SetAnimationTextureType("JevilCarousel", EAnimationTextureType::Frame);
+	FileNames.clear();
+
+	TCHAR Path[37][MAX_PATH] = {};
+	for (int i = 1; i <= 37; ++i)
 	{
-		AddFrame("KrisIdle",  0.f, 0.f, 36.f, 38.f);
+		wsprintf(Path[i - 1], TEXT("Texture/Jevil/jevil-carousel/jevil-carousel (%d).png"), i);
+		FileNames.emplace_back(Path[i - 1]);
 	}
+	
+	SetTexture("JevilCarousel", "JevilCarousel", FileNames);
+	AddFrameCount("JevilCarousel", 37, 0.f, 0.f, 640.f, 480.f);
+
+	// 제빌 클로버 폭탄
+	CreateAnimation("ClubBoom");
+	SetAnimationTextureType("ClubBoom", EAnimationTextureType::Frame);
+	FileNames.clear();
+	FileNames.emplace_back(TEXT("Texture/Player/spr_bomb_club_ch1_0.png"));
+	FileNames.emplace_back(TEXT("Texture/Player/spr_bomb_club_ch1_1.png"));
+
+	SetTexture("ClubBoom", "ClubBoom", FileNames);
+	AddFrameCount("ClubBoom", 2, 0.f, 0.f, 23.f, 23.f);
 
 	return true;
 }

@@ -3,7 +3,7 @@
 CAnimation2DCBuffer::CAnimation2DCBuffer()
 {
 	mData.AnimEnable = 0;
-	//mData.AnimFlip = 0;
+	mData.AnimFlip = 0;
 }
 
 CAnimation2DCBuffer::CAnimation2DCBuffer(const CAnimation2DCBuffer& Data)

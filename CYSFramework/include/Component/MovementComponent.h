@@ -33,6 +33,11 @@ public:
 		return mMoveStep;
 	}
 
+	float GetVelocityLength() const
+	{
+		return mVelocity.Length();
+	}
+
 	float GetMoveDistance() const
 	{
 		return mMoveStep.Length();

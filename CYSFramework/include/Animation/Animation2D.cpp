@@ -47,6 +47,12 @@ void CAnimation2D::DisableAnimation()
 	mAnimCBuffer->UpdateBuffer();
 }
 
+void CAnimation2D::SetAnimFlip(bool Flip)
+{
+	mAnimCBuffer->SetAnimation2DFlip(Flip);
+	mAnimCBuffer->UpdateBuffer();
+}
+
 bool CAnimation2D::Init()
 {
 	return true;

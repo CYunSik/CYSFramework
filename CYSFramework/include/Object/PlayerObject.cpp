@@ -21,6 +21,7 @@
 #include "PenetrationBullet.h"
 
 #include "../Component/SpriteComponent.h"
+#include "../Share/Log.h"
 
 CPlayerObject::CPlayerObject()
 	: CSceneObject()
@@ -73,7 +74,17 @@ bool CPlayerObject::Init()
 	SetRootComponent(mRoot);
 
 	mAnimation = mRoot->CreateAnimation2D<CAnimation2D>();
-	mAnimation->AddSequence("PlayerIdle", 1.f, 1.f, true, false);
+	mAnimation->AddSequence("KrisIdle", 1.f, 1.f, true, false);
+	mAnimation->AddSequence("KrisWalkRight", 1.f, 1.f, true, false);
+	mAnimation->AddSequence("KrisWalkLeft", 1.f, 1.f, true, false);
+	mAnimation->AddSequence("KrisWalkUp", 1.f, 1.f, true, false);
+	mAnimation->AddSequence("KrisWalkDown", 1.f, 1.f, true, false);
+	mAnimation->AddSequence("KrisAttack", 1.f, 1.f, true, false);
+
+	mAnimation->SetEndFunction("KrisAttack", this, &CPlayerObject::AttackEnd);
+	mAnimation->AddNotify("KrisAttack", 1, this, &CPlayerObject::AttackNotify);
+
+	//mRoot->SetFlip(false);
 
 	mRoot->AddChild(mBody);
 	mBody->SetBoxSize(50.f, 50.f);
@@ -262,6 +273,11 @@ void CPlayerObject::Update(float DeltaTime)
 		}
 	}
 
+	if (mMovement->GetVelocityLength() == 0.f)
+	{
+		mAnimation->ChangeAnimation("None");
+	}
+
 	// 충돌이면 되돌리기
 	//if (mBody->IsCollision())
 	//{
@@ -298,6 +314,7 @@ void CPlayerObject::MoveUp(float DeltaTime)
 	//FVector3D Dir = mRootComponent->GetAxis(EAxis::Y);
 
 	//mRootComponent->SetWorldPos(Pos + Dir * DeltaTime * 3.f);
+	mAnimation->ChangeAnimation("KrisWalkUp");
 
 	mMovement->AddMove(mRootComponent->GetAxis(EAxis::Y));
 }
@@ -309,17 +326,22 @@ void CPlayerObject::MoveDown(float DeltaTime)
 	//FVector3D Dir = mRootComponent->GetAxis(EAxis::DownY);
 
 	//mRootComponent->SetWorldPos(Pos + Dir * DeltaTime * -3.f);
+	mAnimation->ChangeAnimation("KrisWalkDown");
 
 	mMovement->AddMove(mRootComponent->GetAxis(EAxis::Y) * -1);
 }
 
 void CPlayerObject::MoveLeft(float DeltaTime)
 {
+	mAnimation->ChangeAnimation("KrisWalkLeft");
+
 	mMovement->AddMove(mRootComponent->GetAxis(EAxis::X) * -1);
 }
 
 void CPlayerObject::MoveRight(float DeltaTime)
 {
+	mAnimation->ChangeAnimation("KrisWalkRight");
+
 	mMovement->AddMove(mRootComponent->GetAxis(EAxis::X));
 }
 
@@ -341,6 +363,9 @@ void CPlayerObject::RotationZInv(float DeltaTime)
 
 void CPlayerObject::Fire(float DeltaTime)
 {
+	mAnimation->ChangeAnimation("KrisAttack");
+	mAutoBasePose = false;
+
 	// 총알을 만들것이고
 	CBulletObject* Bullet = mScene->CreateObj<CBulletObject>("Bullet");
 	Bullet->SetBulletCollisionProfile("PlayerAttack");
@@ -573,4 +598,15 @@ void CPlayerObject::Skill9(float DeltaTime)
 	Bullet->SetWorldRotation(GetWorldRotation());
 	Bullet->SetWorldPos(GetWorldPosition());
 	Bullet->SetLifeTime(3.f);
+}
+
+void CPlayerObject::AttackEnd()
+{
+	CLog::PrintLog("AttackEnd");
+	mAutoBasePose = true;
+}
+
+void CPlayerObject::AttackNotify()
+{
+	CLog::PrintLog("AttackStart");
 }

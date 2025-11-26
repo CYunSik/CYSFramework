@@ -4,6 +4,7 @@
 #include "PlayerObject.h"
 #include "../Component/SpriteComponent.h"
 #include "../Component/MovementComponent.h"
+#include "../Animation/Animation2D.h"
 
 CBoomMonster::CBoomMonster()
 {
@@ -36,6 +37,9 @@ bool CBoomMonster::Init()
 	mRoot->SetOpacity(1.f);
 
 	mRoot->SetWorldScale(50.f, 50.f, 1.f);
+	SetRootComponent(mRoot);
+
+	//mAnimation->AddSequence("ClubBoom", 0.5f, 1.f, true, false);
 
 	SetTarget(mScene->FindObjectFromType<CPlayerObject>());
 
@@ -55,7 +59,7 @@ void CBoomMonster::Update(float DeltaTime)
 
 	if (mDownTime <= 0.f)
 	{
-		std::vector<float> RotationOffSets = { -180.f, -160.f, -140.f, -120.f, -100.f, -80.f, -60.f, -40.f, -20.f, 0.f, 
+		std::vector<float> RotationOffSets = { -180.f, -160.f, -140.f, -120.f, -100.f, -80.f, -60.f, -40.f, -20.f, 0.f,
 			20.f, 40.f, 60.f, 80.f, 100.f, 120.f, 140.f, 160.f, 180.f };
 
 		for (float AngleOffSet : RotationOffSets)

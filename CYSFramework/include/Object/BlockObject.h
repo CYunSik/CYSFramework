@@ -16,6 +16,9 @@ protected:
     CSharedPtr<class CSpriteComponent> mRoot2;
     CSharedPtr<class CColliderAABB2D> mBody;
 
+    // 애니메이션
+    class CAnimation2D* mAnimation = nullptr;
+
 public:
     virtual bool Init();
     virtual void Update(float DeltaTime);

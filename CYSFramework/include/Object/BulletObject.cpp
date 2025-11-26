@@ -1,4 +1,6 @@
 #include "BulletObject.h"
+
+#include "SpriteEffect.h"
 #include "../Component/StaticMeshComponent.h"
 #include "../Component/SpriteComponent.h"
 #include "../Component/MovementComponent.h"
@@ -6,6 +8,7 @@
 #include "../Component/ColliderOBB2D.h"
 #include "../Component/ColliderSphere2D.h"
 #include "../Share/Log.h"
+#include "../Scene/Scene.h"
 
 CBulletObject::CBulletObject()
 	: CSceneObject()
@@ -82,6 +85,12 @@ void CBulletObject::CollisionBullet(const FVector3D& HitPoint, CColliderBase* De
 	//CLog::PrintLog("Bullet Hit Collision", ELogPrintType::All);
 
 	Dest->GetOwner()->Damage(1.f, this);
+
+	CSpriteEffect* Effect = mScene->CreateObj<CSpriteEffect>("HitEffect");
+
+	Effect->SetAnimation("AttackEffect");
+	Effect->SetWorldPos(HitPoint);
+	Effect->SetWorldScale(50.f, 50.f);
 
 	Destroy();
 }

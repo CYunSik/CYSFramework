@@ -18,6 +18,9 @@ private:
 	// 기본 샘플러
 	ID3D11SamplerState* mSampler = nullptr;
 
+	// 알파 블렌드
+	class CRenderState* mAlphaBlend = nullptr;
+
 public:
 	class CRenderStateManager* GetStateManager()
 	{

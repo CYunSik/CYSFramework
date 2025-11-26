@@ -26,7 +26,17 @@ VS_Output_Tex SpriteVS(VS_Input_Tex input)
     float3 Pos = input.Pos - gPivot;
 
     output.Pos = mul(float4(Pos, 1.f), gmatWVP);
+
+    float2 UVS = float2(0.2, 0.f);
+
     output.UV = UpdateAnimation2D(input.UV);
+
+    // 반전여부
+    if (gAnim2DFlip)
+    {
+	    // x축 반전
+        output.UV.x = 1 - output.UV.x;
+    }
     
     return output;
 }

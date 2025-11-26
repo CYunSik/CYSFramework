@@ -154,6 +154,9 @@
     <Filter Include="04.Shader\03.ConstantBuffer\05.Animation">
       <UniqueIdentifier>{dbbc79f5-b09e-4c07-a8fa-1d8581bedf31}</UniqueIdentifier>
     </Filter>
+    <Filter Include="06.Object\04.Effect">
+      <UniqueIdentifier>{334a81fc-904e-481a-9ccf-246db67efd8b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -389,6 +392,9 @@
     </ClCompile>
     <ClCompile Include="Shader\Animation2DCBuffer.cpp">
       <Filter>04.Shader\03.ConstantBuffer\05.Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Object\SpriteEffect.cpp">
+      <Filter>06.Object\04.Effect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -646,6 +652,9 @@
     </ClInclude>
     <ClInclude Include="Shader\Animation2DCBuffer.h">
       <Filter>04.Shader\03.ConstantBuffer\05.Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\SpriteEffect.h">
+      <Filter>06.Object\04.Effect</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

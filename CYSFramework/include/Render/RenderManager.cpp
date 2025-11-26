@@ -1,5 +1,6 @@
 #include "RenderManager.h"
 
+#include "RenderState.h"
 #include "RenderStateManager.h"
 #include "../Component/SceneComponent.h"
 #include "../Device.h"
@@ -60,6 +61,8 @@ bool CRenderManager::Init()
 		return false;
 	}
 
+	mAlphaBlend = mStateManager->FindState("AlphaBlend");
+
 	return true;
 }
 
@@ -87,6 +90,9 @@ void CRenderManager::Render()
 	// 기본 샘플러 세팅
 	CDevice::GetInst()->GetContext()->PSGetSamplers(0, 1, &mSampler);
 
+	// 알파블렌드
+	mAlphaBlend->SetState();
+
 	// 그리기
 	auto iter = mRenderList.begin();
 	auto iterEnd = mRenderList.end();
@@ -112,6 +118,9 @@ void CRenderManager::Render()
 		(*iter)->PostRender();
 		++iter;
 	}
+
+	// 알파블렌드 종료
+	mAlphaBlend->ResetState();
 }
 
 bool CRenderManager::SortY(const CSharedPtr<class CSceneComponent>& Src, const CSharedPtr<class CSceneComponent>& Dest)

@@ -24,6 +24,9 @@ protected:
 	// 애니메이션 출력용도
 	class CAnimation2D* mAnimation = nullptr;
 
+	// 반전
+	bool mIsFlip = false;
+
 	class CSpriteCBuffer* mSpriteCBuffer;
 
 	// 애니메이션 객체 생성해주기
@@ -50,6 +53,11 @@ public:
 		return dynamic_cast<T*>(mAnimation);
 	}
 
+	bool GetIsFlip()
+	{
+		return mIsFlip;
+	}
+
 public:
 	// 쉐이더 세팅
 	void SetShader(const std::string& Name);
@@ -69,6 +77,9 @@ public:
 	void SetTint(float r, float g, float b);
 	// 오파시티
 	void SetOpacity(float Opacity);
+
+	// 반전
+	void SetFlip(bool Flip);
 
 	// 시점 함수
 public:

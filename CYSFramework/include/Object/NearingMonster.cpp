@@ -7,6 +7,7 @@
 #include "../Component/ColliderLine2D.h"
 #include "../Component/ColliderOBB2D.h"
 #include "../Component/ColliderSphere2D.h"
+#include "../Animation/Animation2D.h"
 
 CNearingMonster::CNearingMonster()
 {
@@ -39,6 +40,8 @@ bool CNearingMonster::Init()
 	mRoot->SetOpacity(1.f);
 
 	mRoot->SetWorldScale(50.f, 50.f, 1.f);
+
+	//mAnimation->AddSequence("ClubBoom", 1.f, 1.f, true, false);
 
 	//mLine = CreateComponent<CColliderLine2D>();
 

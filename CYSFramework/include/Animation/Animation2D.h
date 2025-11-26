@@ -21,6 +21,7 @@ public:
 	static void CreateCBuffer();
 	static void DestroyCBuffer();
 	static void DisableAnimation();
+	static void SetAnimFlip(bool Flip);
 
 private:
 	// 현재 씬
@@ -61,5 +62,33 @@ public:
 
 	void SetShader();
 
+public:
+	// 노티파이
+	template<typename T>
+	void SetEndFunction(const std::string& Name, T* Obj, void(T::* Func)())
+	{
+		CAnimation2DSequence* Sequence = FindSequence(Name);
+
+		if (!Sequence)
+		{
+			return;
+		}
+
+		Sequence->SetEndFunction<T>(Obj, Func);
+	}
+
+	// Notify 바인드
+	template<typename T>
+	void AddNotify(const std::string& Name, int Frame, T* Obj, void(T::* Func)())
+	{
+		CAnimation2DSequence* Sequence = FindSequence(Name);
+
+		if (!Sequence)
+		{
+			return;
+		}
+
+		Sequence->AddNotify<T>(Name, Frame, Obj, Func);
+	}
 };
 

@@ -34,7 +34,7 @@ CSpriteComponent::CSpriteComponent(CSpriteComponent&& Com)
 
 CSpriteComponent::~CSpriteComponent()
 {
-	//SAFE_DELETE(mAnimation);
+	SAFE_DELETE(mAnimation);
 	SAFE_DELETE(mSpriteCBuffer);
 }
 
@@ -109,6 +109,11 @@ void CSpriteComponent::SetTint(float r, float g, float b)
 void CSpriteComponent::SetOpacity(float Opacity)
 {
 	mTint.w = Opacity;
+}
+
+void CSpriteComponent::SetFlip(bool Flip)
+{
+	mIsFlip = Flip;
 }
 
 bool CSpriteComponent::Init()

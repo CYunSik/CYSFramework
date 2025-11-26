@@ -5,6 +5,7 @@
 #include "../Component/StaticMeshComponent.h"
 #include "../Component/SpriteComponent.h"
 #include "../Component/MovementComponent.h"
+#include "../Animation/Animation2D.h"
 
 CGunnerMonster::CGunnerMonster()
 {
@@ -32,11 +33,11 @@ bool CGunnerMonster::Init()
 	}
 
 	mRoot->SetTexture("SpadeBoom", TEXT("Texture/spr_bomb_spade_ch1_0.png"), 0);
-	mRoot->SetTint(1.f, 1.f, 1.f);
 	mRoot->SetPivot(0.5f, 0.5f);
 	mRoot->SetOpacity(1.f);
-
 	mRoot->SetWorldScale(50.f, 50.f, 1.f);
+
+	//mAnimation->AddSequence("ClubBoom", 1.f, 1.f, true, false);
 
 	SetTarget(mScene->FindObjectFromType<CPlayerObject>());
 
