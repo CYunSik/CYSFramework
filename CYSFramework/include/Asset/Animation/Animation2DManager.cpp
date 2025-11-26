@@ -109,6 +109,18 @@ bool CAnimation2DManager::Init()
 	SetTexture("AttackEffect", "AttackEffect", FileNames);
 	AddFrameCount("AttackEffect", 8, 0.f, 0.f, 44.f, 45.f);
 
+	// 수지 오른쪽 이동
+	CreateAnimation("SusieWalkRight");
+	SetAnimationTextureType("SusieWalkRight", EAnimationTextureType::Frame);
+	FileNames.clear();
+	FileNames.emplace_back(TEXT("Texture/Susie/spr_susier_dark/spr_susier_dark_0.png"));
+	FileNames.emplace_back(TEXT("Texture/Susie/spr_susier_dark/spr_susier_dark_1.png"));
+	FileNames.emplace_back(TEXT("Texture/Susie/spr_susier_dark/spr_susier_dark_2.png"));
+	FileNames.emplace_back(TEXT("Texture/Susie/spr_susier_dark/spr_susier_dark_3.png"));
+
+	SetTexture("SusieWalkRight", "SusieWalkRight", FileNames);
+	AddFrameCount("SusieWalkRight", 4, 0.f, 0.f, 25.f, 46.f);
+
 	// 제빌 배경
 	CreateAnimation("JevilCarousel");
 	SetAnimationTextureType("JevilCarousel", EAnimationTextureType::Frame);
@@ -133,6 +145,36 @@ bool CAnimation2DManager::Init()
 
 	SetTexture("ClubBoom", "ClubBoom", FileNames);
 	AddFrameCount("ClubBoom", 2, 0.f, 0.f, 23.f, 23.f);
+
+	// 전투 외곽 테스트
+	CreateAnimation("BattleFrame");
+	SetAnimationTextureType("BattleFrame", EAnimationTextureType::Frame);
+	FileNames.clear();
+
+	TCHAR Path2[100][MAX_PATH] = {};
+	for (int i = 1; i <= 100; ++i)
+	{
+		wsprintf(Path2[i - 1], TEXT("Texture/UI/BattleBGFrames/BattleFrame (%d).png"), i);
+		FileNames.emplace_back(Path2[i - 1]);
+	}
+
+	SetTexture("BattleFrame", "BattleFrame", FileNames);
+	AddFrameCount("BattleFrame", 100, 0.f, 0.f, 1280.f, 960.f);
+
+	// 전투 박스 테스트
+	CreateAnimation("BattleBoxStart");
+	SetAnimationTextureType("BattleBoxStart", EAnimationTextureType::Frame);
+	FileNames.clear();
+
+	TCHAR Path3[18][MAX_PATH] = {};
+	for (int i = 1; i <= 18; ++i)
+	{
+		wsprintf(Path3[i - 1], TEXT("Texture/UI/BATTLE_BOX_SEQUENCE/BatttleBox (%d).png"), i);
+		FileNames.emplace_back(Path3[i - 1]);
+	}
+
+	SetTexture("BattleBoxStart", "BattleBoxStart", FileNames);
+	AddFrameCount("BattleBoxStart", 18, 0.f, 0.f, 1280.f, 960.f);
 
 	return true;
 }

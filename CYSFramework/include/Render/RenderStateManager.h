@@ -25,6 +25,10 @@ public:
 
 	bool CreateBlendState(const std::string& Name, bool AlphaToCoverageEnable, bool IndependentBlendEnable);
 
+	// 레스터라이즈
+	void AddRasterizerDesc(const std::string& Name, D3D11_CULL_MODE CullBackEnable, bool DepthClipEnable);
+	bool CreateRasterizerState(const std::string& Name);
+
 	class CRenderState* FindState(const std::string& Name);
 };
 

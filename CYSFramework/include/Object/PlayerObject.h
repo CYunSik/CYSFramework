@@ -42,7 +42,9 @@ protected:
 
 	// 애니메이션
 	class CAnimation2D* mAnimation = nullptr;
+	class CAnimation2D* mAnimationSusie = nullptr;
 
+	// Idle 상태값으로 돌아갈건지 여부
 	bool mAutoBasePose = true;
 
 	// 총알용 오브젝트

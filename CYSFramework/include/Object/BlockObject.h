@@ -14,10 +14,13 @@ protected:
 protected:
     CSharedPtr<class CSpriteComponent> mRoot;
     CSharedPtr<class CSpriteComponent> mRoot2;
+    CSharedPtr<class CSpriteComponent> mRoot3;
     CSharedPtr<class CColliderAABB2D> mBody;
 
     // 애니메이션
     class CAnimation2D* mAnimation = nullptr;
+	class CAnimation2D* mAnimationBattleFrame = nullptr;
+	class CAnimation2D* mAnimationBattleBox = nullptr;
 
 public:
     virtual bool Init();

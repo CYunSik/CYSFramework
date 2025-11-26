@@ -9,6 +9,8 @@ E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Asset\Material\Material
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Asset\Mesh\Mesh.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\Mesh.obj
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Asset\Mesh\MeshManager.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\MeshManager.obj
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Asset\Mesh\StaticMesh.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\StaticMesh.obj
+E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Asset\Sound\Sound.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\Sound.obj
+E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Asset\Sound\SoundManager.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\SoundManager.obj
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Asset\Texture\Texture.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\Texture.obj
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Asset\Texture\TextureManager.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\TextureManager.obj
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Collision.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\Collision.obj
@@ -46,6 +48,7 @@ E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Object\TornadoBullet.cp
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Object\ZaryaBullet.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\ZaryaBullet.obj
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\ProfileManager.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\ProfileManager.obj
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Render\BlendState.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\BlendState.obj
+E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Render\RasterizerState.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\RasterizerState.obj
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Render\RenderManager.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\RenderManager.obj
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Render\RenderState.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\RenderState.obj
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Render\RenderStateManager.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\RenderStateManager.obj

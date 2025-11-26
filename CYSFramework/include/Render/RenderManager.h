@@ -21,6 +21,9 @@ private:
 	// 알파 블렌드
 	class CRenderState* mAlphaBlend = nullptr;
 
+	// 레스터라이즈 스테이트
+	class CRenderState* mRasterizer = nullptr;
+
 public:
 	class CRenderStateManager* GetStateManager()
 	{

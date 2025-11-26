@@ -33,6 +33,7 @@ bool CBlockObject::Init()
 
     mRoot = CreateComponent<CSpriteComponent>();
     mRoot2 = CreateComponent<CSpriteComponent>();
+    mRoot3 = CreateComponent<CSpriteComponent>();
     //mBody = CreateComponent<CColliderAABB2D>();
 
     //mRoot->SetMesh("CenterRect");
@@ -41,12 +42,30 @@ bool CBlockObject::Init()
     mRoot->SetTexture("HitBox1", TEXT("Texture/spr_battlebg_stretch_hitbox_0.png"), 0);
     mRoot->SetPivot(0.5f, 0.5f);
     mRoot->SetOpacity(1.f);
-    mRoot->SetWorldScale(1280.f, 720.f, 1.f);
+    mRoot->SetWorldScale(1280.f, 960.f, 1.f);
 
     SetRootComponent(mRoot);
-
     mAnimation = mRoot->CreateAnimation2D<CAnimation2D>();
     mAnimation->AddSequence("JevilCarousel", 1.f, 1.f, true, false);
+
+    mRoot2->SetWorldScale(1.f, 1.f, 1.f);
+    mRoot2->SetWorldPos(-1300.f, 0.f, 1.f);
+    mRoot2->SetPivot(0.5f, 0.5f);
+    mRoot->AddChild(mRoot2);
+
+    mAnimationBattleBox = mRoot2->CreateAnimation2D<CAnimation2D>();
+    mAnimationBattleBox->AddSequence("BattleBoxStart", 0.9f, 1.f, false, false);
+
+    mRoot3->SetWorldScale(1.f, 1.f, 1.f);
+    mRoot3->SetWorldPos(-1300.f, 0.f, 1.f);
+    mRoot3->SetPivot(0.5f, 0.5f);
+    mRoot->AddChild(mRoot3);
+
+    mAnimationBattleFrame = mRoot3->CreateAnimation2D<CAnimation2D>();
+    mAnimationBattleFrame->AddSequence("BattleFrame", 5.f, 1.f, true, false);
+
+ 
+
     //mRoot->AddChild(mRoot2);
 
     //mRoot2->SetTexture("HitBox2", TEXT("Texture/spr_battlebg_stretch_hitbox_1.png"), 0);

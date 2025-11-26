@@ -127,7 +127,7 @@ bool CSceneMain::Init()
 	MonsterPoint->SetSpawnTime(10.f);
 	MonsterPoint->SetWorldPos(200.f, 0.f);
 
-	CBlockObject* Block = CreateObj<CBlockObject>("HitBox");
+	CBlockObject* Block = CreateObj<CBlockObject>("TestAnimation");
 	Block->SetWorldPos(0.f, 0.f, 2.f);
 
 	// 클로버 폭탄

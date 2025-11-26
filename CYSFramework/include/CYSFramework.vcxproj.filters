@@ -157,6 +157,9 @@
     <Filter Include="06.Object\04.Effect">
       <UniqueIdentifier>{334a81fc-904e-481a-9ccf-246db67efd8b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="03.Asset\05.Sound">
+      <UniqueIdentifier>{7f8086e4-3e8e-4eb7-8a63-6eca24bc64f9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -395,6 +398,15 @@
     </ClCompile>
     <ClCompile Include="Object\SpriteEffect.cpp">
       <Filter>06.Object\04.Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="Asset\Sound\SoundManager.cpp">
+      <Filter>03.Asset\05.Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="Asset\Sound\Sound.cpp">
+      <Filter>03.Asset\05.Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="Render\RasterizerState.cpp">
+      <Filter>08.Render\01.RenderState</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -656,6 +668,39 @@
     <ClInclude Include="Object\SpriteEffect.h">
       <Filter>06.Object\04.Effect</Filter>
     </ClInclude>
+    <ClInclude Include="Asset\Sound\fmod.h">
+      <Filter>03.Asset\05.Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="Asset\Sound\fmod.hpp">
+      <Filter>03.Asset\05.Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="Asset\Sound\fmod_codec.h">
+      <Filter>03.Asset\05.Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="Asset\Sound\fmod_common.h">
+      <Filter>03.Asset\05.Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="Asset\Sound\fmod_dsp.h">
+      <Filter>03.Asset\05.Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="Asset\Sound\fmod_dsp_effects.h">
+      <Filter>03.Asset\05.Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="Asset\Sound\fmod_errors.h">
+      <Filter>03.Asset\05.Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="Asset\Sound\fmod_output.h">
+      <Filter>03.Asset\05.Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="Asset\Sound\SoundManager.h">
+      <Filter>03.Asset\05.Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="Asset\Sound\Sound.h">
+      <Filter>03.Asset\05.Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="Render\RasterizerState.h">
+      <Filter>08.Render\01.RenderState</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="CYSFramework.rc">
@@ -685,6 +730,15 @@
     <None Include="ClassDiagram.cd" />
     <None Include="Asset\Texture\DirectXTex.inl">
       <Filter>03.Asset\02.Texture</Filter>
+    </None>
+    <None Include="Asset\Sound\fmod.cs">
+      <Filter>03.Asset\05.Sound</Filter>
+    </None>
+    <None Include="Asset\Sound\fmod_dsp.cs">
+      <Filter>03.Asset\05.Sound</Filter>
+    </None>
+    <None Include="Asset\Sound\fmod_errors.cs">
+      <Filter>03.Asset\05.Sound</Filter>
     </None>
   </ItemGroup>
 </Project>

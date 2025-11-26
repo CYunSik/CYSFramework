@@ -114,6 +114,7 @@ bool CTexture::LoadTextureFullPath(const TCHAR* FullPath)
 	}
 
 	Texture->Image = Image;
+	Texture->Image->GetImages()->format;
 
 	int RSVNumber = (int)mTextureList.size();
 

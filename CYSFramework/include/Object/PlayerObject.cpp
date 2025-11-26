@@ -94,20 +94,24 @@ bool CPlayerObject::Init()
 	// 수지, 랄세이
 	mSusie = CreateComponent<CSpriteComponent>();
 	mSusie->SetTexture("Susie", TEXT("Texture/spr_susied_dark_0.png"), 0);
+	mSusie->SetRelativePos(-50.f, 0.f);
 	mSusie->SetPivot(0.5f, 0.5f);
 	mSusie->SetOpacity(1.f);
 	mRoot->AddChild(mSusie);
+	mAnimationSusie = mSusie->CreateAnimation2D<CAnimation2D>();
+	mAnimationSusie->AddSequence("SusieWalkRight", 1.f, 1.f, true, false);
 
 	mRalsei = CreateComponent<CSpriteComponent>();
 	mRalsei->SetTexture("Ralsei", TEXT("Texture/spr_ralseid_0.png"), 0);
+	mRalsei->SetRelativePos(-50.f, 0.f);
 	mRalsei->SetPivot(0.5f, 0.5f);
 	mRalsei->SetOpacity(1.f);
 	mSusie->AddChild(mRalsei);
 
 	for (int i = 0; i < 501; ++i)
 	{
-		mPlayerTrail.push_back(GetWorldPosition());
-		mSusieTrail.push_back(mSusie->GetWorldPosition());
+		mPlayerTrail.emplace_back(GetWorldPosition());
+		mSusieTrail.emplace_back(mSusie->GetWorldPosition());
 	}
 
 	//mBody->AddChild(mLine);
@@ -159,11 +163,11 @@ bool CPlayerObject::Init()
 	mScene->GetInput()->AddBindFunction("MoveRight", EInputType::Hold, this, &CPlayerObject::MoveRight);
 
 	// 회전
-	mScene->GetInput()->AddBindKey("RotationZ", 'E');
-	mScene->GetInput()->AddBindFunction("RotationZ", EInputType::Hold, this, &CPlayerObject::RotationZ);
+	//mScene->GetInput()->AddBindKey("RotationZ", 'E');
+	//mScene->GetInput()->AddBindFunction("RotationZ", EInputType::Hold, this, &CPlayerObject::RotationZ);
 
-	mScene->GetInput()->AddBindKey("RotationInv", 'Q');
-	mScene->GetInput()->AddBindFunction("RotationInv", EInputType::Hold, this, &CPlayerObject::RotationZInv);
+	//mScene->GetInput()->AddBindKey("RotationInv", 'Q');
+	//mScene->GetInput()->AddBindFunction("RotationInv", EInputType::Hold, this, &CPlayerObject::RotationZInv);
 
 	// 총알 발사
 	mScene->GetInput()->AddBindKey("Fire", VK_SPACE);
@@ -273,7 +277,7 @@ void CPlayerObject::Update(float DeltaTime)
 		}
 	}
 
-	if (mMovement->GetVelocityLength() == 0.f)
+	if (mMovement->GetVelocityLength() == 0.f && mAutoBasePose)
 	{
 		mAnimation->ChangeAnimation("None");
 	}

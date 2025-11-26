@@ -62,6 +62,9 @@ void CMaterialManager::ReleaseMaterial(class CAsset* Material)
 
 	if (iter != mMaterialMap.end())
 	{
-		mMaterialMap.erase(iter);
+		if (iter->second->GetRefCount() == 1)
+		{
+			mMaterialMap.erase(iter);
+		}
 	}
 }

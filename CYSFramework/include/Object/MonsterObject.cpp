@@ -75,7 +75,6 @@ bool CMonsterObject::Init()
 	mBody = CreateComponent<CColliderOBB2D>();
 	
 	SetRootComponent(mRoot);
-	//mAnimation = mRoot->CreateAnimation2D<CAnimation2D>();
 
 	mRoot->AddChild(mBody);
 	mBody->SetBoxSize(50.f, 50.f);

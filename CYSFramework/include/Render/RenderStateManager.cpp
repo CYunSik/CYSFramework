@@ -1,5 +1,6 @@
 #include "RenderStateManager.h"
 #include "BlendState.h"
+#include "RasterizerState.h"
 
 CRenderStateManager::CRenderStateManager()
 {
@@ -21,6 +22,9 @@ bool CRenderStateManager::Init()
 	AddBlendDesc("AlphaBlend", true, D3D11_BLEND_SRC_ALPHA, D3D11_BLEND_INV_SRC_ALPHA, D3D11_BLEND_OP_ADD, D3D11_BLEND_ONE, D3D11_BLEND_ZERO, D3D11_BLEND_OP_ADD, D3D11_COLOR_WRITE_ENABLE_ALL);
 
 	CreateBlendState("AlphaBlend", true, true);
+
+	AddRasterizerDesc("Rasterizer", D3D11_CULL_NONE, true);
+	CreateRasterizerState("Rasterizer");
 
 	return true;
 }
@@ -80,6 +84,43 @@ bool CRenderStateManager::CreateBlendState(const std::string& Name, bool AlphaTo
 	if (FAILED(State->CreateState(AlphaToCoverageEnable, IndependentBlendEnable)))
 	{
 		SAFE_DELETE(State);
+		return false;
+	}
+
+	return true;
+}
+
+void CRenderStateManager::AddRasterizerDesc(const std::string& Name, D3D11_CULL_MODE CullBackEnable,
+	bool DepthClipEnable)
+{
+	CRasterizerState* State = (CRasterizerState*)FindState(Name);
+
+	if (!State)
+	{
+		State = new CRasterizerState;
+
+		mRenderStateMap.insert(std::make_pair(Name, State));
+	}
+
+	State->SetRasterizerDesc(CullBackEnable, DepthClipEnable);
+}
+
+bool CRenderStateManager::CreateRasterizerState(const std::string& Name)
+{
+	CRasterizerState* State = (CRasterizerState*)FindState(Name);
+
+	if (!State)
+	{
+		return false;
+	}
+
+	if (State->mState)
+	{
+		return false;
+	}
+
+	if (!State->CreateRasterizerState())
+	{
 		return false;
 	}
 

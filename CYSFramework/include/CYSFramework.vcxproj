@@ -152,6 +152,8 @@
     <ClCompile Include="Asset\Mesh\Mesh.cpp" />
     <ClCompile Include="Asset\Mesh\MeshManager.cpp" />
     <ClCompile Include="Asset\Mesh\StaticMesh.cpp" />
+    <ClCompile Include="Asset\Sound\Sound.cpp" />
+    <ClCompile Include="Asset\Sound\SoundManager.cpp" />
     <ClCompile Include="Asset\Texture\Texture.cpp" />
     <ClCompile Include="Asset\Texture\TextureManager.cpp" />
     <ClCompile Include="Collision.cpp" />
@@ -189,6 +191,7 @@
     <ClCompile Include="Object\ZaryaBullet.cpp" />
     <ClCompile Include="ProfileManager.cpp" />
     <ClCompile Include="Render\BlendState.cpp" />
+    <ClCompile Include="Render\RasterizerState.cpp" />
     <ClCompile Include="Render\RenderManager.cpp" />
     <ClCompile Include="Render\RenderState.cpp" />
     <ClCompile Include="Render\RenderStateManager.cpp" />
@@ -233,6 +236,16 @@
     <ClInclude Include="Asset\Mesh\Mesh.h" />
     <ClInclude Include="Asset\Mesh\MeshManager.h" />
     <ClInclude Include="Asset\Mesh\StaticMesh.h" />
+    <ClInclude Include="Asset\Sound\fmod.h" />
+    <ClInclude Include="Asset\Sound\fmod.hpp" />
+    <ClInclude Include="Asset\Sound\fmod_codec.h" />
+    <ClInclude Include="Asset\Sound\fmod_common.h" />
+    <ClInclude Include="Asset\Sound\fmod_dsp.h" />
+    <ClInclude Include="Asset\Sound\fmod_dsp_effects.h" />
+    <ClInclude Include="Asset\Sound\fmod_errors.h" />
+    <ClInclude Include="Asset\Sound\fmod_output.h" />
+    <ClInclude Include="Asset\Sound\Sound.h" />
+    <ClInclude Include="Asset\Sound\SoundManager.h" />
     <ClInclude Include="Asset\Texture\DirectXTex.h" />
     <ClInclude Include="Asset\Texture\Texture.h" />
     <ClInclude Include="Asset\Texture\TextureManager.h" />
@@ -273,6 +286,7 @@
     <ClInclude Include="Object\ZaryaBullet.h" />
     <ClInclude Include="ProfileManager.h" />
     <ClInclude Include="Render\BlendState.h" />
+    <ClInclude Include="Render\RasterizerState.h" />
     <ClInclude Include="Render\RenderManager.h" />
     <ClInclude Include="Render\RenderState.h" />
     <ClInclude Include="Render\RenderStateManager.h" />
@@ -360,6 +374,9 @@
     </FxCompile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Asset\Sound\fmod.cs" />
+    <None Include="Asset\Sound\fmod_dsp.cs" />
+    <None Include="Asset\Sound\fmod_errors.cs" />
     <None Include="Asset\Texture\DirectXTex.inl" />
     <None Include="ClassDiagram.cd" />
   </ItemGroup>

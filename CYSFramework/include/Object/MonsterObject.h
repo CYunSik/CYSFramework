@@ -16,8 +16,6 @@ protected:
 
 	CSharedPtr<class CMovementComponent> mMovement;
 
-	class CAnimation2D* mAnimation = nullptr;
-
 	//CSharedPtr<class CColliderAABB2D> mBody;
 	//CSharedPtr<class CColliderSphere2D> mBody;
 	CSharedPtr<class CColliderOBB2D> mBody;

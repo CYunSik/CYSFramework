@@ -22,6 +22,8 @@
 #include "Render/RenderState.h"
 #include "Render/RenderStateManager.h"
 
+#include "Asset/Sound/SoundManager.h"
+
 #include "ProfileManager.h"
 
 #include "time.h"
@@ -30,6 +32,8 @@
 // GameInfo에 extern을 선언해준다.
 // 그럼 GameInfo를 받아간 파일들은 모두 gRootPath를 사용할 수 있다.
 TCHAR gRootPath[MAX_PATH];
+// 멀티바이트 용
+char gRootPathMultibyte[MAX_PATH];
 
 bool CGameManager::mLoop = true;
 
@@ -153,6 +157,9 @@ void CGameManager::Logic()
 	Collision(DeltaTime);
 
 	Render(DeltaTime);				// 그려주기
+
+	// 오디오 시스템은 매프레임 갱신 해줘야한다.
+	CAssetManager::GetInst()->GetSoundManager()->Update();
 }
 
 void CGameManager::Input(float DeltaTime)

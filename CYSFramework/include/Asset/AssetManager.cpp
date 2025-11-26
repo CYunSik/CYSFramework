@@ -6,6 +6,7 @@
 #include "Texture/TextureManager.h"
 #include "Material/MaterialManager.h"
 #include "Animation/Animation2DManager.h"
+#include "Sound/SoundManager.h"
 
 CAssetManager::CAssetManager()
 {
@@ -18,6 +19,7 @@ CAssetManager::~CAssetManager()
 	SAFE_DELETE(mMeshManager);
 	SAFE_DELETE(mMaterialManager);
 	SAFE_DELETE(mTextureManager);
+	SAFE_DELETE(mSoundManager);
 }
 
 bool CAssetManager::Init()
@@ -42,6 +44,11 @@ bool CAssetManager::Init()
 			break;
 		}
 	}
+
+	// TCHAR -> char
+	Length = WideCharToMultiByte(CP_ACP, 0, gRootPath, -1, nullptr, 0, nullptr, nullptr);
+
+	WideCharToMultiByte(CP_ACP, 0, gRootPath, -1, gRootPathMultibyte, Length, nullptr, nullptr);
 
 	// 머티리얼
 	mMaterialManager = new CMaterialManager;
@@ -79,8 +86,14 @@ bool CAssetManager::Init()
 		return false;
 	}
 
-	// 사운드, 이펙트 등 다양한 리소스들을 관리할 수도 있다.
+	// 사운드
+	mSoundManager = new CSoundManager;
 
+	if (!mSoundManager->Init())
+	{
+		SAFE_DELETE(mSoundManager);
+		return false;
+	}
 
 	return true;
 }
@@ -98,8 +111,11 @@ void CAssetManager::ReleaseAsset(CAsset* Asset)
 	case EAssetType::Material:
 		mMaterialManager->ReleaseMaterial(Asset);
 		break;
-	case EAssetType::Animation:
+	case EAssetType::Animation2D:
 		mAnimation2DManager->ReleaseAnimation(Asset);
+		break;
+	case EAssetType::Sound:
+		mSoundManager->ReleaseSound(Asset);
 		break;
 	}
 }

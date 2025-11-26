@@ -63,6 +63,8 @@ bool CRenderManager::Init()
 
 	mAlphaBlend = mStateManager->FindState("AlphaBlend");
 
+	mRasterizer = mStateManager->FindState("Rasterizer");
+
 	return true;
 }
 
@@ -92,6 +94,8 @@ void CRenderManager::Render()
 
 	// 알파블렌드
 	mAlphaBlend->SetState();
+	// 레스터라이저 세팅
+	mRasterizer->SetState();
 
 	// 그리기
 	auto iter = mRenderList.begin();
@@ -121,6 +125,8 @@ void CRenderManager::Render()
 
 	// 알파블렌드 종료
 	mAlphaBlend->ResetState();
+	// 레스터라이저 종료
+	mRasterizer->ResetState();
 }
 
 bool CRenderManager::SortY(const CSharedPtr<class CSceneComponent>& Src, const CSharedPtr<class CSceneComponent>& Dest)

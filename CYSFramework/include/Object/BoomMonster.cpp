@@ -39,7 +39,8 @@ bool CBoomMonster::Init()
 	mRoot->SetWorldScale(50.f, 50.f, 1.f);
 	SetRootComponent(mRoot);
 
-	//mAnimation->AddSequence("ClubBoom", 0.5f, 1.f, true, false);
+	//mAnimation = mRoot->CreateAnimation2D<CAnimation2D>();
+	//mAnimation->AddSequence("ClubBoom", 1.f, 1.f, true, false);
 
 	SetTarget(mScene->FindObjectFromType<CPlayerObject>());
 
