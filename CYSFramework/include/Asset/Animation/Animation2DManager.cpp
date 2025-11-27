@@ -126,15 +126,15 @@ bool CAnimation2DManager::Init()
 	SetAnimationTextureType("JevilCarousel", EAnimationTextureType::Frame);
 	FileNames.clear();
 
-	TCHAR Path[37][MAX_PATH] = {};
-	for (int i = 1; i <= 37; ++i)
+	TCHAR Path[200][MAX_PATH] = {};
+	for (int i = 1; i <= 200; ++i)
 	{
-		wsprintf(Path[i - 1], TEXT("Texture/Jevil/jevil-carousel/jevil-carousel (%d).png"), i);
+		wsprintf(Path[i - 1], TEXT("Texture/Jevil/jevilBG2/JevilBG (%d).png"), i);
 		FileNames.emplace_back(Path[i - 1]);
 	}
 	
 	SetTexture("JevilCarousel", "JevilCarousel", FileNames);
-	AddFrameCount("JevilCarousel", 37, 0.f, 0.f, 640.f, 480.f);
+	AddFrameCount("JevilCarousel", 200, 0.f, 0.f, 1418, 1080.f);
 
 	// 제빌 클로버 폭탄
 	CreateAnimation("ClubBoom");

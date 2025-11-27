@@ -157,6 +157,7 @@
     <ClCompile Include="Asset\Texture\Texture.cpp" />
     <ClCompile Include="Asset\Texture\TextureManager.cpp" />
     <ClCompile Include="Collision.cpp" />
+    <ClCompile Include="Component\AudioComponent.cpp" />
     <ClCompile Include="Component\CameraComponent.cpp" />
     <ClCompile Include="Component\ColliderAABB2D.cpp" />
     <ClCompile Include="Component\ColliderBase.cpp" />
@@ -171,6 +172,7 @@
     <ClCompile Include="Component\SpriteComponent.cpp" />
     <ClCompile Include="Component\StaticMeshComponent.cpp" />
     <ClCompile Include="Device.cpp" />
+    <ClCompile Include="GameInfo.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Object\BlockObject.cpp" />
@@ -250,6 +252,7 @@
     <ClInclude Include="Asset\Texture\Texture.h" />
     <ClInclude Include="Asset\Texture\TextureManager.h" />
     <ClInclude Include="Collision.h" />
+    <ClInclude Include="Component\AudioComponent.h" />
     <ClInclude Include="Component\CameraComponent.h" />
     <ClInclude Include="Component\ColliderAABB2D.h" />
     <ClInclude Include="Component\ColliderBase.h" />

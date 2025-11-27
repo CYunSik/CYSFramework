@@ -64,6 +64,9 @@ bool CSceneMain::Init()
 	Material4->SetSamplerType(ETextureSamplerType::Linear);
 	Material4->AddTexture("Bullet2", TEXT("Texture/spr_diamondbullet_ch1.png"), 0);
 
+	/////////////////// 사용할 사운드를 미리 추가한다.
+	mAssetManager->LoadSound("Hit", "Effect", false, "Sound/Fire1.wav");
+
 
 	// 전투 박스
 	//mAssetManager->CreateMaterial("HitBox1");

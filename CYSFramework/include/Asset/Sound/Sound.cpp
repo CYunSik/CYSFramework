@@ -1,7 +1,7 @@
 #include "Sound.h"
 
 // FMOD 라이브러리 링크
-#pragma comment(lib, "../Bin/fmod_vc.lib");
+#pragma comment(lib, "../Bin/fmod_vc.lib")
 
 #include "../../Share/Log.h"
 
@@ -73,8 +73,58 @@ void CSound::Play()
 	mChannel->setCallback(CSound::SoundEnd);
 }
 
+void CSound::Stop()
+{
+	if (mChannel)
+	{
+		--mPlayCount;
+		bool Playing = false;
+		mChannel->isPlaying(&Playing);
+
+		if (Playing)
+		{
+			mChannel->stop();
+
+			if (mPlayCount == 0)
+			{
+				mChannel = nullptr;
+			}
+		}
+	}
+}
+
+void CSound::Pause()
+{
+	if (mChannel)
+	{
+		bool Playing = false;
+
+		mChannel->isPlaying(&Playing);
+
+		if (Playing)
+		{
+			mChannel->setPaused(true);
+		}
+	}
+}
+
+void CSound::Resume()
+{
+	if (mChannel)
+	{
+		bool Pause = false;
+
+		mChannel->getPaused(&Pause);
+
+		if (Pause)
+		{
+			mChannel->setPaused(false);
+		}
+	}
+}
+
 FMOD_RESULT CSound::SoundEnd(FMOD_CHANNELCONTROL* channelcontrol, FMOD_CHANNELCONTROL_TYPE controltype,
-	FMOD_CHANNELCONTROL_CALLBACK_TYPE callbacktype, void* commanddata1, void* commanddata2)
+                             FMOD_CHANNELCONTROL_CALLBACK_TYPE callbacktype, void* commanddata1, void* commanddata2)
 {
 	CLog::PrintLog("SoundEnd");
 

@@ -282,6 +282,11 @@ void CPlayerObject::Update(float DeltaTime)
 		mAnimation->ChangeAnimation("None");
 	}
 
+	if (mBody->IsCollision())
+	{
+		
+	}
+
 	// 충돌이면 되돌리기
 	//if (mBody->IsCollision())
 	//{

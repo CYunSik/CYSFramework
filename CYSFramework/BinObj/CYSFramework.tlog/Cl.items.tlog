@@ -14,6 +14,7 @@ E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Asset\Sound\SoundManage
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Asset\Texture\Texture.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\Texture.obj
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Asset\Texture\TextureManager.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\TextureManager.obj
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Collision.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\Collision.obj
+E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Component\AudioComponent.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\AudioComponent.obj
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Component\CameraComponent.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\CameraComponent.obj
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Component\ColliderAABB2D.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\ColliderAABB2D.obj
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Component\ColliderBase.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\ColliderBase.obj
@@ -28,6 +29,7 @@ E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Component\SceneComponen
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Component\SpriteComponent.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\SpriteComponent.obj
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Component\StaticMeshComponent.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\StaticMeshComponent.obj
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Device.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\Device.obj
+E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\GameInfo.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\GameInfo.obj
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\GameManager.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\GameManager.obj
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\main.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\main.obj
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Object\BlockObject.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\BlockObject.obj

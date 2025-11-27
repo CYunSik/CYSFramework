@@ -35,6 +35,12 @@ public:
 
 	// 기능
 	void Play(const std::string& Name);
+	void Stop(const std::string& Name);
+	void Pause(const std::string& Name);
+	void Resume(const std::string& Name);
+
+	void SetMasterVolume(int Volume);
+	void SetGroupVolume(const std::string& GroupName, int Volume);
 
 private:
 	FMOD::ChannelGroup* FindChannelGroup(const std::string& Name);

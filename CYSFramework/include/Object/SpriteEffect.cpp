@@ -1,6 +1,7 @@
 #include "SpriteEffect.h"
 #include "../Component/SpriteComponent.h"
 #include "../Animation/Animation2D.h"
+#include "../Component/AudioComponent.h"
 
 CSpriteEffect::CSpriteEffect()
 {
@@ -25,10 +26,15 @@ bool CSpriteEffect::Init()
 	CSceneObject::Init();
 
 	mRoot = CreateComponent<CSpriteComponent>();
+	mAudio = CreateComponent<CAudioComponent>();
+
 	mRoot->SetPivot(0.5f, 0.5f);
 	SetRootComponent(mRoot);
 
 	mAnimation = mRoot->CreateAnimation2D<CAnimation2D>();
+
+	mAudio->SetSound("Hit");
+	mRoot->AddChild(mAudio);
 
 	return true;
 }

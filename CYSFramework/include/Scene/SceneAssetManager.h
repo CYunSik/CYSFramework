@@ -90,5 +90,15 @@ public:
 	bool AddAnimationFrameCount(const std::string& Name, int Count, float StartX, float StartY, float SizeX, float SizeY);
 
 #pragma endregion
+
+#pragma region Audio
+
+	// 사운드 불러오기
+	bool LoadSound(const std::string& Name, const std::string& GroupName, bool Loop, const char* FileName);
+	bool LoadSoundFullPath(const std::string& Name, const std::string& GroupName, bool Loop, const char* FullPath);
+
+	class CSound* FindSound(const std::string& Name);
+
+#pragma endregion
 };
 

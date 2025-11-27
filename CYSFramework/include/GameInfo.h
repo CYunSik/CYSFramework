@@ -66,6 +66,15 @@ public:\
 		return &instance;\
 	}
 
+///////////
+// 수학
+int Clamp(int Value, int Min, int Max);
+float Clamp(float Value, float Min, float Max);
+
+
+
+///////////
+
 // 해상도 저장 구조체
 struct FResolution
 {
