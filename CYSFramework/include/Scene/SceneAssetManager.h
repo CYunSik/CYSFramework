@@ -91,7 +91,7 @@ public:
 
 #pragma endregion
 
-#pragma region Audio
+#pragma region Sound
 
 	// 사운드 불러오기
 	bool LoadSound(const std::string& Name, const std::string& GroupName, bool Loop, const char* FileName);

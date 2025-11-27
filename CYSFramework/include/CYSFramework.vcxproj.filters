@@ -163,6 +163,15 @@
     <Filter Include="07.Component\01.SceneComponent\05.Audio">
       <UniqueIdentifier>{23d5cdd5-74ee-4c7b-8b57-ab1222b3ee0e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="10.UI">
+      <UniqueIdentifier>{ec81c3ab-5996-495b-8596-fa9f90a43654}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.Scene\05.UI">
+      <UniqueIdentifier>{b05538ba-70c9-460b-a990-efa21464f44a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="10.UI\01.Common">
+      <UniqueIdentifier>{d11e746e-047a-4a5d-afbf-2109c178ec21}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -416,6 +425,15 @@
     </ClCompile>
     <ClCompile Include="Component\AudioComponent.cpp">
       <Filter>07.Component\01.SceneComponent\05.Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Widget.cpp">
+      <Filter>10.UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\SceneUIManager.cpp">
+      <Filter>05.Scene\05.UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Common\Button.cpp">
+      <Filter>10.UI\01.Common</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -712,6 +730,18 @@
     </ClInclude>
     <ClInclude Include="Component\AudioComponent.h">
       <Filter>07.Component\01.SceneComponent\05.Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Widget.h">
+      <Filter>10.UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\SceneUIManager.h">
+      <Filter>05.Scene\05.UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Common\Button.h">
+      <Filter>10.UI\01.Common</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\UIInfo.h">
+      <Filter>10.UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

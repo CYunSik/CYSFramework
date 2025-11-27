@@ -62,6 +62,7 @@ E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Scene\SceneAssetManager
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Scene\SceneCollision.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\SceneCollision.obj
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Scene\SceneMain.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\SceneMain.obj
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Scene\SceneManager.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\SceneManager.obj
+E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Scene\SceneUIManager.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\SceneUIManager.obj
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Shader\Animation2DCBuffer.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\Animation2DCBuffer.obj
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Shader\ColliderCBuffer.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\ColliderCBuffer.obj
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Shader\ColorMeshShader.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\ColorMeshShader.obj
@@ -80,5 +81,7 @@ E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Shader\TransformCBuffer
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Share\Log.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\Log.obj
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Share\Object.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\Object.obj
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Share\Timer.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\Timer.obj
+E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\UI\Common\Button.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\Button.obj
+E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\UI\Widget.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\Widget.obj
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Vector3D.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\Vector3D.obj
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Vector4D.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\Vector4D.obj

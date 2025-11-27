@@ -319,3 +319,10 @@ enum class EAnimationTextureType
 	SpriteSheet,
 	Frame
 };
+
+// 애니메이션 프레임 정보
+struct FAnimationFrame
+{
+	FVector2D Start;	// 이미지 시작 좌표
+	FVector2D Size;		// 한 프레임 이미지의 크기
+};
