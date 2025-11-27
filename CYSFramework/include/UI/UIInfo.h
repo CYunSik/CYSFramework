@@ -19,4 +19,6 @@ struct FUIBrush
 	float FrameTime = 0.f;
 	float PlayTime = 1.f;
 	float PlayRate = 1.f;
+
+	// 테스트
 };
