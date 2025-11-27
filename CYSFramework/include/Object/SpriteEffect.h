@@ -7,6 +7,7 @@ class CSpriteEffect : public CSceneObject
 
 protected:
 	CSharedPtr<class CSpriteComponent> mRoot;
+	CSharedPtr<class CAudioComponent> mAudio;
 
 	class CAnimation2D* mAnimation = nullptr;
 

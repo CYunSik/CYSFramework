@@ -54,12 +54,20 @@ bool CSoundManager::Init()
 	// 하위 그룹도 등록해주기
 	CreateChannelGroup("BGM");
 	CreateChannelGroup("Effect");
+	CreateChannelGroup("UI");
 
 	// 사운드 불러오기
 	LoadSound("SceneMainBGM", "BGM", true, "Sound/MainBgm.mp3");
+	LoadSound("Effect1", "Effect", false, "Sound/MainBgm.mp3");
 
 	// 사운드 플레이
 	Play("SceneMainBGM");
+	//Play("Effect1");
+
+	SetGroupVolume("BGM", 10);
+	SetGroupVolume("Effect", 10);
+
+	return true;
 }
 
 void CSoundManager::Update()
@@ -161,6 +169,67 @@ void CSoundManager::Play(const std::string& Name)
 	}
 
 	Sound->Play();
+}
+
+void CSoundManager::Stop(const std::string& Name)
+{
+	CSound* Sound = FindSound(Name);
+
+	if (!Sound)
+	{
+		return;
+	}
+
+	Sound->Stop();
+}
+
+void CSoundManager::Pause(const std::string& Name)
+{
+	CSound* Sound = FindSound(Name);
+
+	if (!Sound)
+	{
+		return;
+	}
+
+	Sound->Pause();
+}
+
+void CSoundManager::Resume(const std::string& Name)
+{
+	CSound* Sound = FindSound(Name);
+
+	if (!Sound)
+	{
+		return;
+	}
+
+	Sound->Resume();
+}
+
+void CSoundManager::SetMasterVolume(int Volume)
+{
+	// int 값이 몇이 들어오든
+	// 0 ~ 100
+	// Volume > 100 -> 100 | 그 사이 값은 그대로 사용 | Volume < 0 -> 0
+	// Clamp
+	Volume = Clamp(Volume, 0, 100);
+
+	mMasterGroup->setVolume(static_cast<float>(Volume) / 100.f);
+}
+
+void CSoundManager::SetGroupVolume(const std::string& GroupName, int Volume)
+{
+	FMOD::ChannelGroup* Group = FindChannelGroup(GroupName);
+
+	if (!Group)
+	{
+		return;
+	}
+
+	Volume = Clamp(Volume, 0, 100);
+
+	Group->setVolume(static_cast<float>(Volume) / 100.f);
 }
 
 FMOD::ChannelGroup* CSoundManager::FindChannelGroup(const std::string& Name)

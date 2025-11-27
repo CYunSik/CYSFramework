@@ -47,6 +47,12 @@ protected:
 	// Idle 상태값으로 돌아갈건지 여부
 	bool mAutoBasePose = true;
 
+	// 방향키로 움직일때 충돌여부
+	bool mIsUpColliider = false;
+	bool mIsDownColliider = false;
+	bool mIsLeftColliider = false;
+	bool mIsRightColliider = false;
+
 	// 총알용 오브젝트
 	// 스킬 1
 	CSharedPtr<class CBulletObject> mSkill1Object;

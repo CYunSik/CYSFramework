@@ -36,6 +36,12 @@ public:
 
 	// 실행
 	void Play();
+	// 스탑
+	void Stop();
+	// 일시정지
+	void Pause();
+	// 재시작
+	void Resume();
 
 	static FMOD_RESULT SoundEnd(FMOD_CHANNELCONTROL* channelcontrol, FMOD_CHANNELCONTROL_TYPE controltype, FMOD_CHANNELCONTROL_CALLBACK_TYPE callbacktype, void* commanddata1, void* commanddata2);
 };
