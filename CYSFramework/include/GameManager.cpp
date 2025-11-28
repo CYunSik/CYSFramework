@@ -213,6 +213,8 @@ void CGameManager::Render(float DeltaTime)
 
 	CRenderManager::GetInst()->Render();
 
+	CSceneManager::GetInst()->EndFrame();
+
 	// 블렌드 스테이트 회수
 	//if (AlphaBlend)
 	//{

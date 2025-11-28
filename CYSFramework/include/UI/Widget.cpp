@@ -119,3 +119,7 @@ bool CWidget::CollisionMouse(const FVector2D& MousePos)
 
 
 }
+
+void CWidget::EndFrame()
+{
+}

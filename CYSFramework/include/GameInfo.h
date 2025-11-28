@@ -11,6 +11,8 @@
 #include <crtdbg.h>
 #include <functional>
 
+#include <algorithm>
+
 #include <string>
 
 #include "Vector2D.h"

@@ -24,5 +24,7 @@ public:
 	virtual void Update(float DeltaTime);
 	virtual void Render();
 	virtual bool CollisionMouse(const FVector2D& MousePos);
+
+	static bool SortRender(const CSharedPtr<CWidget>& Src, const CSharedPtr<CWidget>& Dest);
 };
 

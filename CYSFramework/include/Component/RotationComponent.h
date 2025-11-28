@@ -89,5 +89,6 @@ public:
 	virtual void PostRender();
 	virtual CRotationComponent* Clone();
 
+	virtual void EndFrame() override;
 };
 

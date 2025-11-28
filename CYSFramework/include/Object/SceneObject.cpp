@@ -288,6 +288,19 @@ void CSceneObject::Destroy()
 	}
 }
 
+void CSceneObject::EndFrame()
+{
+	auto iter = mNonSceneComponentList.begin();
+	auto iterEnd = mNonSceneComponentList.end();
+
+	for (; iter != iterEnd; ++iter)
+	{
+		(*iter)->EndFrame();
+	}
+
+	mRootComponent->EndFrame();
+}
+
 float CSceneObject::Damage(float Attack, CSceneObject* Obj)
 {
 	if (!mDamageEnable)

@@ -71,3 +71,8 @@ CComponent* CComponent::Clone()
 void CComponent::EraseOwner()
 {
 }
+
+void CComponent::EndFrame()
+{
+
+}

@@ -73,9 +73,12 @@ public:
 	virtual void Update(float DeltaTime);
 	virtual void PostUpdate(float DeltaTime);
 	virtual void Collision(float DeltaTime);
-	virtual void PreRender();
+	//virtual void PreRender();
 	virtual void Render();
-	virtual void PostRender();
+	//virtual void PostRender();
+
+	virtual void RenderUI();
+	virtual void EndFrame();
 
 public:
 	template<typename T>

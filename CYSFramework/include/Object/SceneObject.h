@@ -83,6 +83,8 @@ public:
 	virtual CSceneObject* Clone();
 	virtual void Destroy() override;
 
+	virtual void EndFrame();
+
 public:
 						// 데미지,      데미지를 준 대상
 	virtual float Damage(float Attack, CSceneObject* Obj);

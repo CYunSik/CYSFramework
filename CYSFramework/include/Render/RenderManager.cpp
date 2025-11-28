@@ -5,6 +5,7 @@
 #include "RenderStateManager.h"
 #include "../Component/SceneComponent.h"
 #include "../Device.h"
+#include "../Scene/SceneManager.h"
 
 CRenderManager::CRenderManager()
 {
@@ -129,7 +130,7 @@ void CRenderManager::Render()
 	mDepthDisable->SetState();
 
 	// UI는 여기에 그린다.
-
+	CSceneManager::GetInst()->RenderUI();
 
 
 

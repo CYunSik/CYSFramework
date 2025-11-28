@@ -123,6 +123,16 @@ void CMovementComponent::PostRender()
 			// 여기서 작업
 		}
 	}
+}
+
+CMovementComponent* CMovementComponent::Clone()
+{
+	return new CMovementComponent(*this);
+}
+
+void CMovementComponent::EndFrame()
+{
+	CComponent::EndFrame();
 
 	if (mVelocityInit)
 	{
@@ -130,9 +140,4 @@ void CMovementComponent::PostRender()
 	}
 
 	mMoveStep = FVector3D::Zero;
-}
-
-CMovementComponent* CMovementComponent::Clone()
-{
-	return new CMovementComponent(*this);
 }

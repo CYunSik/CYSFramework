@@ -141,5 +141,6 @@ public:
 	virtual void Update(float DeltaTime);
 	virtual void Render();
 	virtual bool CollisionMouse(const FVector2D& MousePos);
+	virtual void EndFrame();
 };
 

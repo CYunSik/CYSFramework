@@ -119,6 +119,16 @@ void CRotationComponent::PostRender()
 			// 여기서 작업
 		}
 	}
+}
+
+CRotationComponent* CRotationComponent::Clone()
+{
+	return new CRotationComponent(*this);
+}
+
+void CRotationComponent::EndFrame()
+{
+	CComponent::EndFrame();
 
 	if (mVelocityInit)
 	{
@@ -126,9 +136,4 @@ void CRotationComponent::PostRender()
 	}
 
 	mRotationStep = FVector3D::Zero;
-}
-
-CRotationComponent* CRotationComponent::Clone()
-{
-	return new CRotationComponent(*this);
 }

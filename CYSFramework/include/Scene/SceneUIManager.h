@@ -49,6 +49,7 @@ public:
 public:
 	virtual bool Init();
 	virtual void Update(float DeltaTime);
+	virtual void Collision(float DeltaTime);
 	virtual void Render();
 
 public:
@@ -71,5 +72,7 @@ public:
 
 		return Widget;
 	}
+
+	static bool SortRender(const CSharedPtr<CWidget>& Src, const CSharedPtr<CWidget>& Dest);
 };
 

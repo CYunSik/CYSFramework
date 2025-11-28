@@ -44,9 +44,15 @@ void CSceneManager::Collision(float DeltaTime)
 
 void CSceneManager::Render()
 {
-	mCurrentScene->PreRender();
-
 	mCurrentScene->Render();
+}
 
-	mCurrentScene->PostRender();
+void CSceneManager::RenderUI()
+{
+	mCurrentScene->RenderUI();
+}
+
+void CSceneManager::EndFrame()
+{
+	mCurrentScene->EndFrame();
 }

@@ -22,6 +22,7 @@ bool CMainWidget::Init()
 	mButton->SetPos(100.f, 100.f);
 	mButton->SetSize(100.f, 100.f);
 	mButton->SetPivot(FVector2D(0.5f, 0.5f));
+	//mButton->SetZOrder(1);
 
 	AddWidget(mButton);
 

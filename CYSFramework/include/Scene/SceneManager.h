@@ -15,6 +15,8 @@ public:
 	void Update(float DeltaTime);
 	void Collision(float DeltaTime);
 	void Render();
+	void RenderUI();
+	void EndFrame();
 
 public:
 	// 씬 만들기
