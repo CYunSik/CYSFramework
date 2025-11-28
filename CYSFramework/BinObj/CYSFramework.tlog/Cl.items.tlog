@@ -83,6 +83,9 @@ E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Share\Log.cpp;E:\CYS\CY
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Share\Object.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\Object.obj
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Share\Timer.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\Timer.obj
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\UI\Common\Button.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\Button.obj
+E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\UI\UserWidget\MainWidget.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\MainWidget.obj
+E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\UI\UserWidget\UserWidget.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\UserWidget.obj
+E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\UI\UserWidget\WindowWidget.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\WindowWidget.obj
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\UI\Widget.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\Widget.obj
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Vector3D.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\Vector3D.obj
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Vector4D.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\Vector4D.obj

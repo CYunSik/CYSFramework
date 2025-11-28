@@ -172,6 +172,12 @@
     <Filter Include="10.UI\01.Common">
       <UniqueIdentifier>{d11e746e-047a-4a5d-afbf-2109c178ec21}</UniqueIdentifier>
     </Filter>
+    <Filter Include="10.UI\02.UserWidget">
+      <UniqueIdentifier>{dee884c4-0f85-4bdc-94a7-c5c836351b87}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="10.UI\02.UserWidget\01.Main">
+      <UniqueIdentifier>{988c1198-d674-443e-aef8-e604d6e99357}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -437,6 +443,15 @@
     </ClCompile>
     <ClCompile Include="Render\DepthStencilState.cpp">
       <Filter>08.Render\01.RenderState</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\UserWidget\UserWidget.cpp">
+      <Filter>10.UI\02.UserWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\UserWidget\WindowWidget.cpp">
+      <Filter>10.UI\02.UserWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\UserWidget\MainWidget.cpp">
+      <Filter>10.UI\02.UserWidget\01.Main</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -748,6 +763,15 @@
     </ClInclude>
     <ClInclude Include="Render\DepthStencilState.h">
       <Filter>08.Render\01.RenderState</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\UserWidget\UserWidget.h">
+      <Filter>10.UI\02.UserWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\UserWidget\WindowWidget.h">
+      <Filter>10.UI\02.UserWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\UserWidget\MainWidget.h">
+      <Filter>10.UI\02.UserWidget\01.Main</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

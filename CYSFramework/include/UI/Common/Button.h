@@ -1,6 +1,7 @@
 #pragma once
 #include "../Widget.h"
 
+// Common : 성분같은 애들 (버튼)
 // 버튼 상태값
 namespace EButtonState
 {

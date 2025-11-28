@@ -21,6 +21,9 @@ protected:
 	// 화면에 그려질 쉐이더
 	CSharedPtr<class CShader> mShader;
 
+	// 이름
+	std::string mName;
+
 	// 위치
 	FVector2D mPos;
 
@@ -68,9 +71,21 @@ public:
 		mPos = Pos;
 	}
 
+	void SetPos(float X, float Y)
+	{
+		mPos.x = X;
+		mPos.y = Y;
+	}
+
 	void SetSize(const FVector2D& Size)
 	{
 		mSize = Size;
+	}
+
+	void SetSize(float X, float Y)
+	{
+		mSize.x = X;
+		mSize.y = Y;
 	}
 
 	void SetPivot(const FVector2D& Pivot)

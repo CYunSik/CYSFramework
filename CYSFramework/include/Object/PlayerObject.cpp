@@ -110,6 +110,8 @@ bool CPlayerObject::Init()
 	mRalsei->SetPivot(0.5f, 0.5f);
 	mRalsei->SetOpacity(1.f);
 	mSusie->AddChild(mRalsei);
+	mAnimationRalsei = mRalsei->CreateAnimation2D<CAnimation2D>();
+	mAnimationRalsei->AddSequence("RalseiWalkRight", 1.f, 1.f, true, false);
 
 	for (int i = 0; i < 300; ++i)
 	{
@@ -284,6 +286,8 @@ void CPlayerObject::Update(float DeltaTime)
 	if (mMovement->GetVelocityLength() == 0.f && mAutoBasePose)
 	{
 		mAnimation->ChangeAnimation("None");
+		mAnimationSusie->ChangeAnimation("None");
+		mAnimationRalsei->ChangeAnimation("None");
 	}
 
 	// 위성을 돌려주면 된다.

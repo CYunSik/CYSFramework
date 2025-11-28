@@ -1,6 +1,7 @@
 #include "SceneMain.h"
 
 #include "SceneAssetManager.h"
+#include "SceneUIManager.h"
 #include "../Asset/Material/Material.h"
 #include "../Object/PlayerObject.h"
 #include "../Object/MonsterObject.h"
@@ -10,6 +11,7 @@
 #include "../Object/ObjectSpawnPoint.h"
 #include "../Object/BlockObject.h"
 #include "../Object/BoomMonster.h"
+#include "../UI/UserWidget/MainWidget.h"
 
 CSceneMain::CSceneMain()
 {
@@ -130,8 +132,18 @@ bool CSceneMain::Init()
 	MonsterPoint->SetSpawnTime(10.f);
 	MonsterPoint->SetWorldPos(200.f, 0.f);
 
+	///////////////////////////////////////////
+	// UI 생성
+	CMainWidget* Widget = mUIManager->CreateWidget<CMainWidget>("Main");
+	mUIManager->AddToViewport(Widget);
+
+
+
+	///////////////////////////////////////////
+
+	// 테스트용 배경
 	CBlockObject* Block = CreateObj<CBlockObject>("TestAnimation");
-	Block->SetWorldPos(0.f, 200.f, 2.f);
+	Block->SetWorldPos(0.f, 200.f, 5.f);
 
 	// 클로버 폭탄
 	CBoomMonster* ClubMonster = CreateObj<CBoomMonster>("ClubMonster");

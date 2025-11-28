@@ -3,6 +3,7 @@
 #include "CameraManager.h"
 #include "SceneCollision.h"
 #include "SceneAssetManager.h"
+#include "SceneUIManager.h"
 
 CScene::CScene()
 {
@@ -14,6 +15,7 @@ CScene::~CScene()
 	SAFE_DELETE(mInput);
 	SAFE_DELETE(mCameraManager);
 	SAFE_DELETE(mCollision);
+	SAFE_DELETE(mUIManager);
 }
 
 bool CScene::Init()
@@ -48,6 +50,14 @@ bool CScene::Init()
 	if (!mAssetManager->Init())
 	{
 		SAFE_DELETE(mAssetManager);
+		return false;
+	}
+
+	mUIManager = new CSceneUIManager;
+	mUIManager->mScene = this;
+	if (!mUIManager->Init())
+	{
+		SAFE_DELETE(mUIManager);
 		return false;
 	}
 
@@ -144,6 +154,9 @@ void CScene::Update(float DeltaTime)
 	}
 
 	mCameraManager->Update(DeltaTime);
+
+	// UI 매니저 업데이트
+	mUIManager->Update(DeltaTime);
 }
 
 void CScene::PostUpdate(float DeltaTime)

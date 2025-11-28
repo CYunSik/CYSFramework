@@ -25,6 +25,9 @@ protected:
 	// 에셋
 	class CSceneAssetManager* mAssetManager = nullptr;
 
+	// UI
+	class CSceneUIManager* mUIManager = nullptr;
+
 	// 오브젝트
 	// 리스트로 관리 : 중간 삽입 삭제가 용이하기 때문
 	std::list<CSharedPtr<class CSceneObject>> mObjList;
@@ -50,6 +53,11 @@ public:
 	class CSceneAssetManager* GetAssetManager() const
 	{
 		return mAssetManager;
+	}
+
+	class CSceneUIManager* GetUIManager() const
+	{
+		return mUIManager;
 	}
 
 	const std::list<CSharedPtr<CSceneObject>>& GetObjectList() const

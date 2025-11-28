@@ -226,6 +226,9 @@
     <ClCompile Include="Share\Object.cpp" />
     <ClCompile Include="Share\Timer.cpp" />
     <ClCompile Include="UI\Common\Button.cpp" />
+    <ClCompile Include="UI\UserWidget\MainWidget.cpp" />
+    <ClCompile Include="UI\UserWidget\UserWidget.cpp" />
+    <ClCompile Include="UI\UserWidget\WindowWidget.cpp" />
     <ClCompile Include="UI\Widget.cpp" />
     <ClCompile Include="Vector3D.cpp" />
     <ClCompile Include="Vector4D.cpp" />
@@ -330,6 +333,9 @@
     <ClInclude Include="Share\Timer.h" />
     <ClInclude Include="UI\Common\Button.h" />
     <ClInclude Include="UI\UIInfo.h" />
+    <ClInclude Include="UI\UserWidget\MainWidget.h" />
+    <ClInclude Include="UI\UserWidget\UserWidget.h" />
+    <ClInclude Include="UI\UserWidget\WindowWidget.h" />
     <ClInclude Include="UI\Widget.h" />
     <ClInclude Include="Vector2D.h" />
     <ClInclude Include="Vector3D.h" />

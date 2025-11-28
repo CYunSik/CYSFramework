@@ -121,6 +121,18 @@ bool CAnimation2DManager::Init()
 	SetTexture("SusieWalkRight", "SusieWalkRight", FileNames);
 	AddFrameCount("SusieWalkRight", 4, 0.f, 0.f, 25.f, 46.f);
 
+	// 랄세이 오른쪽 이동
+	CreateAnimation("RalseiWalkRight");
+	SetAnimationTextureType("RalseiWalkRight", EAnimationTextureType::Frame);
+	FileNames.clear();
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseir/spr_ralseir_0.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseir/spr_ralseir_1.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseir/spr_ralseir_2.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseir/spr_ralseir_3.png"));
+
+	SetTexture("RalseiWalkRight", "RalseiWalkRight", FileNames);
+	AddFrameCount("RalseiWalkRight", 4, 0.f, 0.f, 23.f, 44.f);
+
 	// 제빌 배경
 	CreateAnimation("JevilCarousel");
 	SetAnimationTextureType("JevilCarousel", EAnimationTextureType::Frame);
