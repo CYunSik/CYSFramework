@@ -35,6 +35,8 @@ bool CBlockObject::Init()
     mRoot2 = CreateComponent<CSpriteComponent>();
     mRoot3 = CreateComponent<CSpriteComponent>();
     mBody = CreateComponent<CColliderAABB2D>();
+    mBody2 = CreateComponent<CColliderAABB2D>();
+    mBody3 = CreateComponent<CColliderAABB2D>();
 
     //mRoot->SetMesh("CenterRect");
     //mRoot->SetShader("ColorMeshShader");
@@ -42,33 +44,39 @@ bool CBlockObject::Init()
     //mRoot->SetTexture("HitBox1", TEXT("Texture/spr_battlebg_stretch_hitbox_0.png"), 0);
     mRoot->SetPivot(0.5f, 0.5f);
     mRoot->SetOpacity(1.f);
-    mRoot->SetWorldScale(900, 600, 1.f);
+    mRoot->SetWorldScale(900.f, 600.f, 1.f);
     
-    mBody->SetBoxSize(500.f, 10.f);
-    mBody->SetRelativePos(-1000.f, 0.f);
+    mBody->SetBoxSize(190.f, 10.f);
+    mBody->SetRelativePos(0.f, -7.f, 3.f);
+
+    mBody2->SetBoxSize(190.f, 10.f);
+    mBody2->SetRelativePos(0.f, 180.f, 3.f);
+
+    mBody3->SetBoxSize(10.f, 190.f);
+    mBody3->SetRelativePos(-102.f, 90.f, 3.f);
+
     mRoot->AddChild(mBody);
+    mRoot->AddChild(mBody2);
+    mRoot->AddChild(mBody3);
 
     SetRootComponent(mRoot);
-    mAnimation = mRoot->CreateAnimation2D<CAnimation2D>();
-    mAnimation->AddSequence("JevilCarousel", 15.f,1.f, true, false);
+    mAnimationBattleBox = mRoot->CreateAnimation2D<CAnimation2D>();
+    mAnimationBattleBox->AddSequence("BattleBoxStart", 0.9f, 1.f, false, false);
 
     mRoot2->SetWorldScale(1.f, 1.f, 1.f);
-    mRoot2->SetWorldPos(-1000.f, 0.f, 1.f);
     mRoot2->SetPivot(0.5f, 0.5f);
     mRoot->AddChild(mRoot2);
 
-    mAnimationBattleBox = mRoot2->CreateAnimation2D<CAnimation2D>();
-    mAnimationBattleBox->AddSequence("BattleBoxStart", 0.9f, 1.f, false, false);
+    mAnimationBattleFrame = mRoot2->CreateAnimation2D<CAnimation2D>();
+    mAnimationBattleFrame->AddSequence("BattleFrame", 5.f, 1.f, true, false);
 
     mRoot3->SetWorldScale(1.f, 1.f, 1.f);
-    mRoot3->SetWorldPos(-1000.f, 0.f, 1.f);
+    mRoot3->SetWorldPos(-910.f, 0.f, 1.f);
     mRoot3->SetPivot(0.5f, 0.5f);
     mRoot->AddChild(mRoot3);
 
-    mAnimationBattleFrame = mRoot3->CreateAnimation2D<CAnimation2D>();
-    mAnimationBattleFrame->AddSequence("BattleFrame", 5.f, 1.f, true, false);
-
- 
+    mAnimation = mRoot3->CreateAnimation2D<CAnimation2D>();
+    mAnimation->AddSequence("JevilCarousel", 15.f, 1.f, true, false);
 
     //mRoot->AddChild(mRoot2);
 

@@ -83,6 +83,7 @@ private:
 private:
 	HINSTANCE mhInst;
 	HWND mhWnd;
+	class CScene* mScene = nullptr;
 
 	// 키보드 상태를 만들어준다.
 	unsigned char mKeyState[256] = {};
@@ -110,6 +111,13 @@ private:
 	bool mMouseHold[EMouseButtonType::End] = {};	// 마우스 누르고 있음
 	bool mMouseUp[EMouseButtonType::End] = {};		// 마우스 뗐음
 
+	// 마우스 정보
+	FVector2D mMousePos;
+	FVector2D mMouseWorldPos2D;
+	FVector2D mMouseMove;
+
+	// 첫번째 프레임 확인하기 위해서
+	bool mMouseCompute = false;
 
 	// 디바이스 입력
 	// 디바이스 같은 녀석인데 디바이스는 아니다.
@@ -140,6 +148,7 @@ public:
 	void Update(float DeltaTime);
 
 private:
+	void UpdateMousePos(float DeltaTime);
 	void UpdateInput(float DeltaTime);
 	void UpdateBind(float DeltaTime);
 

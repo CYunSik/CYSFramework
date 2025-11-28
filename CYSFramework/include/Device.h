@@ -60,6 +60,8 @@ public:
 		return mRS;
 	}
 
+	FVector2D GetResolutionRatio() const;
+
 	bool GetWindowMod() const
 	{
 		return mWindowMode;

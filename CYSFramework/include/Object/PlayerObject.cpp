@@ -8,6 +8,7 @@
 #include "../Component/ColliderOBB2D.h"
 #include "../Component/ColliderLine2D.h"
 #include "../Component/ColliderBase.h"
+#include "../Collision.h"
 #include "../Animation/Animation2D.h"
 
 #include "../Scene/Scene.h"
@@ -52,9 +53,9 @@ bool CPlayerObject::Init()
 	// 컴포넌트 하나 등록해줄거다.
 	//mRoot = CreateComponent<CStaticMeshComponent>();
 	mRoot = CreateComponent<CSpriteComponent>();
-	//mBody = CreateComponent<CColliderAABB2D>();
+	mBody = CreateComponent<CColliderAABB2D>();
 	//mBody = CreateComponent<CColliderSphere2D>();
-	mBody = CreateComponent<CColliderOBB2D>();
+	//mBody = CreateComponent<CColliderOBB2D>();
 	//mLine = CreateComponent<CColliderLine2D>();
 
 	mMovement = CreateComponent<CMovementComponent>();
@@ -85,11 +86,13 @@ bool CPlayerObject::Init()
 	mAnimation->AddNotify("KrisAttack", 1, this, &CPlayerObject::AttackNotify);
 
 	//mRoot->SetFlip(false);
-
 	mRoot->AddChild(mBody);
 	mBody->SetBoxSize(50.f, 50.f);
 	//mBody->SetRadius(50.f);
 	mBody->SetCollisionProfile("Player");
+
+	mBody->SetCollisionBeginFunc(this, &CPlayerObject::OnCollisionBegin);
+	mBody->SetCollisionEndFunc(this, &CPlayerObject::OnCollisionEnd);
 
 	// 수지, 랄세이
 	mSusie = CreateComponent<CSpriteComponent>();
@@ -108,7 +111,7 @@ bool CPlayerObject::Init()
 	mRalsei->SetOpacity(1.f);
 	mSusie->AddChild(mRalsei);
 
-	for (int i = 0; i < 501; ++i)
+	for (int i = 0; i < 300; ++i)
 	{
 		mPlayerTrail.emplace_back(GetWorldPosition());
 		mSusieTrail.emplace_back(mSusie->GetWorldPosition());
@@ -251,8 +254,9 @@ void CPlayerObject::Update(float DeltaTime)
 	// 움직일 때만 따라오기
 	if (bMoved)
 	{
-		int Delay = 500;
+		int Delay = 300;
 
+		// *이상하게 따라오는거 수정 필요
 		// 수지가 크리스 따라가기
 		if (mPlayerTrail.size() > Delay)
 		{
@@ -281,17 +285,6 @@ void CPlayerObject::Update(float DeltaTime)
 	{
 		mAnimation->ChangeAnimation("None");
 	}
-
-	if (mBody->IsCollision())
-	{
-		
-	}
-
-	// 충돌이면 되돌리기
-	//if (mBody->IsCollision())
-	//{
-	//	SetWorldPos(PrevPos);
-	//}
 
 	// 위성을 돌려주면 된다.
 	//FVector3D Rot = mRotationPivot->GetRelativeRotation();
@@ -325,7 +318,12 @@ void CPlayerObject::MoveUp(float DeltaTime)
 	//mRootComponent->SetWorldPos(Pos + Dir * DeltaTime * 3.f);
 	mAnimation->ChangeAnimation("KrisWalkUp");
 
-	mMovement->AddMove(mRootComponent->GetAxis(EAxis::Y));
+	if (mIsUpCollision)
+	{
+		return;
+	}
+
+	mMovement->AddMove(mRoot->GetAxis(EAxis::Y));
 }
 
 void CPlayerObject::MoveDown(float DeltaTime)
@@ -337,21 +335,36 @@ void CPlayerObject::MoveDown(float DeltaTime)
 	//mRootComponent->SetWorldPos(Pos + Dir * DeltaTime * -3.f);
 	mAnimation->ChangeAnimation("KrisWalkDown");
 
-	mMovement->AddMove(mRootComponent->GetAxis(EAxis::Y) * -1);
+	if (mIsDownCollision)
+	{
+		return;
+	}
+
+	mMovement->AddMove(mRoot->GetAxis(EAxis::Y) * -1.f);
 }
 
 void CPlayerObject::MoveLeft(float DeltaTime)
 {
 	mAnimation->ChangeAnimation("KrisWalkLeft");
 
-	mMovement->AddMove(mRootComponent->GetAxis(EAxis::X) * -1);
+	if (mIsLeftCollision)
+	{
+		return;
+	}
+
+	mMovement->AddMove(mRoot->GetAxis(EAxis::X) * -1.f);
 }
 
 void CPlayerObject::MoveRight(float DeltaTime)
 {
 	mAnimation->ChangeAnimation("KrisWalkRight");
 
-	mMovement->AddMove(mRootComponent->GetAxis(EAxis::X));
+	if (mIsRightCollision)
+	{
+		return;
+	}
+
+	mMovement->AddMove(mRoot->GetAxis(EAxis::X));
 }
 
 void CPlayerObject::RotationZ(float DeltaTime)
@@ -618,4 +631,76 @@ void CPlayerObject::AttackEnd()
 void CPlayerObject::AttackNotify()
 {
 	CLog::PrintLog("AttackStart");
+}
+
+void CPlayerObject::OnCollisionBegin(const FVector3D& HitPoint, CColliderBase* Dest)
+{
+	CColliderAABB2D* Wall = dynamic_cast<CColliderAABB2D*>(Dest);
+	if (!Wall)
+	{
+		return;
+	}
+
+	const FAABB2D& PlayerBox = mBody->GetBox();
+	const FAABB2D& WallBox = Wall->GetBox();
+
+	// 플레이어 AABB의 4개 면을 Line2D로 생성
+	FLine2D Line[4];
+
+	float EmptyLine = 2.f;
+
+	// 왼쪽
+	Line[0].Start.x = PlayerBox.Min.x;
+	Line[0].Start.y = PlayerBox.Min.y + EmptyLine;
+	Line[0].End.x = PlayerBox.Min.x;
+	Line[0].End.y = PlayerBox.Max.y - EmptyLine;
+
+	// 위
+	Line[1].Start.x = PlayerBox.Min.x + EmptyLine;
+	Line[1].Start.y = PlayerBox.Max.y;
+	Line[1].End.x = PlayerBox.Max.x - EmptyLine;
+	Line[1].End.y = PlayerBox.Max.y;
+
+	// 오른쪽
+	Line[2].Start.x = PlayerBox.Max.x;
+	Line[2].Start.y = PlayerBox.Max.y - EmptyLine;
+	Line[2].End.x = PlayerBox.Max.x;
+	Line[2].End.y = PlayerBox.Min.y + EmptyLine;
+
+	// 바닥
+	Line[3].Start.x = PlayerBox.Max.x - EmptyLine;
+	Line[3].Start.y = PlayerBox.Min.y;
+	Line[3].End.x = PlayerBox.Min.x + EmptyLine;
+	Line[3].End.y = PlayerBox.Min.y;
+
+	FVector3D Dummy;
+	if (CCollision::CollisionLine2DToAABB2D(Dummy, Line[0], WallBox))
+	{
+		mIsLeftCollision = true;
+	}
+
+	if (CCollision::CollisionLine2DToAABB2D(Dummy, Line[1], WallBox))
+	{
+		mIsUpCollision = true;
+	}
+
+	if (CCollision::CollisionLine2DToAABB2D(Dummy, Line[2], WallBox))
+	{
+		mIsRightCollision = true;
+	}
+
+	if (CCollision::CollisionLine2DToAABB2D(Dummy, Line[3], WallBox))
+	{
+		mIsDownCollision = true;
+	}
+}
+
+void CPlayerObject::OnCollisionEnd(CColliderBase* Dest)
+{
+	// 수정할거 : ex) 왼쪽 면과 아래쪽 면이 동시에 닿아있을때 왼쪽을 collisionend해버리면 downcollision도 false가되어서 밑으로 이동이 가능해진다.(밑에는 충돌중인데도)
+	// 추가 : 총알이 맞을때도 이 함수가 실행되어서 모두 false가 되어 벽을 통과할 수 있게 된다.
+	mIsLeftCollision = false;
+	mIsRightCollision = false;
+	mIsUpCollision = false;
+	mIsDownCollision = false;
 }

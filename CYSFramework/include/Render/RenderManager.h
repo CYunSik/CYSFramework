@@ -24,6 +24,9 @@ private:
 	// 레스터라이즈 스테이트
 	class CRenderState* mRasterizer = nullptr;
 
+	// 뎁스 검사 X 뎁스스텐실스테이트
+	class CRenderState* mDepthDisable = nullptr;
+
 public:
 	class CRenderStateManager* GetStateManager()
 	{

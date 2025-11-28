@@ -21,7 +21,10 @@ public:
 	}
 
 	const FMatrix& GetViewMatrix() const;
+
 	const FMatrix& GetProjMatrix() const;
+
+	const FVector3D& GetCameraWorldPos() const;
 
 	void SetViewTarget(class CCameraComponent* ViewTarget);
 

@@ -221,6 +221,22 @@ bool CDevice::Init(HWND hWnd, unsigned int Width, unsigned int Height, bool Wind
 	return true;
 }
 
+FVector2D CDevice::GetResolutionRatio() const
+{
+	// 윈도우 클라이언트 영역의 크기를 얻어올 것이다.
+	RECT WindowRC;
+
+	// 클라이언트 좌표의 크기
+	GetClientRect(mhWnd, &WindowRC);
+
+	// 클라이언트 창의 크기
+	float Width = static_cast<float>(WindowRC.right - WindowRC.left);
+	float Height = static_cast<float>(WindowRC.bottom - WindowRC.top);
+
+	// 비율 : 현재 게임 해상도 / 기본 클라이언트 영역의 길이
+	return FVector2D(mRS.Width / Width, mRS.Height / Height);
+}
+
 void CDevice::ClearBackBuffer(float ClearColor[4])
 {
 	// 해당 색상으로 초기화한다.

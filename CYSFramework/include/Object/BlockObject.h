@@ -16,6 +16,8 @@ protected:
     CSharedPtr<class CSpriteComponent> mRoot2;
     CSharedPtr<class CSpriteComponent> mRoot3;
     CSharedPtr<class CColliderAABB2D> mBody;
+    CSharedPtr<class CColliderAABB2D> mBody2;
+    CSharedPtr<class CColliderAABB2D> mBody3;
 
     // 애니메이션
     class CAnimation2D* mAnimation = nullptr;

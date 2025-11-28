@@ -1,6 +1,10 @@
 #include "Input.h"
+
+#include "CameraManager.h"
+#include "Scene.h"
 #include "../GameManager.h"
 #include "../Device.h"
+#include "../Share/Log.h"
 
 CInput::CInput()
 {
@@ -280,8 +284,67 @@ void CInput::Update(float DeltaTime)
 		UpdateMouse();
 	}
 
+	UpdateMousePos(DeltaTime);
+
 	UpdateInput(DeltaTime);
 	UpdateBind(DeltaTime);
+}
+
+void CInput::UpdateMousePos(float DeltaTime)
+{
+	// 마우스의 좌표를 얻어온다.
+
+	// 윈도우 창에서의 마우스 위치를 구한다.
+	POINT MousePT;
+	// GetCursorPos : 모니터 화면(스크린) 좌표를 구한다.
+	GetCursorPos(&MousePT);
+
+	// 스크린 좌표를 클라이언트 좌표로 변환시켜준다.
+	// 기준 좌상단
+	ScreenToClient(mhWnd, &MousePT);
+
+	// 디바이스 비율
+	FVector2D Ratio = CDevice::GetInst()->GetResolutionRatio();
+	FResolution ViewportRS = CDevice::GetInst()->GetResolution();
+
+	FVector2D MousePos;
+
+	// 윈도우창에서의 마우스 좌표를 해상도 비율로 곱해서 인게임 DX 해상도 상에서의 위치를 구해준다.
+	MousePos.x = MousePT.x * Ratio.x;
+	MousePos.y = MousePT.y * Ratio.y;
+
+	// 해준 이유 : 윈도우는 Y좌표가 아래가 +
+	// DX에서는 Y좌표가 위가 + 이므로
+	// Y좌표는 반전을 시켜줘야한다.
+	// 뷰포트 해상도를 이용해서 Y 좌표 반전
+	MousePos.y = ViewportRS.Height - MousePos.y;
+
+	// 프로그램 시작 첫프레임
+	if (mMouseCompute)
+	{
+		// 마우스 이동량 : 지금 마우스 위치 - 이전 프레임 마우스 위치
+		mMouseMove = MousePos - mMousePos;
+	}
+	else
+	{
+		// 첫번째 프레임은 아직 mMousePos 저장 안되어있기 때문
+		mMouseCompute = true;
+	}
+
+	// 화면에서의 마우스 좌표를 구했고
+	mMousePos = MousePos;
+
+	// 카메라 기준으로 월드 위치를 계산해줘야한다.
+	FVector3D WorldPos = mScene->GetCameraManager()->GetCameraWorldPos();
+
+	// 카메라의 위치 - 사이즈 * 0.5f -> 왼쪽 상단으로 이동
+	// 왼쪽상단 기준으로 마우스 위치만큼 구하면 -> 카메라 기준에서 마우스 좌표의 월드위치
+	mMouseWorldPos2D.x = WorldPos.x - ViewportRS.Width * 0.5f + mMousePos.x;
+	mMouseWorldPos2D.y = WorldPos.y - ViewportRS.Height * 0.5f + mMousePos.y;
+
+	// 마우스 좌표 로그찍기
+	std::string temp = "x : " + std::to_string(mMouseWorldPos2D.x) + "     y : " + std::to_string(mMouseWorldPos2D.y);
+	CLog::PrintLog(temp);
 }
 
 void CInput::UpdateInput(float DeltaTime)

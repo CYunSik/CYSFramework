@@ -1,6 +1,7 @@
 #include "RenderStateManager.h"
 #include "BlendState.h"
 #include "RasterizerState.h"
+#include "DepthStencilState.h"
 
 CRenderStateManager::CRenderStateManager()
 {
@@ -25,6 +26,8 @@ bool CRenderStateManager::Init()
 
 	AddRasterizerDesc("Rasterizer", D3D11_CULL_NONE, true);
 	CreateRasterizerState("Rasterizer");
+
+	CreateDepthStencilState("DepthDisable", false);
 
 	return true;
 }
@@ -123,6 +126,28 @@ bool CRenderStateManager::CreateRasterizerState(const std::string& Name)
 	{
 		return false;
 	}
+
+	return true;
+}
+
+bool CRenderStateManager::CreateDepthStencilState(const std::string& Name, bool DepthEnable, D3D11_DEPTH_WRITE_MASK DepthWriteMask, D3D11_COMPARISON_FUNC DepthFunc, BOOL StencilEnable, UINT8 StencilReadMask, UINT8 StencilWriteMask, D3D11_DEPTH_STENCILOP_DESC FrontFace, D3D11_DEPTH_STENCILOP_DESC BackFace)
+{
+	CDepthStencilState* State = (CDepthStencilState*)FindState(Name);
+
+	if (State)
+	{
+		return true;
+	}
+
+	State = new CDepthStencilState;
+
+	if (!State->CreateState(DepthEnable, DepthWriteMask, DepthFunc, StencilEnable, StencilReadMask, StencilWriteMask, FrontFace, BackFace))
+	{
+		SAFE_DELETE(State);
+		return false;
+	}
+
+	mRenderStateMap.insert(std::make_pair(Name, State));
 
 	return true;
 }

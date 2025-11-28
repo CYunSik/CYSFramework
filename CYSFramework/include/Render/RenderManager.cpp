@@ -1,5 +1,6 @@
 #include "RenderManager.h"
 
+#include "DepthStencilState.h"
 #include "RenderState.h"
 #include "RenderStateManager.h"
 #include "../Component/SceneComponent.h"
@@ -65,6 +66,8 @@ bool CRenderManager::Init()
 
 	mRasterizer = mStateManager->FindState("Rasterizer");
 
+	mDepthDisable = mStateManager->FindState("DepthDisable");
+
 	return true;
 }
 
@@ -122,6 +125,15 @@ void CRenderManager::Render()
 		(*iter)->PostRender();
 		++iter;
 	}
+
+	mDepthDisable->SetState();
+
+	// UI는 여기에 그린다.
+
+
+
+
+	mDepthDisable->ResetState();
 
 	// 알파블렌드 종료
 	mAlphaBlend->ResetState();

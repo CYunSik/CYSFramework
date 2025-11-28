@@ -24,6 +24,11 @@ const FMatrix& CCameraManager::GetProjMatrix() const
 	return mViewTarget->GetProjMatrix();
 }
 
+const FVector3D& CCameraManager::GetCameraWorldPos() const
+{
+	return mViewTarget->GetWorldPosition();
+}
+
 bool CCameraManager::Init()
 {
 

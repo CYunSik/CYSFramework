@@ -131,7 +131,7 @@ bool CSceneMain::Init()
 	MonsterPoint->SetWorldPos(200.f, 0.f);
 
 	CBlockObject* Block = CreateObj<CBlockObject>("TestAnimation");
-	Block->SetWorldPos(0.f, 0.f, 2.f);
+	Block->SetWorldPos(0.f, 200.f, 2.f);
 
 	// 클로버 폭탄
 	CBoomMonster* ClubMonster = CreateObj<CBoomMonster>("ClubMonster");

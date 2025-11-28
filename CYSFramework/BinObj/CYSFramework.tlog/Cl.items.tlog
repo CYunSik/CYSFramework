@@ -50,6 +50,7 @@ E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Object\TornadoBullet.cp
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Object\ZaryaBullet.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\ZaryaBullet.obj
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\ProfileManager.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\ProfileManager.obj
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Render\BlendState.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\BlendState.obj
+E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Render\DepthStencilState.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\DepthStencilState.obj
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Render\RasterizerState.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\RasterizerState.obj
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Render\RenderManager.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\RenderManager.obj
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Render\RenderState.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\RenderState.obj

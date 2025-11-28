@@ -14,10 +14,15 @@ protected:
 protected:
 	//CSharedPtr<class CStaticMeshComponent> mRoot;
 	CSharedPtr<class CSpriteComponent> mRoot;
-	//CSharedPtr<class CColliderAABB2D> mBody;
+	CSharedPtr<class CColliderAABB2D> mBody;
 	//CSharedPtr<class CColliderSphere2D> mBody;
-	CSharedPtr<class CColliderOBB2D> mBody;
-	//CSharedPtr<class CColliderLine2D> mLine;
+	//CSharedPtr<class CColliderOBB2D> mBody;
+
+	// 방향키로 움직일때 충돌여부
+	bool mIsLeftCollision = false;
+	bool mIsRightCollision = false;
+	bool mIsUpCollision = false;
+	bool mIsDownCollision = false;
 
 	CSharedPtr<CSpriteComponent> mSusie;	// 수지
 	CSharedPtr<CSpriteComponent> mRalsei;	// 랄세이
@@ -46,12 +51,6 @@ protected:
 
 	// Idle 상태값으로 돌아갈건지 여부
 	bool mAutoBasePose = true;
-
-	// 방향키로 움직일때 충돌여부
-	bool mIsUpColliider = false;
-	bool mIsDownColliider = false;
-	bool mIsLeftColliider = false;
-	bool mIsRightColliider = false;
 
 	// 총알용 오브젝트
 	// 스킬 1
@@ -124,5 +123,8 @@ private:
 	// 애니메이션 바인드 함수
 	void AttackEnd();
 	void AttackNotify();
-};
 
+	// 충돌 바인드 함수
+	void OnCollisionBegin(const FVector3D& HitPoint, class CColliderBase* Dest);
+	void OnCollisionEnd(class CColliderBase* Dest);
+};

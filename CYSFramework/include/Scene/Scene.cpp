@@ -19,6 +19,7 @@ CScene::~CScene()
 bool CScene::Init()
 {
 	mInput = new CInput;
+	mInput->mScene = this;
 	if (!mInput->Init())
 	{
 		SAFE_DELETE(mInput);
