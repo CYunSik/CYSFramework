@@ -102,7 +102,7 @@ bool CSceneMain::Init()
 	SusieSprite->SetTexture("Susie", TEXT("Texture/spr_susied_dark_0.png"));
 	Susie->SetRootComponent(SusieSprite);
 	Susie->SetWorldPos(0.f, 0.f, 0.f);
-	Susie->SetWorldScale(50.f, 50.f, 1.f);
+	Susie->SetWorldScale(45.f, 80.f, 1.f);
 
 	Player->SetSusieObj(Susie);
 	Player->SetSusieSprite(SusieSprite);
@@ -113,7 +113,7 @@ bool CSceneMain::Init()
 	RalseiSprite->SetTexture("Ralsei", TEXT("Texture/spr_ralseid_0.png"));
 	Ralsei->SetRootComponent(RalseiSprite);
 	Ralsei->SetWorldPos(0.f, 0.f, 0.f);
-	Ralsei->SetWorldScale(50.f, 50.f, 1.f);
+	Ralsei->SetWorldScale(45.f, 80.f, 1.f);
 
 	Player->SetRalseiObj(Ralsei);
 	Player->SetRalseiSprite(RalseiSprite);

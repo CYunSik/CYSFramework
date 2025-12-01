@@ -20,6 +20,9 @@ protected:
 	//CSharedPtr<class CColliderSphere2D> mBody;
 	//CSharedPtr<class CColliderOBB2D> mBody;
 
+	// 플레이어 AABB의 4개 면을 Line2D로 생성
+	FLine2D mLine[4];
+
 	// 방향키로 움직일때 충돌여부
 	bool mIsLeftCollision = false;
 	bool mIsRightCollision = false;

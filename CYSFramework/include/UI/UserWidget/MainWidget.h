@@ -10,7 +10,11 @@ protected:
 	virtual ~CMainWidget();
 
 protected:
-	CSharedPtr<class CButton> mButton;
+	CSharedPtr<class CButton> mButtonAttack;
+	CSharedPtr<class CButton> mButtonAct;
+	CSharedPtr<class CButton> mButtonItem;
+	CSharedPtr<class CButton> mButtonSpare;
+	CSharedPtr<class CButton> mButtonDefend;
 
 public:
 

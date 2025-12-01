@@ -8,9 +8,12 @@
 #include "../../Asset/Mesh/Mesh.h"
 #include "../../Asset/Sound/Sound.h"
 #include "../../Asset/Sound/SoundManager.h"
+#include "../../Scene/Input.h"
 #include "../../Shader/Shader.h"
 #include "../../Shader/TransformCBuffer.h"
 #include "../../Shader/UICBuffer.h"
+
+#include "../../Share/Log.h"
 
 CButton::CButton()
 {
@@ -150,12 +153,46 @@ bool CButton::Init()
 {
 	CWidget::Init();
 
+	SetEventCallBack(EButtonEventState::Click, this, &CButton::ButtonClick);
+
 	return true;
 }
 
 void CButton::Update(float DeltaTime)
 {
 	CWidget::Update(DeltaTime);
+
+	if (mState != EButtonState::Disable)
+	{
+		if (mMouseOn)
+		{
+			// 왼쪽 마우스 클릭
+			if (mScene->GetInput()->GetMouseDown(EMouseButtonType::LButton))
+			{
+				// 클릭
+				mState = EButtonState::Click;
+			}
+			else if (mState == EButtonState::Click && mScene->GetInput()->GetMouseUp(EMouseButtonType::LButton))
+			{
+				// 호버
+				if (mSound[EButtonEventState::Click])
+				{
+					mSound[EButtonEventState::Click]->Play();
+				}
+
+				if (mEventCallBack[EButtonEventState::Click])
+				{
+					mEventCallBack[EButtonEventState::Click]();
+				}
+
+				mState = EButtonState::Hovered;
+			}
+			else if (mScene->GetInput()->GetMouseHold(EMouseButtonType::LButton))
+			{
+				mState = EButtonState::Click;
+			}
+		}
+	}
 }
 
 void CButton::Render()
@@ -218,4 +255,37 @@ void CButton::Render()
 	mShader->SetShader();
 
 	mMesh->Render();
+}
+
+void CButton::MouseHovered()
+{
+	if (mState == EButtonState::Normal)
+	{
+		if (mSound[EButtonEventState::Hovered])
+		{
+			mSound[EButtonEventState::Hovered]->Play();
+		}
+
+		if (mEventCallBack[EButtonEventState::Hovered])
+		{
+			mEventCallBack[EButtonEventState::Hovered]();
+		}
+
+		mState = EButtonState::Hovered;
+		CLog::PrintLog("Button Hovered");
+	}
+}
+
+void CButton::MouseUnHovered()
+{
+	if (mState != EButtonState::Disable)
+	{
+		CLog::PrintLog("Button UnHovered");
+		mState = EButtonState::Normal;
+	}
+}
+
+void CButton::ButtonClick()
+{
+	CLog::PrintLog("Button Click");
 }

@@ -153,6 +153,40 @@ private:
 	void UpdateBind(float DeltaTime);
 
 public:
+	// 마우스 입력 상태값
+	bool GetMouseDown(EMouseButtonType::Type Type)
+	{
+		return mMouseDown[Type];
+	}
+
+	bool GetMouseHold(EMouseButtonType::Type Type)
+	{
+		return mMouseHold[Type];
+	}
+
+	bool GetMouseUp(EMouseButtonType::Type Type)
+	{
+		return mMouseUp[Type];
+	}
+
+	// 마우스 좌표 함수
+	const FVector2D& GetMousePos() const
+	{
+		return mMousePos;
+	}
+
+	// 마우스 월드 포즈
+	const FVector2D& GetMouseWorldPos() const
+	{
+		return mMouseWorldPos2D;
+	}
+
+	const FVector2D& GetMouseMoveStep() const
+	{
+		return mMouseMove;
+	}
+
+public:
 	template<typename T>
 	void AddBindFunction(const std::string& KeyName, EInputType::Type Type, T* Object, void (T::* Func)(float))
 	{

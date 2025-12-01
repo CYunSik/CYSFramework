@@ -2,6 +2,8 @@
 #include "../Component/ColliderBase.h"
 #include "CollisionQuadTree.h"
 #include "../Share/Log.h"
+#include "Input.h"
+#include "SceneUIManager.h"
 
 CSceneCollision::CSceneCollision()
 {
@@ -38,7 +40,7 @@ bool CSceneCollision::Init()
 	return true;
 }
 
-void CSceneCollision::Update(float DeltaTime)
+void CSceneCollision::Update(float DeltaTime, CSceneUIManager* UIManager, CInput* Input)
 {
 	// mInterval 시간을 지정해야만 인터벌을 사용할 수 있게 하겠다.
 	if (mInterval > 0.f)
@@ -79,12 +81,20 @@ void CSceneCollision::Update(float DeltaTime)
 			++i;
 			continue;
 		}
-		
+
 		// 쿼드트리 만들고나서
 		// 여기에 쿼드트리에 등록
 		mQuadTree->AddCollider(mColliderList2D[i]);
 		++i;
-	}	
+	}
+
+	///////////////////////
+	// 여기서 UI 충돌 검사
+	FVector2D MousePos = Input->GetMousePos();
+
+	UIManager->CollisionMouse(DeltaTime, MousePos);
+
+	//////////////////////
 
 	// 충돌 검사
 	mQuadTree->Collision(DeltaTime);

@@ -54,6 +54,9 @@ protected:
 	// 로테이션
 	float mRotation = 0.f;
 
+	// 마우스가 들어와있나
+	bool mMouseOn = false;
+
 public:
 	const FVector2D& GetPos() const
 	{
@@ -155,7 +158,12 @@ public:
 	virtual bool Init();
 	virtual void Update(float DeltaTime);
 	virtual void Render();
-	virtual bool CollisionMouse(const FVector2D& MousePos);
+	virtual bool CollisionMouse(CWidget** Result, const FVector2D& MousePos);
 	virtual void EndFrame();
+
+	// 호버가 시작되었다.
+	virtual void MouseHovered();
+	// 호버가 끝났다.
+	virtual void MouseUnHovered();
 };
 

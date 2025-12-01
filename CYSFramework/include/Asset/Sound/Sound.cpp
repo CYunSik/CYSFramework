@@ -126,7 +126,7 @@ void CSound::Resume()
 FMOD_RESULT CSound::SoundEnd(FMOD_CHANNELCONTROL* channelcontrol, FMOD_CHANNELCONTROL_TYPE controltype,
                              FMOD_CHANNELCONTROL_CALLBACK_TYPE callbacktype, void* commanddata1, void* commanddata2)
 {
-	CLog::PrintLog("SoundEnd");
+	//CLog::PrintLog("SoundEnd");
 
 	return FMOD_OK;
 }

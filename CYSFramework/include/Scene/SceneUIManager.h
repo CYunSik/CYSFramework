@@ -19,6 +19,9 @@ private:
 
 	// Scene에서 생성된 모든 Widget 객체들 들고있을것이다.
 	std::vector<CSharedPtr<CWidget>> mWidgetList;
+	
+	// 마우스 호버 된 위젯
+	CSharedPtr<CWidget> mMouseHoveredWidget;
 
 public:
 	void AddWindowWidget(const std::string& Name, CWindowWidget* Widget)
@@ -49,7 +52,7 @@ public:
 public:
 	virtual bool Init();
 	virtual void Update(float DeltaTime);
-	virtual void Collision(float DeltaTime);
+	virtual bool CollisionMouse(float DeltaTime, const FVector2D& MousePos);
 	virtual void Render();
 
 public:
@@ -73,6 +76,7 @@ public:
 		return Widget;
 	}
 
+	static bool SortCollision(const CSharedPtr<CWidget>& Src, const CSharedPtr<CWidget>& Dest);
 	static bool SortRender(const CSharedPtr<CWidget>& Src, const CSharedPtr<CWidget>& Dest);
 };
 

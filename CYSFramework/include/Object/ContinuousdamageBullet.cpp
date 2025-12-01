@@ -104,7 +104,7 @@ void CContinuousdamageBullet::Update(float DeltaTime)
 			if (Timer >= mDamageInterval)
 			{
 				Monster->Damage(1.f, this);
-				CLog::PrintLog("ContinuousDamage");
+				//CLog::PrintLog("ContinuousDamage");
 				Timer = 0.f;
 			}
 		}

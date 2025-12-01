@@ -71,7 +71,7 @@ bool CPlayerObject::Init()
 	//mRoot->SetShader("ColorMeshShader");
 
 	mRoot->SetWorldPos(0.f, 0.f, 0.f);
-	mRoot->SetWorldScale(50.f, 50.f, 1.f);
+	mRoot->SetWorldScale(45.f, 80.f, 1.f);
 	SetRootComponent(mRoot);
 
 	mAnimation = mRoot->CreateAnimation2D<CAnimation2D>();
@@ -87,7 +87,7 @@ bool CPlayerObject::Init()
 
 	//mRoot->SetFlip(false);
 	mRoot->AddChild(mBody);
-	mBody->SetBoxSize(50.f, 50.f);
+	mBody->SetBoxSize(45.f, 80.f);
 	//mBody->SetRadius(50.f);
 	mBody->SetCollisionProfile("Player");
 	mBody->SetCollisionBeginFunc(this, &CPlayerObject::OnCollisionBegin);
@@ -209,8 +209,8 @@ void CPlayerObject::Update(float DeltaTime)
 
 	bool IsMoving = (mMovement->GetVelocityLength() > 0.f);
 
-	int SusieDelay = 700;
-	int RalseiDelay = 1400;
+	int SusieDelay = 900;
+	int RalseiDelay = 1800;
 
 	// 수지 랄세이 이동
 	if (IsMoving)
@@ -581,13 +581,13 @@ void CPlayerObject::Skill9(float DeltaTime)
 
 void CPlayerObject::AttackEnd()
 {
-	CLog::PrintLog("AttackEnd");
+	//CLog::PrintLog("AttackEnd");
 	mAutoBasePose = true;
 }
 
 void CPlayerObject::AttackNotify()
 {
-	CLog::PrintLog("AttackStart");
+	//CLog::PrintLog("AttackStart");
 }
 
 void CPlayerObject::OnCollisionBegin(const FVector3D& HitPoint, CColliderBase* Dest)
@@ -601,52 +601,49 @@ void CPlayerObject::OnCollisionBegin(const FVector3D& HitPoint, CColliderBase* D
 	const FAABB2D& PlayerBox = mBody->GetBox();
 	const FAABB2D& WallBox = Wall->GetBox();
 
-	// 플레이어 AABB의 4개 면을 Line2D로 생성
-	FLine2D Line[4];
-
 	float EmptyLine = 2.f;
 
 	// 왼쪽
-	Line[0].Start.x = PlayerBox.Min.x;
-	Line[0].Start.y = PlayerBox.Min.y + EmptyLine;
-	Line[0].End.x = PlayerBox.Min.x;
-	Line[0].End.y = PlayerBox.Max.y - EmptyLine;
+	mLine[0].Start.x = PlayerBox.Min.x;
+	mLine[0].Start.y = PlayerBox.Min.y + EmptyLine;
+	mLine[0].End.x = PlayerBox.Min.x;
+	mLine[0].End.y = PlayerBox.Max.y - EmptyLine;
 
 	// 위
-	Line[1].Start.x = PlayerBox.Min.x + EmptyLine;
-	Line[1].Start.y = PlayerBox.Max.y;
-	Line[1].End.x = PlayerBox.Max.x - EmptyLine;
-	Line[1].End.y = PlayerBox.Max.y;
+	mLine[1].Start.x = PlayerBox.Min.x + EmptyLine;
+	mLine[1].Start.y = PlayerBox.Max.y;
+	mLine[1].End.x = PlayerBox.Max.x - EmptyLine;
+	mLine[1].End.y = PlayerBox.Max.y;
 
 	// 오른쪽
-	Line[2].Start.x = PlayerBox.Max.x;
-	Line[2].Start.y = PlayerBox.Max.y - EmptyLine;
-	Line[2].End.x = PlayerBox.Max.x;
-	Line[2].End.y = PlayerBox.Min.y + EmptyLine;
+	mLine[2].Start.x = PlayerBox.Max.x;
+	mLine[2].Start.y = PlayerBox.Max.y - EmptyLine;
+	mLine[2].End.x = PlayerBox.Max.x;
+	mLine[2].End.y = PlayerBox.Min.y + EmptyLine;
 
 	// 바닥
-	Line[3].Start.x = PlayerBox.Max.x - EmptyLine;
-	Line[3].Start.y = PlayerBox.Min.y;
-	Line[3].End.x = PlayerBox.Min.x + EmptyLine;
-	Line[3].End.y = PlayerBox.Min.y;
+	mLine[3].Start.x = PlayerBox.Max.x - EmptyLine;
+	mLine[3].Start.y = PlayerBox.Min.y;
+	mLine[3].End.x = PlayerBox.Min.x + EmptyLine;
+	mLine[3].End.y = PlayerBox.Min.y;
 
-	FVector3D Dummy;
-	if (CCollision::CollisionLine2DToAABB2D(Dummy, Line[0], WallBox))
+	FVector3D LineHitPoint;
+	if (CCollision::CollisionLine2DToAABB2D(LineHitPoint, mLine[0], WallBox))
 	{
 		mIsLeftCollision = true;
 	}
 
-	if (CCollision::CollisionLine2DToAABB2D(Dummy, Line[1], WallBox))
+	if (CCollision::CollisionLine2DToAABB2D(LineHitPoint, mLine[1], WallBox))
 	{
 		mIsUpCollision = true;
 	}
 
-	if (CCollision::CollisionLine2DToAABB2D(Dummy, Line[2], WallBox))
+	if (CCollision::CollisionLine2DToAABB2D(LineHitPoint, mLine[2], WallBox))
 	{
 		mIsRightCollision = true;
 	}
 
-	if (CCollision::CollisionLine2DToAABB2D(Dummy, Line[3], WallBox))
+	if (CCollision::CollisionLine2DToAABB2D(LineHitPoint, mLine[3], WallBox))
 	{
 		mIsDownCollision = true;
 	}
@@ -654,8 +651,23 @@ void CPlayerObject::OnCollisionBegin(const FVector3D& HitPoint, CColliderBase* D
 
 void CPlayerObject::OnCollisionEnd(CColliderBase* Dest)
 {
-	mIsLeftCollision = false;
-	mIsRightCollision = false;
-	mIsUpCollision = false;
-	mIsDownCollision = false;
+	if (mIsLeftCollision)
+	{
+		mIsLeftCollision = false;
+	}
+	
+	if (mIsRightCollision)
+	{
+		mIsRightCollision = false;
+	}
+
+	if (mIsUpCollision)
+	{
+		mIsUpCollision = false;
+	}
+
+	if (mIsDownCollision)
+	{
+		mIsDownCollision = false;
+	}
 }

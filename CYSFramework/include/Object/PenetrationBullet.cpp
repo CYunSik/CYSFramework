@@ -65,7 +65,7 @@ void CPenetrationBullet::Update(float DeltaTime)
 void CPenetrationBullet::CollisionBullet(const FVector3D& HitPoint, class CColliderBase* Dest)
 {
 	Dest->GetOwner()->Damage(1.f, this);
-	CLog::PrintLog("PenetrateDamage");
+	//CLog::PrintLog("PenetrateDamage");
 	++mPenetrateCount;
 
 	if (mPenetrateCount >= 3)

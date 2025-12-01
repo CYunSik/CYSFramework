@@ -187,7 +187,10 @@ void CScene::Collision(float DeltaTime)
 {
 	// SceneCollision이 해당 씬의 충돌을 모두 관리하게 한다!!
 	// 콜리전도 조만간 수정
-	mCollision->Update(DeltaTime);
+	mCollision->Update(DeltaTime, mUIManager, mInput);
+
+	// UI 충돌 호출 순서
+	// Scene -> SceneCollision -> SceneUIManager -> UserWidget -> Common UI들 충돌검사를 한다.
 }
 
 void CScene::Render()
@@ -200,27 +203,6 @@ void CScene::Render()
 	}
 #endif // _DEBUG
 	mCollision->ReturnNodePool();
-
-	//std::list<CSharedPtr<class CSceneObject>>::iterator iter;
-	//std::list<CSharedPtr<class CSceneObject>>::iterator iterEnd = mObjList.end();
-
-	//for (iter = mObjList.begin(); iter != iterEnd;)
-	//{
-	//	if (!(*iter)->IsActive())
-	//	{
-	//		iter = mObjList.erase(iter);
-	//		iterEnd = mObjList.end();
-	//		continue;
-	//	}
-	//	else if (!(*iter)->IsEnable())
-	//	{
-	//		++iter;
-	//		continue;
-	//	}
-
-	//	(*iter)->Render();
-	//	++iter;
-	//}
 }
 
 void CScene::RenderUI()

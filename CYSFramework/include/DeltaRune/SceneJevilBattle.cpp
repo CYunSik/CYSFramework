@@ -26,7 +26,9 @@ bool CSceneJevilBattle::Init()
     // Player Soul
     mSoul = CreateObj<CPlayerSoulObject>("PlayerSoul");
     if (mSoul)
-        mSoul->SetActive(false); // SoulBattle에서 등장
+    {
+    	mSoul->SetActive(false); // SoulBattle에서 등장
+    }
 
     // Boss
     mBoss = CreateObj<CJevilBossObject>("JevilBoss");
@@ -45,9 +47,6 @@ void CSceneJevilBattle::Update(float DeltaTime)
 {
     CScene::Update(DeltaTime);
 
-    // -------------------------------------------------------
-    // BeginPlay 대체: Update 첫 1프레임에 전투 시작
-    // -------------------------------------------------------
     if (!mBattleStarted)
     {
         mBattleStarted = true;

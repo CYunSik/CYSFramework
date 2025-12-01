@@ -38,9 +38,9 @@ private:
     class CJevilBossObject* mBoss = nullptr;
 
     // 캐릭터 : 크리스, 수지, 랄세이
-    class CChrisBattleObject* mChris = nullptr;
-    class CSusieBattleObject* mSusie = nullptr;
-    class CRalseiBattleObject* mRalsei = nullptr;
+    class CPartyCharacter* mChris = nullptr;
+    class CPartyCharacter* mSusie = nullptr;
+    class CPartyCharacter* mRalsei = nullptr;
 
     // 상태 처리 함수
     void UpdateCutscene(float DeltaTime);
@@ -63,17 +63,17 @@ public:
 	    mBoss = Boss;
     }
 
-    void SetChris(CChrisBattleObject* Obj)
+    void SetChris(CPartyCharacter* Obj)
     {
 	    mChris = Obj;
     }
 
-    void SetSusie(CSusieBattleObject* Obj)
+    void SetSusie(CPartyCharacter* Obj)
     {
 	    mSusie = Obj;
     }
 
-    void SetRalsei(CRalseiBattleObject* Obj)
+    void SetRalsei(CPartyCharacter* Obj)
     {
 	    mRalsei = Obj;
     }

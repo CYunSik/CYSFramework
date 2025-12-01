@@ -64,7 +64,7 @@ void CWidget::Render()
 {
 }
 
-bool CWidget::CollisionMouse(const FVector2D& MousePos)
+bool CWidget::CollisionMouse(CWidget** Result, const FVector2D& MousePos)
 {
 	if (mRotation == 0.f || mRotation == 360.f)
 	{
@@ -75,20 +75,48 @@ bool CWidget::CollisionMouse(const FVector2D& MousePos)
 
 		if (MousePos.x < Min.x)
 		{
+			if (mMouseOn)
+			{
+				mMouseOn = false;
+				MouseUnHovered();
+			}
+
 			return false;
 		}
 		else if (MousePos.x > Max.x)
 		{
+			if (mMouseOn)
+			{
+				mMouseOn = false;
+				MouseUnHovered();
+			}
+
 			return false;
 		}
 		else if (MousePos.y < Min.y)
 		{
+			if (mMouseOn)
+			{
+				mMouseOn = false;
+				MouseUnHovered();
+			}
+
 			return false;
 		}
 		else if (MousePos.y > Max.y)
 		{
+			if (mMouseOn)
+			{
+				mMouseOn = false;
+				MouseUnHovered();
+			}
+
 			return false;
 		}
+		// Widget 충돌시
+		*Result = this;
+		mMouseOn = true;
+		MouseHovered();
 
 		return true;
 	}
@@ -134,6 +162,12 @@ bool CWidget::CollisionMouse(const FVector2D& MousePos)
 
 	if (Dist > HalfSize.x)
 	{
+		if (mMouseOn)
+		{
+			mMouseOn = false;
+			MouseUnHovered();
+		}
+
 		return false;
 	}
 
@@ -142,12 +176,30 @@ bool CWidget::CollisionMouse(const FVector2D& MousePos)
 
 	if (Dist > HalfSize.y)
 	{
+		if (mMouseOn)
+		{
+			mMouseOn = false;
+			MouseUnHovered();
+		}
+
 		return false;
 	}
+	// Widget 충돌시
+	*Result = this;
+	mMouseOn = true;
+	MouseHovered();
 
 	return true;
 }
 
 void CWidget::EndFrame()
+{
+}
+
+void CWidget::MouseHovered()
+{
+}
+
+void CWidget::MouseUnHovered()
 {
 }

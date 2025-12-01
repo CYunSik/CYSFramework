@@ -41,9 +41,58 @@ void CSceneUIManager::Update(float DeltaTime)
 	}
 }
 
-void CSceneUIManager::Collision(float DeltaTime)
+bool CSceneUIManager::CollisionMouse(float DeltaTime, const FVector2D& MousePos)
 {
-	// UI 충돌을 해줄것이다.
+	// 충돌 할것들 정렬 해준다.
+	if (mWidgetList.size() >= 2)
+	{
+		std::sort(mWidgetList.begin(), mWidgetList.end(), CSceneUIManager::SortCollision);
+	}
+
+	// UI 충돌
+	auto iter = mWidgetList.begin();
+	auto iterEnd = mWidgetList.end();
+
+	for (; iter != iterEnd;)
+	{
+		if (!(*iter)->IsActive())
+		{
+			iter = mWidgetList.erase(iter);
+			iterEnd = mWidgetList.end();
+			continue;
+		}
+		else if (!(*iter)->IsEnable())
+		{
+			++iter;
+			continue;
+		}
+		
+		CWidget* HoveredWidget = nullptr;
+
+		// 충돌 처리를 해줄것이다.
+		if ((*iter)->CollisionMouse(&HoveredWidget, MousePos))
+		{
+			if (mMouseHoveredWidget != HoveredWidget)
+			{
+				if (mMouseHoveredWidget)
+				{
+					mMouseHoveredWidget->MouseHovered();
+				}
+
+				// 처음으로 호버링 된거 콜백
+				mMouseHoveredWidget = HoveredWidget;
+			}
+			return true;
+		}
+		++iter;
+	}
+	// 충돌이 없었는데 만약 mMouseHoveredWidget가 nullptr이 아니라면?
+	if (mMouseHoveredWidget)
+	{
+		mMouseHoveredWidget = nullptr;
+	}
+
+	return false;
 }
 
 void CSceneUIManager::Render()
@@ -87,6 +136,12 @@ void CSceneUIManager::Render()
 	{
 		(*iter)->EndFrame();
 	}
+}
+
+// 오름차순 : 충돌 처리는 앞에서부터 뒤로 검사하여 가장 앞에 있는 UI가 충돌됬는지 검사하기 위해서
+bool CSceneUIManager::SortCollision(const CSharedPtr<CWidget>& Src, const CSharedPtr<CWidget>& Dest)
+{
+	return Src->GetZOrder() < Dest->GetZOrder();
 }
 
 bool CSceneUIManager::SortRender(const CSharedPtr<CWidget>& Src, const CSharedPtr<CWidget>& Dest)

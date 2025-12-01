@@ -65,7 +65,6 @@ void CPartyCharacter::Update(float DeltaTime)
     }
     else
     {
-        // Idle (애니메이션 없이 정지 이미지)
         if (mCharacterName == "Kris")
         {
         	mAnimation->ChangeAnimation("None");

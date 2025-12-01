@@ -40,7 +40,7 @@ protected:
 	CSharedPtr<CWidget> mChild;
 
 	// 버튼 이미지 정보
-	FUIBrush mBrush[EButtonEventState::End];
+	FUIBrush mBrush[EButtonState::End];
 
 	// 현재 버튼 상태
 	EButtonState::Type mState = EButtonState::Normal;
@@ -101,7 +101,7 @@ public:
 	void SetTexture(EButtonState::Type State, class CTexture* Texture);
 
 	// 색상 세팅
-	void SetTint(EButtonState::Type State, float r, float g, float b, float a);
+	void SetTint(EButtonState::Type State, float r, float g, float b, float a = 1.f);
 
 	// 애니메이션 프레임
 	void AddBrushFrame(EButtonState::Type State, const FVector2D& Start, const FVector2D& Size);
@@ -128,12 +128,18 @@ public:
 	virtual void Update(float DeltaTime);
 	virtual void Render();
 
+	virtual void MouseHovered();
+	virtual void MouseUnHovered();
+
 	// 함수 바인드
 public:
 	template<typename T>
-	void SetEventCallBack(EButtonState::Type State, T* Obj, void(T::* Func)())
+	void SetEventCallBack(EButtonEventState::Type State, T* Obj, void(T::* Func)())
 	{
 		mEventCallBack[State] = std::bind(Func, Obj);
 	}
+
+private:
+	void ButtonClick();
 };
 

@@ -1,9 +1,6 @@
 #include "BattleController.h"
 #include "PlayerSoulObject.h"
-#include "JevilBossObject.h"
-#include "ChrisBattleObject.h"
-#include "SusieBattleObject.h"
-#include "RalseiBattleObject.h"
+#include "PartyCharacter.h"
 #include "../Share/Log.h"
 
 CBattleController::CBattleController()
@@ -11,7 +8,7 @@ CBattleController::CBattleController()
 }
 
 CBattleController::CBattleController(const CBattleController& Obj)
-    : CObject(Obj)
+    : CSceneObject(Obj)
 {
 }
 
@@ -21,7 +18,7 @@ CBattleController::~CBattleController()
 
 bool CBattleController::Init()
 {
-    CObject::Init();
+    CSceneObject::Init();
 
     return true;
 }
@@ -35,9 +32,20 @@ void CBattleController::StartCutscene()
     CLog::PrintLog("Cutscene Start");
 
     // 캐릭터 3명 초기 위치 세팅
-    if (mChris)  mChris->SetWorldPos(600.f, 750.f, 0.f);
-    if (mSusie)  mSusie->SetWorldPos(640.f, 770.f, 0.f);
-    if (mRalsei) mRalsei->SetWorldPos(680.f, 750.f, 0.f);
+    if (mChris)
+    {
+        mChris->SetWorldPos(600.f, 750.f, 0.f);
+    }
+
+    if (mSusie)
+    {
+        mSusie->SetWorldPos(640.f, 770.f, 0.f);
+    }
+
+    if (mRalsei)
+    {
+        mRalsei->SetWorldPos(680.f, 750.f, 0.f);
+    }
 }
 
 void CBattleController::StartBattle()
@@ -50,7 +58,7 @@ void CBattleController::StartBattle()
 
 void CBattleController::Update(float DeltaTime)
 {
-    CObject::Update(DeltaTime);
+    CSceneObject::Update(DeltaTime);
 
     switch (mState)
     {
@@ -116,8 +124,7 @@ void CBattleController::UpdatePlayerTurn(float DeltaTime)
 {
     // UI에서 선택 기다리는 상태
     // 이후 플레이어 선택 완료되면
-    //   mState = EBattleState::EnemyTurn;
-    // 로 넘어감.
+    //   mState = EBattleState::EnemyTurn; 로 넘어감
 }
 
 void CBattleController::UpdateEnemyTurn(float DeltaTime)
@@ -136,7 +143,7 @@ void CBattleController::UpdateSoulBattle(float DeltaTime)
     // 제빌의 패턴이 하트 공격
 
     // 예시:
-    // if (하트 생존하고 패턴 끝나면)
+    // if (패턴 끝나면)
     //    mState = EBattleState::EndTurn;
 
     // if (EndTurn)

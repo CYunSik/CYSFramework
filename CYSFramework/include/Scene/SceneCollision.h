@@ -25,7 +25,7 @@ public:
 
 public:
 	bool Init();
-	void Update(float DeltaTime);
+	void Update(float DeltaTime, class CSceneUIManager* UIManager, class CInput* Input);
 	void Render();
 	void ReturnNodePool();
 };

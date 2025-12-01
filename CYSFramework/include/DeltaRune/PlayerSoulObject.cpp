@@ -44,9 +44,7 @@ bool CPlayerSoulObject::Init()
 
     mRoot->AddChild(mBody);
 
-    // -------------------------------------------------
-    // Start Position (전투 박스 중심)
-    // -------------------------------------------------
+	// 전투박스
     SetWorldPos(640.f, 500.f, 0.f);
 
 	// 입력
@@ -148,6 +146,4 @@ void CPlayerSoulObject::OnCollisionBegin(const FVector3D& HitPoint, CColliderBas
     // 어두운 하트 텍스쳐 적용
     mRoot->SetTexture("PlayerSoul", TEXT("Texture/Heart/spr_heart_1.png"));
 
-    // "캐릭터 HP 감소"는 여기서 Scene 또는 GameManager 쪽에 신호 보내면 됨.
-    //CLog::PrintLog("PlayerSoul Hit! Characters HP - 1");
 }

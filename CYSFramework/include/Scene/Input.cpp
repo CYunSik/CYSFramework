@@ -343,8 +343,8 @@ void CInput::UpdateMousePos(float DeltaTime)
 	mMouseWorldPos2D.y = WorldPos.y - ViewportRS.Height * 0.5f + mMousePos.y;
 
 	// 마우스 좌표 로그찍기
-	std::string temp = "x : " + std::to_string(mMouseWorldPos2D.x) + "     y : " + std::to_string(mMouseWorldPos2D.y);
-	CLog::PrintLog(temp);
+	//std::string temp = "x : " + std::to_string(mMouseWorldPos2D.x) + "     y : " + std::to_string(mMouseWorldPos2D.y);
+	//CLog::PrintLog(temp);
 }
 
 void CInput::UpdateInput(float DeltaTime)
