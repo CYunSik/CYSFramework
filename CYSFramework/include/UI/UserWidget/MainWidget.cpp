@@ -20,9 +20,11 @@ bool CMainWidget::Init()
 	mButton = mScene->GetUIManager()->CreateWidget<CButton>("TextButton");
 
 	mButton->SetPos(100.f, 100.f);
-	mButton->SetSize(100.f, 100.f);
+	mButton->SetSize(31.f, 32.f);
 	mButton->SetPivot(FVector2D(0.5f, 0.5f));
 	//mButton->SetZOrder(1);
+
+	mButton->SetTexture(EButtonState::Normal, "AttackButton", TEXT("Texture/UI/spr_btfight_0.png"));
 
 	AddWidget(mButton);
 

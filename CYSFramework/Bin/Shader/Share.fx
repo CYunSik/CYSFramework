@@ -106,7 +106,7 @@ float2 UpdateAnimation2D(float2 UV)
         return UV;
     }
 
-    float2 Result = (float2) 0;
+    float2 Result = (float2) 0.f;
 
     if (UV.x == 0.f) // 좌
     {

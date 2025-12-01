@@ -27,6 +27,7 @@
 #include "ProfileManager.h"
 
 #include "time.h"
+#include "UI/Widget.h"
 
 // 전역변수
 // GameInfo에 extern을 선언해준다.
@@ -112,6 +113,10 @@ bool CGameManager::Init(HINSTANCE hInst)
 	{
 		return false;
 	}
+
+	// UI전용 Proj 행렬 초기화
+	FResolution RS = CDevice::GetInst()->GetResolution();
+	CWidget::CreateUIProjection(static_cast<float>(RS.Width), static_cast<float>(RS.Height), 1000.f);
 
 	return true;
 }

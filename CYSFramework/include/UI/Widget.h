@@ -12,6 +12,18 @@ protected:
 	CWidget();
 	virtual ~CWidget();
 
+	// UI 전용 투영행렬을 만들기
+protected:
+	static FMatrix mUIProj;
+
+public:
+	static void CreateUIProjection(float Width, float Height, float ViewDist)
+	{
+		// 직교 투영
+		mUIProj = DirectX::XMMatrixOrthographicOffCenterLH(0.f, Width, 0, Height, 0, ViewDist);
+	}
+
+protected:
 	// UI가 포함된 Scene
 	class CScene* mScene = nullptr;
 
@@ -20,6 +32,9 @@ protected:
 
 	// 화면에 그려질 쉐이더
 	CSharedPtr<class CShader> mShader;
+	CSharedPtr<class CMesh> mMesh;
+	class CUICBuffer* mUICBuffer = nullptr;
+	class CTransformCBuffer* mTransformCBuffer = nullptr;
 
 	// 이름
 	std::string mName;

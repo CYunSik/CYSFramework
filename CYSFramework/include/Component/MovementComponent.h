@@ -33,6 +33,11 @@ public:
 		return mMoveStep;
 	}
 
+	const FVector3D& GetVelocity() const
+	{
+		return mVelocity;
+	}
+
 	float GetVelocityLength() const
 	{
 		return mVelocity.Length();

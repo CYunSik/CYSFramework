@@ -3,6 +3,7 @@
 
 CBlendState::CBlendState()
 {
+	mStateType = ERenderStateType::Blend;
 }
 
 CBlendState::~CBlendState()

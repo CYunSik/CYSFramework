@@ -545,4 +545,19 @@ float FVector3D::GetAngle(const FVector3D& v1, const FVector3D& v2)
 	return Angle;
 }
 
+FVector3D FVector3D::Lerp(const FVector3D& A, const FVector3D& B, float Alpha)
+{
+	if (Alpha < 0.f)
+	{
+		Alpha = 0.f;
+	}
+	if (Alpha > 1.f)
+	{
+		Alpha = 1.f;
+	}
+
+	return A + (B - A) * Alpha;
+}
+
+
 #pragma endregion

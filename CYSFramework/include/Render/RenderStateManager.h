@@ -30,7 +30,7 @@ public:
 	bool CreateRasterizerState(const std::string& Name);
 
 	// 뎁스 스텐실
-	bool CreateDepthStencilState(const std::string& Name, bool DepthEnable, D3D11_DEPTH_WRITE_MASK DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ALL,
+	bool CreateDepthStencilState(const std::string& Name, bool DepthEnable = true, D3D11_DEPTH_WRITE_MASK DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ALL,
 		D3D11_COMPARISON_FUNC DepthFunc = D3D11_COMPARISON_LESS,
 		BOOL StencilEnable = false,
 		UINT8 StencilReadMask = D3D11_DEFAULT_STENCIL_READ_MASK,

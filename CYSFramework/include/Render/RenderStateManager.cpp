@@ -22,7 +22,7 @@ bool CRenderStateManager::Init()
 {
 	AddBlendDesc("AlphaBlend", true, D3D11_BLEND_SRC_ALPHA, D3D11_BLEND_INV_SRC_ALPHA, D3D11_BLEND_OP_ADD, D3D11_BLEND_ONE, D3D11_BLEND_ZERO, D3D11_BLEND_OP_ADD, D3D11_COLOR_WRITE_ENABLE_ALL);
 
-	CreateBlendState("AlphaBlend", true, true);
+	CreateBlendState("AlphaBlend", true, false);
 
 	AddRasterizerDesc("Rasterizer", D3D11_CULL_NONE, true);
 	CreateRasterizerState("Rasterizer");

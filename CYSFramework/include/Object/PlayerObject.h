@@ -1,5 +1,7 @@
 #pragma once
 #include "SceneObject.h"
+#include "../Component/SpriteComponent.h"
+
 
 class CPlayerObject : public CSceneObject
 {
@@ -24,12 +26,14 @@ protected:
 	bool mIsUpCollision = false;
 	bool mIsDownCollision = false;
 
-	CSharedPtr<CSpriteComponent> mSusie;	// 수지
-	CSharedPtr<CSpriteComponent> mRalsei;	// 랄세이
+	class CSceneObject* mSusieObj = nullptr;
+	class CSceneObject* mRalseiObj = nullptr;
+
+	CSharedPtr<class CSpriteComponent> mSusie;
+	CSharedPtr<class CSpriteComponent> mRalsei;
 
 	// Trail
-	std::vector<FVector3D> mPlayerTrail;
-	std::vector<FVector3D> mSusieTrail;
+	std::vector<FVector3D> mTrail;
 
 	CSharedPtr<class CSceneComponent> mRotationPivot;
 	CSharedPtr<class CSpriteComponent> mSub;
@@ -75,10 +79,26 @@ public:
 	virtual void Update(float DeltaTime);
 	void Damage(float Damage);
 
-	const std::vector<FVector3D>& GetTrail() const
+	void SetSusieObj(CSceneObject* Obj)
 	{
-		return mPlayerTrail;
+		mSusieObj = Obj;
 	}
+
+	void SetSusieSprite(class CSpriteComponent* Sprite)
+	{
+		mSusie = Sprite;
+	}
+
+	void SetRalseiObj(CSceneObject* Obj)
+	{
+		mRalseiObj = Obj;
+	}
+
+	void SetRalseiSprite(CSpriteComponent* Sprite)
+	{
+		mRalsei = Sprite;
+	}
+
 
 private:
 	void MoveUp(float DeltaTime);

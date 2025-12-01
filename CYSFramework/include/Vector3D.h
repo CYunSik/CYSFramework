@@ -127,6 +127,9 @@ struct FVector3D
 	float GetViewTargetAngle(const FVector3D& v, EAxis::Type AxisType = EAxis::Y) const;
 	static float GetAngle(const FVector3D& v1, const FVector3D& v2);
 
+	// Lerp
+	static FVector3D Lerp(const FVector3D& A, const FVector3D& B, float Alpha);
+
 #pragma endregion
 
 #pragma region StaticVariable

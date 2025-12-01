@@ -90,48 +90,28 @@ bool CPlayerObject::Init()
 	mBody->SetBoxSize(50.f, 50.f);
 	//mBody->SetRadius(50.f);
 	mBody->SetCollisionProfile("Player");
-
 	mBody->SetCollisionBeginFunc(this, &CPlayerObject::OnCollisionBegin);
 	mBody->SetCollisionEndFunc(this, &CPlayerObject::OnCollisionEnd);
 
-	// 수지, 랄세이
-	mSusie = CreateComponent<CSpriteComponent>();
-	mSusie->SetTexture("Susie", TEXT("Texture/spr_susied_dark_0.png"), 0);
-	mSusie->SetRelativePos(-50.f, 0.f);
-	mSusie->SetPivot(0.5f, 0.5f);
-	mSusie->SetOpacity(1.f);
-	mRoot->AddChild(mSusie);
-	mAnimationSusie = mSusie->CreateAnimation2D<CAnimation2D>();
-	mAnimationSusie->AddSequence("SusieWalkRight", 1.f, 1.f, true, false);
-
-	mRalsei = CreateComponent<CSpriteComponent>();
-	mRalsei->SetTexture("Ralsei", TEXT("Texture/spr_ralseid_0.png"), 0);
-	mRalsei->SetRelativePos(-50.f, 0.f);
-	mRalsei->SetPivot(0.5f, 0.5f);
-	mRalsei->SetOpacity(1.f);
-	mSusie->AddChild(mRalsei);
-	mAnimationRalsei = mRalsei->CreateAnimation2D<CAnimation2D>();
-	mAnimationRalsei->AddSequence("RalseiWalkRight", 1.f, 1.f, true, false);
-
-	for (int i = 0; i < 300; ++i)
-	{
-		mPlayerTrail.emplace_back(GetWorldPosition());
-		mSusieTrail.emplace_back(mSusie->GetWorldPosition());
-	}
 
 	//mBody->AddChild(mLine);
 	//mLine->SetCollisionProfile("Player");
 	//mLine->SetLineDistance(300.f);
 	//mLine->SetRelativePos(0.f, 50.f);
 
+	// movement
 	mMovement->SetUpdateComponent(mRoot);
 	mMovement->SetMoveSpeed(350.f);
 
+	// rotation
 	mRotation->SetUpdateComponent(mRoot);
 
 	// 카메라 세팅
 	mCamera->SetProjectionType(ECameraProjectionType::Ortho);
 	mRoot->AddChild(mCamera);
+
+	mTrail.clear();
+	mTrail.reserve(2000);
 
 	// 위성 만들기
 	//mRotationPivot = CreateComponent<CSceneComponent>();
@@ -224,70 +204,43 @@ void CPlayerObject::Update(float DeltaTime)
 {
 	CSceneObject::Update(DeltaTime);
 
-	// 이전 프레임 위치 저장용
-	static bool bFirst = true;
-	static FVector3D PrevPos = FVector3D::Zero;
+	mSusie->SetPivot(0.5f, 0.5f);
+	mRalsei->SetPivot(0.5f, 0.5f);
 
-	if (bFirst)
+	bool IsMoving = (mMovement->GetVelocityLength() > 0.f);
+
+	int SusieDelay = 700;
+	int RalseiDelay = 1400;
+
+	// 수지 랄세이 이동
+	if (IsMoving)
 	{
-		PrevPos = mRoot->GetWorldPosition();
-		bFirst = false;
-	}
+		size_t TrailSize = mTrail.size();
 
-	// 현재 위치
-	FVector3D CurPos = mRoot->GetWorldPosition();
-	FVector3D Diff = CurPos - PrevPos;
-
-	bool bMoved = (Diff.Length() > 0.0000001f);
-
-	// 움직였을 때만 Trail 저장
-	if (bMoved)
-	{
-		mPlayerTrail.push_back(CurPos);
-
-		if (mPlayerTrail.size() > 2000)
+		if (TrailSize > SusieDelay)
 		{
-			mPlayerTrail.erase(mPlayerTrail.begin());
+			mSusie->SetWorldPos(mTrail[TrailSize - SusieDelay]);
+		}
+
+		if (TrailSize > RalseiDelay)
+		{
+			mRalsei->SetWorldPos(mTrail[TrailSize - RalseiDelay]);
 		}
 	}
 
-	PrevPos = CurPos;
-
-	// 움직일 때만 따라오기
-	if (bMoved)
+	if (IsMoving)
 	{
-		int Delay = 300;
+		mTrail.push_back(GetWorldPosition());
 
-		// *이상하게 따라오는거 수정 필요
-		// 수지가 크리스 따라가기
-		if (mPlayerTrail.size() > Delay)
+		if (mTrail.size() > 2000)
 		{
-			FVector3D TargetPos = mPlayerTrail[mPlayerTrail.size() - Delay - 1];
-			FVector3D Relative = TargetPos - mRoot->GetWorldPosition();
-			mSusie->SetRelativePos(Relative);
-		}
-
-		// 수지 위치 저장
-		mSusieTrail.push_back(mSusie->GetWorldPosition());
-		if (mSusieTrail.size() > 2000)
-		{
-			mSusieTrail.erase(mSusieTrail.begin());
-		}
-
-		// 랄세이가 수지 따라가기
-		if (mSusieTrail.size() > Delay)
-		{
-			FVector3D TargetPos = mSusieTrail[mSusieTrail.size() - Delay - 1];
-			FVector3D Relative = TargetPos - mSusie->GetWorldPosition();
-			mRalsei->SetRelativePos(Relative);
+			mTrail.erase(mTrail.begin());
 		}
 	}
 
 	if (mMovement->GetVelocityLength() == 0.f && mAutoBasePose)
 	{
 		mAnimation->ChangeAnimation("None");
-		mAnimationSusie->ChangeAnimation("None");
-		mAnimationRalsei->ChangeAnimation("None");
 	}
 
 	// 위성을 돌려주면 된다.
@@ -701,8 +654,6 @@ void CPlayerObject::OnCollisionBegin(const FVector3D& HitPoint, CColliderBase* D
 
 void CPlayerObject::OnCollisionEnd(CColliderBase* Dest)
 {
-	// 수정할거 : ex) 왼쪽 면과 아래쪽 면이 동시에 닿아있을때 왼쪽을 collisionend해버리면 downcollision도 false가되어서 밑으로 이동이 가능해진다.(밑에는 충돌중인데도)
-	// 추가 : 총알이 맞을때도 이 함수가 실행되어서 모두 false가 되어 벽을 통과할 수 있게 된다.
 	mIsLeftCollision = false;
 	mIsRightCollision = false;
 	mIsUpCollision = false;

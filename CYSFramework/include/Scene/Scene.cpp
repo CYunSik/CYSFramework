@@ -201,26 +201,26 @@ void CScene::Render()
 #endif // _DEBUG
 	mCollision->ReturnNodePool();
 
-	std::list<CSharedPtr<class CSceneObject>>::iterator iter;
-	std::list<CSharedPtr<class CSceneObject>>::iterator iterEnd = mObjList.end();
+	//std::list<CSharedPtr<class CSceneObject>>::iterator iter;
+	//std::list<CSharedPtr<class CSceneObject>>::iterator iterEnd = mObjList.end();
 
-	for (iter = mObjList.begin(); iter != iterEnd;)
-	{
-		if (!(*iter)->IsActive())
-		{
-			iter = mObjList.erase(iter);
-			iterEnd = mObjList.end();
-			continue;
-		}
-		else if (!(*iter)->IsEnable())
-		{
-			++iter;
-			continue;
-		}
+	//for (iter = mObjList.begin(); iter != iterEnd;)
+	//{
+	//	if (!(*iter)->IsActive())
+	//	{
+	//		iter = mObjList.erase(iter);
+	//		iterEnd = mObjList.end();
+	//		continue;
+	//	}
+	//	else if (!(*iter)->IsEnable())
+	//	{
+	//		++iter;
+	//		continue;
+	//	}
 
-		(*iter)->Render();
-		++iter;
-	}
+	//	(*iter)->Render();
+	//	++iter;
+	//}
 }
 
 void CScene::RenderUI()

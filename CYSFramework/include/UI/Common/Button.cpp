@@ -5,8 +5,12 @@
 #include "../../Scene/Scene.h"
 #include "../../Scene/SceneAssetManager.h"
 #include "../../Asset/AssetManager.h"
+#include "../../Asset/Mesh/Mesh.h"
 #include "../../Asset/Sound/Sound.h"
 #include "../../Asset/Sound/SoundManager.h"
+#include "../../Shader/Shader.h"
+#include "../../Shader/TransformCBuffer.h"
+#include "../../Shader/UICBuffer.h"
 
 CButton::CButton()
 {
@@ -157,4 +161,61 @@ void CButton::Update(float DeltaTime)
 void CButton::Render()
 {
 	CWidget::Render();
+
+	// 크기 자전 이동 공전 부모
+	FMatrix matScale, matRot, matTranslate, matWorld;
+
+	matScale.Scaling(mSize);
+	matRot.RotationZ(mRotation);
+	matTranslate.Translation(mPos);
+
+	matWorld = matScale * matRot * matTranslate;
+
+	mTransformCBuffer->SetWorldMatrix(matWorld);
+	mTransformCBuffer->SetProjMatrix(mUIProj);
+	mTransformCBuffer->SetPivot(mPivot);
+
+	mTransformCBuffer->UpdateBuffer();
+
+	// 여기까지 Transform 세팅
+	///////////////////////////////////////////
+	
+	mUICBuffer->SetTint(mBrush[mState].Tint);
+	mUICBuffer->SetWidgetColor(mColor);
+
+	// 만약 텍스쳐가 있다면
+	if (mBrush[mState].Texture)
+	{
+		mUICBuffer->SetTextureEnable(true);
+		mBrush[mState].Texture->SetShader(0, EShaderBufferType::Pixel, 0);
+	}
+	else
+	{
+		mUICBuffer->SetTextureEnable(false);
+	}
+
+	// 만약 애니메이션이 있다면
+	if (mBrush[mState].AnimationEnable)
+	{
+		mUICBuffer->SetAnimationEnable(true);
+		int Frame = mBrush[mState].Frame;
+
+		FAnimationFrame FrameInfo = mBrush[mState].Frames[Frame];
+
+		mUICBuffer->SetUV(FrameInfo.Start.x, FrameInfo.Start.y,
+			FrameInfo.Start.x + FrameInfo.Size.x,
+			FrameInfo.Start.y + FrameInfo.Size.y);
+	}
+	else
+	{
+		mUICBuffer->SetAnimationEnable(false);
+	}
+
+	mUICBuffer->UpdateBuffer();
+
+	////////////////////////////////////////////////////////////
+
+	mShader->SetShader();
+
+	mMesh->Render();
 }

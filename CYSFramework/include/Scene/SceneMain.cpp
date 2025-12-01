@@ -12,6 +12,8 @@
 #include "../Object/BlockObject.h"
 #include "../Object/BoomMonster.h"
 #include "../UI/UserWidget/MainWidget.h"
+#include "../Component/SpriteComponent.h"
+#include "../DeltaRune/JevilPrisonBG.h"
 
 CSceneMain::CSceneMain()
 {
@@ -27,7 +29,7 @@ bool CSceneMain::Init()
 	{
 		return false;
 	}
-
+	
 	/////////////// 사용할 머티리얼 만들기
 	mAssetManager->CreateMaterial("Spade1");
 
@@ -94,13 +96,38 @@ bool CSceneMain::Init()
 		return false;
 	}
 
-	CObjectSpawnPoint* MonsterPoint = CreateObj<CObjectSpawnPoint>("MonsterPoint1");
-	MonsterPoint->SetSpawnType(EObjectSpawnType::GunnerMonster);
-	MonsterPoint->SetSpawnLoopType(EObjectSpawnLoopType::Loop);
-	MonsterPoint->SetSpawnCountType(EObjectSpawnCountType::CountDestroy);
-	MonsterPoint->SetSpawnTime(5.f);
-	MonsterPoint->SetDestroySpawnCount(3);
-	MonsterPoint->SetWorldPos(400.f, 200.f);
+	// Susie
+	CSceneObject* Susie = CreateObj<CSceneObject>("Susie");
+	CSpriteComponent* SusieSprite = Susie->CreateComponent<CSpriteComponent>();
+	SusieSprite->SetTexture("Susie", TEXT("Texture/spr_susied_dark_0.png"));
+	Susie->SetRootComponent(SusieSprite);
+	Susie->SetWorldPos(0.f, 0.f, 0.f);
+	Susie->SetWorldScale(50.f, 50.f, 1.f);
+
+	Player->SetSusieObj(Susie);
+	Player->SetSusieSprite(SusieSprite);
+
+	// Ralsei
+	CSceneObject* Ralsei = CreateObj<CSceneObject>("Ralsei");
+	CSpriteComponent* RalseiSprite = Ralsei->CreateComponent<CSpriteComponent>();
+	RalseiSprite->SetTexture("Ralsei", TEXT("Texture/spr_ralseid_0.png"));
+	Ralsei->SetRootComponent(RalseiSprite);
+	Ralsei->SetWorldPos(0.f, 0.f, 0.f);
+	Ralsei->SetWorldScale(50.f, 50.f, 1.f);
+
+	Player->SetRalseiObj(Ralsei);
+	Player->SetRalseiSprite(RalseiSprite);
+
+
+
+
+	//CObjectSpawnPoint* MonsterPoint = CreateObj<CObjectSpawnPoint>("MonsterPoint1");
+	//MonsterPoint->SetSpawnType(EObjectSpawnType::GunnerMonster);
+	//MonsterPoint->SetSpawnLoopType(EObjectSpawnLoopType::Loop);
+	//MonsterPoint->SetSpawnCountType(EObjectSpawnCountType::CountDestroy);
+	//MonsterPoint->SetSpawnTime(5.f);
+	//MonsterPoint->SetDestroySpawnCount(3);
+	//MonsterPoint->SetWorldPos(400.f, 200.f);
 
 	//MonsterPoint = CreateObj<CObjectSpawnPoint>("MonsterPoint2");
 	//MonsterPoint->SetSpawnType(EObjectSpawnType::GunnerMonster);
@@ -125,12 +152,12 @@ bool CSceneMain::Init()
 	//MonsterPoint->SetSpawnTime(3.5f);
 	//MonsterPoint->SetWorldPos(-400.f, -200.f);
 
-	MonsterPoint = CreateObj<CObjectSpawnPoint>("MonsterPoint5");
-	MonsterPoint->SetSpawnType(EObjectSpawnType::NearingMonster);
-	MonsterPoint->SetSpawnLoopType(EObjectSpawnLoopType::Loop);
-	MonsterPoint->SetImmediateSpawn(true);
-	MonsterPoint->SetSpawnTime(10.f);
-	MonsterPoint->SetWorldPos(200.f, 0.f);
+	//MonsterPoint = CreateObj<CObjectSpawnPoint>("MonsterPoint5");
+	//MonsterPoint->SetSpawnType(EObjectSpawnType::NearingMonster);
+	//MonsterPoint->SetSpawnLoopType(EObjectSpawnLoopType::Loop);
+	//MonsterPoint->SetImmediateSpawn(true);
+	//MonsterPoint->SetSpawnTime(10.f);
+	//MonsterPoint->SetWorldPos(200.f, 0.f);
 
 	///////////////////////////////////////////
 	// UI 생성
@@ -140,47 +167,52 @@ bool CSceneMain::Init()
 
 
 	///////////////////////////////////////////
+	
+	
+	// 제빌 감옥 배경
+	CJevilPrisonBG* BackGround = CreateObj<CJevilPrisonBG>("JevilPrisionBG");
+	BackGround->SetWorldPos(720.f, -390.f, 5.f);
 
 	// 테스트용 배경
-	CBlockObject* Block = CreateObj<CBlockObject>("TestAnimation");
-	Block->SetWorldPos(0.f, 200.f, 5.f);
+	//CBlockObject* Block = CreateObj<CBlockObject>("TestAnimation");
+	//Block->SetWorldPos(0.f, 200.f, 5.f);
 
 	// 클로버 폭탄
-	CBoomMonster* ClubMonster = CreateObj<CBoomMonster>("ClubMonster");
-	ClubMonster->SetWorldPos(-200.f, 300.f);
-	ClubMonster->SetDownTime(1.f);
+	//CBoomMonster* ClubMonster = CreateObj<CBoomMonster>("ClubMonster");
+	//ClubMonster->SetWorldPos(-200.f, 300.f);
+	//ClubMonster->SetDownTime(1.f);
 
-	CBoomMonster* ClubMonster2 = CreateObj<CBoomMonster>("ClubMonster2");
-	ClubMonster2->SetWorldPos(-350.f, 500.f);
-	ClubMonster2->SetDownTime(1.5f);
+	//CBoomMonster* ClubMonster2 = CreateObj<CBoomMonster>("ClubMonster2");
+	//ClubMonster2->SetWorldPos(-350.f, 500.f);
+	//ClubMonster2->SetDownTime(1.5f);
 
-	CBoomMonster* ClubMonster3 = CreateObj<CBoomMonster>("ClubMonster3");
-	ClubMonster3->SetWorldPos(200.f, 400.f);
-	ClubMonster3->SetDownTime(0.8f);
+	//CBoomMonster* ClubMonster3 = CreateObj<CBoomMonster>("ClubMonster3");
+	//ClubMonster3->SetWorldPos(200.f, 400.f);
+	//ClubMonster3->SetDownTime(0.8f);
 
-	CBoomMonster* ClubMonster4 = CreateObj<CBoomMonster>("ClubMonster4");
-	ClubMonster4->SetWorldPos(350.f, 500.f);
-	ClubMonster4->SetDownTime(2.f);
+	//CBoomMonster* ClubMonster4 = CreateObj<CBoomMonster>("ClubMonster4");
+	//ClubMonster4->SetWorldPos(350.f, 500.f);
+	//ClubMonster4->SetDownTime(2.f);
 
-	CBoomMonster* ClubMonster5 = CreateObj<CBoomMonster>("ClubMonster5");
-	ClubMonster5->SetWorldPos(400.f, 700.f);
-	ClubMonster5->SetDownTime(3.f);
+	//CBoomMonster* ClubMonster5 = CreateObj<CBoomMonster>("ClubMonster5");
+	//ClubMonster5->SetWorldPos(400.f, 700.f);
+	//ClubMonster5->SetDownTime(3.f);
 
-	CBoomMonster* ClubMonster6 = CreateObj<CBoomMonster>("ClubMonster6");
-	ClubMonster6->SetWorldPos(350.f, 1000.f);
-	ClubMonster6->SetDownTime(3.5f);
+	//CBoomMonster* ClubMonster6 = CreateObj<CBoomMonster>("ClubMonster6");
+	//ClubMonster6->SetWorldPos(350.f, 1000.f);
+	//ClubMonster6->SetDownTime(3.5f);
 
-	CBoomMonster* ClubMonster7 = CreateObj<CBoomMonster>("ClubMonster7");
-	ClubMonster7->SetWorldPos(400.f, 600.f);
-	ClubMonster7->SetDownTime(1.7f);
+	//CBoomMonster* ClubMonster7 = CreateObj<CBoomMonster>("ClubMonster7");
+	//ClubMonster7->SetWorldPos(400.f, 600.f);
+	//ClubMonster7->SetDownTime(1.7f);
 
-	CBoomMonster* ClubMonster8 = CreateObj<CBoomMonster>("ClubMonster8");
-	ClubMonster8->SetWorldPos(-200.f, 600.f);
-	ClubMonster8->SetDownTime(1.3f);
+	//CBoomMonster* ClubMonster8 = CreateObj<CBoomMonster>("ClubMonster8");
+	//ClubMonster8->SetWorldPos(-200.f, 600.f);
+	//ClubMonster8->SetDownTime(1.3f);
 
-	CBoomMonster* ClubMonster9 = CreateObj<CBoomMonster>("ClubMonster9");
-	ClubMonster9->SetWorldPos(-400.f, 800.f);
-	ClubMonster9->SetDownTime(2.2f);
+	//CBoomMonster* ClubMonster9 = CreateObj<CBoomMonster>("ClubMonster9");
+	//ClubMonster9->SetWorldPos(-400.f, 800.f);
+	//ClubMonster9->SetDownTime(2.2f);
 
 	// 관통 테스트
 	//MonsterPoint = CreateObj<CObjectSpawnPoint>("MonsterPoint6");

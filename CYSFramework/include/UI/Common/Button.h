@@ -46,7 +46,7 @@ protected:
 	EButtonState::Type mState = EButtonState::Normal;
 
 	// 버튼 색상
-	FVector4D mColor;
+	FVector4D mColor = FVector4D::White;
 
 	// 상태값에 따라서 사운드를 출력한다.
 	CSharedPtr<class CSound> mSound[EButtonEventState::End];

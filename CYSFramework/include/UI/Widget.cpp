@@ -1,5 +1,16 @@
 #include "Widget.h"
+
+#include "../Asset/AssetManager.h"
 #include "../Shader/ShaderManager.h"
+#include "../Shader/TransformCBuffer.h"
+#include "../Shader/UICBuffer.h"
+#include "../Shader/Shader.h"
+#include "../Asset/Mesh/Mesh.h"
+#include "../Asset/Mesh/MeshManager.h"
+#include "../Scene/Scene.h"
+#include "../Scene/SceneAssetManager.h"
+
+FMatrix CWidget::mUIProj;
 
 CWidget::CWidget()
 {
@@ -7,7 +18,8 @@ CWidget::CWidget()
 
 CWidget::~CWidget()
 {
-	SAFE_RELEASE(mShader);
+	SAFE_DELETE(mTransformCBuffer);
+	SAFE_DELETE(mUICBuffer);
 }
 
 void CWidget::SetShader(const std::string& Name)
@@ -22,6 +34,24 @@ void CWidget::SetShader(class CShader* Shader)
 
 bool CWidget::Init()
 {
+	SetShader("UIShader");
+
+	if (mScene)
+	{
+		mMesh = mScene->GetAssetManager()->FindMesh("SpriteRect");
+	}
+	else
+	{
+		mMesh = CAssetManager::GetInst()->GetMeshManager()->FindMesh("SpriteRect");
+	}
+
+	mUICBuffer = new CUICBuffer;
+
+	mUICBuffer->Init();
+
+	mTransformCBuffer = new CTransformCBuffer;
+
+	mTransformCBuffer->Init();
 
 	return true;
 }
@@ -116,8 +146,6 @@ bool CWidget::CollisionMouse(const FVector2D& MousePos)
 	}
 
 	return true;
-
-
 }
 
 void CWidget::EndFrame()

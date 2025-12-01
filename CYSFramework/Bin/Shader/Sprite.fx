@@ -33,17 +33,7 @@ VS_Output_Tex SpriteVS(VS_Input_Tex input)
 
     output.Pos = mul(float4(Pos, 1.f), gmatWVP);
 
-    float2 UVS = float2(0.2, 0.f);
-
     output.UV = UpdateAnimation2D(input.UV);
-
-    // 반전여부
-	// 0.2 0.4 -> 0.4 0.2 -> 0.8 0.6
-    //if (gAnim2DFlip)
-    //{
-	   // // x축 반전
-    //    output.UV.x = 1 - output.UV.x;
-    //}
     
     return output;
 }

@@ -28,51 +28,51 @@ bool CAnimation2DManager::Init()
 		AddFrame("PlayerIdle", i * 200.f, 0.f, 200.f, 200.f);
 	}
 
-	// 플레이어 오른쪽 걷기
+	// 크리스 오른쪽 걷기
 	CreateAnimation("KrisWalkRight");
 	SetAnimationTextureType("KrisWalkRight", EAnimationTextureType::Frame);
 
 	std::vector<const TCHAR*> FileNames;
-	FileNames.emplace_back(TEXT("Texture/Player/spr_krisr_dark/spr_krisr_dark_0.png"));
-	FileNames.emplace_back(TEXT("Texture/Player/spr_krisr_dark/spr_krisr_dark_1.png"));
-	FileNames.emplace_back(TEXT("Texture/Player/spr_krisr_dark/spr_krisr_dark_2.png"));
-	FileNames.emplace_back(TEXT("Texture/Player/spr_krisr_dark/spr_krisr_dark_3.png"));
+	FileNames.emplace_back(TEXT("Texture/Kris/spr_krisr_dark/spr_krisr_dark_0.png"));
+	FileNames.emplace_back(TEXT("Texture/Kris/spr_krisr_dark/spr_krisr_dark_1.png"));
+	FileNames.emplace_back(TEXT("Texture/Kris/spr_krisr_dark/spr_krisr_dark_2.png"));
+	FileNames.emplace_back(TEXT("Texture/Kris/spr_krisr_dark/spr_krisr_dark_3.png"));
 
 	SetTexture("KrisWalkRight", "KrisWalkRight", FileNames);
 	AddFrameCount("KrisWalkRight", 4, 0.f, 0.f, 19.f, 38.f);
 
-	// 플레이어 왼쪽 걷기
+	// 크리스 왼쪽 걷기
 	CreateAnimation("KrisWalkLeft");
 	SetAnimationTextureType("KrisWalkLeft", EAnimationTextureType::Frame);
 	FileNames.clear();
-	FileNames.emplace_back(TEXT("Texture/Player/spr_krisl_dark/spr_krisl_dark_0.png"));
-	FileNames.emplace_back(TEXT("Texture/Player/spr_krisl_dark/spr_krisl_dark_1.png"));
-	FileNames.emplace_back(TEXT("Texture/Player/spr_krisl_dark/spr_krisl_dark_2.png"));
-	FileNames.emplace_back(TEXT("Texture/Player/spr_krisl_dark/spr_krisl_dark_3.png"));
+	FileNames.emplace_back(TEXT("Texture/Kris/spr_krisl_dark/spr_krisl_dark_0.png"));
+	FileNames.emplace_back(TEXT("Texture/Kris/spr_krisl_dark/spr_krisl_dark_1.png"));
+	FileNames.emplace_back(TEXT("Texture/Kris/spr_krisl_dark/spr_krisl_dark_2.png"));
+	FileNames.emplace_back(TEXT("Texture/Kris/spr_krisl_dark/spr_krisl_dark_3.png"));
 
 	SetTexture("KrisWalkLeft", "KrisWalkLeft", FileNames);
 	AddFrameCount("KrisWalkLeft", 4, 0.f, 0.f, 19.f, 38.f);
 
-	// 플레이어 위로 걷기
+	// 크리스 위로 걷기
 	CreateAnimation("KrisWalkUp");
 	SetAnimationTextureType("KrisWalkUp", EAnimationTextureType::Frame);
 	FileNames.clear();
-	FileNames.emplace_back(TEXT("Texture/Player/spr_krisu_dark/spr_krisu_dark_0.png"));
-	FileNames.emplace_back(TEXT("Texture/Player/spr_krisu_dark/spr_krisu_dark_1.png"));
-	FileNames.emplace_back(TEXT("Texture/Player/spr_krisu_dark/spr_krisu_dark_2.png"));
-	FileNames.emplace_back(TEXT("Texture/Player/spr_krisu_dark/spr_krisu_dark_3.png"));
+	FileNames.emplace_back(TEXT("Texture/Kris/spr_krisu_dark/spr_krisu_dark_0.png"));
+	FileNames.emplace_back(TEXT("Texture/Kris/spr_krisu_dark/spr_krisu_dark_1.png"));
+	FileNames.emplace_back(TEXT("Texture/Kris/spr_krisu_dark/spr_krisu_dark_2.png"));
+	FileNames.emplace_back(TEXT("Texture/Kris/spr_krisu_dark/spr_krisu_dark_3.png"));
 
 	SetTexture("KrisWalkUp", "KrisWalkUp", FileNames);
 	AddFrameCount("KrisWalkUp", 4, 0.f, 0.f, 19.f, 38.f);
 
-	// 플레이어 아래로 걷기
+	// 크리스 아래로 걷기
 	CreateAnimation("KrisWalkDown");
 	SetAnimationTextureType("KrisWalkDown", EAnimationTextureType::Frame);
 	FileNames.clear();
-	FileNames.emplace_back(TEXT("Texture/Player/spr_krisd_dark/spr_krisd_dark_0.png"));
-	FileNames.emplace_back(TEXT("Texture/Player/spr_krisd_dark/spr_krisd_dark_1.png"));
-	FileNames.emplace_back(TEXT("Texture/Player/spr_krisd_dark/spr_krisd_dark_2.png"));
-	FileNames.emplace_back(TEXT("Texture/Player/spr_krisd_dark/spr_krisd_dark_3.png"));
+	FileNames.emplace_back(TEXT("Texture/Kris/spr_krisd_dark/spr_krisd_dark_0.png"));
+	FileNames.emplace_back(TEXT("Texture/Kris/spr_krisd_dark/spr_krisd_dark_1.png"));
+	FileNames.emplace_back(TEXT("Texture/Kris/spr_krisd_dark/spr_krisd_dark_2.png"));
+	FileNames.emplace_back(TEXT("Texture/Kris/spr_krisd_dark/spr_krisd_dark_3.png"));
 
 	SetTexture("KrisWalkDown", "KrisWalkDown", FileNames);
 	AddFrameCount("KrisWalkDown", 4, 0.f, 0.f, 19.f, 38.f);

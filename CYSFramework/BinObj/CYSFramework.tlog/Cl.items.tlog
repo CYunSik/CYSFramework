@@ -28,6 +28,7 @@ E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Component\RotationCompo
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Component\SceneComponent.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\SceneComponent.obj
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Component\SpriteComponent.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\SpriteComponent.obj
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Component\StaticMeshComponent.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\StaticMeshComponent.obj
+E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\DeltaRune\JevilPrisonBG.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\JevilPrisonBG.obj
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Device.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\Device.obj
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\GameInfo.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\GameInfo.obj
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\GameManager.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\GameManager.obj
@@ -79,6 +80,8 @@ E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Shader\SpriteCBuffer.cp
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Shader\SpriteShader.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\SpriteShader.obj
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Shader\StaticMeshShader.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\StaticMeshShader.obj
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Shader\TransformCBuffer.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\TransformCBuffer.obj
+E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Shader\UICBuffer.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\UICBuffer.obj
+E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Shader\UIShader.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\UIShader.obj
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Share\Log.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\Log.obj
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Share\Object.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\Object.obj
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Share\Timer.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\Timer.obj

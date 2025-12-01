@@ -51,6 +51,34 @@ struct FAnimation2DCBufferInfo
 	FVector2D Empty;
 };
 
+// UI
+struct FUICBufferInfo
+{
+	// Tint : 텍스쳐에 대한 보정 색상
+	FVector4D BrushTint; // 16
+
+	// Widget에 대한 보정 색상
+	FVector4D Color; // 16
+
+	// Lef-Top
+	FVector2D LTUV; // 8
+
+	// Right-Bottom
+	FVector2D RBUV; // 8
+
+	// 애니메이션 사용여부
+	int BrushAnimEnable; // 4
+
+	// 텍스쳐 사용 여부
+	int BrushTextureEnable; // 4
+
+	// 애니메이션 반전 여부
+	// int gBrushAnimFlip;
+
+	// 빈 데이터 16배수로 보내줘야한다.
+	FVector2D BrushEmpty;
+};
+
 // 스프라이트용 상수버퍼
 // 레지스터 2
 struct FSpriteCBufferInfo
