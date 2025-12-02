@@ -13,8 +13,10 @@ protected:
 
 protected:
     CSharedPtr<class CSpriteComponent> mBackGround;
+    CSharedPtr<class CSpriteComponent> mNothing;
     CSharedPtr<class CColliderAABB2D> mBody;
     CSharedPtr<class CColliderAABB2D> mBody2;
+    CSharedPtr<class CColliderAABB2D> mBody3;
 
     // 애니메이션
     class CAnimation2D* mAnimation = nullptr;

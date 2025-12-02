@@ -14,7 +14,7 @@ protected:
 protected:
 	float mDownTime = 0.f;
 
-	//class CAnimation2D* mAnimation = nullptr;
+	class CAnimation2D* mAnimation = nullptr;
 
 public:
 	virtual bool Init();

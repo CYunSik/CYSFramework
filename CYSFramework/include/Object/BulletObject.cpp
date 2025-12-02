@@ -46,7 +46,7 @@ bool CBulletObject::Init()
 	mMovement = CreateComponent<CMovementComponent>();
 	mRotation = CreateComponent<CRotationComponent>();
 
-	mRoot->SetTexture("SpadeBullet", TEXT("Texture/spr_spadebullet.png"), 0);
+	mRoot->SetTexture("SpadeBullet", TEXT("Texture/spr_clubsbullet.png"), 0);
 	mRoot->SetTint(1.f, 1.f, 1.f);
 	mRoot->SetPivot(0.5f, 0.5f);
 	mRoot->SetOpacity(1.f);

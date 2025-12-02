@@ -9,6 +9,7 @@
 #include "../Asset/Mesh/MeshManager.h"
 #include "../Scene/Scene.h"
 #include "../Scene/SceneAssetManager.h"
+#include "../Asset/Texture/Texture.h"
 
 CStaticMeshComponent::CStaticMeshComponent()
 	: CMeshComponent()

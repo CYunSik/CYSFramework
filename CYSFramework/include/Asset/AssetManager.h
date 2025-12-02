@@ -13,8 +13,14 @@ private:
 	class CMaterialManager* mMaterialManager = nullptr;
 	class CAnimation2DManager* mAnimation2DManager = nullptr;
 	class CSoundManager* mSoundManager = nullptr;
+	class CFontManager* mFontManager = nullptr;
 
 public:
+	class CFontManager* GetFontManager() const
+	{
+		return mFontManager;
+	}
+
 	class CMeshManager* GetMeshManager() const
 	{
 		return mMeshManager;

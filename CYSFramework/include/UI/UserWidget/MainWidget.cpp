@@ -3,6 +3,7 @@
 #include "../Common/Button.h"
 #include "../../Scene/Scene.h"
 #include "../../Scene/SceneUIManager.h"
+#include "../Common/TextBlock.h"
 
 CMainWidget::CMainWidget()
 {
@@ -106,6 +107,19 @@ bool CMainWidget::Init()
 	mButtonDefend->SetTint(EButtonState::Disable, 0.1f, 0.1f, 0.1f);
 
 	AddWidget(mButtonDefend);
+
+	////////////////////////// 폰트
+	CSharedPtr<CTextBlock> Text = mScene->GetUIManager()->CreateWidget<CTextBlock>("ButtonText");
+
+	Text->SetText(TEXT("공격"));
+	Text->SetTextColor(0, 0, 0, 255);
+	Text->SetPos(100.f, 100.f);
+	Text->SetSize(100.f, 100.f);
+	Text->SetFontSize(20.f);
+	Text->SetAlignH(ETextAlignH::Center);
+	Text->SetAlignV(ETextAlignV::Middle);
+
+	mButtonAttack->SetChild(Text);
 
 	return true;
 }

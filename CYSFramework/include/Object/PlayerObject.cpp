@@ -10,6 +10,8 @@
 #include "../Component/ColliderBase.h"
 #include "../Collision.h"
 #include "../Animation/Animation2D.h"
+#include "../Asset/Animation/Animation2DData.h"
+#include "../Asset/Texture/Texture.h"
 
 #include "../Scene/Scene.h"
 #include "../Scene/Input.h"
@@ -71,16 +73,19 @@ bool CPlayerObject::Init()
 	//mRoot->SetShader("ColorMeshShader");
 
 	mRoot->SetWorldPos(0.f, 0.f, 0.f);
-	mRoot->SetWorldScale(45.f, 80.f, 1.f);
+	mRoot->SetWorldScale(70.f, 120.f, 1.f);
 	SetRootComponent(mRoot);
 
 	mAnimation = mRoot->CreateAnimation2D<CAnimation2D>();
-	mAnimation->AddSequence("KrisIdle", 1.f, 1.f, true, false);
 	mAnimation->AddSequence("KrisWalkRight", 1.f, 1.f, true, false);
 	mAnimation->AddSequence("KrisWalkLeft", 1.f, 1.f, true, false);
 	mAnimation->AddSequence("KrisWalkUp", 1.f, 1.f, true, false);
 	mAnimation->AddSequence("KrisWalkDown", 1.f, 1.f, true, false);
-	mAnimation->AddSequence("KrisAttack", 1.f, 1.f, true, false);
+	mAnimation->AddSequence("KrisAttack", 1.f, 1.f, false, false);
+	mAnimation->AddSequence("KrisIntro", 1.f, 1.f, false, false);
+	mAnimation->AddSequence("KrisItem", 1.f, 1.f, false, false);
+	mAnimation->AddSequence("KrisDefend", 1.f, 1.f, false, false);
+	mAnimation->AddSequence("KrisIdle", 1.f, 1.f, false, false);
 
 	mAnimation->SetEndFunction("KrisAttack", this, &CPlayerObject::AttackEnd);
 	mAnimation->AddNotify("KrisAttack", 1, this, &CPlayerObject::AttackNotify);
@@ -147,6 +152,21 @@ bool CPlayerObject::Init()
 	mScene->GetInput()->AddBindKey("MoveRight", VK_RIGHT);
 	mScene->GetInput()->AddBindFunction("MoveRight", EInputType::Hold, this, &CPlayerObject::MoveRight);
 
+	mScene->GetInput()->AddBindKey("Attack", 'Z');
+	mScene->GetInput()->AddBindFunction("Attack", EInputType::Down, this, &CPlayerObject::Attack);
+
+	mScene->GetInput()->AddBindKey("Intro", 'X');
+	mScene->GetInput()->AddBindFunction("Intro", EInputType::Down, this, &CPlayerObject::Intro);
+
+	mScene->GetInput()->AddBindKey("Item", 'C');
+	mScene->GetInput()->AddBindFunction("Item", EInputType::Down, this, &CPlayerObject::Item);
+
+	mScene->GetInput()->AddBindKey("Defend", 'V');
+	mScene->GetInput()->AddBindFunction("Defend", EInputType::Down, this, &CPlayerObject::Defend);
+
+	mScene->GetInput()->AddBindKey("Idle", 'B');
+	mScene->GetInput()->AddBindFunction("Idle", EInputType::Down, this, &CPlayerObject::Idle);
+
 	// 회전
 	//mScene->GetInput()->AddBindKey("RotationZ", 'E');
 	//mScene->GetInput()->AddBindFunction("RotationZ", EInputType::Hold, this, &CPlayerObject::RotationZ);
@@ -155,8 +175,8 @@ bool CPlayerObject::Init()
 	//mScene->GetInput()->AddBindFunction("RotationInv", EInputType::Hold, this, &CPlayerObject::RotationZInv);
 
 	// 총알 발사
-	mScene->GetInput()->AddBindKey("Fire", VK_SPACE);
-	mScene->GetInput()->AddBindFunction("Fire", EInputType::Down, this, &CPlayerObject::Fire);
+	//mScene->GetInput()->AddBindKey("Fire", VK_SPACE);
+	//mScene->GetInput()->AddBindFunction("Fire", EInputType::Down, this, &CPlayerObject::Fire);
 
 	// 스킬 1 : 차징 총알
 	mScene->GetInput()->AddBindKey("Skill1", '1');
@@ -212,19 +232,80 @@ void CPlayerObject::Update(float DeltaTime)
 	int SusieDelay = 900;
 	int RalseiDelay = 1800;
 
+	size_t TrailSize = mTrail.size();
+
 	// 수지 랄세이 이동
 	if (IsMoving)
 	{
-		size_t TrailSize = mTrail.size();
-
 		if (TrailSize > SusieDelay)
 		{
-			mSusie->SetWorldPos(mTrail[TrailSize - SusieDelay]);
+			FVector3D NewPos = mTrail[TrailSize - SusieDelay];
+			FVector3D OldPos = mSusie->GetWorldPosition();
+			FVector3D Dir = NewPos - OldPos;
+
+			if (Dir.Length() > 0.001f)
+			{
+				// 방향 분석
+				if (fabs(Dir.x) > fabs(Dir.y))
+				{
+					if (Dir.x > 0.f)
+					{
+						mAnimationSusie->ChangeAnimation("SusieWalkRight");
+					}
+					else
+					{
+						mAnimationSusie->ChangeAnimation("SusieWalkLeft");
+					}
+				}
+				else
+				{
+					if (Dir.y > 0.f)
+					{
+						mAnimationSusie->ChangeAnimation("SusieWalkUp");
+					}
+					else
+					{
+						mAnimationSusie->ChangeAnimation("SusieWalkDown");
+					}
+				}
+			}
+
+			mSusie->SetWorldPos(NewPos);
 		}
 
 		if (TrailSize > RalseiDelay)
 		{
-			mRalsei->SetWorldPos(mTrail[TrailSize - RalseiDelay]);
+			FVector3D NewPos = mTrail[TrailSize - RalseiDelay];
+			FVector3D OldPos = mRalsei->GetWorldPosition();
+			FVector3D Dir = NewPos - OldPos;
+
+			if (Dir.Length() > 0.001f)
+			{
+				if (fabs(Dir.x) > fabs(Dir.y))
+				{
+					if (Dir.x > 0.f)
+					{
+						mAnimationRalsei->ChangeAnimation("RalseiWalkRight");
+					}
+					else
+					{
+						mAnimationRalsei->ChangeAnimation("RalseiWalkLeft");
+					}
+				}
+				else
+				{
+					if (Dir.y > 0.f)
+					{
+						mAnimationRalsei->ChangeAnimation("RalseiWalkUp");
+					}
+					else
+					{
+						mAnimationRalsei->ChangeAnimation("RalseiWalkDown");
+					}
+				}
+			}
+
+			mRalsei->SetWorldPos(NewPos);
 		}
 	}
 
@@ -238,10 +319,12 @@ void CPlayerObject::Update(float DeltaTime)
 		}
 	}
 
-	if (mMovement->GetVelocityLength() == 0.f && mAutoBasePose)
-	{
-		mAnimation->ChangeAnimation("None");
-	}
+	//if (mMovement->GetVelocityLength() == 0.f && mAutoBasePose)
+	//{
+	//	mAnimation->ChangeAnimation("None");
+	//	mAnimationSusie->ChangeAnimation("None");
+	//	mAnimationRalsei->ChangeAnimation("None");
+	//}
 
 	// 위성을 돌려주면 된다.
 	//FVector3D Rot = mRotationPivot->GetRelativeRotation();
@@ -338,6 +421,34 @@ void CPlayerObject::RotationZInv(float DeltaTime)
 	//mRootComponent->SetWorldRotationZ(Rot.z + -90.f * DeltaTime);
 
 	mRotation->AddMoveZ(90.f);
+}
+
+void CPlayerObject::Attack(float DeltaTime)
+{
+	mAnimation->ChangeAnimation("KrisAttack");
+}
+
+void CPlayerObject::Intro(float DeltaTime)
+{
+	mAnimation->ChangeAnimation("KrisIntro");
+	mRoot->SetWorldScale(70.f, 120.f);
+}
+
+void CPlayerObject::Item(float DeltaTime)
+{
+	mAnimation->ChangeAnimation("KrisItem");
+}
+
+void CPlayerObject::Defend(float DeltaTime)
+{
+	mAnimation->ChangeAnimation("KrisDefend");
+}
+
+void CPlayerObject::Idle(float DeltaTime)
+{
+	mAnimation->ChangeAnimation("KrisIdle");
+
+	mRoot->SetWorldScale(40.f, 80.f);
 }
 
 void CPlayerObject::Fire(float DeltaTime)
@@ -602,6 +713,9 @@ void CPlayerObject::OnCollisionBegin(const FVector3D& HitPoint, CColliderBase* D
 	const FAABB2D& WallBox = Wall->GetBox();
 
 	float EmptyLine = 2.f;
+	FVector3D Dummy;
+
+	FWallCollisionState& State = mCollisionState[Dest];
 
 	// 왼쪽
 	mLine[0].Start.x = PlayerBox.Min.x;
@@ -609,11 +723,21 @@ void CPlayerObject::OnCollisionBegin(const FVector3D& HitPoint, CColliderBase* D
 	mLine[0].End.x = PlayerBox.Min.x;
 	mLine[0].End.y = PlayerBox.Max.y - EmptyLine;
 
+	if (CCollision::CollisionLine2DToAABB2D(Dummy, mLine[0], WallBox))
+	{
+		State.Left = true;
+	}
+
 	// 위
 	mLine[1].Start.x = PlayerBox.Min.x + EmptyLine;
 	mLine[1].Start.y = PlayerBox.Max.y;
 	mLine[1].End.x = PlayerBox.Max.x - EmptyLine;
 	mLine[1].End.y = PlayerBox.Max.y;
+
+	if (CCollision::CollisionLine2DToAABB2D(Dummy, mLine[1], WallBox))
+	{
+		State.Up = true;
+	}
 
 	// 오른쪽
 	mLine[2].Start.x = PlayerBox.Max.x;
@@ -621,53 +745,65 @@ void CPlayerObject::OnCollisionBegin(const FVector3D& HitPoint, CColliderBase* D
 	mLine[2].End.x = PlayerBox.Max.x;
 	mLine[2].End.y = PlayerBox.Min.y + EmptyLine;
 
-	// 바닥
+	if (CCollision::CollisionLine2DToAABB2D(Dummy, mLine[2], WallBox))
+	{
+		State.Right = true;
+	}
+
+	// 아래
 	mLine[3].Start.x = PlayerBox.Max.x - EmptyLine;
 	mLine[3].Start.y = PlayerBox.Min.y;
 	mLine[3].End.x = PlayerBox.Min.x + EmptyLine;
 	mLine[3].End.y = PlayerBox.Min.y;
 
-	FVector3D LineHitPoint;
-	if (CCollision::CollisionLine2DToAABB2D(LineHitPoint, mLine[0], WallBox))
+	if (CCollision::CollisionLine2DToAABB2D(Dummy, mLine[3], WallBox))
 	{
-		mIsLeftCollision = true;
+		State.Down = true;
 	}
 
-	if (CCollision::CollisionLine2DToAABB2D(LineHitPoint, mLine[1], WallBox))
-	{
-		mIsUpCollision = true;
-	}
-
-	if (CCollision::CollisionLine2DToAABB2D(LineHitPoint, mLine[2], WallBox))
-	{
-		mIsRightCollision = true;
-	}
-
-	if (CCollision::CollisionLine2DToAABB2D(LineHitPoint, mLine[3], WallBox))
-	{
-		mIsDownCollision = true;
-	}
+	// 전체 충돌 상태 갱신
+	UpdateIsCollision();
 }
 
 void CPlayerObject::OnCollisionEnd(CColliderBase* Dest)
 {
-	if (mIsLeftCollision)
+	auto iter = mCollisionState.find(Dest);
+
+	if (iter != mCollisionState.end())
 	{
-		mIsLeftCollision = false;
-	}
-	
-	if (mIsRightCollision)
-	{
-		mIsRightCollision = false;
+		mCollisionState.erase(iter);
 	}
 
-	if (mIsUpCollision)
-	{
-		mIsUpCollision = false;
-	}
+	UpdateIsCollision();
+}
 
-	if (mIsDownCollision)
+
+void CPlayerObject::UpdateIsCollision()
+{
+	mIsLeftCollision = false;
+	mIsRightCollision = false;
+	mIsUpCollision = false;
+	mIsDownCollision = false;
+
+	for (const auto& Pair : mCollisionState)
 	{
-		mIsDownCollision = false;
+		const FWallCollisionState& S = Pair.second;
+
+		if (S.Left)
+		{
+			mIsLeftCollision = true;
+		}
+		if (S.Right)
+		{
+			mIsRightCollision = true;
+		}
+		if (S.Up)
+		{
+			mIsUpCollision = true;
+		}
+		if (S.Down)
+		{
+			mIsDownCollision = true;
+		}
 	}
 }

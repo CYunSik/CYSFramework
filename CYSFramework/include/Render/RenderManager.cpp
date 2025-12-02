@@ -49,8 +49,8 @@ bool CRenderManager::Init()
 	Desc.AddressV = D3D11_TEXTURE_ADDRESS_WRAP;
 	Desc.AddressW = D3D11_TEXTURE_ADDRESS_WRAP;
 
-	//LOD 사용시 필요하다.
-	//우리는 사용안할것이기에 필요없다. 
+	// LOD 사용시 필요하다.
+	// 사용안할것이기에 필요없다. 
 	Desc.MipLODBias = 0.f;
 	Desc.MaxAnisotropy = 1;
 	// 샘플링 비교 함수

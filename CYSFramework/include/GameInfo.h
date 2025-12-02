@@ -30,6 +30,15 @@ extern char gRootPathMultibyte[MAX_PATH];
 #include <d3d11.h>
 #include <d3dcompiler.h>
 
+// DX 2D 헤더
+#include <d2d1.h>
+
+// dwrite 헤더파일
+//#include <dwrite.h>	// 윈도우 7이상 지원
+//#include <dwrite_1.h>	// 윈도우 8이상 지원
+//#include <dwrite_2.h>	// 윈도우 8.1이상 지원
+#include <dwrite_3.h>	// 윈도우 10이상 지원
+
 /*
 	라이브러리를 가져와서 사용하는 방식이다.
 	lib, dll
@@ -50,6 +59,11 @@ extern char gRootPathMultibyte[MAX_PATH];
 #pragma comment(lib, "d3dcompiler.lib")
 // GUID를 사용하기 위해서 필요하다.
 #pragma comment(lib, "dxguid.lib")
+
+// DX 2D 라이브러리
+#pragma comment(lib, "d2d1.lib")
+// 폰트 텍스트 사용하기 위한 라이브러리
+#pragma comment(lib, "dwrite.lib")
 
 // RELEASE 매크로
 #define SAFE_DELETE(p) if(p) { delete p; p = nullptr; }

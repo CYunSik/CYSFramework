@@ -158,6 +158,11 @@ bool CAnimation2D::AddSequence(class CAnimation2DData* Asset, float PlayTime, fl
 	return true;
 }
 
+void CAnimation2D::ResetFrame()
+{
+	mCurrentSequence->mFrame = 0;
+}
+
 void CAnimation2D::SetPlayTime(const std::string& Name, float PlayTime)
 {
 	CAnimation2DSequence* Sequence = FindSequence(Name);

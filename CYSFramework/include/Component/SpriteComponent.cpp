@@ -116,6 +116,14 @@ void CSpriteComponent::SetFlip(bool Flip)
 	mIsFlip = Flip;
 }
 
+const CAnimation2DData& CSpriteComponent::GetCurrentAnimationData()
+{
+	if (mAnimation)
+	{
+		return *mAnimation->mCurrentSequence->GetAnimationAsset();
+	}
+}
+
 bool CSpriteComponent::Init()
 {
 	CSceneComponent::Init();

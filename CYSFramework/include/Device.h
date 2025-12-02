@@ -34,6 +34,17 @@ class CDevice
 	// 깊이 스텐실
 	ID3D11DepthStencilView* mDepthView = nullptr;
 
+	// 폰트용 2D 렌더타겟
+	ID2D1RenderTarget* m2DTarget = nullptr;
+	// 2D 관련 객체를 생성하기 위한 진입점
+	ID2D1Factory* m2DFactory = nullptr;
+
+public:
+	ID2D1RenderTarget* Get2DTarget() const
+	{
+		return m2DTarget;
+	}
+
 
 public:
 	//			hwnd		해상도								 창모드 전체화면 여부

@@ -147,6 +147,9 @@
     <ClCompile Include="Asset\Animation\Animation2DManager.cpp" />
     <ClCompile Include="Asset\Asset.cpp" />
     <ClCompile Include="Asset\AssetManager.cpp" />
+    <ClCompile Include="Asset\Font\Font.cpp" />
+    <ClCompile Include="Asset\Font\FontCollection.cpp" />
+    <ClCompile Include="Asset\Font\FontManager.cpp" />
     <ClCompile Include="Asset\Material\Material.cpp" />
     <ClCompile Include="Asset\Material\MaterialManager.cpp" />
     <ClCompile Include="Asset\Mesh\Mesh.cpp" />
@@ -175,6 +178,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="DeltaRune\JevilBossObject.cpp" />
     <ClCompile Include="DeltaRune\JevilPrisonBG.cpp" />
     <ClCompile Include="DeltaRune\PartyCharacter.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
@@ -245,6 +249,7 @@
     <ClCompile Include="Share\Object.cpp" />
     <ClCompile Include="Share\Timer.cpp" />
     <ClCompile Include="UI\Common\Button.cpp" />
+    <ClCompile Include="UI\Common\TextBlock.cpp" />
     <ClCompile Include="UI\UserWidget\MainWidget.cpp" />
     <ClCompile Include="UI\UserWidget\UserWidget.cpp" />
     <ClCompile Include="UI\UserWidget\WindowWidget.cpp" />
@@ -259,6 +264,9 @@
     <ClInclude Include="Asset\Animation\Animation2DManager.h" />
     <ClInclude Include="Asset\Asset.h" />
     <ClInclude Include="Asset\AssetManager.h" />
+    <ClInclude Include="Asset\Font\Font.h" />
+    <ClInclude Include="Asset\Font\FontCollection.h" />
+    <ClInclude Include="Asset\Font\FontManager.h" />
     <ClInclude Include="Asset\Material\Material.h" />
     <ClInclude Include="Asset\Material\MaterialManager.h" />
     <ClInclude Include="Asset\Mesh\Mesh.h" />
@@ -296,6 +304,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="DeltaRune\JevilBossObject.h" />
     <ClInclude Include="DeltaRune\JevilPrisonBG.h" />
     <ClInclude Include="DeltaRune\PartyCharacter.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
@@ -370,6 +379,7 @@
     <ClInclude Include="Share\SharedPtr.h" />
     <ClInclude Include="Share\Timer.h" />
     <ClInclude Include="UI\Common\Button.h" />
+    <ClInclude Include="UI\Common\TextBlock.h" />
     <ClInclude Include="UI\UIInfo.h" />
     <ClInclude Include="UI\UserWidget\MainWidget.h" />
     <ClInclude Include="UI\UserWidget\UserWidget.h" />

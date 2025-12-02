@@ -2,6 +2,22 @@
 #include "SceneObject.h"
 #include "../Component/SpriteComponent.h"
 
+enum class EMoveDir
+{
+	None,
+	Left,
+	Right,
+	Up,
+	Down
+};
+
+struct FWallCollisionState
+{
+	bool Left = false;
+	bool Right = false;
+	bool Up = false;
+	bool Down = false;
+};
 
 class CPlayerObject : public CSceneObject
 {
@@ -23,6 +39,8 @@ protected:
 	// 플레이어 AABB의 4개 면을 Line2D로 생성
 	FLine2D mLine[4];
 
+	std::map<class CColliderBase*, FWallCollisionState> mCollisionState;
+
 	// 방향키로 움직일때 충돌여부
 	bool mIsLeftCollision = false;
 	bool mIsRightCollision = false;
@@ -34,6 +52,9 @@ protected:
 
 	CSharedPtr<class CSpriteComponent> mSusie;
 	CSharedPtr<class CSpriteComponent> mRalsei;
+
+	// 캐릭터 방향
+	EMoveDir mCurrentDir = EMoveDir::None;
 
 	// Trail
 	std::vector<FVector3D> mTrail;
@@ -102,6 +123,16 @@ public:
 		mRalsei = Sprite;
 	}
 
+	void SetSusieAnimation(class CAnimation2D* Anim)
+	{
+		mAnimationSusie = Anim;
+	}
+
+	void SetRalseiAnimation(class CAnimation2D* Anim)
+	{
+		mAnimationRalsei = Anim;
+	}
+
 
 private:
 	void MoveUp(float DeltaTime);
@@ -111,6 +142,12 @@ private:
 
 	void RotationZ(float DeltaTime);
 	void RotationZInv(float DeltaTime);
+
+	void Attack(float DeltaTime);
+	void Intro(float DeltaTime);
+	void Item(float DeltaTime);
+	void Defend(float DeltaTime);
+	void Idle(float DeltaTime);
 
 	void Fire(float DeltaTime);
 	
@@ -151,4 +188,6 @@ private:
 	// 충돌 바인드 함수
 	void OnCollisionBegin(const FVector3D& HitPoint, class CColliderBase* Dest);
 	void OnCollisionEnd(class CColliderBase* Dest);
+
+	void UpdateIsCollision();
 };

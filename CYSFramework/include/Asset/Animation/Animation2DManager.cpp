@@ -77,21 +77,85 @@ bool CAnimation2DManager::Init()
 	SetTexture("KrisWalkDown", "KrisWalkDown", FileNames);
 	AddFrameCount("KrisWalkDown", 4, 0.f, 0.f, 19.f, 38.f);
 
+	// 플레이어 Idle
+	CreateAnimation("KrisIdle");
+	SetAnimationTextureType("KrisIdle", EAnimationTextureType::Frame);
+	FileNames.clear();
+	FileNames.emplace_back(TEXT("Texture/Kris/spr_krisb_idle/spr_krisb_idle_0.png"));
+	FileNames.emplace_back(TEXT("Texture/Kris/spr_krisb_idle/spr_krisb_idle_1.png"));
+	FileNames.emplace_back(TEXT("Texture/Kris/spr_krisb_idle/spr_krisb_idle_2.png"));
+	FileNames.emplace_back(TEXT("Texture/Kris/spr_krisb_idle/spr_krisb_idle_3.png"));
+	FileNames.emplace_back(TEXT("Texture/Kris/spr_krisb_idle/spr_krisb_idle_4.png"));
+	FileNames.emplace_back(TEXT("Texture/Kris/spr_krisb_idle/spr_krisb_idle_5.png"));
+
+	SetTexture("KrisIdle", "KrisIdle", FileNames);
+	AddFrameCount("KrisIdle", 6, 0.f, 0.f, 36.f, 38.f);
+
 	// 플레이어 공격
 	CreateAnimation("KrisAttack");
 	SetAnimationTextureType("KrisAttack", EAnimationTextureType::Frame);
 	FileNames.clear();
-	FileNames.emplace_back(TEXT("Texture/Player/spr_krisb_attack/spr_krisb_attack_old_ch1_0.png"));
-	FileNames.emplace_back(TEXT("Texture/Player/spr_krisb_attack/spr_krisb_attack_old_ch1_1.png"));
-	FileNames.emplace_back(TEXT("Texture/Player/spr_krisb_attack/spr_krisb_attack_old_ch1_2.png"));
-	FileNames.emplace_back(TEXT("Texture/Player/spr_krisb_attack/spr_krisb_attack_old_ch1_3.png"));
-	FileNames.emplace_back(TEXT("Texture/Player/spr_krisb_attack/spr_krisb_attack_old_ch1_4.png"));
-	FileNames.emplace_back(TEXT("Texture/Player/spr_krisb_attack/spr_krisb_attack_old_ch1_5.png"));
-	FileNames.emplace_back(TEXT("Texture/Player/spr_krisb_attack/spr_krisb_attack_old_ch1_6.png"));
-	FileNames.emplace_back(TEXT("Texture/Player/spr_krisb_attack/spr_krisb_attack_old_ch1_7.png"));
+	FileNames.emplace_back(TEXT("Texture/Kris/spr_krisb_attack/spr_krisb_attack_old_ch1_0.png"));
+	FileNames.emplace_back(TEXT("Texture/Kris/spr_krisb_attack/spr_krisb_attack_old_ch1_1.png"));
+	FileNames.emplace_back(TEXT("Texture/Kris/spr_krisb_attack/spr_krisb_attack_old_ch1_2.png"));
+	FileNames.emplace_back(TEXT("Texture/Kris/spr_krisb_attack/spr_krisb_attack_old_ch1_3.png"));
+	FileNames.emplace_back(TEXT("Texture/Kris/spr_krisb_attack/spr_krisb_attack_old_ch1_4.png"));
+	FileNames.emplace_back(TEXT("Texture/Kris/spr_krisb_attack/spr_krisb_attack_old_ch1_5.png"));
+	FileNames.emplace_back(TEXT("Texture/Kris/spr_krisb_attack/spr_krisb_attack_old_ch1_6.png"));
+	FileNames.emplace_back(TEXT("Texture/Kris/spr_krisb_attack/spr_krisb_attack_old_ch1_7.png"));
 
 	SetTexture("KrisAttack", "KrisAttack", FileNames);
 	AddFrameCount("KrisAttack", 8, 0.f, 0.f, 63.f, 50.f);
+
+	// 플레이어 인트로
+	CreateAnimation("KrisIntro");
+	SetAnimationTextureType("KrisIntro", EAnimationTextureType::Frame);
+	FileNames.clear();
+	FileNames.emplace_back(TEXT("Texture/Kris/spr_krisb_intro/spr_krisb_intro_ch1_0.png"));
+	FileNames.emplace_back(TEXT("Texture/Kris/spr_krisb_intro/spr_krisb_intro_ch1_1.png"));
+	FileNames.emplace_back(TEXT("Texture/Kris/spr_krisb_intro/spr_krisb_intro_ch1_2.png"));
+	FileNames.emplace_back(TEXT("Texture/Kris/spr_krisb_intro/spr_krisb_intro_ch1_3.png"));
+	FileNames.emplace_back(TEXT("Texture/Kris/spr_krisb_intro/spr_krisb_intro_ch1_4.png"));
+	FileNames.emplace_back(TEXT("Texture/Kris/spr_krisb_intro/spr_krisb_intro_ch1_5.png"));
+	FileNames.emplace_back(TEXT("Texture/Kris/spr_krisb_intro/spr_krisb_intro_ch1_6.png"));
+	FileNames.emplace_back(TEXT("Texture/Kris/spr_krisb_intro/spr_krisb_intro_ch1_7.png"));
+	FileNames.emplace_back(TEXT("Texture/Kris/spr_krisb_intro/spr_krisb_intro_ch1_8.png"));
+	FileNames.emplace_back(TEXT("Texture/Kris/spr_krisb_intro/spr_krisb_intro_ch1_9.png"));
+	FileNames.emplace_back(TEXT("Texture/Kris/spr_krisb_intro/spr_krisb_intro_ch1_10.png"));
+	FileNames.emplace_back(TEXT("Texture/Kris/spr_krisb_intro/spr_krisb_intro_ch1_11.png"));
+
+	SetTexture("KrisIntro", "KrisIntro", FileNames);
+	AddFrameCount("KrisIntro", 12, 0.f, 0.f, 66.f, 47.f);
+
+	// 플레이어 아이템
+	CreateAnimation("KrisItem");
+	SetAnimationTextureType("KrisItem", EAnimationTextureType::Frame);
+	FileNames.clear();
+	FileNames.emplace_back(TEXT("Texture/Kris/spr_krisb_item/spr_krisb_item_ch1_0.png"));
+	FileNames.emplace_back(TEXT("Texture/Kris/spr_krisb_item/spr_krisb_item_ch1_1.png"));
+	FileNames.emplace_back(TEXT("Texture/Kris/spr_krisb_item/spr_krisb_item_ch1_2.png"));
+	FileNames.emplace_back(TEXT("Texture/Kris/spr_krisb_item/spr_krisb_item_ch1_3.png"));
+	FileNames.emplace_back(TEXT("Texture/Kris/spr_krisb_item/spr_krisb_item_ch1_4.png"));
+	FileNames.emplace_back(TEXT("Texture/Kris/spr_krisb_item/spr_krisb_item_ch1_5.png"));
+	FileNames.emplace_back(TEXT("Texture/Kris/spr_krisb_item/spr_krisb_item_ch1_6.png"));
+
+	SetTexture("KrisItem", "KrisItem", FileNames);
+	AddFrameCount("KrisItem", 7, 0.f, 0.f, 63.f, 44.f);
+
+	// 플레이어 디펜스
+	CreateAnimation("KrisDefend");
+	SetAnimationTextureType("KrisDefend", EAnimationTextureType::Frame);
+	FileNames.clear();
+	FileNames.emplace_back(TEXT("Texture/Kris/spr_krisb_defend/spr_krisb_defend_0.png"));
+	FileNames.emplace_back(TEXT("Texture/Kris/spr_krisb_defend/spr_krisb_defend_1.png"));
+	FileNames.emplace_back(TEXT("Texture/Kris/spr_krisb_defend/spr_krisb_defend_2.png"));
+	FileNames.emplace_back(TEXT("Texture/Kris/spr_krisb_defend/spr_krisb_defend_3.png"));
+	FileNames.emplace_back(TEXT("Texture/Kris/spr_krisb_defend/spr_krisb_defend_4.png"));
+	FileNames.emplace_back(TEXT("Texture/Kris/spr_krisb_defend/spr_krisb_defend_5.png"));
+
+	SetTexture("KrisDefend", "KrisDefend", FileNames);
+	AddFrameCount("KrisDefend", 6, 0.f, 0.f, 35.f, 40.f);
+
 
 	// 플레이어 공격 이펙트
 	CreateAnimation("AttackEffect");
@@ -109,6 +173,7 @@ bool CAnimation2DManager::Init()
 	SetTexture("AttackEffect", "AttackEffect", FileNames);
 	AddFrameCount("AttackEffect", 8, 0.f, 0.f, 44.f, 45.f);
 
+	//////////////////////////////////////////////////////////////////////////////////////////////////////
 	// 수지 오른쪽 이동
 	CreateAnimation("SusieWalkRight");
 	SetAnimationTextureType("SusieWalkRight", EAnimationTextureType::Frame);
@@ -121,6 +186,43 @@ bool CAnimation2DManager::Init()
 	SetTexture("SusieWalkRight", "SusieWalkRight", FileNames);
 	AddFrameCount("SusieWalkRight", 4, 0.f, 0.f, 25.f, 46.f);
 
+	// 수지 왼쪽 이동
+	CreateAnimation("SusieWalkLeft");
+	SetAnimationTextureType("SusieWalkLeft", EAnimationTextureType::Frame);
+	FileNames.clear();
+	FileNames.emplace_back(TEXT("Texture/Susie/spr_susiel_dark/spr_susiel_dark_0.png"));
+	FileNames.emplace_back(TEXT("Texture/Susie/spr_susiel_dark/spr_susiel_dark_1.png"));
+	FileNames.emplace_back(TEXT("Texture/Susie/spr_susiel_dark/spr_susiel_dark_2.png"));
+	FileNames.emplace_back(TEXT("Texture/Susie/spr_susiel_dark/spr_susiel_dark_3.png"));
+
+	SetTexture("SusieWalkLeft", "SusieWalkLeft", FileNames);
+	AddFrameCount("SusieWalkLeft", 4, 0.f, 0.f, 25.f, 46.f);
+
+	// 수지 위로 이동
+	CreateAnimation("SusieWalkUp");
+	SetAnimationTextureType("SusieWalkUp", EAnimationTextureType::Frame);
+	FileNames.clear();
+	FileNames.emplace_back(TEXT("Texture/Susie/spr_susieu_dark/spr_susieu_dark_0.png"));
+	FileNames.emplace_back(TEXT("Texture/Susie/spr_susieu_dark/spr_susieu_dark_1.png"));
+	FileNames.emplace_back(TEXT("Texture/Susie/spr_susieu_dark/spr_susieu_dark_2.png"));
+	FileNames.emplace_back(TEXT("Texture/Susie/spr_susieu_dark/spr_susieu_dark_3.png"));
+
+	SetTexture("SusieWalkUp", "SusieWalkUp", FileNames);
+	AddFrameCount("SusieWalkUp", 4, 0.f, 0.f, 26.f, 46.f);
+
+	// 수지 아래로 이동
+	CreateAnimation("SusieWalkDown");
+	SetAnimationTextureType("SusieWalkDown", EAnimationTextureType::Frame);
+	FileNames.clear();
+	FileNames.emplace_back(TEXT("Texture/Susie/spr_susied_dark/spr_susied_dark_0.png"));
+	FileNames.emplace_back(TEXT("Texture/Susie/spr_susied_dark/spr_susied_dark_1.png"));
+	FileNames.emplace_back(TEXT("Texture/Susie/spr_susied_dark/spr_susied_dark_2.png"));
+	FileNames.emplace_back(TEXT("Texture/Susie/spr_susied_dark/spr_susied_dark_3.png"));
+
+	SetTexture("SusieWalkDown", "SusieWalkDown", FileNames);
+	AddFrameCount("SusieWalkDown", 4, 0.f, 0.f, 26.f, 46.f);
+
+	//////////////////////////////////////////////////////////////////////////////////////////////////////
 	// 랄세이 오른쪽 이동
 	CreateAnimation("RalseiWalkRight");
 	SetAnimationTextureType("RalseiWalkRight", EAnimationTextureType::Frame);
@@ -132,6 +234,86 @@ bool CAnimation2DManager::Init()
 
 	SetTexture("RalseiWalkRight", "RalseiWalkRight", FileNames);
 	AddFrameCount("RalseiWalkRight", 4, 0.f, 0.f, 23.f, 44.f);
+
+	// 랄세이 왼쪽 이동
+	CreateAnimation("RalseiWalkLeft");
+	SetAnimationTextureType("RalseiWalkLeft", EAnimationTextureType::Frame);
+	FileNames.clear();
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseil/spr_ralseil_0.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseil/spr_ralseil_1.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseil/spr_ralseil_2.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseil/spr_ralseil_3.png"));
+														   
+	SetTexture("RalseiWalkLeft", "RalseiWalkLeft", FileNames);
+	AddFrameCount("RalseiWalkLeft", 4, 0.f, 0.f, 23.f, 44.f);
+
+	// 랄세이 위로 이동
+	CreateAnimation("RalseiWalkUp");
+	SetAnimationTextureType("RalseiWalkUp", EAnimationTextureType::Frame);
+	FileNames.clear();
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseiu/spr_ralseiu_0.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseiu/spr_ralseiu_1.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseiu/spr_ralseiu_2.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseiu/spr_ralseiu_3.png"));
+
+	SetTexture("RalseiWalkUp", "RalseiWalkUp", FileNames);
+	AddFrameCount("RalseiWalkUp", 4, 0.f, 0.f, 23.f, 44.f);
+
+	// 랄세이 아래로 이동
+	CreateAnimation("RalseiWalkDown");
+	SetAnimationTextureType("RalseiWalkDown", EAnimationTextureType::Frame);
+	FileNames.clear();
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseid/spr_ralseid_0.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseid/spr_ralseid_1.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseid/spr_ralseid_2.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseid/spr_ralseid_3.png"));
+
+	SetTexture("RalseiWalkDown", "RalseiWalkDown", FileNames);
+	AddFrameCount("RalseiWalkDown", 4, 0.f, 0.f, 23.f, 44.f);
+
+	//////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	// 제빌 메인
+	CreateAnimation("JevilMain");
+	SetAnimationTextureType("JevilMain", EAnimationTextureType::Frame);
+	FileNames.clear();
+	FileNames.emplace_back(TEXT("Texture/Jevil/spr_joker_main/spr_joker_main_0.png"));
+	FileNames.emplace_back(TEXT("Texture/Jevil/spr_joker_main/spr_joker_main_1.png"));
+
+	SetTexture("JevilMain", "JevilMain", FileNames);
+	AddFrameCount("JevilMain", 2, 0.f, 0.f, 42.f, 41.f);
+
+	// 제빌 댄스
+	CreateAnimation("JevilDance");
+	SetAnimationTextureType("JevilDance", EAnimationTextureType::Frame);
+	FileNames.clear();
+	FileNames.emplace_back(TEXT("Texture/Jevil/spr_joker_dance_ch1/spr_joker_dance_ch1_0.png"));
+	FileNames.emplace_back(TEXT("Texture/Jevil/spr_joker_dance_ch1/spr_joker_dance_ch1_1.png"));
+	FileNames.emplace_back(TEXT("Texture/Jevil/spr_joker_dance_ch1/spr_joker_dance_ch1_2.png"));
+	FileNames.emplace_back(TEXT("Texture/Jevil/spr_joker_dance_ch1/spr_joker_dance_ch1_3.png"));
+	FileNames.emplace_back(TEXT("Texture/Jevil/spr_joker_dance_ch1/spr_joker_dance_ch1_4.png"));
+	FileNames.emplace_back(TEXT("Texture/Jevil/spr_joker_dance_ch1/spr_joker_dance_ch1_5.png"));
+	FileNames.emplace_back(TEXT("Texture/Jevil/spr_joker_dance_ch1/spr_joker_dance_ch1_6.png"));
+	FileNames.emplace_back(TEXT("Texture/Jevil/spr_joker_dance_ch1/spr_joker_dance_ch1_7.png"));
+
+	SetTexture("JevilDance", "JevilDance", FileNames);
+	AddFrameCount("JevilDance", 8, 0.f, 0.f, 46.f, 48.f);
+
+	// 제빌 댄스 리버스
+	CreateAnimation("JevilDanceReverse");
+	SetAnimationTextureType("JevilDanceReverse", EAnimationTextureType::Frame);
+	FileNames.clear();
+	FileNames.emplace_back(TEXT("Texture/Jevil/spr_joker_dance_reverse_ch1/spr_joker_dance_reverse_ch1_0.png"));
+	FileNames.emplace_back(TEXT("Texture/Jevil/spr_joker_dance_reverse_ch1/spr_joker_dance_reverse_ch1_1.png"));
+	FileNames.emplace_back(TEXT("Texture/Jevil/spr_joker_dance_reverse_ch1/spr_joker_dance_reverse_ch1_2.png"));
+	FileNames.emplace_back(TEXT("Texture/Jevil/spr_joker_dance_reverse_ch1/spr_joker_dance_reverse_ch1_3.png"));
+	FileNames.emplace_back(TEXT("Texture/Jevil/spr_joker_dance_reverse_ch1/spr_joker_dance_reverse_ch1_4.png"));
+	FileNames.emplace_back(TEXT("Texture/Jevil/spr_joker_dance_reverse_ch1/spr_joker_dance_reverse_ch1_5.png"));
+	FileNames.emplace_back(TEXT("Texture/Jevil/spr_joker_dance_reverse_ch1/spr_joker_dance_reverse_ch1_6.png"));
+	FileNames.emplace_back(TEXT("Texture/Jevil/spr_joker_dance_reverse_ch1/spr_joker_dance_reverse_ch1_7.png"));
+
+	SetTexture("JevilDanceReverse", "JevilDanceReverse", FileNames);
+	AddFrameCount("JevilDanceReverse", 8, 0.f, 0.f, 46.f, 48.f);
 
 	// 제빌 배경
 	CreateAnimation("JevilCarousel");
@@ -152,11 +334,25 @@ bool CAnimation2DManager::Init()
 	CreateAnimation("ClubBoom");
 	SetAnimationTextureType("ClubBoom", EAnimationTextureType::Frame);
 	FileNames.clear();
-	FileNames.emplace_back(TEXT("Texture/Player/spr_bomb_club_ch1_0.png"));
-	FileNames.emplace_back(TEXT("Texture/Player/spr_bomb_club_ch1_1.png"));
+	FileNames.emplace_back(TEXT("Texture/spr_bomb_club_ch1_0.png"));
+	FileNames.emplace_back(TEXT("Texture/spr_bomb_club_ch1_1.png"));
 
 	SetTexture("ClubBoom", "ClubBoom", FileNames);
 	AddFrameCount("ClubBoom", 2, 0.f, 0.f, 23.f, 23.f);
+
+	// 제빌 폭탄 터지는 효과
+	CreateAnimation("Boom");
+	SetAnimationTextureType("Boom", EAnimationTextureType::Frame);
+	FileNames.clear();
+	FileNames.emplace_back(TEXT("Texture/Boom/Boom6.png"));
+	FileNames.emplace_back(TEXT("Texture/Boom/Boom5.png"));
+	FileNames.emplace_back(TEXT("Texture/Boom/Boom4.png"));
+	FileNames.emplace_back(TEXT("Texture/Boom/Boom3.png"));
+	FileNames.emplace_back(TEXT("Texture/Boom/Boom2.png"));
+	FileNames.emplace_back(TEXT("Texture/Boom/Boom1.png"));
+
+	SetTexture("Boom", "Boom", FileNames);
+	AddFrameCount("Boom", 6, 0.f, 0.f, 75.f, 76.f);
 
 	// 전투 외곽 테스트
 	CreateAnimation("BattleFrame");

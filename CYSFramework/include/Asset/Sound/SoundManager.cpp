@@ -57,11 +57,11 @@ bool CSoundManager::Init()
 	CreateChannelGroup("UI");
 
 	// 사운드 불러오기
-	LoadSound("SceneMainBGM", "BGM", true, "Sound/MainBgm.mp3");
+	LoadSound("JevilPrisonBGM", "BGM", true, "Sound/BGM/The Circus.mp3");
 	LoadSound("Effect1", "Effect", false, "Sound/MainBgm.mp3");
 
 	// 사운드 플레이
-	Play("SceneMainBGM");
+	Play("JevilPrisonBGM");
 	//Play("Effect1");
 
 	SetGroupVolume("BGM", 10);

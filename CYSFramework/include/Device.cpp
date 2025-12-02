@@ -7,6 +7,10 @@ CDevice::CDevice()
 
 CDevice::~CDevice()
 {
+	// 폰트 해제
+	SAFE_RELEASE(m2DFactory);
+	SAFE_RELEASE(m2DTarget);
+
 	SAFE_RELEASE(mTargetView);
 	SAFE_RELEASE(mDepthView);
 	SAFE_RELEASE(mSwapChain);
@@ -216,7 +220,37 @@ bool CDevice::Init(HWND hWnd, unsigned int Width, unsigned int Height, bool Wind
 
 	mContext->RSSetViewports(1, &VP);
 
+	//////////////////////////////////////////////////////////////////////
+	// Font 출력을 위한 2D 초기화
 
+	// D2D1_FACTORY_TYPE_SINGLE_THREADED : 싱글 스레드 환경
+	// D2D1_FACTORY_TYPE_MULTI_THREADED : 멀티 스레드 환경
+	if (FAILED(D2D1CreateFactory(D2D1_FACTORY_TYPE_MULTI_THREADED, &m2DFactory)))
+	{
+		return false;
+	}
+
+	// 픽셀을 저장하는 모든 객체는 Surface라는것을 들고있다.
+	// D3D 렌더타켓이랑 D2D 렌더타겟을 연결 해줘야한다.
+	IDXGISurface* BackSurface = nullptr;
+
+	// D3D Surface를 얻어온다.
+	mSwapChain->GetBuffer(0, IID_PPV_ARGS(&BackSurface));
+
+	// D2D 용 렌더타켓을 만든다.
+	// 1. D2D렌더타켓 프로퍼티 지정
+	// GPU를 사용하고, RGB 포멧은 기본, 알파는 더해준다.
+	D2D1_RENDER_TARGET_PROPERTIES prop =
+		D2D1::RenderTargetProperties(D2D1_RENDER_TARGET_TYPE_HARDWARE,
+			D2D1::PixelFormat(DXGI_FORMAT_UNKNOWN, D2D1_ALPHA_MODE_PREMULTIPLIED));
+
+	if (FAILED(m2DFactory->CreateDxgiSurfaceRenderTarget(BackSurface, prop, &m2DTarget)))
+	{
+		SAFE_RELEASE(BackSurface);
+		return false;
+	}
+
+	SAFE_RELEASE(BackSurface);
 
 	return true;
 }

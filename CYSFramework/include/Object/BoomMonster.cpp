@@ -31,7 +31,7 @@ bool CBoomMonster::Init()
 		return false;
 	}
 
-	mRoot->SetTexture("ClubBoom", TEXT("Texture/spr_bomb_club_ch1_0.png"), 0);
+	//mRoot->SetTexture("ClubBoom", TEXT("Texture/spr_bomb_club_ch1_0.png"), 0);
 	mRoot->SetTint(1.f, 1.f, 1.f);
 	mRoot->SetPivot(0.5f, 0.5f);
 	mRoot->SetOpacity(1.f);
@@ -39,8 +39,9 @@ bool CBoomMonster::Init()
 	mRoot->SetWorldScale(50.f, 50.f, 1.f);
 	SetRootComponent(mRoot);
 
-	//mAnimation = mRoot->CreateAnimation2D<CAnimation2D>();
-	//mAnimation->AddSequence("ClubBoom", 1.f, 1.f, true, false);
+	mAnimation = mRoot->CreateAnimation2D<CAnimation2D>();
+	mAnimation->AddSequence("ClubBoom", 0.1f, 1.f, true, false);
+	mAnimation->AddSequence("Boom", 1.f, 1.f, false, false);
 
 	SetTarget(mScene->FindObjectFromType<CPlayerObject>());
 
@@ -55,7 +56,7 @@ void CBoomMonster::Update(float DeltaTime)
 
 	FVector3D Pos = mRoot->GetWorldPosition();
 	FVector3D Dir = mRoot->GetAxis(EAxis::Y) * -1;
-	FVector3D NewPos = Pos + Dir * 300.f * DeltaTime;
+	FVector3D NewPos = Pos + Dir * 400.f * DeltaTime;
 	mRoot->SetWorldPos(NewPos);
 
 	if (mDownTime <= 0.f)
@@ -68,7 +69,7 @@ void CBoomMonster::Update(float DeltaTime)
 			CBulletObject* Bullet = mScene->CreateObj<CBulletObject>("Bullet");
 			Bullet->SetBulletCollisionProfile("MonsterAttack");
 
-			Bullet->SetWorldScale(30.f, 30.f);
+			Bullet->SetWorldScale(50.f, 50.f);
 			Bullet->SetWorldRotation(GetWorldRotation());
 			Bullet->SetWorldPos(GetWorldPosition());
 			Bullet->AddWorldRotationZ(AngleOffSet);

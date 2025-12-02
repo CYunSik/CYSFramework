@@ -49,6 +49,8 @@ public:
 
 	bool AddSequence(class CAnimation2DData* Asset, float PlayTime = 1.f, float PlayRate = 1.f, bool Loop = false, bool Reverse = false);
 
+	void ResetFrame();
+
 	// Setter
 	void SetPlayTime(const std::string& Name, float PlayTime);
 	void SetPlayRate(const std::string& Name, float PlayRate);

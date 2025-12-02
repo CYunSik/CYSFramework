@@ -7,6 +7,7 @@
 #include "Material/MaterialManager.h"
 #include "Animation/Animation2DManager.h"
 #include "Sound/SoundManager.h"
+#include "Font/FontManager.h"
 
 CAssetManager::CAssetManager()
 {
@@ -15,6 +16,7 @@ CAssetManager::CAssetManager()
 
 CAssetManager::~CAssetManager()
 {
+	SAFE_DELETE(mFontManager);
 	SAFE_DELETE(mAnimation2DManager);
 	SAFE_DELETE(mMeshManager);
 	SAFE_DELETE(mMaterialManager);
@@ -92,6 +94,15 @@ bool CAssetManager::Init()
 	if (!mSoundManager->Init())
 	{
 		SAFE_DELETE(mSoundManager);
+		return false;
+	}
+
+	// 폰트
+	mFontManager = new CFontManager;
+
+	if (!mFontManager->Init())
+	{
+		SAFE_DELETE(mFontManager);
 		return false;
 	}
 

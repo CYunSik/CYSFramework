@@ -187,6 +187,9 @@
     <Filter Include="04.Shader\03.ConstantBuffer\06.UI">
       <UniqueIdentifier>{a2eb56ea-fbf8-49dc-953c-a648f5ab4c04}</UniqueIdentifier>
     </Filter>
+    <Filter Include="03.Asset\06.Font">
+      <UniqueIdentifier>{460d6c42-61f5-4e2b-b899-2d52ade944dd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -482,6 +485,21 @@
     </ClCompile>
     <ClCompile Include="Shader\UICBuffer.cpp">
       <Filter>04.Shader\03.ConstantBuffer\06.UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Asset\Font\Font.cpp">
+      <Filter>03.Asset\06.Font</Filter>
+    </ClCompile>
+    <ClCompile Include="Asset\Font\FontManager.cpp">
+      <Filter>03.Asset\06.Font</Filter>
+    </ClCompile>
+    <ClCompile Include="Asset\Font\FontCollection.cpp">
+      <Filter>03.Asset\06.Font</Filter>
+    </ClCompile>
+    <ClCompile Include="DeltaRune\JevilBossObject.cpp">
+      <Filter>DeltaRune</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Common\TextBlock.cpp">
+      <Filter>10.UI\01.Common</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -823,6 +841,21 @@
     </ClInclude>
     <ClInclude Include="Shader\UICBuffer.h">
       <Filter>04.Shader\03.ConstantBuffer\06.UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Asset\Font\Font.h">
+      <Filter>03.Asset\06.Font</Filter>
+    </ClInclude>
+    <ClInclude Include="Asset\Font\FontManager.h">
+      <Filter>03.Asset\06.Font</Filter>
+    </ClInclude>
+    <ClInclude Include="Asset\Font\FontCollection.h">
+      <Filter>03.Asset\06.Font</Filter>
+    </ClInclude>
+    <ClInclude Include="DeltaRune\JevilBossObject.h">
+      <Filter>DeltaRune</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Common\TextBlock.h">
+      <Filter>10.UI\01.Common</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
