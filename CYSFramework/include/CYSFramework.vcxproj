@@ -227,6 +227,7 @@
     <ClCompile Include="Scene\SceneCollision.cpp" />
     <ClCompile Include="Scene\SceneMain.cpp" />
     <ClCompile Include="Scene\SceneManager.cpp" />
+    <ClCompile Include="Scene\SceneStart.cpp" />
     <ClCompile Include="Scene\SceneUIManager.cpp" />
     <ClCompile Include="Shader\Animation2DCBuffer.cpp" />
     <ClCompile Include="Shader\ColliderCBuffer.cpp" />
@@ -249,8 +250,10 @@
     <ClCompile Include="Share\Object.cpp" />
     <ClCompile Include="Share\Timer.cpp" />
     <ClCompile Include="UI\Common\Button.cpp" />
+    <ClCompile Include="UI\Common\Image.cpp" />
     <ClCompile Include="UI\Common\TextBlock.cpp" />
     <ClCompile Include="UI\UserWidget\MainWidget.cpp" />
+    <ClCompile Include="UI\UserWidget\StartWidget.cpp" />
     <ClCompile Include="UI\UserWidget\UserWidget.cpp" />
     <ClCompile Include="UI\UserWidget\WindowWidget.cpp" />
     <ClCompile Include="UI\Widget.cpp" />
@@ -355,6 +358,7 @@
     <ClInclude Include="Scene\SceneCollision.h" />
     <ClInclude Include="Scene\SceneMain.h" />
     <ClInclude Include="Scene\SceneManager.h" />
+    <ClInclude Include="Scene\SceneStart.h" />
     <ClInclude Include="Scene\SceneUIManager.h" />
     <ClInclude Include="Shader\Animation2DCBuffer.h" />
     <ClInclude Include="Shader\CBufferContainer.h" />
@@ -379,9 +383,11 @@
     <ClInclude Include="Share\SharedPtr.h" />
     <ClInclude Include="Share\Timer.h" />
     <ClInclude Include="UI\Common\Button.h" />
+    <ClInclude Include="UI\Common\Image.h" />
     <ClInclude Include="UI\Common\TextBlock.h" />
     <ClInclude Include="UI\UIInfo.h" />
     <ClInclude Include="UI\UserWidget\MainWidget.h" />
+    <ClInclude Include="UI\UserWidget\StartWidget.h" />
     <ClInclude Include="UI\UserWidget\UserWidget.h" />
     <ClInclude Include="UI\UserWidget\WindowWidget.h" />
     <ClInclude Include="UI\Widget.h" />

@@ -45,7 +45,7 @@ void CUserWidget::Render()
 	CWidget::Render();
 
 	// 그려줄 위젯 정렬
-	if (mWidgetList.size() > 2)
+	if (mWidgetList.size() >= 2)
 	{
 		// vector
 		// Z오더는 숫자가 클수록 나중에 그려진다.
@@ -114,10 +114,10 @@ bool CUserWidget::CollisionMouse(CWidget** Result, const FVector2D& MousePos)
 
 bool CUserWidget::SortCollision(const CSharedPtr<CWidget>& Src, const CSharedPtr<CWidget>& Dest)
 {
-	return Src->GetZOrder() < Dest->GetZOrder();
+	return Src->GetZOrder() > Dest->GetZOrder();
 }
 
 bool CUserWidget::SortRender(const CSharedPtr<CWidget>& Src, const CSharedPtr<CWidget>& Dest)
 {
-	return Src->GetZOrder() > Dest->GetZOrder();
+	return Src->GetZOrder() < Dest->GetZOrder();
 }

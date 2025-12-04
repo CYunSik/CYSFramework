@@ -15,7 +15,7 @@ private:
 
 	// 배경색
 	// 개발중일때는 검정색 비추
-	float mClearColor[4] = { 0.f, 1.f, 1.f, 1.f };
+	float mClearColor[4] = { 0.f, 0.f, 0.f, 1.f };
 
 public:
 	HINSTANCE GetWindowInstance() const

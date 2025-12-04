@@ -31,7 +31,7 @@ bool CFontManager::Init()
 	}
 
 	// 폰트 불러오기
-	LoadFontCollection("Default", TEXT("Font\\YoonDesignWebDotum.ttf"));
+	LoadFontCollection("Default", TEXT("Font\\DeltaruneKR13.ttf"));
 
 	// 폰트 정보를 넣어준다
 

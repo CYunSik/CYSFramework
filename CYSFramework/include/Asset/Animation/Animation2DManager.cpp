@@ -28,11 +28,24 @@ bool CAnimation2DManager::Init()
 		AddFrame("PlayerIdle", i * 200.f, 0.f, 200.f, 200.f);
 	}
 
+	// 스타트화면 애니메이션
+	CreateAnimation("StartBGAnimation");
+	SetAnimationTextureType("StartBGAnimation", EAnimationTextureType::Frame);
+
+	std::vector<const TCHAR*> FileNames;
+	FileNames.emplace_back(TEXT("Texture/UI/IMAGE_MENU_ANIMATION/IMAGE_MENU_ANIMATION_0.png"));
+	FileNames.emplace_back(TEXT("Texture/UI/IMAGE_MENU_ANIMATION/IMAGE_MENU_ANIMATION_1.png"));
+	FileNames.emplace_back(TEXT("Texture/UI/IMAGE_MENU_ANIMATION/IMAGE_MENU_ANIMATION_2.png"));
+	FileNames.emplace_back(TEXT("Texture/UI/IMAGE_MENU_ANIMATION/IMAGE_MENU_ANIMATION_3.png"));
+	FileNames.emplace_back(TEXT("Texture/UI/IMAGE_MENU_ANIMATION/IMAGE_MENU_ANIMATION_4.png"));
+
+	SetTexture("StartBGAnimation", "StartBGAnimation", FileNames);
+	AddFrameCount("StartBGAnimation", 5, 0.f, 0.f, 320.f, 70.f);
+
 	// 크리스 오른쪽 걷기
 	CreateAnimation("KrisWalkRight");
 	SetAnimationTextureType("KrisWalkRight", EAnimationTextureType::Frame);
-
-	std::vector<const TCHAR*> FileNames;
+	FileNames.clear();
 	FileNames.emplace_back(TEXT("Texture/Kris/spr_krisr_dark/spr_krisr_dark_0.png"));
 	FileNames.emplace_back(TEXT("Texture/Kris/spr_krisr_dark/spr_krisr_dark_1.png"));
 	FileNames.emplace_back(TEXT("Texture/Kris/spr_krisr_dark/spr_krisr_dark_2.png"));
@@ -77,7 +90,7 @@ bool CAnimation2DManager::Init()
 	SetTexture("KrisWalkDown", "KrisWalkDown", FileNames);
 	AddFrameCount("KrisWalkDown", 4, 0.f, 0.f, 19.f, 38.f);
 
-	// 플레이어 Idle
+	// 크리스 Idle
 	CreateAnimation("KrisIdle");
 	SetAnimationTextureType("KrisIdle", EAnimationTextureType::Frame);
 	FileNames.clear();
@@ -91,7 +104,7 @@ bool CAnimation2DManager::Init()
 	SetTexture("KrisIdle", "KrisIdle", FileNames);
 	AddFrameCount("KrisIdle", 6, 0.f, 0.f, 36.f, 38.f);
 
-	// 플레이어 공격
+	// 크리스 공격
 	CreateAnimation("KrisAttack");
 	SetAnimationTextureType("KrisAttack", EAnimationTextureType::Frame);
 	FileNames.clear();
@@ -107,7 +120,7 @@ bool CAnimation2DManager::Init()
 	SetTexture("KrisAttack", "KrisAttack", FileNames);
 	AddFrameCount("KrisAttack", 8, 0.f, 0.f, 63.f, 50.f);
 
-	// 플레이어 인트로
+	// 크리스 인트로
 	CreateAnimation("KrisIntro");
 	SetAnimationTextureType("KrisIntro", EAnimationTextureType::Frame);
 	FileNames.clear();
@@ -127,7 +140,7 @@ bool CAnimation2DManager::Init()
 	SetTexture("KrisIntro", "KrisIntro", FileNames);
 	AddFrameCount("KrisIntro", 12, 0.f, 0.f, 66.f, 47.f);
 
-	// 플레이어 아이템
+	// 크리스 아이템
 	CreateAnimation("KrisItem");
 	SetAnimationTextureType("KrisItem", EAnimationTextureType::Frame);
 	FileNames.clear();
@@ -142,7 +155,7 @@ bool CAnimation2DManager::Init()
 	SetTexture("KrisItem", "KrisItem", FileNames);
 	AddFrameCount("KrisItem", 7, 0.f, 0.f, 63.f, 44.f);
 
-	// 플레이어 디펜스
+	// 크리스 디펜스
 	CreateAnimation("KrisDefend");
 	SetAnimationTextureType("KrisDefend", EAnimationTextureType::Frame);
 	FileNames.clear();
@@ -157,7 +170,7 @@ bool CAnimation2DManager::Init()
 	AddFrameCount("KrisDefend", 6, 0.f, 0.f, 35.f, 40.f);
 
 
-	// 플레이어 공격 이펙트
+	// 크리스 공격 이펙트
 	CreateAnimation("AttackEffect");
 	SetAnimationTextureType("AttackEffect", EAnimationTextureType::Frame);
 	FileNames.clear();
@@ -221,6 +234,88 @@ bool CAnimation2DManager::Init()
 
 	SetTexture("SusieWalkDown", "SusieWalkDown", FileNames);
 	AddFrameCount("SusieWalkDown", 4, 0.f, 0.f, 26.f, 46.f);
+
+	// 수지 공격
+	CreateAnimation("SusieAttack");
+	SetAnimationTextureType("SusieAttack", EAnimationTextureType::Frame);
+	FileNames.clear();
+	FileNames.emplace_back(TEXT("Texture/Susie/spr_susieb_attack/spr_susieb_attack_0.png"));
+	FileNames.emplace_back(TEXT("Texture/Susie/spr_susieb_attack/spr_susieb_attack_1.png"));
+	FileNames.emplace_back(TEXT("Texture/Susie/spr_susieb_attack/spr_susieb_attack_2.png"));
+	FileNames.emplace_back(TEXT("Texture/Susie/spr_susieb_attack/spr_susieb_attack_3.png"));
+	FileNames.emplace_back(TEXT("Texture/Susie/spr_susieb_attack/spr_susieb_attack_4.png"));
+	FileNames.emplace_back(TEXT("Texture/Susie/spr_susieb_attack/spr_susieb_attack_5.png"));
+
+	SetTexture("SusieAttack", "SusieAttack", FileNames);
+	AddFrameCount("SusieAttack", 6, 0.f, 0.f, 125.f, 80.f);
+
+	// 수지 아이템
+	CreateAnimation("SusieAct");
+	SetAnimationTextureType("SusieAct", EAnimationTextureType::Frame);
+	FileNames.clear();
+	FileNames.emplace_back(TEXT("Texture/Susie/spr_susieb_act/spr_susieb_act_0.png"));
+	FileNames.emplace_back(TEXT("Texture/Susie/spr_susieb_act/spr_susieb_act_1.png"));
+	FileNames.emplace_back(TEXT("Texture/Susie/spr_susieb_act/spr_susieb_act_2.png"));
+	FileNames.emplace_back(TEXT("Texture/Susie/spr_susieb_act/spr_susieb_act_3.png"));
+	FileNames.emplace_back(TEXT("Texture/Susie/spr_susieb_act/spr_susieb_act_4.png"));
+	FileNames.emplace_back(TEXT("Texture/Susie/spr_susieb_act/spr_susieb_act_5.png"));
+	FileNames.emplace_back(TEXT("Texture/Susie/spr_susieb_act/spr_susieb_act_6.png"));
+	FileNames.emplace_back(TEXT("Texture/Susie/spr_susieb_act/spr_susieb_act_7.png"));
+	FileNames.emplace_back(TEXT("Texture/Susie/spr_susieb_act/spr_susieb_act_8.png"));
+	FileNames.emplace_back(TEXT("Texture/Susie/spr_susieb_act/spr_susieb_act_9.png"));
+	FileNames.emplace_back(TEXT("Texture/Susie/spr_susieb_act/spr_susieb_act_10.png"));
+
+	SetTexture("SusieAct", "SusieAct", FileNames);
+	AddFrameCount("SusieAct", 11, 0.f, 0.f, 125.f, 80.f);
+
+	// 수지 Idle
+	CreateAnimation("SusieIdle");
+	SetAnimationTextureType("SusieIdle", EAnimationTextureType::Frame);
+	FileNames.clear();
+	FileNames.emplace_back(TEXT("Texture/Susie/spr_susieb_idle/spr_susieb_idle_0.png"));
+	FileNames.emplace_back(TEXT("Texture/Susie/spr_susieb_idle/spr_susieb_idle_1.png"));
+	FileNames.emplace_back(TEXT("Texture/Susie/spr_susieb_idle/spr_susieb_idle_2.png"));
+	FileNames.emplace_back(TEXT("Texture/Susie/spr_susieb_idle/spr_susieb_idle_3.png"));
+
+	SetTexture("SusieIdle", "SusieIdle", FileNames);
+	AddFrameCount("SusieIdle", 4, 0.f, 0.f, 125.f, 80.f);
+
+	// 수지 디펜드
+	CreateAnimation("SusieDefend");
+	SetAnimationTextureType("SusieDefend", EAnimationTextureType::Frame);
+	FileNames.clear();
+	FileNames.emplace_back(TEXT("Texture/Susie/spr_susieb_defend/spr_susieb_defend_0.png"));
+	FileNames.emplace_back(TEXT("Texture/Susie/spr_susieb_defend/spr_susieb_defend_1.png"));
+	FileNames.emplace_back(TEXT("Texture/Susie/spr_susieb_defend/spr_susieb_defend_2.png"));
+	FileNames.emplace_back(TEXT("Texture/Susie/spr_susieb_defend/spr_susieb_defend_3.png"));
+	FileNames.emplace_back(TEXT("Texture/Susie/spr_susieb_defend/spr_susieb_defend_4.png"));
+	FileNames.emplace_back(TEXT("Texture/Susie/spr_susieb_defend/spr_susieb_defend_5.png"));
+
+	SetTexture("SusieDefend", "SusieDefend", FileNames);
+	AddFrameCount("SusieDefend", 6, 0.f, 0.f, 125.f, 80.f);
+
+	// 수지 루드버스터
+	CreateAnimation("SusieRudeBuster");
+	SetAnimationTextureType("SusieRudeBuster", EAnimationTextureType::Frame);
+	FileNames.clear();
+	FileNames.emplace_back(TEXT("Texture/Susie/spr_susie_rudebuster/spr_susie_rudebuster_0.png"));
+	FileNames.emplace_back(TEXT("Texture/Susie/spr_susie_rudebuster/spr_susie_rudebuster_1.png"));
+	FileNames.emplace_back(TEXT("Texture/Susie/spr_susie_rudebuster/spr_susie_rudebuster_2.png"));
+	FileNames.emplace_back(TEXT("Texture/Susie/spr_susie_rudebuster/spr_susie_rudebuster_3.png"));
+	FileNames.emplace_back(TEXT("Texture/Susie/spr_susie_rudebuster/spr_susie_rudebuster_4.png"));
+	FileNames.emplace_back(TEXT("Texture/Susie/spr_susie_rudebuster/spr_susie_rudebuster_5.png"));
+	FileNames.emplace_back(TEXT("Texture/Susie/spr_susie_rudebuster/spr_susie_rudebuster_6.png"));
+	FileNames.emplace_back(TEXT("Texture/Susie/spr_susie_rudebuster/spr_susie_rudebuster_7.png"));
+	FileNames.emplace_back(TEXT("Texture/Susie/spr_susie_rudebuster/spr_susie_rudebuster_8.png"));
+	FileNames.emplace_back(TEXT("Texture/Susie/spr_susie_rudebuster/spr_susie_rudebuster_9.png"));
+	FileNames.emplace_back(TEXT("Texture/Susie/spr_susie_rudebuster/spr_susie_rudebuster_10.png"));
+	FileNames.emplace_back(TEXT("Texture/Susie/spr_susie_rudebuster/spr_susie_rudebuster_11.png"));
+	FileNames.emplace_back(TEXT("Texture/Susie/spr_susie_rudebuster/spr_susie_rudebuster_12.png"));
+	FileNames.emplace_back(TEXT("Texture/Susie/spr_susie_rudebuster/spr_susie_rudebuster_13.png"));
+	FileNames.emplace_back(TEXT("Texture/Susie/spr_susie_rudebuster/spr_susie_rudebuster_14.png"));
+
+	SetTexture("SusieRudeBuster", "SusieRudeBuster", FileNames);
+	AddFrameCount("SusieRudeBuster", 15, 0.f, 0.f, 123.f, 79.f);
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////
 	// 랄세이 오른쪽 이동

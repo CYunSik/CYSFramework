@@ -86,6 +86,11 @@ bool CPlayerObject::Init()
 	mAnimation->AddSequence("KrisItem", 1.f, 1.f, false, false);
 	mAnimation->AddSequence("KrisDefend", 1.f, 1.f, false, false);
 	mAnimation->AddSequence("KrisIdle", 1.f, 1.f, false, false);
+	mAnimation->AddSequence("SusieIdle", 1.f, 1.f, false, false);
+	mAnimation->AddSequence("SusieAttack", 0.5f, 1.f, false, false);
+	mAnimation->AddSequence("SusieAct", 1.f, 1.f, false, false);
+	mAnimation->AddSequence("SusieDefend", 1.f, 1.f, false, false);
+	mAnimation->AddSequence("SusieRudeBuster", 1.5f, 1.f, false, false);
 
 	mAnimation->SetEndFunction("KrisAttack", this, &CPlayerObject::AttackEnd);
 	mAnimation->AddNotify("KrisAttack", 1, this, &CPlayerObject::AttackNotify);
@@ -106,7 +111,7 @@ bool CPlayerObject::Init()
 
 	// movement
 	mMovement->SetUpdateComponent(mRoot);
-	mMovement->SetMoveSpeed(350.f);
+	mMovement->SetMoveSpeed(250.f);
 
 	// rotation
 	mRotation->SetUpdateComponent(mRoot);
@@ -229,8 +234,8 @@ void CPlayerObject::Update(float DeltaTime)
 
 	bool IsMoving = (mMovement->GetVelocityLength() > 0.f);
 
-	int SusieDelay = 900;
-	int RalseiDelay = 1800;
+	int SusieDelay = 600;
+	int RalseiDelay = 1200;
 
 	size_t TrailSize = mTrail.size();
 
@@ -425,30 +430,27 @@ void CPlayerObject::RotationZInv(float DeltaTime)
 
 void CPlayerObject::Attack(float DeltaTime)
 {
-	mAnimation->ChangeAnimation("KrisAttack");
+	mAnimation->ChangeAnimation("SusieAttack");
 }
 
 void CPlayerObject::Intro(float DeltaTime)
 {
-	mAnimation->ChangeAnimation("KrisIntro");
-	mRoot->SetWorldScale(70.f, 120.f);
+	mAnimation->ChangeAnimation("SusieRudeBuster");
 }
 
 void CPlayerObject::Item(float DeltaTime)
 {
-	mAnimation->ChangeAnimation("KrisItem");
+	mAnimation->ChangeAnimation("SusieAct");
 }
 
 void CPlayerObject::Defend(float DeltaTime)
 {
-	mAnimation->ChangeAnimation("KrisDefend");
+	mAnimation->ChangeAnimation("SusieDefend");
 }
 
 void CPlayerObject::Idle(float DeltaTime)
 {
-	mAnimation->ChangeAnimation("KrisIdle");
-
-	mRoot->SetWorldScale(40.f, 80.f);
+	mAnimation->ChangeAnimation("SusieIdle");
 }
 
 void CPlayerObject::Fire(float DeltaTime)

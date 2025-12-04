@@ -16,6 +16,7 @@
 #include "../Component/CameraComponent.h"
 #include "../Scene/CameraManager.h"
 #include "../Animation/Animation2D.h"
+#include "../Asset/Animation/Animation2DData.h"
 
 CSpriteComponent::CSpriteComponent()
 {
@@ -116,12 +117,14 @@ void CSpriteComponent::SetFlip(bool Flip)
 	mIsFlip = Flip;
 }
 
-const CAnimation2DData& CSpriteComponent::GetCurrentAnimationData()
+const CAnimation2DData* CSpriteComponent::GetCurrentAnimationData()
 {
 	if (mAnimation)
 	{
-		return *mAnimation->mCurrentSequence->GetAnimationAsset();
+		return mAnimation->mCurrentSequence->GetAnimationAsset();
 	}
+
+	return nullptr;
 }
 
 bool CSpriteComponent::Init()

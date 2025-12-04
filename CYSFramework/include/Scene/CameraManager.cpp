@@ -16,21 +16,37 @@ void CCameraManager::SetViewTarget(CCameraComponent* ViewTarget)
 
 const FMatrix& CCameraManager::GetViewMatrix() const
 {
+	if (!mViewTarget)
+	{
+		return mIdentity;
+	}
+
 	return mViewTarget->GetViewMatrix();
 }
 
 const FMatrix& CCameraManager::GetProjMatrix() const
 {
+	if (!mViewTarget)
+	{
+		return mIdentity;
+	}
+
 	return mViewTarget->GetProjMatrix();
 }
 
 const FVector3D& CCameraManager::GetCameraWorldPos() const
 {
+	if (!mViewTarget)
+	{
+		return FVector3D::Zero;
+	}
+
 	return mViewTarget->GetWorldPosition();
 }
 
 bool CCameraManager::Init()
 {
+	mIdentity = FMatrix::StaticIdentity();
 
 	return true;
 }

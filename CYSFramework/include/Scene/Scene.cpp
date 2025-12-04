@@ -11,6 +11,17 @@ CScene::CScene()
 }
 CScene::~CScene()
 {
+	auto iter = mObjList.begin();
+	auto iterEnd = mObjList.end();
+
+	for (; iter != iterEnd; ++iter)
+	{
+		(*iter)->Destroy();
+
+	}
+
+	mObjList.clear();
+
 	SAFE_DELETE(mAssetManager);
 	SAFE_DELETE(mInput);
 	SAFE_DELETE(mCameraManager);

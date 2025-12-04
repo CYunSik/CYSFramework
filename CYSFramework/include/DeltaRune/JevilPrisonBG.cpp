@@ -39,7 +39,7 @@ bool CJevilPrisonBG::Init()
 	SetRootComponent(mBackGround);
 
 	// 배경
-	mBackGround->SetTexture("JevilPrisonBG", TEXT("Texture/Jevil/beforeJevilBG2.png"), 0);
+	mBackGround->SetTexture("JevilPrisonBG", TEXT("Texture/Jevil/beforeJevilBG.png"), 0);
 	mBackGround->SetPivot(0.5f, 0.5f);
 	mBackGround->SetWorldScale(1840.f, 1200.f);
 

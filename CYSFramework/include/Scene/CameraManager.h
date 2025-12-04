@@ -14,6 +14,9 @@ private:
 private:
 	CSharedPtr<class CCameraComponent> mViewTarget;
 
+	// 기본 단위행렬
+	FMatrix mIdentity;
+
 public:
 	class CCameraComponent* GetViewTarget() const
 	{

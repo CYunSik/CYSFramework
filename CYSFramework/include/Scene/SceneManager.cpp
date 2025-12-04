@@ -1,5 +1,6 @@
 #include "SceneManager.h"
 #include "SceneMain.h"
+#include "SceneStart.h"
 
 CSceneManager::CSceneManager()
 {
@@ -13,7 +14,7 @@ CSceneManager::~CSceneManager()
 
 bool CSceneManager::Init()
 {
-	mCurrentScene = CreateScene<CSceneMain>();
+	mCurrentScene = CreateScene<CSceneStart>();
 
 	if (mCurrentScene == nullptr)
 	{
@@ -35,6 +36,20 @@ void CSceneManager::Update(float DeltaTime)
 	mCurrentScene->Update(DeltaTime);
 
 	mCurrentScene->PostUpdate(DeltaTime);
+
+	// 만약 변경할 Scene이 있으면 변경해준다.
+	if (mLoadScene)
+	{
+		// 기존 씬 제거
+		SAFE_DELETE(mCurrentScene);
+
+		mCurrentScene = mLoadScene;
+
+		mLoadScene = nullptr;
+		return;
+	}
+
+	return;
 }
 
 void CSceneManager::Collision(float DeltaTime)

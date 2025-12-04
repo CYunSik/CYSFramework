@@ -40,9 +40,9 @@ bool CSceneCollision::Init()
 	return true;
 }
 
-void CSceneCollision::Update(float DeltaTime, CSceneUIManager* UIManager, CInput* Input)
+void CSceneCollision::Update(float DeltaTime, class CSceneUIManager* UIManager, class CInput* Input)
 {
-	// mInterval 시간을 지정해야만 인터벌을 사용할 수 있게 하겠다.
+	//mInterval 시간을 지정해야만 인터벌을 사용할 수 있게 하겠다. 
 	if (mInterval > 0.f)
 	{
 		mIntervalTime += DeltaTime;
@@ -55,10 +55,11 @@ void CSceneCollision::Update(float DeltaTime, CSceneUIManager* UIManager, CInput
 		mIntervalTime -= mInterval;
 	}
 
-	// CLog::PrintLog("Collision Update");
+	//CLog::PrintLog("Collision Update");
 
-	// 쿼드트리를 이용해서 카메라 좌표를 먼저 갱신해야 한다.
+	//쿼드트리를 이용해서 카메라 자표를 먼저 갱신해야 한다.
 	mQuadTree->Update(DeltaTime);
+
 
 	size_t Size = mColliderList2D.size();
 
@@ -66,13 +67,12 @@ void CSceneCollision::Update(float DeltaTime, CSceneUIManager* UIManager, CInput
 	{
 		if (!mColliderList2D[i]->IsActive())
 		{
-			// 그냥 덮어씌우기
+			//그냥 덮어씌우기 
 			if (i < Size - 1)
 			{
 				mColliderList2D[i] = mColliderList2D[Size - 1];
 			}
 			mColliderList2D.pop_back();
-
 			--Size;
 			continue;
 		}
@@ -82,21 +82,21 @@ void CSceneCollision::Update(float DeltaTime, CSceneUIManager* UIManager, CInput
 			continue;
 		}
 
-		// 쿼드트리 만들고나서
-		// 여기에 쿼드트리에 등록
+		//쿼드트리 만들고나서 
+		//여기에 쿼드트리에 등록 
 		mQuadTree->AddCollider(mColliderList2D[i]);
+
 		++i;
 	}
 
-	///////////////////////
-	// 여기서 UI 충돌 검사
+	/////////////
+	//여기서 UI 충돌 검사를 할것이다. 
 	FVector2D MousePos = Input->GetMousePos();
 
 	UIManager->CollisionMouse(DeltaTime, MousePos);
+	/////////////
 
-	//////////////////////
-
-	// 충돌 검사
+	//충돌 검사 
 	mQuadTree->Collision(DeltaTime);
 }
 

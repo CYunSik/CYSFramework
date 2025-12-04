@@ -59,13 +59,14 @@ bool CSoundManager::Init()
 	// 사운드 불러오기
 	LoadSound("JevilPrisonBGM", "BGM", true, "Sound/BGM/The Circus.mp3");
 	LoadSound("Effect1", "Effect", false, "Sound/MainBgm.mp3");
+	LoadSound("StartBGM", "BGM", true, "Sound/BGM/Beginning.mp3");
 
 	// 사운드 플레이
-	Play("JevilPrisonBGM");
+	Play("StartBGM");
 	//Play("Effect1");
 
-	SetGroupVolume("BGM", 10);
-	SetGroupVolume("Effect", 10);
+	SetGroupVolume("BGM", 5);
+	SetGroupVolume("Effect", 5);
 
 	return true;
 }

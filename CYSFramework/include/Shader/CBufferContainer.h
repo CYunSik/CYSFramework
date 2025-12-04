@@ -55,10 +55,10 @@ struct FAnimation2DCBufferInfo
 struct FUICBufferInfo
 {
 	// Tint : 텍스쳐에 대한 보정 색상
-	FVector4D BrushTint; // 16
+	FVector4D BrushTint = FVector4D::White; // 16
 
 	// Widget에 대한 보정 색상
-	FVector4D Color; // 16
+	FVector4D Color = FVector4D::White; // 16
 
 	// Lef-Top
 	FVector2D LTUV; // 8

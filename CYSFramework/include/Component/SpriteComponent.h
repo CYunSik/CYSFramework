@@ -81,7 +81,7 @@ public:
 	// 반전
 	void SetFlip(bool Flip);
 
-	const CAnimation2DData& GetCurrentAnimationData();
+	const CAnimation2DData* GetCurrentAnimationData();
 
 	// 시점 함수
 public:

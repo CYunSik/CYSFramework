@@ -501,6 +501,15 @@
     <ClCompile Include="UI\Common\TextBlock.cpp">
       <Filter>10.UI\01.Common</Filter>
     </ClCompile>
+    <ClCompile Include="UI\UserWidget\StartWidget.cpp">
+      <Filter>10.UI\02.UserWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\SceneStart.cpp">
+      <Filter>05.Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Common\Image.cpp">
+      <Filter>10.UI\01.Common</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameManager.h">
@@ -855,6 +864,15 @@
       <Filter>DeltaRune</Filter>
     </ClInclude>
     <ClInclude Include="UI\Common\TextBlock.h">
+      <Filter>10.UI\01.Common</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\UserWidget\StartWidget.h">
+      <Filter>10.UI\02.UserWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\SceneStart.h">
+      <Filter>05.Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Common\Image.h">
       <Filter>10.UI\01.Common</Filter>
     </ClInclude>
   </ItemGroup>

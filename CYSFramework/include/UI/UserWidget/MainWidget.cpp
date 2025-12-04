@@ -111,7 +111,7 @@ bool CMainWidget::Init()
 	////////////////////////// 폰트
 	CSharedPtr<CTextBlock> Text = mScene->GetUIManager()->CreateWidget<CTextBlock>("ButtonText");
 
-	Text->SetText(TEXT("공격"));
+	Text->SetText(TEXT("Jevil"));
 	Text->SetTextColor(0, 0, 0, 255);
 	Text->SetPos(100.f, 100.f);
 	Text->SetSize(100.f, 100.f);

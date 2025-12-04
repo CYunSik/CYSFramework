@@ -58,6 +58,11 @@ protected:
 	bool mMouseOn = false;
 
 public:
+	const std::string& GetName() const
+	{
+		return mName;
+	}
+
 	const FVector2D& GetPos() const
 	{
 		return mPos;
