@@ -366,6 +366,156 @@ bool CAnimation2DManager::Init()
 	SetTexture("RalseiWalkDown", "RalseiWalkDown", FileNames);
 	AddFrameCount("RalseiWalkDown", 4, 0.f, 0.f, 23.f, 44.f);
 
+	// 랄세이 Intro
+	CreateAnimation("RalseiIntro");
+	SetAnimationTextureType("RalseiIntro", EAnimationTextureType::Frame);
+	FileNames.clear();
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_battleintro/spr_ralseib_battleintro_0.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_battleintro/spr_ralseib_battleintro_1.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_battleintro/spr_ralseib_battleintro_2.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_battleintro/spr_ralseib_battleintro_3.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_battleintro/spr_ralseib_battleintro_4.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_battleintro/spr_ralseib_battleintro_5.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_battleintro/spr_ralseib_battleintro_6.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_battleintro/spr_ralseib_battleintro_7.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_battleintro/spr_ralseib_battleintro_8.png"));
+
+	SetTexture("RalseiIntro", "RalseiIntro", FileNames);
+	AddFrameCount("RalseiIntro", 9, 0.f, 0.f, 100.f, 80.f);
+
+	// 랄세이 공격
+	CreateAnimation("RalseiAttack");
+	SetAnimationTextureType("RalseiAttack", EAnimationTextureType::Frame);
+	FileNames.clear();
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_attack/spr_ralseib_attack_0.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_attack/spr_ralseib_attack_1.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_attack/spr_ralseib_attack_2.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_attack/spr_ralseib_attack_3.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_attack/spr_ralseib_attack_4.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_attack/spr_ralseib_attack_5.png"));
+
+	SetTexture("RalseiAttack", "RalseiAttack", FileNames);
+	AddFrameCount("RalseiAttack", 6, 0.f, 0.f, 100.f, 80.f);
+
+	// 랄세이 act
+	CreateAnimation("RalseiAct");
+	SetAnimationTextureType("RalseiAct", EAnimationTextureType::Frame);
+	FileNames.clear();
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_act/spr_ralseib_act_0.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_act/spr_ralseib_act_1.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_act/spr_ralseib_act_2.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_act/spr_ralseib_act_3.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_act/spr_ralseib_act_4.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_act/spr_ralseib_act_5.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_act/spr_ralseib_act_6.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_act/spr_ralseib_act_7.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_act/spr_ralseib_act_8.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_act/spr_ralseib_act_9.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_act/spr_ralseib_act_10.png"));
+
+	SetTexture("RalseiAct", "RalseiAct", FileNames);
+	AddFrameCount("RalseiAct", 11, 0.f, 0.f, 100.f, 80.f);
+
+	// 랄세이 디펜드
+	CreateAnimation("RalseiDefend");
+	SetAnimationTextureType("RalseiDefend", EAnimationTextureType::Frame);
+	FileNames.clear();
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_defend/spr_ralseib_defend_0.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_defend/spr_ralseib_defend_1.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_defend/spr_ralseib_defend_2.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_defend/spr_ralseib_defend_3.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_defend/spr_ralseib_defend_4.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_defend/spr_ralseib_defend_5.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_defend/spr_ralseib_defend_6.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_defend/spr_ralseib_defend_7.png"));
+
+	SetTexture("RalseiDefend", "RalseiDefend", FileNames);
+	AddFrameCount("RalseiDefend", 8, 0.f, 0.f, 100.f, 80.f);
+
+	// 랄세이 Idle
+	CreateAnimation("RalseiIdle");
+	SetAnimationTextureType("RalseiIdle", EAnimationTextureType::Frame);
+	FileNames.clear();
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_idle/spr_ralseib_idle_0.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_idle/spr_ralseib_idle_1.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_idle/spr_ralseib_idle_2.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_idle/spr_ralseib_idle_3.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_idle/spr_ralseib_idle_4.png"));
+
+	SetTexture("RalseiIdle", "RalseiIdle", FileNames);
+	AddFrameCount("RalseiIdle", 5, 0.f, 0.f, 100.f, 80.f);
+
+	// 랄세이 아이템
+	CreateAnimation("RalseiItem");
+	SetAnimationTextureType("RalseiItem", EAnimationTextureType::Frame);
+	FileNames.clear();
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_item/spr_ralseib_item_0.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_item/spr_ralseib_item_1.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_item/spr_ralseib_item_2.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_item/spr_ralseib_item_3.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_item/spr_ralseib_item_4.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_item/spr_ralseib_item_5.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_item/spr_ralseib_item_6.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_item/spr_ralseib_item_7.png"));
+
+	SetTexture("RalseiItem", "RalseiItem", FileNames);
+	AddFrameCount("RalseiItem", 8, 0.f, 0.f, 100.f, 80.f);
+
+	// 랄세이 Spell
+	CreateAnimation("RalseiSpell");
+	SetAnimationTextureType("RalseiSpell", EAnimationTextureType::Frame);
+	FileNames.clear();
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_spell/spr_ralseib_spell_0.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_spell/spr_ralseib_spell_1.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_spell/spr_ralseib_spell_2.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_spell/spr_ralseib_spell_3.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_spell/spr_ralseib_spell_4.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_spell/spr_ralseib_spell_5.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_spell/spr_ralseib_spell_6.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_spell/spr_ralseib_spell_7.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_spell/spr_ralseib_spell_8.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_spell/spr_ralseib_spell_9.png"));
+
+	SetTexture("RalseiSpell", "RalseiSpell", FileNames);
+	AddFrameCount("RalseiSpell", 10, 0.f, 0.f, 100.f, 80.f);
+
+	// 랄세이 SpellReady
+	CreateAnimation("RalseiSpellReady");
+	SetAnimationTextureType("RalseiSpellReady", EAnimationTextureType::Frame);
+	FileNames.clear();
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_spellready/spr_ralseib_spellready_0.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_spellready/spr_ralseib_spellready_1.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_spellready/spr_ralseib_spellready_2.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_spellready/spr_ralseib_spellready_3.png"));
+
+	SetTexture("RalseiSpellReady", "RalseiSpellReady", FileNames);
+	AddFrameCount("RalseiSpellReady", 4, 0.f, 0.f, 100.f, 80.f);
+
+	// 랄세이 승리
+	CreateAnimation("RalseiVictory");
+	SetAnimationTextureType("RalseiVictory", EAnimationTextureType::Frame);
+	FileNames.clear();
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_victory/spr_ralseib_victory_0.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_victory/spr_ralseib_victory_1.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_victory/spr_ralseib_victory_2.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_victory/spr_ralseib_victory_3.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_victory/spr_ralseib_victory_4.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_victory/spr_ralseib_victory_5.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_victory/spr_ralseib_victory_6.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_victory/spr_ralseib_victory_7.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_victory/spr_ralseib_victory_8.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_victory/spr_ralseib_victory_9.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_victory/spr_ralseib_victory_10.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_victory/spr_ralseib_victory_11.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_victory/spr_ralseib_victory_12.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_victory/spr_ralseib_victory_13.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_victory/spr_ralseib_victory_14.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_victory/spr_ralseib_victory_15.png"));
+	FileNames.emplace_back(TEXT("Texture/Ralsei/spr_ralseib_victory/spr_ralseib_victory_16.png"));
+
+	SetTexture("RalseiVictory", "RalseiVictory", FileNames);
+	AddFrameCount("RalseiVictory", 17, 0.f, 0.f, 100.f, 80.f);
+
 	//////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	// 제빌 메인

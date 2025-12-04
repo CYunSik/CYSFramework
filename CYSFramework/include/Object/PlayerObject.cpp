@@ -73,7 +73,7 @@ bool CPlayerObject::Init()
 	//mRoot->SetShader("ColorMeshShader");
 
 	mRoot->SetWorldPos(0.f, 0.f, 0.f);
-	mRoot->SetWorldScale(70.f, 120.f, 1.f);
+	mRoot->SetWorldScale(45.f, 80.f, 1.f);
 	SetRootComponent(mRoot);
 
 	mAnimation = mRoot->CreateAnimation2D<CAnimation2D>();
@@ -81,16 +81,28 @@ bool CPlayerObject::Init()
 	mAnimation->AddSequence("KrisWalkLeft", 1.f, 1.f, true, false);
 	mAnimation->AddSequence("KrisWalkUp", 1.f, 1.f, true, false);
 	mAnimation->AddSequence("KrisWalkDown", 1.f, 1.f, true, false);
+
 	mAnimation->AddSequence("KrisAttack", 1.f, 1.f, false, false);
 	mAnimation->AddSequence("KrisIntro", 1.f, 1.f, false, false);
 	mAnimation->AddSequence("KrisItem", 1.f, 1.f, false, false);
 	mAnimation->AddSequence("KrisDefend", 1.f, 1.f, false, false);
 	mAnimation->AddSequence("KrisIdle", 1.f, 1.f, false, false);
+
 	mAnimation->AddSequence("SusieIdle", 1.f, 1.f, false, false);
 	mAnimation->AddSequence("SusieAttack", 0.5f, 1.f, false, false);
 	mAnimation->AddSequence("SusieAct", 1.f, 1.f, false, false);
 	mAnimation->AddSequence("SusieDefend", 1.f, 1.f, false, false);
 	mAnimation->AddSequence("SusieRudeBuster", 1.5f, 1.f, false, false);
+
+	mAnimation->AddSequence("RalseiIntro", 1.f, 1.f, false, false);
+	mAnimation->AddSequence("RalseiAttack", 1.f, 1.f, false, false);
+	mAnimation->AddSequence("RalseiAct", 1.f, 1.f, false, false);
+	mAnimation->AddSequence("RalseiDefend", 1.f, 1.f, false, false);
+	mAnimation->AddSequence("RalseiIdle", 1.f, 1.f, false, false);
+	mAnimation->AddSequence("RalseiItem", 1.f, 1.f, false, false);
+	mAnimation->AddSequence("RalseiSpell", 1.f, 1.f, false, false);
+	mAnimation->AddSequence("RalseiSpellReady", 1.f, 1.f, false, false);
+	mAnimation->AddSequence("RalseiVictory", 1.f, 1.f, false, false);
 
 	mAnimation->SetEndFunction("KrisAttack", this, &CPlayerObject::AttackEnd);
 	mAnimation->AddNotify("KrisAttack", 1, this, &CPlayerObject::AttackNotify);

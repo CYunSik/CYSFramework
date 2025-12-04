@@ -109,17 +109,17 @@ bool CMainWidget::Init()
 	AddWidget(mButtonDefend);
 
 	////////////////////////// 폰트
-	CSharedPtr<CTextBlock> Text = mScene->GetUIManager()->CreateWidget<CTextBlock>("ButtonText");
+	//CSharedPtr<CTextBlock> Text = mScene->GetUIManager()->CreateWidget<CTextBlock>("ButtonText");
 
-	Text->SetText(TEXT("Jevil"));
-	Text->SetTextColor(0, 0, 0, 255);
-	Text->SetPos(100.f, 100.f);
-	Text->SetSize(100.f, 100.f);
-	Text->SetFontSize(20.f);
-	Text->SetAlignH(ETextAlignH::Center);
-	Text->SetAlignV(ETextAlignV::Middle);
+	//Text->SetText(TEXT("Jevil"));
+	//Text->SetTextColor(0, 0, 0, 255);
+	//Text->SetPos(100.f, 100.f);
+	//Text->SetSize(100.f, 100.f);
+	//Text->SetFontSize(20.f);
+	//Text->SetAlignH(ETextAlignH::Center);
+	//Text->SetAlignV(ETextAlignV::Middle);
 
-	mButtonAttack->SetChild(Text);
+	//mButtonAttack->SetChild(Text);
 
 	return true;
 }

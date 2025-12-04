@@ -41,17 +41,16 @@ bool CStartWidget::Init()
 	mBackGroundAnim->SetSize(960.f, 200.f);
 	mBackGroundAnim->SetPivot(FVector2D(0.5f, 0.5f));
 	mBackGround->SetMouseCollisionEnable(false);
-	mBackGround->SetZOrder(3);
+	mBackGround->SetZOrder(0);
 
 	mBackGroundAnim->SetTexture("StartBGAnim", TEXT("Texture/UI/IMAGE_MENU_ANIMATION/Animation_MENU.png"));
 
-	mBackGroundAnim->AddBrushFrame(0.f, 0.f, 0.2f, 1.f);
-	mBackGroundAnim->AddBrushFrame(0.2f, 0.f, 0.4f, 1.f);
-	mBackGroundAnim->AddBrushFrame(0.4f, 0.f, 0.6f, 1.f);
-	mBackGroundAnim->AddBrushFrame(0.6f, 0.f, 0.8f, 1.f);
-	mBackGroundAnim->AddBrushFrame(0.8f, 0.f, 1.0f, 1.f);
-	//mBackGroundAnim->SetCurrentFrame(0);
 	mBackGroundAnim->SetBrushAnimation(true);
+	mBackGroundAnim->AddBrushFrame(0.f, 0.f, 320.f, 70.f);
+	mBackGroundAnim->AddBrushFrame(320.f, 0.f, 320.f, 70.f);
+	mBackGroundAnim->AddBrushFrame(640.f, 0.f, 320.f, 70.f);
+	mBackGroundAnim->AddBrushFrame(960.f, 0.f, 320.f, 70.f);
+	mBackGroundAnim->AddBrushFrame(1280.f, 0.f, 320.f, 70.f);
 	mBackGroundAnim->SetAnimationPlayTime(1.f);
 	mBackGroundAnim->SetAnimationPlayRate(1.f);
 	
@@ -64,7 +63,7 @@ bool CStartWidget::Init()
 	mLogo->SetSize(448.f, 68.f);
 	mLogo->SetPivot(FVector2D(0.5f, 0.5f));
 	mLogo->SetMouseCollisionEnable(false);
-	mLogo->SetZOrder(3);
+	mLogo->SetZOrder(5);
 	mLogo->SetTexture("StartLogo", TEXT("Texture/UI/IMAGE_LOGO_CENTER.png"));
 
 	AddWidget(mLogo);
@@ -75,7 +74,7 @@ bool CStartWidget::Init()
 	mButton->SetPos(600.f, 200.f);
 	mButton->SetSize(100.f, 100.f);
 	//mButton->SetPivot(FVector2D(0.5f, 0.5f));
-	mButton->SetZOrder(5);
+	mButton->SetZOrder(7);
 
 	mButton->SetTexture(EButtonState::Normal, "StartButton", TEXT("Texture/spr_nothing.png"));
 	mButton->SetTexture(EButtonState::Hovered, "StartButton");
@@ -98,7 +97,7 @@ bool CStartWidget::Init()
 	Text->SetPos(600.f, 200.f);
 	Text->SetSize(100.f, 100.f);
 	Text->SetFontSize(20.f);
-	Text->SetZOrder(8);
+	Text->SetZOrder(9);
 	Text->SetAlignH(ETextAlignH::Center);
 	Text->SetAlignV(ETextAlignV::Middle);
 

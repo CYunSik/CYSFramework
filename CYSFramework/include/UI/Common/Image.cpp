@@ -126,6 +126,28 @@ bool CImage::Init()
 void CImage::Update(float DeltaTime)
 {
 	CWidget::Update(DeltaTime);
+
+	if (mBrush.AnimationEnable)
+	{
+		mBrush.Time += DeltaTime * mBrush.PlayRate;
+
+		if (mBrush.Time >= mBrush.FrameTime)
+		{
+			mBrush.Time -= mBrush.FrameTime;
+
+			++mBrush.Frame;
+
+			if (mBrush.Frame == mBrush.Frames.size())
+			{
+				mBrush.Frame = 0;
+			}
+		}
+	}
+
+	if (mBrush.AnimationEnable)
+	{
+		//CLog::PrintLog(std::to_string(mBrush.Frame));
+	}
 }
 
 void CImage::Render()
@@ -174,6 +196,18 @@ void CImage::Render()
 		mUICBuffer->SetUV(FrameInfo.Start.x, FrameInfo.Start.y,
 			FrameInfo.Start.x + FrameInfo.Size.x,
 			FrameInfo.Start.y + FrameInfo.Size.y);
+
+		float LTX = 0.f, LTY = 0.f, RBX = 1.f, RBY = 1.f;
+		FVector2D FrameStart = mBrush.Frames[mBrush.Frame].Start;
+		FVector2D FrameSize = mBrush.Frames[mBrush.Frame].Size;
+
+		LTX = FrameStart.x / mBrush.Texture->GetTexture()->Width;
+		LTY = FrameStart.y / mBrush.Texture->GetTexture()->Height;
+		RBX = LTX + FrameSize.x / mBrush.Texture->GetTexture()->Width;
+		RBY = LTY + FrameSize.y / mBrush.Texture->GetTexture()->Height;
+		mUICBuffer->SetUV(LTX, LTY, RBX, RBY);
+
+		mUICBuffer->UpdateBuffer();
 	}
 	else
 	{
@@ -187,6 +221,11 @@ void CImage::Render()
 	mShader->SetShader();
 
 	mMesh->Render();
+}
+
+void CImage::Render(const FVector3D& Pos)
+{
+	CWidget::Render(Pos);
 }
 
 bool CImage::CollisionMouse(CWidget** Result, const FVector2D& MousePos)

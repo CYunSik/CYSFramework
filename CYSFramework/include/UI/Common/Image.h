@@ -55,5 +55,6 @@ public:
     virtual bool Init();
     virtual void Update(float DeltaTime);
     virtual void Render();
+    virtual void Render(const FVector3D& Pos);
 	virtual bool CollisionMouse(CWidget** Result, const FVector2D& MousePos);
 };

@@ -190,6 +190,9 @@
     <Filter Include="03.Asset\06.Font">
       <UniqueIdentifier>{460d6c42-61f5-4e2b-b899-2d52ade944dd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="07.Component\01.SceneComponent\06.UI">
+      <UniqueIdentifier>{44812b63-60fd-43ca-be3d-4fb413216169}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -501,14 +504,20 @@
     <ClCompile Include="UI\Common\TextBlock.cpp">
       <Filter>10.UI\01.Common</Filter>
     </ClCompile>
-    <ClCompile Include="UI\UserWidget\StartWidget.cpp">
-      <Filter>10.UI\02.UserWidget</Filter>
-    </ClCompile>
     <ClCompile Include="Scene\SceneStart.cpp">
       <Filter>05.Scene</Filter>
     </ClCompile>
     <ClCompile Include="UI\Common\Image.cpp">
       <Filter>10.UI\01.Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Component\WidgetComponent.cpp">
+      <Filter>07.Component\01.SceneComponent\06.UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\UserWidget\StartWidget.cpp">
+      <Filter>10.UI\02.UserWidget\01.Main</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\UserWidget\HeadInfo.cpp">
+      <Filter>10.UI\02.UserWidget</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -866,14 +875,20 @@
     <ClInclude Include="UI\Common\TextBlock.h">
       <Filter>10.UI\01.Common</Filter>
     </ClInclude>
-    <ClInclude Include="UI\UserWidget\StartWidget.h">
-      <Filter>10.UI\02.UserWidget</Filter>
-    </ClInclude>
     <ClInclude Include="Scene\SceneStart.h">
       <Filter>05.Scene</Filter>
     </ClInclude>
     <ClInclude Include="UI\Common\Image.h">
       <Filter>10.UI\01.Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Component\WidgetComponent.h">
+      <Filter>07.Component\01.SceneComponent\06.UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\UserWidget\StartWidget.h">
+      <Filter>10.UI\02.UserWidget\01.Main</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\UserWidget\HeadInfo.h">
+      <Filter>10.UI\02.UserWidget</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

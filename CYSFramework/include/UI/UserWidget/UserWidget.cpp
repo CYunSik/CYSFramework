@@ -77,6 +77,32 @@ void CUserWidget::Render()
 	}
 }
 
+void CUserWidget::Render(const FVector3D& Pos)
+{
+	CWidget::Render(Pos);
+
+	auto iter = mWidgetList.begin();
+	auto iterEnd = mWidgetList.end();
+
+	for (; iter != iterEnd;)
+	{
+		if (!(*iter)->IsActive())
+		{
+			iter = mWidgetList.erase(iter);
+			iterEnd = mWidgetList.end();
+			continue;
+		}
+		else if (!(*iter)->IsEnable())
+		{
+			++iter;
+			continue;
+		}
+		// UI 그려줘
+		(*iter)->Render(Pos);
+		++iter;
+	}
+}
+
 bool CUserWidget::CollisionMouse(CWidget** Result, const FVector2D& MousePos)
 {
 	// 충돌 할것들 정렬 해준다.
