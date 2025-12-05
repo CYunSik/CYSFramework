@@ -5,9 +5,11 @@
 #include "../Component/SpriteComponent.h"
 #include "../Component/ColliderSphere2D.h"
 #include "../Component/MovementComponent.h"
+#include "../Scene/SceneManager.h"
 #include "../Scene/Scene.h"
 #include "../Scene/Input.h"
 #include "../Share/Log.h"
+#include "Scene/SceneGameOver.h"
 
 CPlayerSoulObject::CPlayerSoulObject()
 {
@@ -35,7 +37,7 @@ bool CPlayerSoulObject::Init()
 
     mRoot->SetTexture("PlayerSoul", TEXT("Texture/Heart/spr_heart_0.png"));
     mRoot->SetTint(1.f, 1.f, 1.f);
-    mRoot->SetWorldScale(22.f, 22.f, 1.f);
+    mRoot->SetWorldScale(26.f, 22.f, 1.f);
     mRoot->SetWorldPos(0.f, 0.f, 0.f);
     mRoot->SetPivot(0.5f, 0.5f);
 
@@ -52,12 +54,10 @@ bool CPlayerSoulObject::Init()
 
     mAnimation = mRoot->CreateAnimation2D<CAnimation2D>();
     mAnimation->AddSequence("HeartHit", 0.3f, 1.f, true, false);
+    mAnimation->AddSequence("GameOver", 3.f, 1.f, false, false);
 
     mCamera->SetProjectionType(ECameraProjectionType::Ortho);
     mCamera->SetWorldPos(0.f, 0.f, -1000.f);
-
-	// 전투박스
-    SetWorldPos(0.f, 0.f, 0.f);
 
 	// 입력
     mScene->GetInput()->AddBindKey("MoveUp", VK_UP);
@@ -79,7 +79,7 @@ void CPlayerSoulObject::Update(float DeltaTime)
 {
     CSceneObject::Update(DeltaTime);
 
-    // 만약 무적상태라면 (피격) 1초동안 무적
+    // 만약 무적상태라면 (피격) 2초동안 무적
     if (mInvincible)
     {
         mInvincibleTime += DeltaTime;
@@ -96,7 +96,7 @@ void CPlayerSoulObject::Update(float DeltaTime)
             CLog::PrintLog("Invincible Off");
         }
     }
-    else
+    else if (!mInvincible && !mGameOver)
     {
         mAnimation->ChangeAnimation("None");
     }
@@ -150,9 +150,15 @@ void CPlayerSoulObject::MoveRight(float DeltaTime)
 void CPlayerSoulObject::OnCollisionBegin(const FVector3D& HitPoint, CColliderBase* Dest)
 {
     // 이미 무적이면 피격무시
-    if (mInvincible)
+    //if (mInvincible)
+    //{
+    //    return;
+    //}
+    mHP -= 1;
+
+    if (mHP <= 0)
     {
-        return;
+        CSceneManager::GetInst()->CreateLoadScene<CSceneGameOver>();
     }
 
     // 무적 시작
@@ -163,4 +169,13 @@ void CPlayerSoulObject::OnCollisionBegin(const FVector3D& HitPoint, CColliderBas
 
     // 어두운 하트 텍스쳐 적용
     mAnimation->ChangeAnimation("HeartHit");
+}
+
+void CPlayerSoulObject::IsGameOver()
+{
+    mGameOver = true;
+    mMovement->SetMoveSpeed(0.f);
+    mAnimation->ChangeAnimation("GameOver");
+    mMinY = -250.f;
+    mRoot->SetWorldPos(0.f, -250.f);
 }

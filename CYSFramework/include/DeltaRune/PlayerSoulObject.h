@@ -39,9 +39,15 @@ protected:
     std::string mHeart;
     std::string mInvincibleHeart;
 
+    // [게임오버 테스트용]
+    int mHP = 5;
+    bool mGameOver = false;
+
 public:
     virtual bool Init();
     virtual void Update(float DeltaTime);
+
+    void IsGameOver();
 
 private:
     void MoveUp(float DeltaTime);

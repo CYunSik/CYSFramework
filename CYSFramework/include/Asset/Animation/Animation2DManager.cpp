@@ -28,7 +28,7 @@ bool CAnimation2DManager::Init()
 		AddFrame("PlayerIdle", i * 200.f, 0.f, 200.f, 200.f);
 	}
 
-	// 스타트화면 애니메이션
+	// 스타트 화면 애니메이션
 	CreateAnimation("StartBGAnimation");
 	SetAnimationTextureType("StartBGAnimation", EAnimationTextureType::Frame);
 
@@ -50,7 +50,17 @@ bool CAnimation2DManager::Init()
 	FileNames.emplace_back(TEXT("Texture/Heart/spr_heart_1.png"));
 
 	SetTexture("HeartHit", "HeartHit", FileNames);
-	AddFrameCount("HeartHit", 2, 0.f, 0.f, 16.f, 16.f);
+	AddFrameCount("HeartHit", 2, 0.f, 0.f, 20.f, 16.f);
+
+	// 플레이어(하트) 게임오버 애니메이션
+	CreateAnimation("GameOver");
+	SetAnimationTextureType("GameOver", EAnimationTextureType::Frame);
+	FileNames.clear();
+	FileNames.emplace_back(TEXT("Texture/Heart/spr_heart_0.png"));
+	FileNames.emplace_back(TEXT("Texture/Heart/spr_heartbreak.png"));
+
+	SetTexture("GameOver", "GameOver", FileNames);
+	AddFrameCount("GameOver", 2, 0.f, 0.f, 20.f, 16.f);
 
 	// 크리스 오른쪽 걷기
 	CreateAnimation("KrisWalkRight");

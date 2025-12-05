@@ -537,6 +537,9 @@
     <ClCompile Include="DeltaRune\Bullet\ClubBoom.cpp">
       <Filter>DeltaRune\Bullet</Filter>
     </ClCompile>
+    <ClCompile Include="DeltaRune\Scene\SceneGameOver.cpp">
+      <Filter>DeltaRune\Scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameManager.h">
@@ -916,6 +919,9 @@
     </ClInclude>
     <ClInclude Include="DeltaRune\Bullet\ClubBoom.h">
       <Filter>DeltaRune\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="DeltaRune\Scene\SceneGameOver.h">
+      <Filter>DeltaRune\Scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
