@@ -40,6 +40,7 @@ protected:
     std::string mInvincibleHeart;
 
     // [게임오버 테스트용]
+    class CProgressBar* mHPBar;
     int mHP = 5;
     bool mGameOver = false;
 

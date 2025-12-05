@@ -81,6 +81,8 @@ protected:
 	// Idle 상태값으로 돌아갈건지 여부
 	bool mAutoBasePose = true;
 
+	class CProgressBar* mHPBar;
+
 	// 총알용 오브젝트
 	// 스킬 1
 	CSharedPtr<class CBulletObject> mSkill1Object;

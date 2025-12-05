@@ -31,8 +31,8 @@ bool CJevilPrisonBG::Init()
 		return false;
 	}
 
-	mBackGround = CreateComponent<CSpriteComponent>();
-	mNothing = CreateComponent<CSpriteComponent>();
+	mBackGround = CreateComponent<CSpriteComponent>("BackGround");
+	mDoor = CreateComponent<CSpriteComponent>();
 	mBody = CreateComponent<CColliderAABB2D>();
 	mBody2 = CreateComponent<CColliderAABB2D>();
 	mBody3 = CreateComponent<CColliderAABB2D>();
@@ -43,25 +43,27 @@ bool CJevilPrisonBG::Init()
 	mBackGround->SetPivot(0.5f, 0.5f);
 	mBackGround->SetWorldScale(1840.f, 1200.f);
 
-	// 아무것도 없는 배경
-	mNothing->SetTexture("Nothing", TEXT("Texture/spr_nothing.png"), 0);
-	mNothing->SetPivot(0.5f, 0.5f);
-	mNothing->SetWorldScale(1840.f, 1200.f);
+	// 문
+	mDoor->SetTexture("JokerDoor", TEXT("Texture/Jevil/Door/spr_jokerdoor_2.png"), 0);
+	mDoor->SetWorldPos(690.f, -385.f, 7.f);
+	mDoor->SetPivot(0.5f, 0.5f);
+	mDoor->SetWorldScale(0.058f, 0.19f);
+
+	mBody->SetBoxSize(300.f, 10.f);
 
 	// 길 콜라이더
-	mBody->SetBoxSize(300.f, 10.f);
-	mBody->SetRelativePos(-900.f, 370.f, 5.f);
-
 	mBody2->SetBoxSize(300.f, 10.f);
 	mBody2->SetRelativePos(-1200.f, 500.f, 5.f);
 
 	mBody3->SetBoxSize(10.f, 300.f);
 	mBody3->SetRelativePos(-1200.f, 430.f, 5.f);
 
-	mBackGround->AddChild(mNothing);
-	mNothing->AddChild(mBody);
-	mNothing->AddChild(mBody2);
-	mNothing->AddChild(mBody3);
+	// 제빌씬 넘어가기 콜라이더
+
+	mBackGround->AddChild(mDoor);
+	mDoor->AddChild(mBody);
+	mBackGround->AddChild(mBody2);
+	mBackGround->AddChild(mBody3);
 
 	return true;
 }

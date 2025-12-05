@@ -540,6 +540,9 @@
     <ClCompile Include="DeltaRune\Scene\SceneGameOver.cpp">
       <Filter>DeltaRune\Scene</Filter>
     </ClCompile>
+    <ClCompile Include="UI\Common\ProgressBar.cpp">
+      <Filter>10.UI\01.Common</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameManager.h">
@@ -922,6 +925,9 @@
     </ClInclude>
     <ClInclude Include="DeltaRune\Scene\SceneGameOver.h">
       <Filter>DeltaRune\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Common\ProgressBar.h">
+      <Filter>10.UI\01.Common</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

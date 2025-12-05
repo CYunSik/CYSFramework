@@ -26,6 +26,10 @@
 #include "../Component/SpriteComponent.h"
 #include "../Share/Log.h"
 
+#include "../UI/UserWidget/MainWidget.h"
+#include "../Scene/SceneUIManager.h"
+#include "../UI/Common/ProgressBar.h"
+
 CPlayerObject::CPlayerObject()
 	: CSceneObject()
 {
@@ -47,6 +51,11 @@ CPlayerObject::~CPlayerObject()
 
 bool CPlayerObject::Init()
 {
+	//UI 생성
+	class CMainWidget* MainWidget = mScene->GetUIManager()->CreateWidget<CMainWidget>("Main");
+	mScene->GetUIManager()->AddToViewport(MainWidget);
+	mHPBar = MainWidget->HPBar;
+
 	// 게임 매니저 -> 씬매니저를 통해 -> 현재 씬을 실행시키고
 	// 씬에서는 씬에 포함된 오브젝트들을 전부 순회하면서 시점 함수들을 호출해준다.
 	// 오브젝트들은 본인의 루트 컴포넌트를 호출해주면
@@ -123,7 +132,7 @@ bool CPlayerObject::Init()
 
 	// movement
 	mMovement->SetUpdateComponent(mRoot);
-	mMovement->SetMoveSpeed(250.f);
+	mMovement->SetMoveSpeed(400.f);
 
 	// rotation
 	mRotation->SetUpdateComponent(mRoot);
@@ -336,12 +345,12 @@ void CPlayerObject::Update(float DeltaTime)
 		}
 	}
 
-	//if (mMovement->GetVelocityLength() == 0.f && mAutoBasePose)
-	//{
-	//	mAnimation->ChangeAnimation("None");
-	//	mAnimationSusie->ChangeAnimation("None");
-	//	mAnimationRalsei->ChangeAnimation("None");
-	//}
+	if (mMovement->GetVelocityLength() == 0.f && mAutoBasePose)
+	{
+		mAnimation->ChangeAnimation("None");
+		mAnimationSusie->ChangeAnimation("None");
+		mAnimationRalsei->ChangeAnimation("None");
+	}
 
 	// 위성을 돌려주면 된다.
 	//FVector3D Rot = mRotationPivot->GetRelativeRotation();

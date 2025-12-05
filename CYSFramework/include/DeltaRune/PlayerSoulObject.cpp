@@ -11,6 +11,10 @@
 #include "../Share/Log.h"
 #include "Scene/SceneGameOver.h"
 
+#include "../UI/UserWidget/MainWidget.h"
+#include "../Scene/SceneUIManager.h"
+#include "../UI/Common/ProgressBar.h"
+
 CPlayerSoulObject::CPlayerSoulObject()
 {
 }
@@ -31,6 +35,10 @@ CPlayerSoulObject::~CPlayerSoulObject()
 
 bool CPlayerSoulObject::Init()
 {
+    //class CMainWidget* MainWidget = mScene->GetUIManager()->CreateWidget<CMainWidget>("Main");
+    //mScene->GetUIManager()->AddToViewport(MainWidget);
+    //mHPBar = MainWidget->HPBar;
+
     mRoot = CreateComponent<CSpriteComponent>();
     mCamera = CreateComponent<CCameraComponent>();
     SetRootComponent(mRoot);

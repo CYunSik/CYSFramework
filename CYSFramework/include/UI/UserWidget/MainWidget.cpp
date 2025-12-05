@@ -1,9 +1,11 @@
 #include "MainWidget.h"
 
+#include "../../Device.h"
 #include "../Common/Button.h"
 #include "../../Scene/Scene.h"
 #include "../../Scene/SceneUIManager.h"
 #include "../Common/TextBlock.h"
+#include "../Common/ProgressBar.h"
 
 CMainWidget::CMainWidget()
 {
@@ -16,6 +18,8 @@ CMainWidget::~CMainWidget()
 bool CMainWidget::Init()
 {
 	CWindowWidget::Init();
+
+	FResolution RS = CDevice::GetInst()->GetResolution();
 
 	// 버튼을 추가하기
 	// 공격
@@ -120,6 +124,15 @@ bool CMainWidget::Init()
 	//Text->SetAlignV(ETextAlignV::Middle);
 
 	//mButtonAttack->SetChild(Text);
+
+	HPBar = mScene->GetUIManager()->CreateWidget<CProgressBar>("HPBar");
+
+	HPBar->SetPos(RS.Width * 0.5f, 200.f);
+	HPBar->SetSize(400.f, 50.f);
+	HPBar->SetTexture(EProgressBarImageType::Back, "HPBarBack", TEXT("Texture/UI/healthbar/healthbar_black.png"));
+	HPBar->SetTexture(EProgressBarImageType::Fill, "HPBar", TEXT("Texture/UI/healthbar/healthbar.png"));
+	HPBar->SetPercent(0.5f);
+	AddWidget(HPBar);
 
 	return true;
 }

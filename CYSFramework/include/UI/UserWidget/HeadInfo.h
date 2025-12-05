@@ -2,6 +2,7 @@
 
 #include "UserWidget.h"
 #include "../Common/TextBlock.h"
+#include "../Common/ProgressBar.h"
 
 class CHeadInfo : public CUserWidget
 {

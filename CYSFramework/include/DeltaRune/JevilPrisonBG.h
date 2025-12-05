@@ -13,7 +13,7 @@ protected:
 
 protected:
     CSharedPtr<class CSpriteComponent> mBackGround;
-    CSharedPtr<class CSpriteComponent> mNothing;
+    CSharedPtr<class CSpriteComponent> mDoor;
     CSharedPtr<class CColliderAABB2D> mBody;
     CSharedPtr<class CColliderAABB2D> mBody2;
     CSharedPtr<class CColliderAABB2D> mBody3;
