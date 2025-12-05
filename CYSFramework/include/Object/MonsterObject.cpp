@@ -99,7 +99,7 @@ bool CMonsterObject::Init()
 	mMovement = CreateComponent<CMovementComponent>();
 	//mBody = CreateComponent<CColliderAABB2D>();
 	//mBody = CreateComponent<CColliderSphere2D>();
-	mBody = CreateComponent<CColliderOBB2D>();
+	//mBody = CreateComponent<CColliderOBB2D>();
 
 	CHeadInfo* Widget = mScene->GetUIManager()->CreateWidget<CHeadInfo>("HeadInfo");
 
@@ -110,12 +110,12 @@ bool CMonsterObject::Init()
 	
 	SetRootComponent(mRoot);
 
-	mRoot->AddChild(mBody);
-	mBody->SetBoxSize(50.f, 50.f);
+	//mRoot->AddChild(mBody);
+	//mBody->SetBoxSize(50.f, 50.f);
 	//mBody->SetRadius(50.f);
-	mBody->SetCollisionProfile("Monster");
-	mBody->SetCollisionBeginFunc<CMonsterObject>(this, &CMonsterObject::CollisionMonster);
-	mBody->SetCollisionEndFunc<CMonsterObject>(this, &CMonsterObject::CollisionMonsterEnd);
+	//mBody->SetCollisionProfile("Monster");
+	//mBody->SetCollisionBeginFunc<CMonsterObject>(this, &CMonsterObject::CollisionMonster);
+	//mBody->SetCollisionEndFunc<CMonsterObject>(this, &CMonsterObject::CollisionMonsterEnd);
 
 	//mRoot->AddChild(mRoot2);
 

@@ -21,6 +21,7 @@
 CSpriteComponent::CSpriteComponent()
 {
 	mRenderType = EComponentRender::Render;
+	mRenderLayerName = "Object";
 }
 
 CSpriteComponent::CSpriteComponent(const CSpriteComponent& Com)

@@ -32,12 +32,16 @@ E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Component\SceneComponen
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Component\SpriteComponent.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\SpriteComponent.obj
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Component\StaticMeshComponent.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\StaticMeshComponent.obj
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Component\WidgetComponent.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\WidgetComponent.obj
+E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\DeltaRune\Bullet\ClubBoom.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\ClubBoom.obj
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\DeltaRune\JevilBossObject.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\JevilBossObject.obj
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\DeltaRune\JevilPrisonBG.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\JevilPrisonBG.obj
+E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\DeltaRune\PlayerSoulObject.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\PlayerSoulObject.obj
+E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\DeltaRune\Scene\SceneTest.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\SceneTest.obj
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Device.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\Device.obj
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\GameInfo.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\GameInfo.obj
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\GameManager.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\GameManager.obj
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\main.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\main.obj
+E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Object\BackObject.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\BackObject.obj
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Object\BlockObject.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\BlockObject.obj
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Object\BoomMonster.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\BoomMonster.obj
 E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\include\Object\BulletObject.cpp;E:\CYS\CYS_DXFramework\CYSFramework\CYSFramework\BinObj\BulletObject.obj

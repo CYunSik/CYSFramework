@@ -30,6 +30,9 @@ bool CProfileManager::Init()
 	// 몬스터 공격
 	CreateProfile("MonsterAttack", ECollisionChannel::MonsterAttack, true, ECollisionInteraction::Ignore);
 
+	// 무적상태
+	CreateProfile("Invincible", ECollisionChannel::Invincible, true, ECollisionInteraction::Ignore);
+
 	// 플레이어 프로파일 세팅
 	SetInteraction("Player", ECollisionChannel::Player, ECollisionInteraction::Ignore);
 	SetInteraction("Player", ECollisionChannel::PlayerAttack, ECollisionInteraction::Ignore);
@@ -41,6 +44,7 @@ bool CProfileManager::Init()
 	// MonsterAttack
 	SetInteraction("MonsterAttack", ECollisionChannel::Default, ECollisionInteraction::Ignore);
 	SetInteraction("MonsterAttack", ECollisionChannel::Player, ECollisionInteraction::Collision);
+	SetInteraction("MonsterAttack", ECollisionChannel::Invincible, ECollisionInteraction::Ignore);
 
 	// Monster
 	SetInteraction("Monster", ECollisionChannel::MonsterAttack, ECollisionInteraction::Ignore);

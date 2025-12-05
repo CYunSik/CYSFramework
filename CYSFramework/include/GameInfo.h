@@ -235,6 +235,7 @@ namespace ECollisionChannel
 		Monster,
 		PlayerAttack,
 		MonsterAttack,
+		Invincible,
 		End
 	};
 }

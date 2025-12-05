@@ -28,7 +28,7 @@ bool CJevilBossObject::Init()
 	mRoot2 = CreateComponent<CSpriteComponent>();
 	mRoot3 = CreateComponent<CSpriteComponent>();
 	//mRoot->SetTexture("JevilMain", TEXT("Texture/Jevil/spr_joker_main/spr_joker_main_0.png"), 0);
-	mRoot->SetWorldScale(80.f, 90.f);
+	mRoot->SetWorldScale(126.f, 121.f);
 	mRoot->SetPivot(0.5f, 0.5f);
 	SetRootComponent(mRoot);
 

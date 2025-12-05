@@ -64,8 +64,8 @@ bool CBulletObject::Init()
 
 	mRoot->AddChild(mBody);
 	//mBody->SetBoxSize(30.f, 30.f);
-	mBody->SetRadius(10.f);
-	mBody->SetCollisionProfile("PlayerAttack");
+	mBody->SetRadius(15.f);
+	mBody->SetCollisionProfile("MonsterAttack");
 	mBody->SetCollisionBeginFunc<CBulletObject>(this, &CBulletObject::CollisionBullet);
 
 	return true;

@@ -32,7 +32,7 @@ bool CGunnerMonster::Init()
 		return false;
 	}
 
-	mRoot->SetTexture("SpadeBoom", TEXT("Texture/spr_bomb_spade_ch1_0.png"), 0);
+	mRoot->SetTexture("SpadeBoom", TEXT("Texture/spr_bomb_club_ch1_0.png"), 0);
 	mRoot->SetPivot(0.5f, 0.5f);
 	mRoot->SetOpacity(1.f);
 	mRoot->SetWorldScale(50.f, 50.f, 1.f);
@@ -76,9 +76,9 @@ void CGunnerMonster::Update(float DeltaTime)
 	// 발사하기 샘플
 	mFireTime -= DeltaTime;
 
-	if (mFireTime <= 0)
+	if (mFireTime <= mFireInterval)
 	{
-		mFireTime = 1.f;
+		mFireTime = 2.f;
 		//++mFireCount;
 
 		//CBulletObject* Bullet = mScene->CreateObj<CBulletObject>("Bullet");
@@ -91,18 +91,18 @@ void CGunnerMonster::Update(float DeltaTime)
 
 		// 4번째 총알이면 다시 0으로
 		//mFireCount = 0;
-		std::vector<float> RotationOffSets = { -45.f, 0.f, 45.f };
+		std::vector<float> RotationOffSets = { 0.f };
 
 		for (float AngleOffSet : RotationOffSets)
 		{
 			CBulletObject* Bullet = mScene->CreateObj<CBulletObject>("Bullet");
 			Bullet->SetBulletCollisionProfile("MonsterAttack");
 
-			Bullet->SetWorldScale(40.f, 40.f);
+			Bullet->SetWorldScale(50.f, 50.f);
 			Bullet->SetWorldRotation(GetWorldRotation());
 			Bullet->SetWorldPos(GetWorldPosition());
 			Bullet->AddWorldRotationZ(AngleOffSet);
-			Bullet->SetLifeTime(2.f);
+			Bullet->SetLifeTime(1.2f);
 		}
 
 		//if (mFireCount == 4)

@@ -16,16 +16,21 @@ protected:
     CSharedPtr<class CSpriteComponent> mRoot;
 
     // 콜라이더
-    CSharedPtr<class CColliderSphere2D> mBody;
+    CSharedPtr<class CColliderAABB2D> mBody;
 
     // 이동
     CSharedPtr<class CMovementComponent> mMovement;
 
+    // 카메라
+    CSharedPtr<class CCameraComponent> mCamera;
+
+    class CAnimation2D* mAnimation = nullptr;
+
     // 이동 구역(배틀 박스 영역)
-    float mMinX = 300.f;
-    float mMaxX = 980.f;
-    float mMinY = 350.f;
-    float mMaxY = 650.f;
+    float mMinX = -93.f;
+    float mMaxX = 97.f;
+    float mMinY = -92.f;
+    float mMaxY = 99.f;
 
     // 패턴에 피격당하고 1초동안 무적을 위한 변수
     bool mInvincible = false;

@@ -193,6 +193,15 @@
     <Filter Include="07.Component\01.SceneComponent\06.UI">
       <UniqueIdentifier>{44812b63-60fd-43ca-be3d-4fb413216169}</UniqueIdentifier>
     </Filter>
+    <Filter Include="DeltaRune\Scene">
+      <UniqueIdentifier>{46581a4f-c899-4b71-895e-2008c3e90b0a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="06.Object\05.BackGround">
+      <UniqueIdentifier>{87cfcd75-2e29-41f9-a955-a4797ae27322}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DeltaRune\Bullet">
+      <UniqueIdentifier>{f5be30d7-2c95-4fde-9be0-07ae87ce22fd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -518,6 +527,15 @@
     </ClCompile>
     <ClCompile Include="UI\UserWidget\HeadInfo.cpp">
       <Filter>10.UI\02.UserWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="DeltaRune\Scene\SceneTest.cpp">
+      <Filter>DeltaRune\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Object\BackObject.cpp">
+      <Filter>06.Object\05.BackGround</Filter>
+    </ClCompile>
+    <ClCompile Include="DeltaRune\Bullet\ClubBoom.cpp">
+      <Filter>DeltaRune\Bullet</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -889,6 +907,15 @@
     </ClInclude>
     <ClInclude Include="UI\UserWidget\HeadInfo.h">
       <Filter>10.UI\02.UserWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="DeltaRune\Scene\SceneTest.h">
+      <Filter>DeltaRune\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\BackObject.h">
+      <Filter>06.Object\05.BackGround</Filter>
+    </ClInclude>
+    <ClInclude Include="DeltaRune\Bullet\ClubBoom.h">
+      <Filter>DeltaRune\Bullet</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

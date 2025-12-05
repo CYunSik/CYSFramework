@@ -5,8 +5,19 @@ class CBulletObject : public CSceneObject
 {
 	friend class CScene;
 
-private:
-	float mSpeed = 300.f;
+protected:
+	CBulletObject();
+	CBulletObject(const CBulletObject& Obj);
+	CBulletObject(CBulletObject&& Obj);
+	virtual ~CBulletObject();
+
+protected:
+	CSharedPtr<class CSpriteComponent> mRoot;
+	CSharedPtr<class CColliderSphere2D> mBody;
+	CSharedPtr<class CMovementComponent> mMovement;
+	CSharedPtr<class CRotationComponent> mRotation;
+
+	float mSpeed = 0.f;
 
 public:
 	float GetBulletSpeed() const
@@ -22,18 +33,6 @@ public:
 	// 총알 오브젝트의 충돌체의 profile을 설정해주는거 만들고
 	// 각각의 총알타입에 맞게 변경해주기
 	void SetBulletCollisionProfile(const std::string& Name);
-
-protected:
-	CSharedPtr<class CSpriteComponent> mRoot;
-	CSharedPtr<class CColliderSphere2D> mBody;
-	CSharedPtr<class CMovementComponent> mMovement;
-	CSharedPtr<class CRotationComponent> mRotation;
-
-protected:
-	CBulletObject();
-	CBulletObject(const CBulletObject& Obj);
-	CBulletObject(CBulletObject&& Obj);
-	virtual ~CBulletObject();
 
 public:
 	virtual bool Init();

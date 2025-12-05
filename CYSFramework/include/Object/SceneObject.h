@@ -1,5 +1,6 @@
 #pragma once
 
+#include "../Component/SceneComponent.h"
 #include "../Share/Object.h"
 
 class CSceneObject : public CObject
@@ -93,20 +94,25 @@ public:
 public:
 	// 컴포넌트 생성해주는 친구
 	template<typename T>
-	T* CreateComponent()
+	T* CreateComponent(const std::string LayerName = "")
 	{
 		T* Component = new T;
 
 		Component->mScene = mScene;
 		Component->mOwnerObject = this;
 
+		class CSceneComponent* Com = dynamic_cast<CSceneComponent*>(Component);
+
+		if (!LayerName.empty() && Com)
+		{
+			Com->mRenderLayerName = LayerName;
+		}
+
 		if (!Component->Init())
 		{
 			SAFE_DELETE(Component);
 			return nullptr;
 		}
-
-		class CSceneComponent* Com = dynamic_cast<CSceneComponent*>(Component);
 
 		if (!Com)
 		{

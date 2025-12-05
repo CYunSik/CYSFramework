@@ -5,6 +5,7 @@
 #include "../../Scene/SceneUIManager.h"
 #include "../Common/Button.h"
 #include "../../Component/SpriteComponent.h"
+#include "../../DeltaRune/Scene/SceneTest.h"
 #include "../Common/TextBlock.h"
 #include "../Common/Image.h"
 
@@ -111,5 +112,5 @@ void CStartWidget::StartButtonClick()
 {
 	CLog::PrintLog("Start Button Click");
 
-	CSceneManager::GetInst()->CreateLoadScene<CSceneMain>();
+	CSceneManager::GetInst()->CreateLoadScene<CSceneTest>();
 }

@@ -1,4 +1,7 @@
 #include "PlayerSoulObject.h"
+
+#include "../Component/CameraComponent.h"
+#include "../Component/ColliderAABB2D.h"
 #include "../Component/SpriteComponent.h"
 #include "../Component/ColliderSphere2D.h"
 #include "../Component/MovementComponent.h"
@@ -27,25 +30,34 @@ CPlayerSoulObject::~CPlayerSoulObject()
 bool CPlayerSoulObject::Init()
 {
     mRoot = CreateComponent<CSpriteComponent>();
+    mCamera = CreateComponent<CCameraComponent>();
     SetRootComponent(mRoot);
 
     mRoot->SetTexture("PlayerSoul", TEXT("Texture/Heart/spr_heart_0.png"));
-    mRoot->SetWorldScale(16.f, 16.f, 1.f);
+    mRoot->SetTint(1.f, 1.f, 1.f);
+    mRoot->SetWorldScale(22.f, 22.f, 1.f);
+    mRoot->SetWorldPos(0.f, 0.f, 0.f);
     mRoot->SetPivot(0.5f, 0.5f);
 
     mMovement = CreateComponent<CMovementComponent>();
     mMovement->SetUpdateComponent(mRoot);
-    mMovement->SetMoveSpeed(350.f);
+    mMovement->SetMoveSpeed(200.f);
 
-    mBody = CreateComponent<CColliderSphere2D>();
-    mBody->SetRadius(15.f);
+    mBody = CreateComponent<CColliderAABB2D>();
+    mBody->SetBoxSize(22.f, 22.f);
     mBody->SetCollisionProfile("Player");
     mBody->SetCollisionBeginFunc<CPlayerSoulObject>(this, &CPlayerSoulObject::OnCollisionBegin);
 
     mRoot->AddChild(mBody);
 
+    mAnimation = mRoot->CreateAnimation2D<CAnimation2D>();
+    mAnimation->AddSequence("HeartHit", 0.3f, 1.f, true, false);
+
+    mCamera->SetProjectionType(ECameraProjectionType::Ortho);
+    mCamera->SetWorldPos(0.f, 0.f, -1000.f);
+
 	// 전투박스
-    SetWorldPos(640.f, 500.f, 0.f);
+    SetWorldPos(0.f, 0.f, 0.f);
 
 	// 입력
     mScene->GetInput()->AddBindKey("MoveUp", VK_UP);
@@ -72,20 +84,24 @@ void CPlayerSoulObject::Update(float DeltaTime)
     {
         mInvincibleTime += DeltaTime;
 
-        if (mInvincibleTime >= 1.f)
+        if (mInvincibleTime >= 2.f)
         {
             // 무적 해제
             mInvincible = false;
             mInvincibleTime = 0.f;
+            mBody->SetCollisionProfile("Player");
 
             // 하트 원래 텍스쳐로 복원
-            mRoot->SetTexture("PlayerSoul", TEXT("Texture/Heart/spr_heart_0.png"));
+            mAnimation->ChangeAnimation("None");
+            CLog::PrintLog("Invincible Off");
         }
     }
+    else
+    {
+        mAnimation->ChangeAnimation("None");
+    }
 
-    // -----------------------------------------------------
     // 배틀 박스 제한
-    // -----------------------------------------------------
     FVector3D pos = GetWorldPosition();
 
     if (pos.x < mMinX)
@@ -140,10 +156,11 @@ void CPlayerSoulObject::OnCollisionBegin(const FVector3D& HitPoint, CColliderBas
     }
 
     // 무적 시작
+    CLog::PrintLog("Invincible On");
     mInvincible = true;
     mInvincibleTime = 0.f;
+    mBody->SetCollisionProfile("Invincible");
 
     // 어두운 하트 텍스쳐 적용
-    mRoot->SetTexture("PlayerSoul", TEXT("Texture/Heart/spr_heart_1.png"));
-
+    mAnimation->ChangeAnimation("HeartHit");
 }

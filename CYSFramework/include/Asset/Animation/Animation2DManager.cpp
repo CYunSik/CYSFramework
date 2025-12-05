@@ -42,6 +42,16 @@ bool CAnimation2DManager::Init()
 	SetTexture("StartBGAnimation", "StartBGAnimation", FileNames);
 	AddFrameCount("StartBGAnimation", 5, 0.f, 0.f, 320.f, 70.f);
 
+	// 플레이어(하트) 피격 애니메이션
+	CreateAnimation("HeartHit");
+	SetAnimationTextureType("HeartHit", EAnimationTextureType::Frame);
+	FileNames.clear();
+	FileNames.emplace_back(TEXT("Texture/Heart/spr_heart_0.png"));
+	FileNames.emplace_back(TEXT("Texture/Heart/spr_heart_1.png"));
+
+	SetTexture("HeartHit", "HeartHit", FileNames);
+	AddFrameCount("HeartHit", 2, 0.f, 0.f, 16.f, 16.f);
+
 	// 크리스 오른쪽 걷기
 	CreateAnimation("KrisWalkRight");
 	SetAnimationTextureType("KrisWalkRight", EAnimationTextureType::Frame);

@@ -12,8 +12,15 @@ protected:
 	virtual ~CGunnerMonster();
 
 protected:
-	float mFireTime = 1.f;
+	float mFireInterval = 0.f;
+	float mFireTime = 2.f;
 	int mFireCount = 0;
+
+public:
+	void SetFireInterval(float FireInterval)
+	{
+		mFireInterval = FireInterval;
+	}
 
 public:
 	virtual bool Init();

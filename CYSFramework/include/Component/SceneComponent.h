@@ -18,11 +18,19 @@ protected:
 	CSceneComponent* mParent = nullptr;
 	std::vector<CSharedPtr<CSceneComponent>> mChildList;
 
+	// 레이어 이름
+	std::string mRenderLayerName;
+
 	// 해당 SceneComponent가 그려질지 여부
 	EComponentRender mRenderType = EComponentRender::None;
 
 public:
 	void AddChild(CSceneComponent* Child);
+
+	const std::string& GetRenderLayerName() const
+	{
+		return mRenderLayerName;
+	}
 
 	// 시점 함수
 public:

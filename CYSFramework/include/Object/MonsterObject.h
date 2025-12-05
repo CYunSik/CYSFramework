@@ -28,7 +28,7 @@ protected:
 
 	//CSharedPtr<class CColliderAABB2D> mBody;
 	//CSharedPtr<class CColliderSphere2D> mBody;
-	CSharedPtr<class CColliderOBB2D> mBody;
+	//CSharedPtr<class CColliderOBB2D> mBody;
 
 	// Widget Component
 	CSharedPtr<class CWidgetComponent> mWidgetComponent;
