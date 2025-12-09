@@ -41,8 +41,8 @@ bool CBulletObject::Init()
 {
 	CSceneObject::Init();
 
-	mRoot = CreateComponent<CSpriteComponent>();
-	mBody = CreateComponent<CColliderSphere2D>();
+	mRoot = CreateComponent<CSpriteComponent>("JevilAttack");
+	mBody = CreateComponent<CColliderSphere2D>("JevilAttackBody");
 	mMovement = CreateComponent<CMovementComponent>();
 	mRotation = CreateComponent<CRotationComponent>();
 
@@ -55,7 +55,7 @@ bool CBulletObject::Init()
 	// Movement 세팅
 	mMovement->SetUpdateComponent(mRoot);
 	mMovement->SetMoveAxis(EAxis::Y);
-	mMovement->SetMoveSpeed(350.f);
+	mMovement->SetMoveSpeed(150.f);
 
 	// Rotation 세팅
 	mRotation->SetUpdateComponent(mRoot);

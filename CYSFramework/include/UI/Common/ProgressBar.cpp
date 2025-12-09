@@ -258,17 +258,8 @@ void CProgressBar::Render(const FVector3D& Pos)
 
 	FResolution RS = CDevice::GetInst()->GetResolution();
 
-	const FVector3D& CameraPos = mScene->GetCameraManager()->GetCameraWorldPos();
-
-	RenderPos.x -= CameraPos.x;
-	RenderPos.y -= CameraPos.y;
-
 	RenderPos.x -= mPivot.x * mSize.x;
 	RenderPos.y -= mPivot.y * mSize.y;
-
-	RenderPos.x += (RS.Width * 0.5f);
-	RenderPos.y += (RS.Height * 0.5f);
-
 
 	RenderBrush(mBackBrush, RenderPos, mSize);
 

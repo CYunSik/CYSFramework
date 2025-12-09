@@ -13,6 +13,10 @@ protected:
 	// 위젯들 목록
 	std::vector<CSharedPtr<CWidget>> mWidgetList;
 
+protected:
+	// 버튼 인덱스
+	int mSelectedIndex = -1;
+
 public:
 	void AddWidget(CWidget* Widget)
 	{
@@ -29,5 +33,15 @@ public:
 
 	static bool SortCollision(const CSharedPtr<CWidget>& Src, const CSharedPtr<CWidget>& Dest);
 	static bool SortRender(const CSharedPtr<CWidget>& Src, const CSharedPtr<CWidget>& Dest);
+
+public:
+	void OnLeft(float DeltaTime);
+	void OnRight(float DeltaTime);
+	void OnConfirm(float DeltaTime);
+	void OnCancel(float DeltaTime);
+		
+	void MoveSelection(int Offset);
+	void ActivateCurrentButton();
+
 };
 

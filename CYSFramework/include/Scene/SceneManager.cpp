@@ -1,6 +1,6 @@
 #include "SceneManager.h"
 #include "SceneMain.h"
-#include "SceneStart.h"
+#include "../DeltaRune/Scene/SceneStart.h"
 
 CSceneManager::CSceneManager()
 {

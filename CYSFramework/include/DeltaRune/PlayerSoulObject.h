@@ -27,10 +27,10 @@ protected:
     class CAnimation2D* mAnimation = nullptr;
 
     // 이동 구역(배틀 박스 영역)
-    float mMinX = -93.f;
-    float mMaxX = 97.f;
-    float mMinY = -92.f;
-    float mMaxY = 99.f;
+    float mMinX = -130.f;
+    float mMaxX = 133.f;
+    float mMinY = 5.f;
+    float mMaxY = 202.f;
 
     // 패턴에 피격당하고 1초동안 무적을 위한 변수
     bool mInvincible = false;
@@ -41,7 +41,7 @@ protected:
 
     // [게임오버 테스트용]
     class CProgressBar* mHPBar;
-    int mHP = 5;
+    int mHP = 100;
     bool mGameOver = false;
 
 public:

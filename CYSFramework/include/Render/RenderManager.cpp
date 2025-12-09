@@ -92,6 +92,11 @@ bool CRenderManager::Init()
 	CreateRenderLayer("BackGround", INT_MIN);
 	CreateRenderLayer("BattleBox", -1);
 	CreateRenderLayer("Object", 0);
+	CreateRenderLayer("BattleUIObj", 0);
+	CreateRenderLayer("BattleUI2", 1);
+	CreateRenderLayer("BattleUI3", 2);
+	CreateRenderLayer("JevilAttack", 10);
+	CreateRenderLayer("JevilAttackBody", 11);
 
 	mStateManager = new CRenderStateManager;
 

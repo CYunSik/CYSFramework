@@ -202,6 +202,27 @@
     <Filter Include="DeltaRune\Bullet">
       <UniqueIdentifier>{f5be30d7-2c95-4fde-9be0-07ae87ce22fd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="DeltaRune\Battle">
+      <UniqueIdentifier>{614ee197-cf0f-4eb4-8453-4cb8030a03cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DeltaRune\UI">
+      <UniqueIdentifier>{39323790-d626-49a6-9dd5-dff775502543}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Shader\02.Shader Class\06.TileMap">
+      <UniqueIdentifier>{73062699-38cb-4bd2-bff1-818c9b2bd174}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="06.Object\06.TileMap">
+      <UniqueIdentifier>{96d72909-7c16-466b-8dc4-7b0b9ac92a84}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="07.Component\02.NonSceneComponent\01.Movement">
+      <UniqueIdentifier>{99e1747a-6c86-4598-99f9-876a13d58678}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="07.Component\02.NonSceneComponent\02.TileMap">
+      <UniqueIdentifier>{066fa658-ccca-4883-b11a-8d6351daa89c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="07.Component\01.SceneComponent\07.TileMap">
+      <UniqueIdentifier>{04ea901c-b665-48f7-bc1a-316311f5df55}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -288,14 +309,8 @@
     <ClCompile Include="Object\TornadoBullet.cpp">
       <Filter>06.Object\02.Bullet</Filter>
     </ClCompile>
-    <ClCompile Include="Component\MovementComponent.cpp">
-      <Filter>07.Component\02.NonSceneComponent</Filter>
-    </ClCompile>
     <ClCompile Include="Scene\CameraManager.cpp">
       <Filter>05.Scene\02.CameraManager</Filter>
-    </ClCompile>
-    <ClCompile Include="Component\RotationComponent.cpp">
-      <Filter>07.Component\02.NonSceneComponent</Filter>
     </ClCompile>
     <ClCompile Include="Object\TalonR.cpp">
       <Filter>06.Object\02.Bullet</Filter>
@@ -513,17 +528,11 @@
     <ClCompile Include="UI\Common\TextBlock.cpp">
       <Filter>10.UI\01.Common</Filter>
     </ClCompile>
-    <ClCompile Include="Scene\SceneStart.cpp">
-      <Filter>05.Scene</Filter>
-    </ClCompile>
     <ClCompile Include="UI\Common\Image.cpp">
       <Filter>10.UI\01.Common</Filter>
     </ClCompile>
     <ClCompile Include="Component\WidgetComponent.cpp">
       <Filter>07.Component\01.SceneComponent\06.UI</Filter>
-    </ClCompile>
-    <ClCompile Include="UI\UserWidget\StartWidget.cpp">
-      <Filter>10.UI\02.UserWidget\01.Main</Filter>
     </ClCompile>
     <ClCompile Include="UI\UserWidget\HeadInfo.cpp">
       <Filter>10.UI\02.UserWidget</Filter>
@@ -542,6 +551,51 @@
     </ClCompile>
     <ClCompile Include="UI\Common\ProgressBar.cpp">
       <Filter>10.UI\01.Common</Filter>
+    </ClCompile>
+    <ClCompile Include="DeltaRune\Battle\BattleSystem.cpp">
+      <Filter>DeltaRune\Battle</Filter>
+    </ClCompile>
+    <ClCompile Include="DeltaRune\Battle\AttackBar.cpp">
+      <Filter>DeltaRune\Battle</Filter>
+    </ClCompile>
+    <ClCompile Include="DeltaRune\UI\BattleWidget.cpp">
+      <Filter>DeltaRune\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="DeltaRune\UI\BattleHUD.cpp">
+      <Filter>DeltaRune\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="DeltaRune\Scene\SceneStart.cpp">
+      <Filter>DeltaRune\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="DeltaRune\UI\StartWidget.cpp">
+      <Filter>DeltaRune\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader\TileMapShader.cpp">
+      <Filter>04.Shader\02.Shader Class\06.TileMap</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\SceneEditor.cpp">
+      <Filter>05.Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Object\TileMapObj.cpp">
+      <Filter>06.Object\06.TileMap</Filter>
+    </ClCompile>
+    <ClCompile Include="Object\EditorPlayer.cpp">
+      <Filter>06.Object\01.Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Component\RotationComponent.cpp">
+      <Filter>07.Component\02.NonSceneComponent\01.Movement</Filter>
+    </ClCompile>
+    <ClCompile Include="Component\MovementComponent.cpp">
+      <Filter>07.Component\02.NonSceneComponent\01.Movement</Filter>
+    </ClCompile>
+    <ClCompile Include="Component\TileMapRenderComponent.cpp">
+      <Filter>07.Component\01.SceneComponent\07.TileMap</Filter>
+    </ClCompile>
+    <ClCompile Include="Component\TileMapComponent.cpp">
+      <Filter>07.Component\02.NonSceneComponent\02.TileMap</Filter>
+    </ClCompile>
+    <ClCompile Include="Component\Tile.cpp">
+      <Filter>07.Component\02.NonSceneComponent\02.TileMap</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -650,14 +704,8 @@
     <ClInclude Include="Object\TornadoBullet.h">
       <Filter>06.Object\02.Bullet</Filter>
     </ClInclude>
-    <ClInclude Include="Component\MovementComponent.h">
-      <Filter>07.Component\02.NonSceneComponent</Filter>
-    </ClInclude>
     <ClInclude Include="Scene\CameraManager.h">
       <Filter>05.Scene\02.CameraManager</Filter>
-    </ClInclude>
-    <ClInclude Include="Component\RotationComponent.h">
-      <Filter>07.Component\02.NonSceneComponent</Filter>
     </ClInclude>
     <ClInclude Include="Object\TalonR.h">
       <Filter>06.Object\02.Bullet</Filter>
@@ -899,17 +947,11 @@
     <ClInclude Include="UI\Common\TextBlock.h">
       <Filter>10.UI\01.Common</Filter>
     </ClInclude>
-    <ClInclude Include="Scene\SceneStart.h">
-      <Filter>05.Scene</Filter>
-    </ClInclude>
     <ClInclude Include="UI\Common\Image.h">
       <Filter>10.UI\01.Common</Filter>
     </ClInclude>
     <ClInclude Include="Component\WidgetComponent.h">
       <Filter>07.Component\01.SceneComponent\06.UI</Filter>
-    </ClInclude>
-    <ClInclude Include="UI\UserWidget\StartWidget.h">
-      <Filter>10.UI\02.UserWidget\01.Main</Filter>
     </ClInclude>
     <ClInclude Include="UI\UserWidget\HeadInfo.h">
       <Filter>10.UI\02.UserWidget</Filter>
@@ -928,6 +970,51 @@
     </ClInclude>
     <ClInclude Include="UI\Common\ProgressBar.h">
       <Filter>10.UI\01.Common</Filter>
+    </ClInclude>
+    <ClInclude Include="DeltaRune\Battle\BattleSystem.h">
+      <Filter>DeltaRune\Battle</Filter>
+    </ClInclude>
+    <ClInclude Include="DeltaRune\Battle\AttackBar.h">
+      <Filter>DeltaRune\Battle</Filter>
+    </ClInclude>
+    <ClInclude Include="DeltaRune\UI\BattleWidget.h">
+      <Filter>DeltaRune\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="DeltaRune\UI\BattleHUD.h">
+      <Filter>DeltaRune\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="DeltaRune\Scene\SceneStart.h">
+      <Filter>DeltaRune\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="DeltaRune\UI\StartWidget.h">
+      <Filter>DeltaRune\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader\TileMapShader.h">
+      <Filter>04.Shader\02.Shader Class\06.TileMap</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\SceneEditor.h">
+      <Filter>05.Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\TileMapObj.h">
+      <Filter>06.Object\06.TileMap</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\EditorPlayer.h">
+      <Filter>06.Object\01.Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Component\RotationComponent.h">
+      <Filter>07.Component\02.NonSceneComponent\01.Movement</Filter>
+    </ClInclude>
+    <ClInclude Include="Component\MovementComponent.h">
+      <Filter>07.Component\02.NonSceneComponent\01.Movement</Filter>
+    </ClInclude>
+    <ClInclude Include="Component\TileMapRenderComponent.h">
+      <Filter>07.Component\01.SceneComponent\07.TileMap</Filter>
+    </ClInclude>
+    <ClInclude Include="Component\TileMapComponent.h">
+      <Filter>07.Component\02.NonSceneComponent\02.TileMap</Filter>
+    </ClInclude>
+    <ClInclude Include="Component\Tile.h">
+      <Filter>07.Component\02.NonSceneComponent\02.TileMap</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -954,6 +1041,9 @@
       <Filter>04.Shader\01.HLSL</Filter>
     </FxCompile>
     <FxCompile Include="..\Bin\Shader\UI.fx">
+      <Filter>04.Shader\01.HLSL</Filter>
+    </FxCompile>
+    <FxCompile Include="..\Bin\Shader\TileMap.fx">
       <Filter>04.Shader\01.HLSL</Filter>
     </FxCompile>
   </ItemGroup>

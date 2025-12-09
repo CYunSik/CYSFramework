@@ -31,12 +31,12 @@ bool CFontManager::Init()
 	}
 
 	// 폰트 불러오기
-	LoadFontCollection("Default", TEXT("Font\\DeltaruneKR13.ttf"));
+	LoadFontCollection("Default", TEXT("Font/DeltaruneKR13.ttf"));
 
 	// 폰트 정보를 넣어준다
 
 	// 한국어 ko 영어 en-us
-	LoadFont("Default", GetFontFaceName("Default"), 600, 20.f, TEXT("ko"));
+	LoadFont("Default", GetFontFaceName("Default"), 600, 20.f, TEXT("ko-kr"));
 
 	CreateFontColor(0, 0, 0, 255);				// 검정색
 	CreateFontColor(255, 255, 255, 255);		// 흰색
@@ -61,8 +61,9 @@ bool CFontManager::LoadFont(const std::string& Name, const TCHAR* FontName, int 
 	Font = new CFont;
 
 	Font->mName = Name;
-
-	if (!Font->LoadFont(mWriteFactory, FontName, Weight, FontSize, LocalName, Stretch))
+	
+	auto iter = mFontCollectionMap.find("Default");
+	if (!Font->LoadFont(mWriteFactory, iter->second.Get()->GetCollection(), FontName, Weight, FontSize, LocalName, Stretch))
 	{
 		SAFE_DELETE(Font);
 		return false;

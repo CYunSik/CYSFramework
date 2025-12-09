@@ -174,10 +174,20 @@
     <ClCompile Include="Component\SceneComponent.cpp" />
     <ClCompile Include="Component\SpriteComponent.cpp" />
     <ClCompile Include="Component\StaticMeshComponent.cpp" />
+    <ClCompile Include="Component\Tile.cpp" />
+    <ClCompile Include="Component\TileMapComponent.cpp" />
+    <ClCompile Include="Component\TileMapRenderComponent.cpp" />
     <ClCompile Include="Component\WidgetComponent.cpp" />
     <ClCompile Include="DeltaRune\BattleController.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="DeltaRune\Battle\AttackBar.cpp" />
+    <ClCompile Include="DeltaRune\Battle\BattleSystem.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="DeltaRune\Bullet\ClubBoom.cpp" />
     <ClCompile Include="DeltaRune\JevilBossObject.cpp" />
@@ -197,7 +207,16 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="DeltaRune\Scene\SceneGameOver.cpp" />
-    <ClCompile Include="DeltaRune\Scene\SceneTest.cpp" />
+    <ClCompile Include="DeltaRune\Scene\SceneStart.cpp" />
+    <ClCompile Include="DeltaRune\Scene\SceneTest.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="DeltaRune\UI\BattleHUD.cpp" />
+    <ClCompile Include="DeltaRune\UI\BattleWidget.cpp" />
+    <ClCompile Include="DeltaRune\UI\StartWidget.cpp" />
     <ClCompile Include="Device.cpp" />
     <ClCompile Include="GameInfo.cpp" />
     <ClCompile Include="GameManager.cpp" />
@@ -207,6 +226,7 @@
     <ClCompile Include="Object\BoomMonster.cpp" />
     <ClCompile Include="Object\BulletObject.cpp" />
     <ClCompile Include="Object\ContinuousdamageBullet.cpp" />
+    <ClCompile Include="Object\EditorPlayer.cpp" />
     <ClCompile Include="Object\GunnerMonster.cpp" />
     <ClCompile Include="Object\MonsterObject.cpp" />
     <ClCompile Include="Object\MonsterSpawner.cpp" />
@@ -217,6 +237,7 @@
     <ClCompile Include="Object\NearingMonster.cpp" />
     <ClCompile Include="Object\SpriteEffect.cpp" />
     <ClCompile Include="Object\TalonR.cpp" />
+    <ClCompile Include="Object\TileMapObj.cpp" />
     <ClCompile Include="Object\TornadoBullet.cpp" />
     <ClCompile Include="Object\ZaryaBullet.cpp" />
     <ClCompile Include="ProfileManager.cpp" />
@@ -232,9 +253,9 @@
     <ClCompile Include="Scene\Scene.cpp" />
     <ClCompile Include="Scene\SceneAssetManager.cpp" />
     <ClCompile Include="Scene\SceneCollision.cpp" />
+    <ClCompile Include="Scene\SceneEditor.cpp" />
     <ClCompile Include="Scene\SceneMain.cpp" />
     <ClCompile Include="Scene\SceneManager.cpp" />
-    <ClCompile Include="Scene\SceneStart.cpp" />
     <ClCompile Include="Scene\SceneUIManager.cpp" />
     <ClCompile Include="Shader\Animation2DCBuffer.cpp" />
     <ClCompile Include="Shader\ColliderCBuffer.cpp" />
@@ -250,6 +271,7 @@
     <ClCompile Include="Shader\SpriteCBuffer.cpp" />
     <ClCompile Include="Shader\SpriteShader.cpp" />
     <ClCompile Include="Shader\StaticMeshShader.cpp" />
+    <ClCompile Include="Shader\TileMapShader.cpp" />
     <ClCompile Include="Shader\TransformCBuffer.cpp" />
     <ClCompile Include="Shader\UICBuffer.cpp" />
     <ClCompile Include="Shader\UIShader.cpp" />
@@ -262,7 +284,6 @@
     <ClCompile Include="UI\Common\TextBlock.cpp" />
     <ClCompile Include="UI\UserWidget\HeadInfo.cpp" />
     <ClCompile Include="UI\UserWidget\MainWidget.cpp" />
-    <ClCompile Include="UI\UserWidget\StartWidget.cpp" />
     <ClCompile Include="UI\UserWidget\UserWidget.cpp" />
     <ClCompile Include="UI\UserWidget\WindowWidget.cpp" />
     <ClCompile Include="UI\Widget.cpp" />
@@ -312,10 +333,20 @@
     <ClInclude Include="Component\SceneComponent.h" />
     <ClInclude Include="Component\SpriteComponent.h" />
     <ClInclude Include="Component\StaticMeshComponent.h" />
+    <ClInclude Include="Component\Tile.h" />
+    <ClInclude Include="Component\TileMapComponent.h" />
+    <ClInclude Include="Component\TileMapRenderComponent.h" />
     <ClInclude Include="Component\WidgetComponent.h" />
     <ClInclude Include="DeltaRune\BattleController.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="DeltaRune\Battle\AttackBar.h" />
+    <ClInclude Include="DeltaRune\Battle\BattleSystem.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="DeltaRune\Bullet\ClubBoom.h" />
     <ClInclude Include="DeltaRune\JevilBossObject.h" />
@@ -337,7 +368,11 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="DeltaRune\Scene\SceneGameOver.h" />
+    <ClInclude Include="DeltaRune\Scene\SceneStart.h" />
     <ClInclude Include="DeltaRune\Scene\SceneTest.h" />
+    <ClInclude Include="DeltaRune\UI\BattleHUD.h" />
+    <ClInclude Include="DeltaRune\UI\BattleWidget.h" />
+    <ClInclude Include="DeltaRune\UI\StartWidget.h" />
     <ClInclude Include="Device.h" />
     <ClInclude Include="EngineMath.h" />
     <ClInclude Include="GameInfo.h" />
@@ -348,6 +383,7 @@
     <ClInclude Include="Object\BoomMonster.h" />
     <ClInclude Include="Object\BulletObject.h" />
     <ClInclude Include="Object\ContinuousdamageBullet.h" />
+    <ClInclude Include="Object\EditorPlayer.h" />
     <ClInclude Include="Object\GunnerMonster.h" />
     <ClInclude Include="Object\MonsterObject.h" />
     <ClInclude Include="Object\MonsterSpawner.h" />
@@ -358,6 +394,7 @@
     <ClInclude Include="Object\NearingMonster.h" />
     <ClInclude Include="Object\SpriteEffect.h" />
     <ClInclude Include="Object\TalonR.h" />
+    <ClInclude Include="Object\TileMapObj.h" />
     <ClInclude Include="Object\TornadoBullet.h" />
     <ClInclude Include="Object\ZaryaBullet.h" />
     <ClInclude Include="ProfileManager.h" />
@@ -374,9 +411,9 @@
     <ClInclude Include="Scene\Scene.h" />
     <ClInclude Include="Scene\SceneAssetManager.h" />
     <ClInclude Include="Scene\SceneCollision.h" />
+    <ClInclude Include="Scene\SceneEditor.h" />
     <ClInclude Include="Scene\SceneMain.h" />
     <ClInclude Include="Scene\SceneManager.h" />
-    <ClInclude Include="Scene\SceneStart.h" />
     <ClInclude Include="Scene\SceneUIManager.h" />
     <ClInclude Include="Shader\Animation2DCBuffer.h" />
     <ClInclude Include="Shader\CBufferContainer.h" />
@@ -393,6 +430,7 @@
     <ClInclude Include="Shader\SpriteCBuffer.h" />
     <ClInclude Include="Shader\SpriteShader.h" />
     <ClInclude Include="Shader\StaticMeshShader.h" />
+    <ClInclude Include="Shader\TileMapShader.h" />
     <ClInclude Include="Shader\TransformCBuffer.h" />
     <ClInclude Include="Shader\UICBuffer.h" />
     <ClInclude Include="Shader\UIShader.h" />
@@ -407,7 +445,6 @@
     <ClInclude Include="UI\UIInfo.h" />
     <ClInclude Include="UI\UserWidget\HeadInfo.h" />
     <ClInclude Include="UI\UserWidget\MainWidget.h" />
-    <ClInclude Include="UI\UserWidget\StartWidget.h" />
     <ClInclude Include="UI\UserWidget\UserWidget.h" />
     <ClInclude Include="UI\UserWidget\WindowWidget.h" />
     <ClInclude Include="UI\Widget.h" />
@@ -475,6 +512,20 @@
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Effect</ShaderType>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">5.0</ShaderModel>
       <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">SpriteVS</EntryPointName>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Effect</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
+    </FxCompile>
+    <FxCompile Include="..\Bin\Shader\TileMap.fx">
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">TileMapVS</EntryPointName>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Effect</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">5.0</ShaderModel>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">TileMapVS</EntryPointName>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Effect</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">5.0</ShaderModel>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">TileMapVS</EntryPointName>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Effect</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">TileMapVS</EntryPointName>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Effect</ShaderType>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
     </FxCompile>

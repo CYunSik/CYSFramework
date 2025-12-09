@@ -1,5 +1,9 @@
 #include "UserWidget.h"
 
+#include "../../Scene/Input.h"
+#include "../../Scene/Scene.h"
+#include "../Common/Button.h"
+
 CUserWidget::CUserWidget()
 {
 }
@@ -10,7 +14,27 @@ CUserWidget::~CUserWidget()
 
 bool CUserWidget::Init()
 {
-	return CWidget::Init();
+	CWidget::Init();
+
+	CInput* Input = mScene->GetInput();
+
+	// 왼쪽 선택
+	Input->AddBindKey("UI_Left", VK_LEFT);
+	Input->AddBindFunction("UI_Left", EInputType::Down, this, &CUserWidget::OnLeft);
+
+	// 오른쪽 선택
+	Input->AddBindKey("UI_Right", VK_RIGHT);
+	Input->AddBindFunction("UI_Right", EInputType::Down, this, &CUserWidget::OnRight);
+
+	// Z키로 확인
+	Input->AddBindKey("UI_Confirm", 'Z');
+	Input->AddBindFunction("UI_Confirm", EInputType::Down, this, &CUserWidget::OnConfirm);
+
+	// X키로 취소 뒤로가기
+	Input->AddBindKey("UI_Cancel", 'X');
+	Input->AddBindFunction("UI_Cancel", EInputType::Down, this, &CUserWidget::OnCancel);
+
+	return true;
 }
 
 void CUserWidget::Update(float DeltaTime)
@@ -146,4 +170,88 @@ bool CUserWidget::SortCollision(const CSharedPtr<CWidget>& Src, const CSharedPtr
 bool CUserWidget::SortRender(const CSharedPtr<CWidget>& Src, const CSharedPtr<CWidget>& Dest)
 {
 	return Src->GetZOrder() < Dest->GetZOrder();
+}
+
+void CUserWidget::OnLeft(float DeltaTime)
+{
+	MoveSelection(-1);
+}
+
+void CUserWidget::OnRight(float DeltaTime)
+{
+	MoveSelection(1);
+}
+
+void CUserWidget::OnConfirm(float DeltaTime)
+{
+	ActivateCurrentButton();
+}
+
+void CUserWidget::OnCancel(float DeltaTime)
+{
+	// 뒤로가기 처리
+}
+
+void CUserWidget::MoveSelection(int Offset)
+{
+	int Count = (int)mWidgetList.size();
+
+	if (Count == 0)
+	{
+		return;
+	}
+
+	// 이전 선택 해제
+	if (mSelectedIndex >= 0 && mSelectedIndex < Count)
+	{
+		CButton* PrevBtn = dynamic_cast<CButton*>(mWidgetList[mSelectedIndex].Get());
+		if (PrevBtn)
+		{
+			PrevBtn->SetKeyboardHovered(false);
+		}
+	}
+
+	// 새로운 선택 후보 검색
+	int NewIndex = mSelectedIndex;
+
+	for (int i = 0; i < Count; ++i)
+	{
+		NewIndex += Offset;
+
+		if (NewIndex < 0)
+		{
+			NewIndex = Count - 1;
+		}
+		else if (NewIndex >= Count)
+		{
+			NewIndex = 0;
+		}
+
+		CButton* Btn = dynamic_cast<CButton*>(mWidgetList[NewIndex].Get());
+		if (Btn && Btn->IsEnable() && Btn->IsActive())
+		{
+			mSelectedIndex = NewIndex;
+			Btn->SetKeyboardHovered(true);
+			return;
+		}
+	}
+
+	mSelectedIndex = -1;
+}
+
+
+void CUserWidget::ActivateCurrentButton()
+{
+	if (mSelectedIndex < 0 || mSelectedIndex >= (int)mWidgetList.size())
+	{
+		return;
+	}
+
+	CButton* Btn = dynamic_cast<CButton*>(mWidgetList[mSelectedIndex].Get());
+	if (!Btn)
+	{
+		return;
+	}
+
+	Btn->CallClickEvent();
 }

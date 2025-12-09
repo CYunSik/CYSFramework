@@ -22,9 +22,9 @@ CClubBoom::~CClubBoom()
 
 bool CClubBoom::Init()
 {
-	mRoot = CreateComponent<CSpriteComponent>();
+	mRoot = CreateComponent<CSpriteComponent>("JevilAttack");
 
-	mRoot->SetWorldScale(70.f, 70.f, 1.f);
+	mRoot->SetWorldScale(50.f, 50.f, 1.f);
 	mRoot->SetTint(1.f, 1.f, 1.f);
 	mRoot->SetPivot(0.5f, 0.5f);
 	mRoot->SetOpacity(1.f);
@@ -59,11 +59,11 @@ void CClubBoom::Update(float DeltaTime)
 			CBulletObject* Bullet = mScene->CreateObj<CBulletObject>("Bullet");
 			Bullet->SetBulletCollisionProfile("MonsterAttack");
 
-			Bullet->SetWorldScale(65.f, 65.f);
+			Bullet->SetWorldScale(60.f, 60.f);
 			Bullet->SetWorldRotation(GetWorldRotation());
 			Bullet->SetWorldPos(GetWorldPosition());
 			Bullet->AddWorldRotationZ(AngleOffSet);
-			Bullet->SetLifeTime(5.f);
+			Bullet->SetLifeTime(20.f);
 		}
 
 		Destroy();

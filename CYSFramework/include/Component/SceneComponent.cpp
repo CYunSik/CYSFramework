@@ -516,7 +516,6 @@ void CSceneComponent::SetWorldScale(const FVector3D& Scale)
 	{
 		mRelativeScale = mWorldScale / mParent->mWorldScale;
 	}
-
 	else
 	{
 		mRelativeScale = mWorldScale;

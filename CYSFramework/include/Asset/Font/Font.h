@@ -19,8 +19,8 @@ private:
 
 public:
 	// 폰트 불러오기
-	// Factory, 폰트 이름, 폰트 굵기, 폰트 크기, 폰트 지역(KO)
-	bool LoadFont(IDWriteFactory5* Factory, const TCHAR* FontName, int Weight, float FontSize, const TCHAR* LocalName, int Stretch = DWRITE_FONT_STRETCH_NORMAL);
+	// Factory, 폰트 이름, 폰트 굵기, 폰트 크기, 폰트 지역(KO-kr)
+	bool LoadFont(IDWriteFactory5* Factory, IDWriteFontCollection* Collection, const TCHAR* FontName, int Weight, float FontSize, const TCHAR* LocalName, int Stretch = DWRITE_FONT_STRETCH_NORMAL);
 
 	// 폰트 레이아웃
 	IDWriteTextLayout* CreateLayout(const TCHAR* Text, int Length, float Width, float Height);

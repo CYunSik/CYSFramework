@@ -26,9 +26,8 @@ bool CStartWidget::Init()
 	// 배경 이미지
 	mBackGround = mScene->GetUIManager()->CreateWidget<CImage>("StartBG");
 
-	mBackGround->SetPos(640.f, 360.f);
-	mBackGround->SetSize(960.f, 720.f);
-	mBackGround->SetPivot(FVector2D(0.5f, 0.5f));
+	mBackGround->SetPos(0.f, 0.f);
+	mBackGround->SetSize(1280.f, 960.f);
 	mBackGround->SetMouseCollisionEnable(false);
 	mBackGround->SetZOrder(0);
 	mBackGround->SetTexture("StartBG", TEXT("Texture/UI/IMAGE_MENU.png"));
@@ -39,7 +38,7 @@ bool CStartWidget::Init()
 	mBackGroundAnim = mScene->GetUIManager()->CreateWidget<CImage>("StartBGAnim");
 	
 	mBackGroundAnim->SetPos(640.f, 100.f);
-	mBackGroundAnim->SetSize(960.f, 200.f);
+	mBackGroundAnim->SetSize(1280.f, 310.f);
 	mBackGroundAnim->SetPivot(FVector2D(0.5f, 0.5f));
 	mBackGround->SetMouseCollisionEnable(false);
 	mBackGround->SetZOrder(0);
@@ -60,8 +59,8 @@ bool CStartWidget::Init()
 	// 로고 추가
 	mLogo = mScene->GetUIManager()->CreateWidget<CImage>("StartLogo");
 
-	mLogo->SetPos(640.f, 500.f);
-	mLogo->SetSize(448.f, 68.f);
+	mLogo->SetPos(640.f, 700.f);
+	mLogo->SetSize(672.f, 102.f);
 	mLogo->SetPivot(FVector2D(0.5f, 0.5f));
 	mLogo->SetMouseCollisionEnable(false);
 	mLogo->SetZOrder(5);
@@ -72,8 +71,8 @@ bool CStartWidget::Init()
 	// 버튼 추가하기
 	mButton = mScene->GetUIManager()->CreateWidget<CButton>("TestButton");
 
-	mButton->SetPos(600.f, 200.f);
-	mButton->SetSize(100.f, 100.f);
+	mButton->SetPos(550.f, 250.f);
+	mButton->SetSize(200.f, 200.f);
 	//mButton->SetPivot(FVector2D(0.5f, 0.5f));
 	mButton->SetZOrder(7);
 
@@ -95,9 +94,9 @@ bool CStartWidget::Init()
 
 	Text->SetText(TEXT("게임 시작"));
 	Text->SetTextColor(0, 0, 0, 255);
-	Text->SetPos(600.f, 200.f);
-	Text->SetSize(100.f, 100.f);
-	Text->SetFontSize(20.f);
+	Text->SetPos(550.f, 250.f);
+	Text->SetSize(200.f, 200.f);
+	Text->SetFontSize(30.f);
 	Text->SetZOrder(9);
 	Text->SetAlignH(ETextAlignH::Center);
 	Text->SetAlignV(ETextAlignV::Middle);

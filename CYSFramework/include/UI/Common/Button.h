@@ -11,6 +11,7 @@ namespace EButtonState
 		Hovered,	// 올리고있는거
 		Click,		// 클릭
 		Disable,	// 비활성화
+		KeyboardHovered,   // 방향키로 선택된 상태
 		End
 	};
 }
@@ -87,6 +88,11 @@ public:
 		mColor.w = Opacity;
 	}
 
+	void SetState(EButtonState::Type State)
+	{
+		mState = State;
+	}
+
 public:
 	// 브러쉬 세팅
 
@@ -142,5 +148,12 @@ public:
 
 private:
 	void ButtonClick();
+
+public:
+	// 키보드로 이 버튼을 선택, 해제할 때 호출
+	void SetKeyboardHovered(bool Enable);
+
+	// 키보드 Z로 클릭
+	void CallClickEvent();
 };
 

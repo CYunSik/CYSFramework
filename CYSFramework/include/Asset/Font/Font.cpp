@@ -8,11 +8,12 @@ CFont::~CFont()
 {
 }
 
-bool CFont::LoadFont(IDWriteFactory5* Factory, const TCHAR* FontName, int Weight, float FontSize, const TCHAR* LocalName, int Stretch)
+
+bool CFont::LoadFont(IDWriteFactory5* Factory, IDWriteFontCollection* Collection, const TCHAR* FontName, int Weight, float FontSize, const TCHAR* LocalName, int Stretch)
 {
 	mFactory = Factory;
 
-	if (FAILED(mFactory->CreateTextFormat(FontName, nullptr, (DWRITE_FONT_WEIGHT)Weight, DWRITE_FONT_STYLE_NORMAL, (DWRITE_FONT_STRETCH)Stretch, FontSize, LocalName, &mFormat)))
+	if (FAILED(mFactory->CreateTextFormat(FontName, Collection, (DWRITE_FONT_WEIGHT)Weight, DWRITE_FONT_STYLE_NORMAL, (DWRITE_FONT_STRETCH)Stretch, FontSize, LocalName, &mFormat)))
 	{
 		return false;
 	}

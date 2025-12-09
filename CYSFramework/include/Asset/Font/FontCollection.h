@@ -18,6 +18,11 @@ private:
 	TCHAR mFontFaceName[128] = {};
 
 public:
+	IDWriteFontCollection1* GetCollection() const
+	{
+		return mCollection;
+	}
+
 	const TCHAR* GetFontFaceName() const
 	{
 		return mFontFaceName;

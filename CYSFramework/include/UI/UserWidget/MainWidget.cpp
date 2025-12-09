@@ -32,6 +32,7 @@ bool CMainWidget::Init()
 
 	mButtonAttack->SetTexture(EButtonState::Normal, "AttackButton", TEXT("Texture/UI/UIButton/spr_btfight_0.png"));
 	mButtonAttack->SetTexture(EButtonState::Hovered, "AttackButtonHovered", TEXT("Texture/UI/UIButton/spr_btfight_1.png"));
+	mButtonAttack->SetTexture(EButtonState::KeyboardHovered, "AttackButtonHovered", TEXT("Texture/UI/UIButton/spr_btfight_1.png"));
 	mButtonAttack->SetTexture(EButtonState::Click, "AttackButtonClick", TEXT("Texture/UI/UIButton/spr_btfight_0.png"));
 	mButtonAttack->SetTexture(EButtonState::Disable, "AttackButtonDisable", TEXT("Texture/UI/UIButton/spr_btfight_0.png"));
 

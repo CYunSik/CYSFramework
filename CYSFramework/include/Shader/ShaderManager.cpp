@@ -5,6 +5,7 @@
 #include "StaticMeshShader.h"
 #include "SpriteShader.h"
 #include "UIShader.h"
+#include "TileMapShader.h"
 
 #include "../Device.h"
 
@@ -95,6 +96,7 @@ bool CShaderManager::Init()
 	CreateShader<CFrameMeshShader>("FrameMeshShader");
 	CreateShader<CStaticMeshShader>("StaticMeshShader");
 	CreateShader<CSpriteShader>("SpriteShader");
+	CreateShader<CTileMapShader>("TileMapShader");
 	CreateShader<CUIShader>("UIShader");
 
 	// 전용 픽셀쉐이더만 만들어둔다.

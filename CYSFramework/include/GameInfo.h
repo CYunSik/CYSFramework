@@ -343,3 +343,13 @@ struct FAnimationFrame
 	FVector2D Start;	// 이미지 시작 좌표
 	FVector2D Size;		// 한 프레임 이미지의 크기
 };
+
+// 타일맵
+enum class ETileType
+{
+	None = -2,
+	MouseOver,
+	Normal = 0,
+	UnableToMove,
+	End
+};

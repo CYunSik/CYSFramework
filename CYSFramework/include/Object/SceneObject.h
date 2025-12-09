@@ -126,6 +126,45 @@ public:
 		return Component;
 	}
 
+	//컴포넌트 찾아오기 
+	template<typename T>
+	T* FindNonSceneComponent()
+	{
+		auto iter = mNonSceneComponentList.begin();
+		auto iterEnd = mNonSceneComponentList.end();
+
+		for (; iter != iterEnd; ++iter)
+		{
+			T* Com = dynamic_cast<T*>((*iter).Get());
+
+			if (Com)
+			{
+				return Com;
+			}
+		}
+
+		return nullptr;
+	}
+
+	template<typename T>
+	T* FindSceneComponent()
+	{
+		auto iter = mSceneComponentList.begin();
+		auto iterEnd = mSceneComponentList.end();
+
+		for (; iter != iterEnd; ++iter)
+		{
+			T* Com = dynamic_cast<T*>((*iter).Get());
+
+			if (Com)
+			{
+				return Com;
+			}
+		}
+
+		return nullptr;
+	}
+
 public:
 #pragma region Transform
 	//Getter

@@ -75,7 +75,7 @@ bool CGameManager::Init(HINSTANCE hInst)
 	mhDC = GetDC(mhWnd);
 
 	///////// 게임 초기화
-	if (!CDevice::GetInst()->Init(mhWnd, 1280, 720, true))
+	if (!CDevice::GetInst()->Init(mhWnd, 1280, 960, true))
 	{
 		return false;
 	}
@@ -328,7 +328,7 @@ bool CGameManager::Create()
 {
 	// *잘못된 생성일 경우 0을 반환한다.
 	mhWnd = CreateWindowW(mClassName, mTitleName, WS_OVERLAPPEDWINDOW,
-		CW_USEDEFAULT, 0, 1280, 720, nullptr, nullptr, mhInst, nullptr);
+		400, 0, 1280, 960, nullptr, nullptr, mhInst, nullptr);
 
 	if (!mhWnd)
 	{
@@ -337,8 +337,9 @@ bool CGameManager::Create()
 
 	// 위의 CreateWindowW 타이틀바, 메뉴바 등의 크기가 모두 합쳐진 크기로 지정된다.
 	// 그래서 윈도우 클라이언트 영역을 다시 계산해서 윈도우창을 재조정한다.
-	RECT WindowRC = { 0, 0, 1280, 720 };
-	// 클라이언트 영역이 1280, 720이 되도록 윈도우 크기를 재조정한다.
+	RECT WindowRC = { 0, 0, 1280, 960 };
+	// 클라이언트 영역이 1280, 
+	// 이 되도록 윈도우 크기를 재조정한다.
 	AdjustWindowRect(&WindowRC, WS_OVERLAPPEDWINDOW, FALSE);
 
 	SetWindowPos(mhWnd, HWND_TOPMOST, 100, 100, WindowRC.right - WindowRC.left, WindowRC.bottom - WindowRC.top, SWP_NOMOVE | SWP_NOZORDER);

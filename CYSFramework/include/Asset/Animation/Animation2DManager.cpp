@@ -634,7 +634,7 @@ bool CAnimation2DManager::Init()
 	SetTexture("BattleFrame", "BattleFrame", FileNames);
 	AddFrameCount("BattleFrame", 100, 0.f, 0.f, 1280.f, 960.f);
 
-	// 전투 박스 테스트
+	// 전투 박스 나타날때
 	CreateAnimation("BattleBoxStart");
 	SetAnimationTextureType("BattleBoxStart", EAnimationTextureType::Frame);
 	FileNames.clear();

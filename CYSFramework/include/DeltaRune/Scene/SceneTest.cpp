@@ -12,7 +12,11 @@
 #include "../../Object/SceneObject.h"
 
 #include "../../Share/Log.h"
+#include "../../UI/UserWidget/MainWidget.h"
 #include "../Bullet/ClubBoom.h"
+#include "../Battle/BattleSystem.h"
+#include "../UI/BattleHUD.h"
+#include "../UI/BattleWidget.h"
 
 CSceneTest::CSceneTest()
 {
@@ -20,6 +24,11 @@ CSceneTest::CSceneTest()
 
 CSceneTest::~CSceneTest()
 {
+    if (mBattleSystem)
+    {
+        delete mBattleSystem;
+        mBattleSystem = nullptr;
+    }
 }
 
 bool CSceneTest::Init()
@@ -28,6 +37,9 @@ bool CSceneTest::Init()
     {
         return false;
     }
+
+    mBattleSystem = new CBattleSystem(this);
+    mBattleSystem->Init();
 
     CPlayerSoulObject* Heart = CreateObj<CPlayerSoulObject>("Heart");
 
@@ -41,8 +53,8 @@ bool CSceneTest::Init()
     CSpriteComponent* KrisSprite = Kris->CreateComponent<CSpriteComponent>();
 
     Kris->SetRootComponent(KrisSprite);
-    Kris->SetWorldPos(-350.f, 70.f, 7.f);
-    Kris->SetWorldScale(200.f, 150.f, 1.f);
+    Kris->SetWorldPos(-450.f, 100.f, 7.f);
+    Kris->SetWorldScale(250.f, 150.f, 1.f);
 
     CAnimation2D* KrisAnim = KrisSprite->CreateAnimation2D<CAnimation2D>();
     KrisAnim->AddSequence("KrisIdle", 0.7f, 1.f, true, false);
@@ -52,8 +64,8 @@ bool CSceneTest::Init()
     CSpriteComponent* SusieSprite = Susie->CreateComponent<CSpriteComponent>();
 
     Susie->SetRootComponent(SusieSprite);
-    Susie->SetWorldPos(-410.f, -30.f, 5.f);
-    Susie->SetWorldScale(300.f, 200.f, 1.f);
+    Susie->SetWorldPos(-520.f, 0.f, 5.f);
+    Susie->SetWorldScale(400.f, 200.f, 1.f);
 
     CAnimation2D* SusieAnim = SusieSprite->CreateAnimation2D<CAnimation2D>();
     SusieAnim->AddSequence("SusieIdle", 1.5f, 1.f, true, false);
@@ -64,24 +76,23 @@ bool CSceneTest::Init()
     CSpriteComponent* RalseiSprite = Ralsei->CreateComponent<CSpriteComponent>();
 
     Ralsei->SetRootComponent(RalseiSprite);
-    Ralsei->SetWorldPos(-390.f, -150.f, 2.f);
-    Ralsei->SetWorldScale(250.f, 200.f, 1.f);
+    Ralsei->SetWorldPos(-490.f, -120.f, 2.f);
+    Ralsei->SetWorldScale(320.f, 200.f, 1.f);
 
     CAnimation2D* RalseiAnim = RalseiSprite->CreateAnimation2D<CAnimation2D>();
     RalseiAnim->AddSequence("RalseiIdle", 1.f, 1.f, true, false);
 
     // 제빌
     CJevilBossObject* Jevil = CreateObj<CJevilBossObject>("Jevil");
-    Jevil->SetWorldPos(300.f, 30.f, 1.f);
+    Jevil->SetWorldPos(400.f, 70.f, 1.f);
 
     // 전투박스
     CSceneObject* BattleBox = CreateObj<CSceneObject>("BattleBox");
     CSpriteComponent* BattleBoxSprite = BattleBox->CreateComponent<CSpriteComponent>("BattleBox");
 
     BattleBox->SetRootComponent(BattleBoxSprite);
-    BattleBox->SetWorldPos(0.f, -100.f, 1.f);
-    
-    BattleBox->SetWorldScale(960.f, 720.f);
+    BattleBox->SetWorldPos(0.f, 0.f, 1.f);
+    BattleBox->SetWorldScale(1280.f, 720.f);
 
     BattleBoxSprite->SetTexture("BattleBox", TEXT("Texture/spr_battlebg_stretch_hitbox_0.png"));
     BattleBoxSprite->SetPivot(0.5f, 0.5f);
@@ -92,29 +103,29 @@ bool CSceneTest::Init()
 
     // 제빌 배경
     CBackObject* JevilBG = CreateObj<CBackObject>("JevilBG");
-    JevilBG->SetWorldPos(0.f, 0.f, 1.f);
-    JevilBG->SetWorldScale(960.f, 720.f);
+    JevilBG->SetWorldPos(0.f, 10.f, 1.f);
+    JevilBG->SetWorldScale(1280.f, 700.f);
 
 	// 테스트 몬스터
     CGunnerMonster* Monster = CreateObj<CGunnerMonster>("GunnerMonster");
-    Monster->SetWorldPos(160.f, 190.f);
+    Monster->SetWorldPos(200.f, 250.f);
     Monster->SetTarget(Heart);
     Monster->SetFireInterval(0.3f);
 
     CGunnerMonster* Monster2 = CreateObj<CGunnerMonster>("GunnerMonster2");
-    Monster2->SetWorldPos(160.f, -190.f);
+    Monster2->SetWorldPos(-200.f, 250.f);
     Monster2->SetTarget(Heart);
     Monster2->SetFireInterval(0.6f);
 
-    CGunnerMonster* Monster3 = CreateObj<CGunnerMonster>("GunnerMonster");
-    Monster3->SetWorldPos(-160.f, 190.f);
-    Monster3->SetTarget(Heart);
-    Monster3->SetFireInterval(0.9f);
 
-    CGunnerMonster* Monster4 = CreateObj<CGunnerMonster>("GunnerMonster2");
-    Monster4->SetWorldPos(-160.f, -190.f);
-    Monster4->SetTarget(Heart);
-    Monster4->SetFireInterval(1.2f);
+    // 밑에 UI바
+    CBattleHUD* BattleHUD = CreateObj<CBattleHUD>("BattleUIObj");
+    BattleHUD->SetWorldPos(0.f, -240.f, 1.f);
+    BattleHUD->SetWorldScale(1280.f, 250.f);
+
+    // 전투 UI
+	CBattleWidget* Widget = mUIManager->CreateWidget<CBattleWidget>("BattleUI");
+	mUIManager->AddToViewport(Widget);
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////
     // 테스트 패턴
@@ -131,9 +142,9 @@ bool CSceneTest::Init()
     //ClubBoom3->SetWorldPos(200.f, 400.f);
     //ClubBoom3->SetDownTime(1.3f);
 
-    //CClubBoom* ClubBoom4 = CreateObj<CClubBoom>("ClubBoom4");
-    //ClubBoom4->SetWorldPos(350.f, 500.f);
-    //ClubBoom4->SetDownTime(2.f);
+    CClubBoom* ClubBoom4 = CreateObj<CClubBoom>("ClubBoom4");
+    ClubBoom4->SetWorldPos(350.f, 500.f);
+    ClubBoom4->SetDownTime(2.f);
 
     //CClubBoom* ClubBoom5 = CreateObj<CClubBoom>("ClubBoom5");
     //ClubBoom5->SetWorldPos(400.f, 700.f);
@@ -188,4 +199,11 @@ bool CSceneTest::Init()
     //ClubBoom17->SetDownTime(4.7f);
 
     return true;
+}
+
+void CSceneTest::Update(float DeltaTime)
+{
+	CScene::Update(DeltaTime);
+
+    mBattleSystem->Update(DeltaTime);
 }

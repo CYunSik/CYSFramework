@@ -45,8 +45,8 @@ bool CPlayerSoulObject::Init()
 
     mRoot->SetTexture("PlayerSoul", TEXT("Texture/Heart/spr_heart_0.png"));
     mRoot->SetTint(1.f, 1.f, 1.f);
-    mRoot->SetWorldScale(26.f, 22.f, 1.f);
-    mRoot->SetWorldPos(0.f, 0.f, 0.f);
+    mRoot->SetWorldScale(26.f, 16.f, 1.f);
+    mRoot->SetWorldPos(0.f, 100.f, 0.f);
     mRoot->SetPivot(0.5f, 0.5f);
 
     mMovement = CreateComponent<CMovementComponent>();
@@ -54,7 +54,7 @@ bool CPlayerSoulObject::Init()
     mMovement->SetMoveSpeed(200.f);
 
     mBody = CreateComponent<CColliderAABB2D>();
-    mBody->SetBoxSize(22.f, 22.f);
+    mBody->SetBoxSize(22.f, 16.f);
     mBody->SetCollisionProfile("Player");
     mBody->SetCollisionBeginFunc<CPlayerSoulObject>(this, &CPlayerSoulObject::OnCollisionBegin);
 

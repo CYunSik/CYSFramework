@@ -62,7 +62,7 @@ bool CSoundManager::Init()
 	LoadSound("StartBGM", "BGM", true, "Sound/BGM/Beginning.mp3");
 
 	// 사운드 플레이
-	Play("StartBGM");
+	Play("JevilPrisonBGM");
 	//Play("Effect1");
 
 	SetGroupVolume("BGM", 5);

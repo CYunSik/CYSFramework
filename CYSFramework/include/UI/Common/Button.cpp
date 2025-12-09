@@ -217,7 +217,16 @@ void CButton::Render()
 	// 여기까지 Transform 세팅
 	///////////////////////////////////////////
 	
-	mUICBuffer->SetTint(mBrush[mState].Tint);
+	FVector4D Tint = mBrush[mState].Tint;
+
+	if (mState == EButtonState::KeyboardHovered)
+	{
+		Tint = mBrush[EButtonState::Hovered].Tint;
+	}
+
+	// 최종 Tint 적용
+	mUICBuffer->SetTint(Tint);
+
 	mUICBuffer->SetWidgetColor(mColor);
 
 	// 만약 텍스쳐가 있다면
@@ -298,4 +307,39 @@ void CButton::MouseUnHovered()
 void CButton::ButtonClick()
 {
 	CLog::PrintLog("Button Click");
+}
+
+void CButton::SetKeyboardHovered(bool Enable)
+{
+	if (Enable)
+	{
+		// 버튼이 비활성화가 아니라면
+		if (mState != EButtonState::Disable)
+		{
+			mState = EButtonState::KeyboardHovered;
+		}
+	}
+	else
+	{
+		if (mState != EButtonState::Disable)
+		{
+			mState = EButtonState::Normal;
+		}
+	}
+}
+
+void CButton::CallClickEvent()
+{
+	// 마우스 클릭과 동일한 이벤트 실행
+	if (mSound[EButtonEventState::Click])
+	{
+		mSound[EButtonEventState::Click]->Play();
+	}
+
+	if (mEventCallBack[EButtonEventState::Click])
+	{
+		mEventCallBack[EButtonEventState::Click]();
+	}
+
+	CLog::PrintLog("Button clicked Z");
 }
