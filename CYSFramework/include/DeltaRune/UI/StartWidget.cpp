@@ -132,7 +132,7 @@ void CStartWidget::StartButtonClick()
 {
 	CLog::PrintLog("Start Button Click");
 
-	CSceneManager::GetInst()->CreateLoadScene<CSceneTest>();
+	CSceneManager::GetInst()->CreateLoadScene<CSceneMain>();
 }
 
 void CStartWidget::StartEditButtonClick()

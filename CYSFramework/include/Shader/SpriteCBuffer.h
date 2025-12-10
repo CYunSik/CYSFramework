@@ -23,5 +23,15 @@ public:
 	{
 		mData.Tint = Color;
 	}
+
+	void SetUseTime(bool Use)
+	{
+		mData.TimeUse = Use ? 1 : 0;
+	}
+
+	void SetTime(float Time)
+	{
+		mData.msTime = Time;
+	}
 };
 

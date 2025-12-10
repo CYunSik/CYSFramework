@@ -258,8 +258,10 @@ void CTileMapRenderComponent::Render()
 		//그려줄 타일 텍스쳐가 있는가 
 		if (mTileTexture)
 		{
-
+			mTileMap->RenderTile();
 		}
+
+		mTileMap->RenderTileOutLine();
 	}
 
 

@@ -28,11 +28,12 @@ bool CBackObject::Init()
 	mRoot->SetTint(1.f, 1.f, 1.f);
 	mRoot->SetPivot(0.5f, 0.5f);
 	mRoot->SetOpacity(1.f);
+	mRoot->SetUseTime(true);
 
 	SetRootComponent(mRoot);
 
-	mAnimation = mRoot->CreateAnimation2D<CAnimation2D>();
-	mAnimation->AddSequence("JevilCarousel", 15.f, 1.f, true, false);
+	//mAnimation = mRoot->CreateAnimation2D<CAnimation2D>();
+	//mAnimation->AddSequence("JevilCarousel", 15.f, 1.f, true, false);
 
 	return true;
 }

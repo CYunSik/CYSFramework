@@ -15,6 +15,7 @@
 #include "../Component/SpriteComponent.h"
 #include "../DeltaRune/JevilBossObject.h"
 #include "../DeltaRune/JevilPrisonBG.h"
+#include "../Object/BackObject.h"
 
 CSceneMain::CSceneMain()
 {
@@ -196,8 +197,9 @@ bool CSceneMain::Init()
 	Jevil->SetWorldPos(500.f, -100.f, 1.f);
 	
 	// 제빌 감옥 배경
-	CJevilPrisonBG* BackGround = CreateObj<CJevilPrisonBG>("JevilPrisionBG");
-	BackGround->SetWorldPos(720.f, -390.f, 3.f);
+	CBackObject* BackGround = CreateObj<CBackObject>("JevilBG");
+	BackGround->SetWorldPos(0.f, 0.f, 3.f);
+	BackGround->SetWorldScale(1280.f, 960.f);
 
 	// 테스트용 배경
 	//CBlockObject* Block = CreateObj<CBlockObject>("TestAnimation");

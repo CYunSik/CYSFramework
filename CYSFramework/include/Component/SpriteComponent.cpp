@@ -17,6 +17,7 @@
 #include "../Scene/CameraManager.h"
 #include "../Animation/Animation2D.h"
 #include "../Asset/Animation/Animation2DData.h"
+#include "../Share/Timer.h"
 
 CSpriteComponent::CSpriteComponent()
 {
@@ -219,8 +220,20 @@ void CSpriteComponent::Render()
 		CAnimation2D::DisableAnimation();
 	}
 
+	// 반전여부
+	CAnimation2D::SetAnimFlip(mIsFlip);
+
 	// 스프라이트 상수버퍼 세팅해주기
 	mSpriteCBuffer->SetTint(mTint);
+	mSpriteCBuffer->SetUseTime(mUseTime);
+
+	if (mUseTime)
+	{
+		static float TotalTime = 0.f;
+		TotalTime += CTimer::GetDeltaTime() * 0.1f;
+		mSpriteCBuffer->SetTime(TotalTime);
+	}
+
 	mSpriteCBuffer->UpdateBuffer();
 
 	// Transform;

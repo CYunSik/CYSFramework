@@ -84,6 +84,9 @@ struct FUICBufferInfo
 struct FSpriteCBufferInfo
 {
 	FVector4D Tint;
+	int TimeUse;
+	float msTime;
+	FVector2D Empty;
 };
 
 // 레지스터 3

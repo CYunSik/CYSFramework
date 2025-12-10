@@ -83,6 +83,20 @@ bool CMeshManager::Init()
 		return false;
 	}
 
+	//LB 프레임
+	FVector3D FrameLBRect[4] =
+	{
+		FVector3D(0.f, 1.f, 0.f),
+		FVector3D(1.f, 1.f, 0.f),
+		FVector3D(0.f, 0.f, 0.f),
+		FVector3D(1.f, 0.f, 0.f)
+	};
+
+	if (!CreateMesh("FrameLBRect", FrameLBRect, sizeof(FVector3D), 4, D3D11_USAGE_DEFAULT, D3D_PRIMITIVE_TOPOLOGY_LINESTRIP, FrameRectIdx, sizeof(unsigned short), 5, DXGI_FORMAT_R16_UINT))
+	{
+		return false;
+	}
+
 	// 원 와이어
 	// 정점 36개짜리 도형 => 원이라고 생각한다.
 	FVector3D Sphere2DPoint[37];

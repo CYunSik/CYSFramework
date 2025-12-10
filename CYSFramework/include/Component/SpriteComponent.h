@@ -21,6 +21,8 @@ protected:
 	FVector4D mTint = FVector4D::White;
 	int mTextureIndex = 0;
 
+	bool mUseTime = false;
+
 	// 애니메이션 출력용도
 	class CAnimation2D* mAnimation = nullptr;
 
@@ -56,6 +58,12 @@ public:
 	bool GetIsFlip()
 	{
 		return mIsFlip;
+	}
+	
+public:
+	void SetUseTime(bool Use)
+	{
+		mUseTime = Use;
 	}
 
 public:
