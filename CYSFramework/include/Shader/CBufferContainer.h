@@ -51,6 +51,14 @@ struct FAnimation2DCBufferInfo
 	FVector2D Empty;
 };
 
+struct FTileMapCBufferInfo
+{
+	//LT Left-Top
+	FVector2D LTUV;	//8
+	//RB Right-Bottom
+	FVector2D RBUV; //8
+};
+
 // UI
 struct FUICBufferInfo
 {

@@ -12,6 +12,7 @@
 #include "../Shader/TransformCBuffer.h"
 #include "../Shader/ColliderCBuffer.h"
 #include "../Asset/Mesh/Mesh.h"
+#include "../Shader/TileMapCBuffer.h"
 
 #include "../Share/Log.h"
 
@@ -40,7 +41,8 @@ CTileMapComponent::~CTileMapComponent()
 	}
 
 	SAFE_DELETE(mLineTransformCBuffer);
-	SAFE_DELETE(mCBuffer)
+	SAFE_DELETE(mCBuffer);
+	SAFE_DELETE(mTileMapCBuffer);
 
 }
 
@@ -185,11 +187,111 @@ void CTileMapComponent::RenderTileOutLine()
 
 void CTileMapComponent::RenderTile()
 {
+	for (int i = mViewStartY; i <= mViewEndY; ++i)
+	{
+		for (int j = mViewStartX; j <= mViewEndX; ++j)
+		{
+			int Index = i * mCountX + j;
 
+			int TileFrame = mTileList[Index]->GetTextureFrame();
+
+			if (TileFrame == -1)
+			{
+				continue;
+			}
+
+			FMatrix matScale, matTranslate, matWorld;
+
+			matScale.Scaling(mTileList[Index]->GetSize());
+
+			FVector2D Pos = mTileList[Index]->GetPos();
+
+			Pos.x += mOwnerObject->GetWorldPosition().x;
+			Pos.y += mOwnerObject->GetWorldPosition().y;
+
+			matTranslate.Translation(Pos);
+
+			matWorld = matScale * matTranslate;
+
+			FMatrix matView, matProj;
+			matView = mScene->GetCameraManager()->GetViewMatrix();
+			matProj = mScene->GetCameraManager()->GetProjMatrix();
+
+			mLineTransformCBuffer->SetWorldMatrix(matWorld);
+			mLineTransformCBuffer->SetViewMatrix(matView);
+			mLineTransformCBuffer->SetProjMatrix(matProj);
+
+			mLineTransformCBuffer->UpdateBuffer();
+
+			//타일용 상수버퍼에 데이터를 넣어준다.
+			FVector2D LTUV, RBUV;
+
+			// UV 비율 구하기 
+			LTUV = mTileFrameList[TileFrame].Start / mTileTextureSize;
+			RBUV = LTUV + mTileFrameList[TileFrame].Size / mTileTextureSize;
+
+			mTileMapCBuffer->SetUV(LTUV, RBUV);
+			mTileMapCBuffer->UpdateBuffer();
+
+			//쉐이더 셋팅 
+			mTileShader->SetShader();
+
+			//그려라 
+			mTileMesh->Render();
+
+		}
+	}
 }
 
+void CTileMapComponent::SetTileTexture(const std::string& Name)
+{
+	CTileMapRenderComponent* Renderer = mOwnerObject->FindSceneComponent<CTileMapRenderComponent>();
 
+	if (Renderer)
+	{
+		Renderer->SetTileTexture(Name);
+	}
+}
 
+void CTileMapComponent::SetTileTexture(const std::string& Name, const TCHAR* FileName)
+{
+	CTileMapRenderComponent* Renderer = mOwnerObject->FindSceneComponent<CTileMapRenderComponent>();
+
+	if (Renderer)
+	{
+		Renderer->SetTileTexture(Name, FileName);
+	}
+}
+
+void CTileMapComponent::SetTileTexture(class CTexture* Texture)
+{
+	CTileMapRenderComponent* Renderer = mOwnerObject->FindSceneComponent<CTileMapRenderComponent>();
+
+	if (Renderer)
+	{
+		Renderer->SetTileTexture(Texture);
+	}
+}
+
+void CTileMapComponent::AddTileFrame(const FVector2D& Start, const FVector2D& Size)
+{
+	FAnimationFrame Frame;
+	Frame.Start = Start;
+	Frame.Size = Size;
+
+	mTileFrameList.emplace_back(Frame);
+}
+
+void CTileMapComponent::AddTileFrame(float StartX, float StartY, float SizeX, float SizeY)
+{
+	FAnimationFrame Frame;
+	Frame.Start.x = StartX;
+	Frame.Start.y = StartY;
+	Frame.Size.x = SizeX;
+	Frame.Size.y = SizeY;
+
+	mTileFrameList.emplace_back(Frame);
+}
 
 
 // 타일 인덱스 찾기 
@@ -414,6 +516,51 @@ ETileType CTileMapComponent::ChangeTileType(ETileType Type, int Index)
 	return PrevType;
 }
 
+void CTileMapComponent::ChangeTileFrame(int Frame, const FVector3D& Pos)
+{
+	int Index = GetTileIndex(Pos);
+
+	if (Index == -1)
+	{
+		return;
+	}
+	mTileList[Index]->SetTextureFrame(Frame);
+
+	return;
+}
+
+void CTileMapComponent::ChangeTileFrame(int Frame, const FVector2D& Pos)
+{
+	int Index = GetTileIndex(Pos);
+
+	if (Index == -1)
+	{
+		return;
+	}
+	mTileList[Index]->SetTextureFrame(Frame);
+
+	return;
+}
+
+void CTileMapComponent::ChangeTileFrame(int Frame, float x, float y)
+{
+	int Index = GetTileIndex(x, y);
+
+	if (Index == -1)
+	{
+		return;
+	}
+	mTileList[Index]->SetTextureFrame(Frame);
+
+	return;
+}
+
+void CTileMapComponent::ChangeTileFrame(int Frame, int Index)
+{
+	mTileList[Index]->SetTextureFrame(Frame);
+
+	return;
+}
 
 
 bool CTileMapComponent::Init()
@@ -433,11 +580,19 @@ bool CTileMapComponent::Init()
 	mCBuffer = new CColliderCBuffer;
 	mCBuffer->Init();
 
+	mTileMapCBuffer = new CTileMapCBuffer;
+	mTileMapCBuffer->Init();
 
+	mTileShader = CShaderManager::GetInst()->FindShader("TileShader");
 
-
-
-
+	if (mScene)
+	{
+		mTileMesh = mScene->GetAssetManager()->FindMesh("SpriteRect");
+	}
+	else
+	{
+		mTileMesh = CAssetManager::GetInst()->GetMeshManager()->FindMesh("SpriteRect");
+	}
 
 	return true;
 }
@@ -445,6 +600,34 @@ bool CTileMapComponent::Init()
 bool CTileMapComponent::Init(const char* FileName)
 {
 	CComponent::Init(FileName);
+
+	CTileMapRenderComponent* Renderer = mOwnerObject->FindSceneComponent<CTileMapRenderComponent>();
+
+	if (Renderer)
+	{
+		Renderer->SetTileMapComponent(this);
+	}
+
+	mLineTransformCBuffer = new CTransformCBuffer;
+	mLineTransformCBuffer->Init();
+
+	mCBuffer = new CColliderCBuffer;
+	mCBuffer->Init();
+
+	mTileMapCBuffer = new CTileMapCBuffer;
+	mTileMapCBuffer->Init();
+
+	mTileShader = CShaderManager::GetInst()->FindShader("TileShader");
+
+	if (mScene)
+	{
+		mTileMesh = mScene->GetAssetManager()->FindMesh("SpriteRect");
+	}
+	else
+	{
+		mTileMesh = CAssetManager::GetInst()->GetMeshManager()->FindMesh("SpriteRect");
+	}
+
 
 	return true;
 }

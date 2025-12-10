@@ -29,6 +29,11 @@ void CTileMapObj::AddTileType()
 	}
 }
 
+void CTileMapObj::AddTileFrame()
+{
+	mEditorTileFrame = (mEditorTileFrame + 1) % mTileMap->GetTileFrameCount();
+}
+
 bool CTileMapObj::Init()
 {
 	CSceneObject::Init();
@@ -42,10 +47,18 @@ bool CTileMapObj::Init()
 
 	mTileMapRender->SetBackTexture("TileMapBack", TEXT("Texture/MapBackGround.png"));
 
+	//타일 스프라이트 텍스쳐 설정 
+	mTileMapRender->SetTileTexture("Tile", TEXT("Texture/Floors.png"));
+
+	mTileMap->AddTileFrame(0.f, 0.f, 64.f, 64.f);
+	mTileMap->AddTileFrame(0.f, 64.f, 64.f, 64.f);
+	mTileMap->AddTileFrame(0.f, 128.f, 64.f, 64.f);
+	mTileMap->AddTileFrame(0.f, 192.f, 64.f, 64.f);
+	mTileMap->AddTileFrame(0.f, 256.f, 64.f, 64.f);
 
 	SetRootComponent(mTileMapRender);
 
-	mTileMap->CreateTile(100, 100, FVector2D(64.f, 64.f), 0);
+	mTileMap->CreateTile(100, 100, FVector2D(64.f, 64.f));
 
 	return true;
 }
@@ -89,6 +102,13 @@ void CTileMapObj::Update(float DeltaTime)
 					mOnMousePrevTileType = ETileType::None;
 				}
 			}
+		}
+	}
+	else if (mEditorMode == EEditorMode::TileImage)
+	{
+		if (mScene->GetInput()->GetMouseHold(EMouseButtonType::LButton))
+		{
+			mTileMap->ChangeTileFrame(mEditorTileFrame, MousePos);
 		}
 	}
 }

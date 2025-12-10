@@ -29,6 +29,9 @@ private:
 	ETileType mOnMousePrevTileType = ETileType::None;
 	int mOnMousePrevIndex = -1;
 
+	// 현재 적용할 타일 프레임
+	int mEditorTileFrame = 0;
+
 public:
 	void SetEditorMod(EEditorMode Mode)
 	{
@@ -36,6 +39,7 @@ public:
 	}
 
 	void AddTileType();
+	void AddTileFrame();
 
 public:
 	virtual bool Init() override;

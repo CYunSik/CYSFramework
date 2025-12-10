@@ -26,6 +26,9 @@ bool CSceneEditor::Init()
 	mInput->AddBindKey("TileType", '2');
 	mInput->AddBindFunction("TileType", EInputType::Down, this, &CSceneEditor::TileTypeKey);
 
+	mInput->AddBindKey("TileFrame", '3');
+	mInput->AddBindFunction("TileFrame", EInputType::Down, this, &CSceneEditor::TileFrameKey);
+
 	return true;
 }
 
@@ -42,9 +45,17 @@ void CSceneEditor::EditorMode(float DeltaTime)
 	{
 		mEditorMode = EEditorMode::TileType;
 	}
+
+	mTileMapObj->SetEditorMod(mEditorMode);
+
 }
 
 void CSceneEditor::TileTypeKey(float DeltaTime)
 {
 	mTileMapObj->AddTileType();
+}
+
+void CSceneEditor::TileFrameKey(float DeltaTime)
+{
+	mTileMapObj->AddTileFrame();
 }

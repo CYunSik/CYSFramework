@@ -1,7 +1,7 @@
 #pragma once
 #include "SceneComponent.h"
-
-class CTileMapRenderComponent : public CSceneComponent
+class CTileMapRenderComponent :
+	public CSceneComponent
 {
 	//씬이랑 오브젝트 모두 사용할거같다.
 	friend class CScene;
@@ -42,7 +42,7 @@ public:
 	void SetBackTexture(class CTexture* Texture);
 
 	//Tile
-	void SetmTileTexture(const std::string& Name);
+	void SetTileTexture(const std::string& Name);
 	//파일 이름으로 텍스쳐 매니져에서 로드 후 추가하기 
 	void SetTileTexture(const std::string& Name,
 		const TCHAR* FileName);

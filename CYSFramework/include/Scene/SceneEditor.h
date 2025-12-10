@@ -20,5 +20,6 @@ public:
 private:
 	void EditorMode(float DeltaTime);
 	void TileTypeKey(float DeltaTime);
+	void TileFrameKey(float DeltaTime);
 };
 

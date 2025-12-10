@@ -22,6 +22,19 @@ protected:
 	//타일맵 전체크기
 	FVector2D mMapSize;
 
+
+	//타일그리기
+	CSharedPtr<class CMesh> mTileMesh;
+	CSharedPtr<class CShader> mTileShader;
+	//스프라이트의 프레임 정보를 저장한다. 
+	std::vector<FAnimationFrame> mTileFrameList;
+	//텍스쳐 사이즈
+	FVector2D mTileTextureSize;
+	//타일 그리기용 상수버퍼 
+	class  CTileMapCBuffer* mTileMapCBuffer = nullptr;
+
+
+
 	//외곽선 그리기
 	bool mTileOutlineRender = false;
 	//메쉬
@@ -43,6 +56,11 @@ protected:
 
 
 public:
+	int GetTileFrameCount() const
+	{
+		return static_cast<int>(mTileFrameList.size());
+	}
+
 	const FVector2D& GetTileSize() const
 	{
 		return mTileSize;
@@ -59,6 +77,20 @@ public:
 	}
 
 public:
+	void SetTileTextureSize(const FVector2D& Size)
+	{
+		mTileTextureSize = Size;
+	}
+
+	void SetTileTextureSize(unsigned int Width, unsigned int Height)
+	{
+		mTileTextureSize.x = static_cast<float>(Width);
+		mTileTextureSize.y = static_cast<float>(Height);
+	}
+
+
+
+public:
 	void CreateTile(int CountX, int CountY, const FVector2D& TileSize, int TileTextureFrame = -1);
 
 public:
@@ -66,9 +98,22 @@ public:
 	void SetTileOutLineRender(bool Render);
 	void RenderTileOutLine();
 
-
+public:
 	//타일그리기
 	void RenderTile();
+
+	//타일 텍스쳐 설정
+	void SetTileTexture(const std::string& Name);
+	//파일 이름으로 텍스쳐 매니져에서 로드 후 추가하기 
+	void SetTileTexture(const std::string& Name, const TCHAR* FileName);
+	//셋팅 바로 해주기 
+	void SetTileTexture(class CTexture* Texture);
+
+	//텍스쳐 프레임도 지정 
+	void AddTileFrame(const FVector2D& Start, const FVector2D& Size);
+	void AddTileFrame(float StartX, float StartY, float SizeX, float SizeY);
+
+
 
 
 public:
@@ -91,6 +136,14 @@ public:
 	ETileType ChangeTileType(ETileType Type, const FVector2D& Pos);
 	ETileType ChangeTileType(ETileType Type, float x, float y);
 	ETileType ChangeTileType(ETileType Type, int Index);
+
+public:
+	//타일 이미지 변경하기
+	void ChangeTileFrame(int Frame, const FVector3D& Pos);
+	void ChangeTileFrame(int Frame, const FVector2D& Pos);
+	void ChangeTileFrame(int Frame, float x, float y);
+	void ChangeTileFrame(int Frame, int Index);
+
 
 	//시점 함수 
 public:

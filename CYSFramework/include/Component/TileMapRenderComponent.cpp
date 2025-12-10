@@ -100,7 +100,7 @@ void CTileMapRenderComponent::SetBackTexture(class CTexture* Texture)
 	mBackTexture = Texture;
 }
 
-void CTileMapRenderComponent::SetmTileTexture(const std::string& Name)
+void CTileMapRenderComponent::SetTileTexture(const std::string& Name)
 {
 	if (mScene)
 	{
@@ -110,6 +110,13 @@ void CTileMapRenderComponent::SetmTileTexture(const std::string& Name)
 	{
 		mTileTexture = CAssetManager::GetInst()->GetTextureManager()->FindTexture(Name);
 	}
+
+	if (mTileMap && mTileTexture)
+	{
+		mTileMap->SetTileTextureSize(mTileTexture->GetTexture(0)->Width, mTileTexture->GetTexture(0)->Height);
+	}
+
+
 }
 
 void CTileMapRenderComponent::SetTileTexture(const std::string& Name, const TCHAR* FileName)
@@ -132,11 +139,21 @@ void CTileMapRenderComponent::SetTileTexture(const std::string& Name, const TCHA
 
 		mTileTexture = CAssetManager::GetInst()->GetTextureManager()->FindTexture(Name);
 	}
+
+	if (mTileMap && mTileTexture)
+	{
+		mTileMap->SetTileTextureSize(mTileTexture->GetTexture(0)->Width, mTileTexture->GetTexture(0)->Height);
+	}
 }
 
 void CTileMapRenderComponent::SetTileTexture(class CTexture* Texture)
 {
 	mTileTexture = Texture;
+
+	if (mTileMap && mTileTexture)
+	{
+		mTileMap->SetTileTextureSize(mTileTexture->GetTexture(0)->Width, mTileTexture->GetTexture(0)->Height);
+	}
 }
 
 bool CTileMapRenderComponent::Init()
@@ -258,6 +275,7 @@ void CTileMapRenderComponent::Render()
 		//그려줄 타일 텍스쳐가 있는가 
 		if (mTileTexture)
 		{
+			mTileTexture->SetShader(0, EShaderBufferType::Pixel, 0);
 			mTileMap->RenderTile();
 		}
 

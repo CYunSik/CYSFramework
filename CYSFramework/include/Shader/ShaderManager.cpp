@@ -6,6 +6,7 @@
 #include "SpriteShader.h"
 #include "UIShader.h"
 #include "TileMapShader.h"
+#include "TileShader.h"
 
 #include "../Device.h"
 
@@ -97,6 +98,7 @@ bool CShaderManager::Init()
 	CreateShader<CStaticMeshShader>("StaticMeshShader");
 	CreateShader<CSpriteShader>("SpriteShader");
 	CreateShader<CTileMapShader>("TileMapShader");
+	CreateShader<CTileShader>("TileShader");
 	CreateShader<CUIShader>("UIShader");
 
 	// 전용 픽셀쉐이더만 만들어둔다.
@@ -119,6 +121,9 @@ bool CShaderManager::Init()
 
 	// UI 용 상수버퍼
 	CreateConstantBuffer("UI", sizeof(FUICBufferInfo), 3, EShaderBufferType::Vertex | EShaderBufferType::Pixel);
+
+	// 타일맵 상수버퍼
+	CreateConstantBuffer("TileMap", sizeof(FTileMapCBufferInfo), 3, EShaderBufferType::Vertex);
 
 	// 충돌체에 사용할 상수버퍼
 	CreateConstantBuffer("Collider", sizeof(FColliderCBufferInfo), 4, EShaderBufferType::Pixel);

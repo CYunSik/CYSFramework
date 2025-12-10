@@ -223,6 +223,9 @@
     <Filter Include="07.Component\01.SceneComponent\07.TileMap">
       <UniqueIdentifier>{04ea901c-b665-48f7-bc1a-316311f5df55}</UniqueIdentifier>
     </Filter>
+    <Filter Include="04.Shader\03.ConstantBuffer\07.TileMap">
+      <UniqueIdentifier>{c30846b8-a9a5-47ad-b491-409c6a9eea4d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -596,6 +599,12 @@
     </ClCompile>
     <ClCompile Include="Component\Tile.cpp">
       <Filter>07.Component\02.NonSceneComponent\02.TileMap</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader\TileShader.cpp">
+      <Filter>04.Shader\02.Shader Class\06.TileMap</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader\TileMapCBuffer.cpp">
+      <Filter>04.Shader\03.ConstantBuffer\07.TileMap</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1015,6 +1024,12 @@
     </ClInclude>
     <ClInclude Include="Component\Tile.h">
       <Filter>07.Component\02.NonSceneComponent\02.TileMap</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader\TileShader.h">
+      <Filter>04.Shader\02.Shader Class\06.TileMap</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader\TileMapCBuffer.h">
+      <Filter>04.Shader\03.ConstantBuffer\07.TileMap</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
