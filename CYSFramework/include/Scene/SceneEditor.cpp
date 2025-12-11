@@ -2,6 +2,7 @@
 #include "../Object/EditorPlayer.h"
 #include "../Object/TileMapObj.h"
 #include "Input.h"
+#include "../GameManager.h"
 
 CSceneEditor::CSceneEditor()
 {
@@ -28,6 +29,16 @@ bool CSceneEditor::Init()
 
 	mInput->AddBindKey("TileFrame", '3');
 	mInput->AddBindFunction("TileFrame", EInputType::Down, this, &CSceneEditor::TileFrameKey);
+
+
+	mInput->AddBindKey("Save", 'S');
+	mInput->ChangeKeyCtrl("Save", true);
+	mInput->AddBindFunction("Save", EInputType::Down, this, &CSceneEditor::SaveKey);
+
+	mInput->AddBindKey("Load", 'O');
+	mInput->ChangeKeyCtrl("Load", true);
+	mInput->AddBindFunction("Load", EInputType::Down, this, &CSceneEditor::LoadKey);
+
 
 	return true;
 }
@@ -58,4 +69,60 @@ void CSceneEditor::TileTypeKey(float DeltaTime)
 void CSceneEditor::TileFrameKey(float DeltaTime)
 {
 	mTileMapObj->AddTileFrame();
+}
+
+void CSceneEditor::SaveKey(float DeltaTime)
+{
+	OPENFILENAME ofn = {};
+
+	//경로 만들기
+	TCHAR FullPath[MAX_PATH] = {};
+	TCHAR Filter[] = TEXT("*.tlm\0");
+
+	TCHAR DefaultPath[MAX_PATH] = {};
+
+	lstrcpy(DefaultPath, gRootPath);
+	lstrcat(DefaultPath, TEXT("Asset\\Data\\"));
+
+	ofn.lStructSize = sizeof(OPENFILENAME);
+	ofn.hwndOwner = CGameManager::GetInst()->GetWindowHandle();
+	ofn.lpstrFilter = Filter;
+	ofn.lpstrDefExt = TEXT("tlm");
+	ofn.lpstrInitialDir = DefaultPath;
+	ofn.nMaxFile = MAX_PATH;
+	ofn.lpstrFile = FullPath;
+
+	if (GetSaveFileName(&ofn) != 0)
+	{
+		//저장을 시작한다.
+		mTileMapObj->Save(FullPath);
+	}
+}
+
+void CSceneEditor::LoadKey(float DeltaTime)
+{
+	OPENFILENAME ofn = {};
+
+	//경로 만들기
+	TCHAR FullPath[MAX_PATH] = {};
+	TCHAR Filter[] = TEXT("*.tlm\0");
+
+	TCHAR DefaultPath[MAX_PATH] = {};
+
+	lstrcpy(DefaultPath, gRootPath);
+	lstrcat(DefaultPath, TEXT("Asset\\Data\\"));
+
+	ofn.lStructSize = sizeof(OPENFILENAME);
+	ofn.hwndOwner = CGameManager::GetInst()->GetWindowHandle();
+	ofn.lpstrFilter = Filter;
+	ofn.lpstrDefExt = TEXT("tlm");
+	ofn.lpstrInitialDir = DefaultPath;
+	ofn.nMaxFile = MAX_PATH;
+	ofn.lpstrFile = FullPath;
+
+	if (GetOpenFileName(&ofn) != 0)
+	{
+		//불러오기 시작한다. 
+		mTileMapObj->Load(FullPath);
+	}
 }

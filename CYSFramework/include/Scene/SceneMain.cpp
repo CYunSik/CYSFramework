@@ -15,6 +15,7 @@
 #include "../Component/SpriteComponent.h"
 #include "../DeltaRune/JevilBossObject.h"
 #include "../DeltaRune/JevilPrisonBG.h"
+#include "../Object/TileMapObj.h"
 #include "../Object/BackObject.h"
 
 CSceneMain::CSceneMain()
@@ -72,6 +73,11 @@ bool CSceneMain::Init()
 
 	/////////////////// 사용할 사운드를 미리 추가한다.
 	mAssetManager->LoadSound("Hit", "Effect", false, "Sound/snd_attack_sound.wav");
+
+	///////////////////////////////////////////////
+	//백그라운드 오브젝트 타일맵
+	//CTileMapObj* BackTileObject = CreateObj<CTileMapObj>("BackTileObj");
+	//BackTileObject->Load("Second2222.tlm");
 
 
 	// 전투 박스

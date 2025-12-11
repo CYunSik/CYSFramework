@@ -44,5 +44,11 @@ public:
 public:
 	virtual bool Init() override;
 	virtual void Update(float DeltaTime) override;
+
+public:
+	// 세이브 로드
+	void Save(const TCHAR* FullPath);
+	void Load(const TCHAR* FullPath);
+	void Load(const char* FileName);
 };
 

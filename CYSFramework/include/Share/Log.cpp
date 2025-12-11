@@ -9,6 +9,8 @@ bool CLog::Init()
 	// 콘솔창 열어준다.
 	AllocConsole();
 	hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	HWND hWndConsole = GetConsoleWindow();
+	SetWindowPos(hWndConsole, NULL, 100, 100, 0, 0, SWP_NOSIZE);
 #else
 
 #endif // _DEBUG

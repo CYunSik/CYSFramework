@@ -112,3 +112,18 @@ void CTileMapObj::Update(float DeltaTime)
 		}
 	}
 }
+
+void CTileMapObj::Save(const TCHAR* FullPath)
+{
+	mTileMap->Save(FullPath);
+}
+
+void CTileMapObj::Load(const TCHAR* FullPath)
+{
+	mTileMap->Load(FullPath);
+}
+
+void CTileMapObj::Load(const char* FileName)
+{
+	mTileMap->Load(FileName);
+}

@@ -56,5 +56,8 @@ public:
 		mTextureFrame = Frame;
 	}
 
+public:
+	void Save(FILE* File);
+	void Load(FILE* File);
 };
 

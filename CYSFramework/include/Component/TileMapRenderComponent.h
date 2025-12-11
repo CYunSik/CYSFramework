@@ -25,6 +25,17 @@ protected:
 	class CTileMapComponent* mTileMap = nullptr;
 
 public:
+	CTexture* GetBackTexture() const
+	{
+		return mBackTexture;
+	}
+
+	CTexture* GetTileTexture() const
+	{
+		return mTileTexture;
+	}
+
+public:
 	void SetTileMapComponent(CTileMapComponent* TileMap);
 
 	//쉐이더 셋팅 

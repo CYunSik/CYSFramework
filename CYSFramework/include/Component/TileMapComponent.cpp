@@ -12,6 +12,7 @@
 #include "../Shader/TransformCBuffer.h"
 #include "../Shader/ColliderCBuffer.h"
 #include "../Asset/Mesh/Mesh.h"
+#include "../Asset/Texture/Texture.h"
 #include "../Shader/TileMapCBuffer.h"
 
 #include "../Share/Log.h"
@@ -720,4 +721,240 @@ CTileMapComponent* CTileMapComponent::Clone()
 void CTileMapComponent::EndFrame()
 {
 	CComponent::EndFrame();
+}
+
+void CTileMapComponent::Save(const TCHAR* FullPath)
+{
+	//유니코드를 멀티바이트로 변경하는 작업
+	char ConvertPath[MAX_PATH] = {};
+
+	//TCHar -> char
+	int Count = WideCharToMultiByte(CP_ACP, 0, FullPath, -1, nullptr, 0, nullptr, nullptr);
+
+	WideCharToMultiByte(CP_ACP, 0, FullPath, -1, ConvertPath, Count, nullptr, nullptr);
+
+	// Bin\\ 폴더까지의 경로와 이후 경로를 분리한다.
+	char FileName[MAX_PATH] = {};
+
+	int RootPathCount = (int)strlen(gRootPathMultibyte);
+	RootPathCount += (int)strlen("Asset\\Data\\");
+
+	strcpy_s(FileName, &ConvertPath[RootPathCount]);
+
+	Save(FileName);
+}
+
+void CTileMapComponent::Save(const char* FileName)
+{
+	char FullPath[MAX_PATH] = {};
+
+	strcpy_s(FullPath, gRootPathMultibyte);
+	strcat_s(FullPath, "Asset\\Data\\");
+	strcat_s(FullPath, FileName);
+
+	FILE* File = nullptr;
+
+	fopen_s(&File, FullPath, "wb");
+
+	if (!File)
+	{
+		return;
+	}
+
+	fwrite(&mTileSize, sizeof(FVector2D), 1, File);
+	fwrite(&mCountX, sizeof(int), 1, File);
+	fwrite(&mCountY, sizeof(int), 1, File);
+
+	//이미지 프레임 정보
+	//std::vector<FAnimationFrame> mTileFrameList;
+	int FrameCount = static_cast<int>(mTileFrameList.size());
+
+	fwrite(&FrameCount, sizeof(int), 1, File);
+	fwrite(&mTileFrameList[0], sizeof(FAnimationFrame), FrameCount, File);
+
+	//mTileTextureSize
+	fwrite(&mTileTextureSize, sizeof(FVector2D), 1, File);
+
+
+	//각각의 타일을 저장한다. 
+	//std::vector<CTile*> mTileList;
+
+	int TileCount = static_cast<int>(mTileList.size());
+
+	for (int i = 0; i < TileCount; ++i)
+	{
+		mTileList[i]->Save(File);
+	}
+
+	CTileMapRenderComponent* Renderer = mOwnerObject->FindSceneComponent<CTileMapRenderComponent>();
+
+	if (Renderer)
+	{
+		bool TextureEnable = false;
+
+		CTexture* Texture = Renderer->GetBackTexture();
+
+		if (Texture)
+		{
+			TextureEnable = true;
+
+			fwrite(&TextureEnable, sizeof(bool), 1, File);
+
+			int NameCount = (int)Texture->GetName().length();
+			fwrite(&NameCount, sizeof(int), 1, File);
+
+			fwrite(Texture->GetName().c_str(), sizeof(char), NameCount, File);
+
+			fwrite(Texture->GetTexture(0)->FileName, sizeof(TCHAR), MAX_PATH, File);
+		}
+		else
+		{
+			fwrite(&TextureEnable, sizeof(bool), 1, File);
+		}
+
+		TextureEnable = false;
+		Texture = Renderer->GetTileTexture();
+		if (Texture)
+		{
+			TextureEnable = true;
+
+			fwrite(&TextureEnable, sizeof(bool), 1, File);
+
+			int NameCount = (int)Texture->GetName().length();
+			fwrite(&NameCount, sizeof(int), 1, File);
+
+			fwrite(Texture->GetName().c_str(), sizeof(char), NameCount, File);
+
+			fwrite(Texture->GetTexture(0)->FileName, sizeof(TCHAR), MAX_PATH, File);
+		}
+		else
+		{
+			fwrite(&TextureEnable, sizeof(bool), 1, File);
+		}
+	}
+	fclose(File);
+}
+
+void CTileMapComponent::Load(const TCHAR* FullPath)
+{
+	//유니코드를 멀티바이트로 변경하는 작업
+	char ConvertPath[MAX_PATH] = {};
+
+	//TCHar -> char
+	int Count = WideCharToMultiByte(CP_ACP, 0, FullPath, -1, nullptr, 0, nullptr, nullptr);
+
+	WideCharToMultiByte(CP_ACP, 0, FullPath, -1, ConvertPath, Count, nullptr, nullptr);
+
+	// Bin\\ 폴더까지의 경로와 이후 경로를 분리한다.
+	char FileName[MAX_PATH] = {};
+
+	int RootPathCount = (int)strlen(gRootPathMultibyte);
+	RootPathCount += (int)strlen("Asset\\Data\\");
+
+	strcpy_s(FileName, &ConvertPath[RootPathCount]);
+
+	Load(FileName);
+}
+
+void CTileMapComponent::Load(const char* FileName)
+{
+	char FullPath[MAX_PATH] = {};
+
+	strcpy_s(FullPath, gRootPathMultibyte);
+	strcat_s(FullPath, "Asset\\Data\\");
+	strcat_s(FullPath, FileName);
+
+	FILE* File = nullptr;
+
+	fopen_s(&File, FullPath, "rb");
+
+	if (!File)
+	{
+		return;
+	}
+
+	fread(&mTileSize, sizeof(FVector2D), 1, File);
+	fread(&mCountX, sizeof(int), 1, File);
+	fread(&mCountY, sizeof(int), 1, File);
+
+
+	int FrameCount = 0;
+
+	fread(&FrameCount, sizeof(int), 1, File);
+
+	mTileFrameList.clear();
+	mTileFrameList.resize((size_t)FrameCount);
+
+	fread(&mTileFrameList[0], sizeof(FAnimationFrame), FrameCount, File);
+
+	//mTileTextureSize
+	fread(&mTileTextureSize, sizeof(FVector2D), 1, File);
+
+
+	//타일
+	//기존의 타일을 삭제한다.
+	size_t Size = mTileList.size();
+
+	for (size_t i = 0; i < Size; ++i)
+	{
+		SAFE_DELETE(mTileList[i]);
+	}
+
+	mTileList.clear();
+
+	int TileCount = mCountX * mCountY;
+
+	mTileList.resize(TileCount);
+
+	for (int i = 0; i < TileCount; ++i)
+	{
+		CTile* Tile = new CTile;
+
+		Tile->Load(File);
+
+		mTileList[i] = Tile;
+	}
+
+	CTileMapRenderComponent* Renderer = mOwnerObject->FindSceneComponent<CTileMapRenderComponent>();
+
+	if (Renderer)
+	{
+		bool TextureEnable = false;
+
+		fread(&TextureEnable, sizeof(bool), 1, File);
+
+		if (TextureEnable)
+		{
+			char TexName[256] = {};
+			int NameCount = 0;
+
+			fread(&NameCount, sizeof(int), 1, File);
+			fread(TexName, sizeof(char), NameCount, File);
+
+			TCHAR FileName[MAX_PATH] = {};
+
+			fread(FileName, sizeof(TCHAR), MAX_PATH, File);
+
+			Renderer->SetBackTexture(TexName, FileName);
+		}
+
+		TextureEnable = false;
+		fread(&TextureEnable, sizeof(bool), 1, File);
+
+		if (TextureEnable)
+		{
+			char TexName[256] = {};
+			int NameCount = 0;
+
+			fread(&NameCount, sizeof(int), 1, File);
+			fread(TexName, sizeof(char), NameCount, File);
+
+			TCHAR FileName[MAX_PATH] = {};
+
+			fread(FileName, sizeof(TCHAR), MAX_PATH, File);
+
+			Renderer->SetTileTexture(TexName, FileName);
+		}
+	}
+	fclose(File);
 }

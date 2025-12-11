@@ -20,7 +20,7 @@
 CTileMapRenderComponent::CTileMapRenderComponent()
 {
 	mRenderType = EComponentRender::Render;
-	mRenderLayerName = "Object";
+	mRenderLayerName = "BackGround";
 }
 
 CTileMapRenderComponent::CTileMapRenderComponent(const CTileMapRenderComponent& Com)

@@ -155,5 +155,12 @@ public:
 	virtual void PostRender();
 	virtual CTileMapComponent* Clone();
 	virtual void EndFrame();
+
+public:
+	// 세이브 로드
+	void Save(const TCHAR* FullPath);
+	void Save(const char* FileName);
+	void Load(const TCHAR* FullPath);
+	void Load(const char* FileName);
 };
 

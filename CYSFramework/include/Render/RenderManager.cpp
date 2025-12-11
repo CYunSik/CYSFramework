@@ -92,9 +92,9 @@ bool CRenderManager::Init()
 	CreateRenderLayer("BackGround", INT_MIN);
 	CreateRenderLayer("BattleBox", -1);
 	CreateRenderLayer("Object", 0);
-	CreateRenderLayer("BattleUIObj", 0);
-	CreateRenderLayer("BattleUI2", 1);
-	CreateRenderLayer("BattleUI3", 2);
+	CreateRenderLayer("BattleUIObj", 1);
+	CreateRenderLayer("BattleUI2", 2);
+	CreateRenderLayer("BattleUI3", 3);
 	CreateRenderLayer("JevilAttack", 10);
 	CreateRenderLayer("JevilAttackBody", 11);
 
@@ -144,7 +144,7 @@ bool CRenderManager::Init()
 void CRenderManager::Render()
 {
 	// 기본 샘플러 세팅
-	CDevice::GetInst()->GetContext()->PSGetSamplers(0, 1, &mSampler);
+	CDevice::GetInst()->GetContext()->PSSetSamplers(0, 1, &mSampler);
 
 	// 알파블렌드
 	mAlphaBlend->SetState();
